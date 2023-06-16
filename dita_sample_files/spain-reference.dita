@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="spain-reference" xsi:noNamespaceSchemaLocation="../Documents/DeepBlueC/New-dita/dita-ot-4.0.2/plugins/com.deepbluec.v1_3/schema/technicalContent/xsd/reference.xsd" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <title>Spain</title>
+    <class>
+        <propSummaryClass>
+            <propulsion>
+                <content>
+                    <div>
+                        <p>lots of assorted content</p>
+                        <image href="../Downloads/DeepBlueC-master/DeepBlueC-master/LegacyMan-develop/data/Spain1/content/Images/Flag.jpg"></image>
+                        <table>
+                            <tgroup cols="1">
+                                <tbody>
+                                    <row>
+                                        <entry>Some Content</entry>
+                                    </row>
+                                </tbody>
+                            </tgroup>
+                        </table>
+                    </div>
+                </content>
+                <summary>
+                    <p><b>Spain</b></p>
+                    <image href="../Downloads/DeepBlueC-master/DeepBlueC-master/LegacyMan-develop/data/Spain1/content/Images/Flag.jpg"></image>
+                    <table>
+                        <tgroup cols="1">
+                            <tbody>
+                                <row>
+                                    <entry>Overview of systems in Spain</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </table>
+                    <table>
+                        <tgroup cols="7">
+                            <tbody>
+                                <row>
+                                    <entry>Class</entry>
+                                    <entry>Designator</entry>
+                                    <entry>Propulsion</entry>
+                                    <entry>Shaft x Blade</entry>
+                                    <entry>Max Speed</entry>
+                                    <entry>Av TPK</entry>
+                                    <entry>Reduction Ratio</entry>
+                                </row>
+                                <row>
+                                    <entry>Unit_a</entry>
+                                    <entry>PB</entry>
+                                    <entry>2 * V8 Diesel</entry>
+                                    <entry>3 x 3</entry>
+                                    <entry>34 Kts</entry>
+                                    <entry>Unk</entry>
+                                    <entry>Unk</entry>
+                                </row>
+                                <row>
+                                    <entry>Unit_b</entry>
+                                    <entry>PBF</entry>
+                                    <entry>2 * V6 Diesel</entry>
+                                    <entry>2 * 4 (FPP)</entry>
+                                    <entry>16.6</entry>
+                                    <entry>Est 1000</entry>
+                                    <entry>BWW</entry>
+                                </row>
+                                <row>
+                                    <entry>Unit_c</entry>
+                                    <entry>PBA</entry>
+                                    <entry>5 * V8 Diesel</entry>
+                                    <entry>1 x 3</entry>
+                                    <entry>34 Kts</entry>
+                                    <entry>JR</entry>
+                                    <entry>Unk</entry>
+                                </row>
+                                <row>
+                                    <entry>Unit_db</entry>
+                                    <entry>PBF</entry>
+                                    <entry>5 * V6 Diesel</entry>
+                                    <entry>2 * 4 (FPP)</entry>
+                                    <entry>16.6</entry>
+                                    <entry>Est 1000</entry>
+                                    <entry>BWW</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </table>
+                </summary>
+            </propulsion>
+        </propSummaryClass>
+    </class>
+</reference>

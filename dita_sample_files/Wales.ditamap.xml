@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+    <title>Wales</title>
+    <topicref href="wales.dita"/>
+    <topicref href="wales-reference.dita"/>
+    <topicref href="wales_standalones.dita"/>
+</map>

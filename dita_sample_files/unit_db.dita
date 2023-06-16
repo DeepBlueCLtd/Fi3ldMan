@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd"> -->
+<reference id="unit_db" xsi:noNamespaceSchemaLocation="../Documents/DeepBlueC/New-dita/dita-ot-4.0.2/plugins/com.deepbluec.v1_3/schema/technicalContent/xsd/reference.xsd" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <title>Propulsion System</title>
+    <class>
+        <propSummaryClass>
+            <propulsion><summary><table>
+                        <tgroup cols="3">
+                            <tbody>
+                                <row>
+                                    <entry>Cat-a</entry>
+                                    <entry>Cat-b</entry>
+                                    <entry>Cat-c</entry>
+                                </row>
+                                <row>
+                                    <entry>Stages</entry>
+                                    <entry>Rates</entry>
+                                    <entry>Heights</entry>
+                                </row>
+                                <row>
+                                    <entry>12</entry>
+                                    <entry>14</entry>
+                                    <entry>22</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </table>
+                    <table>
+                        <tgroup cols="4">
+                            <tbody>
+                                <row>
+                                    <entry>Cruise Plant</entry>
+                                    <entry>4 * PR32 Diesel Engines%TEST-96%</entry>
+                                    <entry>Shaft x Blade</entry>
+                                    <entry>2 * 4 (GRR)</entry>
+                                </row>
+                                <row>
+                                    <entry>Boost Plant</entry>
+                                    <entry>None</entry>
+                                    <entry>Range</entry>
+                                    <entry>123nm @ 8kts</entry>
+                                </row>
+                                <row>
+                                    <entry>Reduction Ratio</entry>
+                                    <entry>412.8:1</entry>
+                                    <entry>Av TPK</entry>
+                                    <entry>~14</entry>
+                                </row>
+                                <row>
+                                    <entry>Max TRPM</entry>
+                                    <entry>1400</entry>
+                                    <entry>Max SRPM</entry>
+                                    <entry>0-1600</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </table>
+                    <table>
+                        <tgroup cols="6">
+                            <tbody>
+                                <row>
+                                    <entry>Drive</entry>
+                                    <entry>Mode</entry>
+                                    <entry>Shaft x Blade</entry>
+                                    <entry>R:R</entry>
+                                    <entry>Max Speed</entry>
+                                    <entry>Av TPK (Guide)</entry>
+                                </row>
+                                <row>
+                                    <entry>4 Diesel</entry>
+                                    <entry>PTR</entry>
+                                    <entry>2 * 4 (GRR)</entry>
+                                    <entry>412.8:1</entry>
+                                    <entry>40 kts</entry>
+                                    <entry>~14</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </table>
+                    <table>
+                        <tgroup cols="4">
+                            <tbody>
+                                <row>
+                                    <entry>SR</entry>
+                                    <entry>S12</entry>
+                                    <entry>H1-4</entry>
+                                    <entry>Discrete. Doublets common</entry>
+                                </row>
+                                <row>
+                                    <entry>BR</entry>
+                                    <entry>S5</entry>
+                                    <entry>H1</entry>
+                                    <entry>Discrete. Doublets common</entry>
+                                </row>
+                                <row>
+                                    <entry>Cat b Engine R</entry>
+                                    <entry>2-1000.4</entry>
+                                    <entry>H2, 4, 21, 145</entry>
+                                    <entry>The quick brown fox does something similar</entry>
+                                </row>
+                                <row>
+                                    <entry>Unk BBA</entry>
+                                    <entry>25 and CSR</entry>
+                                    <entry>H1</entry>
+                                    <entry>CBR 34</entry>
+                                </row>
+                                <row>
+                                    <entry>Unk BBA</entry>
+                                    <entry>135 and CSR</entry>
+                                    <entry>H1 and 2</entry>
+                                    <entry>CBR 54334</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </table>
+                    <image
+                        href="../Downloads/DeepBlueC-master/DeepBlueC-master/LegacyMan-develop/data/Spain1/content/Images/unit_db.jpg"
+                    />
+                </summary>
+                <content>
+                    <div>
+                        <p><b>REMARKS</b></p>
+                        <image
+                            href="../Downloads/DeepBlueC-master/DeepBlueC-master/LegacyMan-develop/data/Spain1/content/Images/unit_db_2.jpg"/>
+                        <image
+                            href="../Downloads/DeepBlueC-master/DeepBlueC-master/LegacyMan-develop/data/Spain1/content/Images/unit_db_2.jpg"/>
+                        <ol>
+                            <li>The alphabet is already in alphabetical order one</li>
+                            <li>The alphabet is already in alphabetical order two</li>
+                            <li>The alphabet is already in alphabetical order three</li>
+                        </ol>
+                    </div>
+                </content>
+            </propulsion>
+        </propSummaryClass>
+    </class>
+</reference>

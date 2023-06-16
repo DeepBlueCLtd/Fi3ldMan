@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">-->
+<concept id="france-concept" xsi:noNamespaceSchemaLocation="C:\Users\Admin\Documents\DeepBlueC\New-dita\dita-ot-4.0.2\plugins\com.deepbluec.v1_3\schema\technicalContent\xsd\concept.xsd" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <title></title>
+    <shortdesc></shortdesc>
+    <country region="Europe" name="France">
+        <classSummary name="Alpha" designator="PB" url="alpha.dita">
+            <propSummaryCountry propulsion="4 x V8 Diesel" shaft="3 x 4" speed="12 kts" tpk="1000" reduction="23.3:1">
+                <releasable>
+                    <company name="Tango Logistics" release="False"></company>
+                    <company name="Victor Spares" release="False"></company>
+                    <company name="Zen Maintenance" release="True"></company>
+                </releasable>
+                <releasable>
+                    <table>
+                        <tgroup cols="7">
+                            <tbody>
+                                <row>
+                                    <entry >Class</entry>
+                                    <entry>Designator</entry>
+                                    <entry>Propulsion</entry>
+                                    <entry>Shaft x Blade</entry>
+                                    <entry>Max Speed</entry>
+                                    <entry>Av TPK</entry>
+                                    <entry>Reduction Ratio</entry>
+                                </row>
+                                <row>
+                                    <entry></entry>
+                                    <entry></entry>
+                                    <entry></entry>
+                                    <entry>Composite</entry>
+                                    <entry></entry>
+                                    <entry></entry>
+                                    <entry></entry>
+                                </row>
+                                <row>
+                                    <entry>Unit_a</entry>
+                                    <entry>PB</entry>
+                                    <entry>2 * V8 Diesel</entry>
+                                    <entry>3 x 3</entry>
+                                    <entry>34 Kts</entry>
+                                    <entry>Unk</entry>
+                                    <entry>Unk</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </table>
+                </releasable>
+            </propSummaryCountry>
+        </classSummary>
+    </country>
+</concept>

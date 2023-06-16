@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="wales_standalones" xsi:noNamespaceSchemaLocation="C:\Users\Admin\Documents\DeepBlueC\New-dita\dita-ot-4.0.2\plugins\com.deepbluec.v1_3\schema\technicalContent\xsd\reference.xsd" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <title>Sample of a sub-type page</title>
+    <propSummaryClass>
+        <propulsion><content>
+                <p>lots of assorted content</p>
+            </content><p><b>Wales - Standalones</b></p><table id="table_rxp_vwx_5xb">
+                <tgroup cols="7">
+                    <tbody>
+                        <row>
+                            <entry>Class</entry>
+                            <entry>Designator</entry>
+                            <entry>Propulsion</entry>
+                            <entry>Shaft x Blade</entry>
+                            <entry>Max Speed</entry>
+                            <entry>Av PK</entry>
+                            <entry>Reduction Ratio</entry>
+                        </row>
+                        <row>
+                            <entry>Unit_da</entry>
+                            <entry>PBF</entry>
+                            <entry>2 * V6 Diesel</entry>
+                            <entry>2 * 4 (FPP)</entry>
+                            <entry>16.6</entry>
+                            <entry>Est 1000</entry>
+                            <entry>BWW</entry>
+                        </row>
+                        <row>
+                            <entry>Unit_c</entry>
+                            <entry>PBA</entry>
+                            <entry>5 * V8 Diesel</entry>
+                            <entry>1 x 3</entry>
+                            <entry>34 Kts</entry>
+                            <entry>JR</entry>
+                            <entry>Unk</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </propulsion>
+    </propSummaryClass>
+</reference>

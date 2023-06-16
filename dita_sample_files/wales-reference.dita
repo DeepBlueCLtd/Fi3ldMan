@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd"> -->
+<reference id="wales-reference" xsi:noNamespaceSchemaLocation="C:\Users\Admin\Documents\DeepBlueC\New-dita\dita-ot-4.0.2\plugins\com.deepbluec.v1_3\schema\technicalContent\xsd\reference.xsd" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <title>Propulsion</title>
+    <class>
+        <propSummaryClass>
+            <propulsion>
+                <summary>
+                    <table>
+                        <tgroup cols="1">
+                            <tbody>
+                                <row>
+                                    <entry>Unit_DA</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </table>
+                    <table>
+                        <tgroup cols="4">
+                            <tbody>
+                                <row>
+                                    <entry>Cruise Plant</entry>
+                                    <entry>4 * PR32 Diesel Engines</entry>
+                                    <entry>Shaft x Blade</entry>
+                                    <entry>2 * 4 (GRR)</entry>
+                                </row>
+                                <row>
+                                    <entry>Boost Plant</entry>
+                                    <entry>None</entry>
+                                    <entry>Range</entry>
+                                    <entry>123nm @ 8kts</entry>
+                                </row>
+                                <row>
+                                    <entry>Reduction Ratio</entry>
+                                    <entry>412.8:1</entry>
+                                    <entry>Av TPK</entry>
+                                    <entry>~14</entry>
+                                </row>
+                                <row>
+                                    <entry>Max TRPM</entry>
+                                    <entry>1400</entry>
+                                    <entry>Max SRPM</entry>
+                                    <entry>0-1600</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </table>
+                </summary>
+                <content>
+                    <div>
+                        <p><b>REMARKS</b></p>
+                        <xref href="../Desktop/wales_standalones.dita">
+                            <image href="../Downloads/DeepBlueC-master/DeepBlueC-master/LegacyMan-develop/data/Wales/Content/Images/unit_da.jpg"></image>
+                        </xref>
+                        <ol>
+                            <li>The alphabet is already in alphabetical order one</li>
+                            <li>The alphabet is already in alphabetical order two</li>
+                            <li>The alphabet is already in alphabetical order three</li>
+                        </ol>
+                    </div>
+                </content>
+            </propulsion>
+        </propSummaryClass>
+    </class>
+</reference>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+    <title>Sample of a country page</title>
+    <data>
+       <term>
+           <text>lots of assorted content</text>
+       </term>
+    </data>
+    <topicref href="narnia-reference.dita"/>
+</map>

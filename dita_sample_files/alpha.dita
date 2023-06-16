@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">-->
+<reference id="alpha" xsi:noNamespaceSchemaLocation="C:\Users\Admin\Documents\DeepBlueC\New-dita\dita-ot-4.0.2\plugins\com.deepbluec.v1_3\schema\technicalContent\xsd\reference.xsd" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <title></title>
+    <shortdesc></shortdesc> 
+    <class>
+        <propSummaryClass propulsion="4 x V8 Diesel" shaft="3 x 4" speed="12 kots" tpk="1000" reduction="23.3:1">
+            <propulsion>
+                <summary>
+                    <table>
+                        <tgroup cols="4">
+                            <tbody>
+                                <row>
+                                    <entry>Boost Plant</entry>
+                                    <entry>4 x V8 Diesel</entry>
+                                    <entry>SRPM Range</entry>
+                                    <entry>0-1600</entry>
+                                </row>
+                                <row>
+                                    <entry>Cruise Plant</entry>
+                                    <entry>None</entry>
+                                    <entry>Reduction Ratio</entry>
+                                    <entry>23.3:1</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </table>
+                </summary>
+                <content>
+                    <div>
+                        <ul>
+                            <li>Remark one</li>
+                            <li>Remark two</li>
+                            <li>Remark three</li>
+                        </ul>
+                    </div>
+                </content>
+            </propulsion>
+            <signature>
+                <table>
+                    <tgroup cols="1">
+                        <tbody>
+                            <row>
+                                <entry></entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+            </signature>
+        </propSummaryClass>
+    </class>
+</reference>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="iceland-referrence" xsi:noNamespaceSchemaLocation="../Documents/DeepBlueC/New-dita/dita-ot-4.0.2/plugins/com.deepbluec.v1_3/schema/technicalContent/xsd/reference.xsd" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <title>Propulsion</title>
+    <class>
+        <propSummaryClass propulsion="" shaft="" speed="" tpk="" reduction="">
+            <propulsion>
+                <summary>
+                    <table>
+                        <title>Propulsion</title>
+                        <tgroup cols="1">
+                            <tbody>
+                                <row>
+                                    <entry><b>Britain 1</b></entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                        <tgroup cols="4">
+                            <tbody>
+                                <row>
+                                    <entry>Cruise Plant</entry>
+                                    <entry>4 * PR32 Diesel Engines</entry>
+                                    <entry>Shaft x Blade</entry>
+                                    <entry>2 * 4 (GRR)</entry>
+                                </row>
+                                <row>
+                                    <entry>Boost Plant</entry>
+                                    <entry>4 DEW Alpha Batteries</entry>
+                                    <entry>Range</entry>
+                                    <entry>N/A</entry>
+                                </row>
+                                <row>
+                                    <entry>Reduction Ratio</entry>
+                                    <entry>412.8:1</entry>
+                                    <entry>Av TPK</entry>
+                                    <entry>~14</entry>
+                                </row>
+                                <row>
+                                    <entry>ERPM</entry>
+                                    <entry>400-1400</entry>
+                                    <entry>Max SRPM</entry>
+                                    <entry>1600</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </table>
+                </summary>
+                <content>
+                    <text>REMARKS</text>
+                    <div>
+                        <image href="../Downloads/DeepBlueC-master/DeepBlueC-master/LegacyMan-develop/data/Iceland/Content/Images/unit_da.jpg"></image>
+                        <ol>
+                            <li>The alphabet is already in alphabetical order one</li>
+                            <li>The alphabet is already in alphabetical order two</li>
+                            <li>The alphabet is already in alphabetical order three</li>
+                        </ol>
+                    </div>
+                </content>
+            </propulsion>
+        </propSummaryClass>
+    </class>
+</reference>
