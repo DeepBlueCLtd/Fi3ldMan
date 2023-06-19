@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- File   : class.xml                   -->
+<!-- author : Brahnavan Krishnakumar                                -->
+<!-- email  : brahnavank@gmail.com                                  -->
+<!-- Date   : 18 June 2023                                          -->
+<!-- (C) Copyright Deep Blue C Ltd 2023 All Rights Reserved.        -->
+<!DOCTYPE class SYSTEM "dtd/class.dtd">
+<class id="unit_a">
+ <title>Unit_a</title>
+ <classbody>
+  <classproperties>
+   <property>
+    <proptype>Drive</proptype>
+    <propvalue>4 x V8 Diesel</propvalue>
+   </property>
+   <property>
+    <proptype>Mode</proptype>
+    <propvalue>DDA/C</propvalue>
+   </property>
+   <property>
+    <proptype>Shaft x Blade</proptype>
+    <propvalue>2 * 6</propvalue>
+   </property>
+   <property>
+    <proptype>R:R</proptype>
+    <propvalue>22.4:1</propvalue>
+   </property>
+   <property>
+    <proptype>Max Speed</proptype>
+    <propvalue>12</propvalue>
+   </property>
+   <property>
+    <proptype>Av TPK</proptype>
+    <propvalue>4.4</propvalue>
+   </property>
+  </classproperties>
+
+ </classbody>
+ 
+ <signature>
+  <!-- extends section, allows free content in Phase 1. Constrained table in Phase 2 -->
+  <title>Signature</title>
+  <table>
+   <!-- in Phase 2 this will be replaced by `TonalTable` which just allows `Tonals` body element -->
+   <tgroup cols="4">
+    <thead>
+     <row>
+      <entry>Source</entry>
+      <entry>Ratio/Freq</entry>
+      <entry>Harmonics</entry>
+      <entry>Remarks</entry>
+     </row>
+    </thead>
+    <tbody>
+     <!-- in Phase  this will be replaced by `Tonals` which just has `Tonal` children -->
+     <row>
+      <!-- in Phase 2, `row`will be replaced by `Tonal` which has 4 specific child entries, named according do the row headers  above -->
+      <entry>DDA</entry>
+      <entry>12.3</entry>
+      <entry>H3-5</entry>
+      <entry>Dominant in cold weather</entry>
+     </row>
+     <row>
+      <entry>FGAR</entry>
+      <entry>22-45</entry>
+      <entry>H2</entry>
+      <entry>Only once warm-up complete</entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </table>
+ </signature>
+
+ <propulsion>
+  <!-- extends section -->
+  <title>Propulsion</title>
+  <p> some narrative content, including a table of varying structure. Plus diagrams, links, etc </p>
+ </propulsion>
+
+ <remarks>
+  <!-- extends section -->
+  <title>Remarks</title>
+  <span>
+   <ol>
+    <li>Only introduced since summer 2013</li>
+    <li>Similar to unit_x, but with cheaper components</li>
+    <li>Can take 30 minutes to warm up</li>
+    <li>Be wary of unshielded 440/480V power line.</li>
+   </ol>
+   <p> More amplifying remarks </p>
+  </span>
+ </remarks>
+ 
+</class>
