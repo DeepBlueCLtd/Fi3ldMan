@@ -1,11 +1,11 @@
 <?xml version="1.0"?>          
 <!DOCTYPE country SYSTEM "../../../dtd/country.dtd">          
 <country id="france-id">
-    <title>German</title>
+    <title>Germany</title>
     
     <flag>
         <fig>
-            <image href="german.png" alt="Geramn flag"/>
+            <image href="germany.png" alt="Geramn flag"/>
         </fig>
     </flag>
     <countrybody>

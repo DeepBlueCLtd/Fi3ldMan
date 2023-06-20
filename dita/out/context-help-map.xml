@@ -5,7 +5,7 @@
    <appContext helpID="france-id" path="regions/europe/france/france.html"/>
    <appContext helpID="links_1" path="regions/europe/france/unit_a.html"/>
    <appContext helpID="links_2" path="regions/europe/france/unit_d_star.html"/>
-   <appContext helpID="france-id" path="regions/europe/german/german.html"/>
-   <appContext helpID="links_1" path="regions/europe/german/unit_a.html"/>
-   <appContext helpID="links_2" path="regions/europe/german/unit_d_star.html"/>
+   <appContext helpID="france-id" path="regions/europe/germany/germany.html"/>
+   <appContext helpID="links_1" path="regions/europe/germany/unit_a.html"/>
+   <appContext helpID="links_2" path="regions/europe/germany/unit_d_star.html"/>
 </map>
