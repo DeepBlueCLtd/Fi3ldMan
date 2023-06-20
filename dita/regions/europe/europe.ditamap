@@ -6,8 +6,8 @@
         <topicmeta/>
         <!-- refer france -->
         <!-- regions / europe / france --> 
-        <topicref href="france.ditamap" format="ditamap"></topicref>
-        <topicref href="german.ditamap" format="ditamap"></topicref>
+        <topicref href="france/france.ditamap" format="ditamap"></topicref>
+        <topicref href="german/german.ditamap" format="ditamap"></topicref>
  
         
     </topicref>

@@ -8,8 +8,4 @@
    <appContext helpID="france-id" path="regions/europe/german/german.html"/>
    <appContext helpID="links_1" path="regions/europe/german/unit_a.html"/>
    <appContext helpID="links_2" path="regions/europe/german/unit_d_star.html"/>
-   <appContext helpID="links_1" path="regions/africa/africa.html"/>
-   <appContext helpID="france-id" path="regions/africa/south-africa/south-africa.html"/>
-   <appContext helpID="links_1" path="regions/africa/south-africa/unit_a.html"/>
-   <appContext helpID="links_2" path="regions/africa/south-africa/unit_d_star.html"/>
 </map>
