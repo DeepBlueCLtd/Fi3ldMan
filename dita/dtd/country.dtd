@@ -4,42 +4,9 @@
 <!-- ============================================================= -->
 <!--  MODULE:    DITA Concept DTD                                  -->
 <!--  VERSION:   1.2                                               -->
-<!--  DATE:      November 2009                                     -->
-<!--                                                               -->
+<!--  DATE:      June 2023                                         -->
+<!--  Delivered as file "concept.dtd"                              -->
 <!-- ============================================================= -->
-
-<!-- ============================================================= -->
-<!--                    PUBLIC DOCUMENT TYPE DEFINITION            -->
-<!--                    TYPICAL INVOCATION                         -->
-<!--                                                               -->
-<!--  Refer to this file by the following public identifier or an 
-      appropriate system identifier 
-PUBLIC "-//OASIS//DTD DITA Concept//EN"
-      Delivered as file "concept.dtd"                              -->
-
-<!-- The public ID above refers to the latest version of this DTD.
-     To refer to this specific version, you may use this value:
-PUBLIC "-//OASIS//DTD DITA 1.2 Concept//EN"                        -->
-
-<!-- ============================================================= -->
-<!-- SYSTEM:     Darwin Information Typing Architecture (DITA)     -->
-<!--                                                               -->
-<!-- PURPOSE:    DTD to describe DITA Concepts                     -->
-<!--                                                               -->
-<!-- ORIGINAL CREATION DATE:                                       -->
-<!--             March 2001                                        -->
-<!--                                                               -->
-<!--             (C) Copyright OASIS Open 2005, 2009.              -->
-<!--             (C) Copyright IBM Corporation 2001, 2004.         -->
-<!--             All Rights Reserved.                              -->
-<!--                                                               -->
-<!--  UPDATES:                                                     -->
-<!--    2006.06.07 RDA: Added indexing domain                      -->
-<!--    2006.06.21 RDA: Added props attribute extensions           -->
-<!--    2008.02.12 RDA: Modify imbeds to use specific 1.2 version  -->
-<!--    2008.04.15 RDA: Added hazard domain                        -->
-<!-- ============================================================= -->
-
 
 <!-- ============================================================= -->
 <!--                    TOPIC ENTITY DECLARATIONS                  -->
