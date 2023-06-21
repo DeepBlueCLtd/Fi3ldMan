@@ -128,7 +128,6 @@ PUBLIC "-//OASIS//ELEMENTS DITA Topic//EN"
    %txt.incl;
   "
 >
-<!--
 <!ENTITY % body.cnt 
   "%basic.block; | 
    %data.elements.incl; |
@@ -137,9 +136,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Topic//EN"
    %required-cleanup;
   "
 >
--->
 <!-- bodydiv also includes bodydiv and section -->
-
 <!ENTITY % bodydiv.cnt 
   "#PCDATA | 
    %basic.block; | 
@@ -149,7 +146,6 @@ PUBLIC "-//OASIS//ELEMENTS DITA Topic//EN"
    %txt.incl;
   "
 >
-
 <!ENTITY % example.cnt 
   "#PCDATA | 
    %basic.block; | 
@@ -384,7 +380,6 @@ PUBLIC "-//OASIS//ELEMENTS DITA Topic//EN"
 
  
 <!--                    LONG NAME: Body                            -->
-<!--
 <!ENTITY % body.content
                        "(%body.cnt; |
                          %bodydiv; | 
@@ -399,10 +394,9 @@ PUBLIC "-//OASIS//ELEMENTS DITA Topic//EN"
 >
 <!ELEMENT body    %body.content;>
 <!ATTLIST body    %body.attributes;>
--->
+
 
 <!--                    LONG NAME: Body division                   -->
-
 <!ENTITY % bodydiv.content
                        "(%bodydiv.cnt; |
                          %bodydiv; |
@@ -663,11 +657,9 @@ PUBLIC "-//OASIS//ELEMENTS DITA Topic//EN"
 <!-- ============================================================= -->
 <!--                    SPECIALIZATION ATTRIBUTE DECLARATIONS      -->
 <!-- ============================================================= -->
-
+ 
 <!ATTLIST abstract  %global-atts;  class CDATA "- topic/abstract "   >
-<!--
 <!ATTLIST body      %global-atts;  class CDATA "- topic/body "       >
--->
 <!ATTLIST bodydiv   %global-atts;  class CDATA "- topic/bodydiv "    >
 <!ATTLIST example   %global-atts;  class CDATA "- topic/example "    >
 <!ATTLIST link      %global-atts;  class CDATA "- topic/link "       >
@@ -687,7 +679,6 @@ PUBLIC "-//OASIS//ELEMENTS DITA Topic//EN"
                     %global-atts;  class CDATA "- topic/sectiondiv " >
 <!ATTLIST titlealts %global-atts;  class CDATA "- topic/titlealts "  >
 <!ATTLIST topic     %global-atts;  class CDATA "- topic/topic "      >
-
 
 <!-- Shortdesc in map uses map/shortdesc so this one must be 
      included, even though the element is common. -->
