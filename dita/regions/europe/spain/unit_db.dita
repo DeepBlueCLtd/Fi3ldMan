@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE class SYSTEM "../../../dtd/class.dtd">
-<class id="unit_a">
-    <title>Unit_d</title>
+<class id="unit_db">
+    <title>Unit_db</title>
     <body>
         <summary>
             <property>
                 <proptype>Drive</proptype>
-                <propvalue>4 x V8 Diesel</propvalue>
+                <propvalue>4 Diesel</propvalue>
             </property>
             <property>
                 <proptype>Mode</proptype>
-                <propvalue>DDA/C</propvalue>
+                <propvalue>PTR/C</propvalue>
             </property>
             <property>
                 <proptype>Shaft x Blade</proptype>
-                <propvalue>2 * 6</propvalue>
+                <propvalue>2 * 4 (GRR)</propvalue>
             </property>
             <property>
                 <proptype>R:R</proptype>
-                <propvalue>22.4:1</propvalue>
+                <propvalue>412.8:1</propvalue>
             </property>
             <property>
                 <proptype>Max Speed</proptype>
-                <propvalue>12</propvalue>
+                <propvalue>40 kts</propvalue>
             </property>
             <property>
                 <proptype>Av TPK</proptype>
-                <propvalue>4.4</propvalue>
+                <propvalue>14</propvalue>
             </property>
         </summary>
         <signatures>
@@ -39,7 +39,7 @@
                     <colspec colnum="4" colname="col4"/>
                     <colspec colnum="5" colname="col5"/>
                     <colspec colnum="6" colname="col6"/>
-                    <thead>
+                    <tbody>
                         <row>
                             <entry>Drive</entry>
                             <entry>Mode</entry>
@@ -48,9 +48,6 @@
                             <entry>Max Speed</entry>
                             <entry>Av TPK (Guide)</entry>
                         </row>
-                    </thead>
-                    <tbody>
-                        
                         <row>
                             <entry>4 Diesel</entry>
                             <entry>PTR</entry>
@@ -61,12 +58,12 @@
                         </row>
                         <row>
                             <entry namest="col1" nameend="col6">
-                                <b>*Commonly Detected Sources</b>
+                                <b>Commonly Detected Sources</b>
                             </entry>
                         </row>
                         <row>
                             <entry>Source</entry>
-                            <entry>Ratio/Freq (:1/Hz)</entry>
+                            <entry>Ratio/Freq</entry>
                             <entry namest="col3" nameend="col4">Harmonics</entry>
                             <entry namest="col5" nameend="col6">Remarks</entry>
                         </row>
@@ -76,8 +73,7 @@
                         <row>
                             <entry>SR</entry>
                             <entry>S12</entry>
-                            <entry namest="col3" nameend="col4">H1-4 %162-Special Harmonics
-                                within *Commonly Detected Sources%</entry>
+                            <entry namest="col3" nameend="col4">H1-4</entry>
                             <entry namest="col5" nameend="col6">Discrete. Doublets
                                 common</entry>
                         </row>
@@ -93,8 +89,7 @@
                             <entry>2-1000.4</entry>
                             <entry namest="col3" nameend="col4">H2, 4, 21, 145</entry>
                             <entry namest="col5" nameend="col6">The quick brown fox does
-                                something similar <xref href="#">Tool
-                                    screenshot a</xref><xref href="#">Tool screenshot b</xref></entry>
+                                something similar</entry>
                         </row>
                         <row>
                             <entry>Unk BBA</entry>
@@ -109,23 +104,6 @@
                             <entry namest="col5" nameend="col6">CBR 54334</entry>
                         </row>
                         <row>
-                            <entry>SS</entry>
-                            <entry>S15</entry>
-                            <entry namest="col3" nameend="col4">H1, H2</entry>
-                            <entry namest="col5" nameend="col6" morerows="2">A long remarks
-                                block%TEST-77%</entry>
-                        </row>
-                        <row>
-                            <entry>SA</entry>
-                            <entry>15</entry>
-                            <entry namest="col3" nameend="col4">H2, H3</entry>
-                        </row>
-                        <row>
-                            <entry>SB</entry>
-                            <entry>12</entry>
-                            <entry namest="col3" nameend="col4">H1, H3</entry>
-                        </row>
-                        <row>
                             <entry namest="col1" nameend="col6">Signature &amp;
                                 Characteristics</entry>
                         </row>
@@ -136,9 +114,15 @@
                         </row>
                         <row>
                             <entry>Unique classifiers</entry>
-                            <entry namest="col2" nameend="col6">Reliable indicator in cold
-                                conditions (&lt;5 degs C). Click <b><xref href="#" format="wav" scope="external">HERE</xref></b> for an example at
-                                typical extraction speed</entry>
+                            <entry namest="col2" nameend="col6">The dominant frequency will
+                                be Laboris nostrud ipsum ex tempor. Est fugiat et esse
+                                excepteur est voluptate cupidatat in sit. Ex est laborum
+                                commodo eiusmod. Et tempor labore dolor eu laborum labore ex
+                                sit deserunt cillum sit duis minim. Nisi ea ullamco minim
+                                duis elit consectetur mollit ea mollit sunt voluptate. Esse
+                                nulla id mollit ad deserunt Lorem deserunt excepteur
+                                nostrud. <image href="images/unit_db_2.jpg"/> Figure 2.
+                                Dominant frequency Est commodo id in est irure.</entry>
                         </row>
                         <row>
                             <entry>Aural</entry>
@@ -152,70 +136,8 @@
         
         <propulsion>
             <title>Propulsion</title>
-            <table>
-                <tgroup cols="4">
-                    <colspec colnum="1" colname="col1"/>
-                    <colspec colnum="2" colname="col2"/>
-                    <colspec colnum="3" colname="col3"/>
-                    <colspec colnum="4" colname="col4"/>
-                    <thead>
-                        <row>
-                            <entry namest="col1" nameend="col4">
-                                <b>Unit_D_Star</b>
-                            </entry>
-                        </row>
-                    </thead>
-                    <tbody>
-                        
-                        <row>
-                            <entry>
-                                <b>Cruise Plant</b>
-                            </entry>
-                            <entry>4 * PR32 Diesel Engines %TEST-162%</entry>
-                            <entry>
-                                <b>Shaft x Blade</b>
-                            </entry>
-                            <entry>2 * 4 (GRR)</entry>
-                        </row>
-                        <row>
-                            <entry morerows="1">
-                                <b>Boost Plant</b>
-                            </entry>
-                            <entry morerows="1">None</entry>
-                            <entry>
-                                <b>Range</b>
-                            </entry>
-                            <entry>123nm @ 8kts</entry>
-                        </row>
-                        <row>
-                            <entry>
-                                <b>Max Speed</b>
-                            </entry>
-                            <entry>40 kts</entry>
-                        </row>
-                        <row>
-                            <entry>
-                                <b>Reduction Ratio</b>
-                            </entry>
-                            <entry>412.8:1</entry>
-                            <entry>
-                                <b>Av TPK</b>
-                            </entry>
-                            <entry>~14</entry>
-                        </row>
-                        <row>
-                            <entry>
-                                <b>Max TRPM</b>
-                            </entry>
-                            <entry>1400</entry>
-                            <entry>
-                                <b>Max SRPM</b>
-                            </entry>
-                            <entry>0-1600</entry>
-                        </row>
-                    </tbody>
-                </tgroup>
-            </table>
+            <p> some narrative content, including a table of varying structure. Plus diagrams,
+                links, etc </p>
         </propulsion>
         
         <remarks>

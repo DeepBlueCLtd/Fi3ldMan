@@ -1,11 +1,11 @@
 <?xml version="1.0"?>          
 <!DOCTYPE country SYSTEM "../../../dtd/country.dtd">          
 <country id="france-id">
-    <title>Germany</title>
+    <title>Spain</title>
     
     <flag>
         <fig>
-            <image href="germany.png" alt="Geramn flag"/>
+            <image href="spain.jpeg" alt="Geramn flag"/>
         </fig>
     </flag>
     <countrybody>
@@ -20,7 +20,7 @@
                 <colspec colnum="7" colname="col7"/>
                 <tbody>
                     <row>
-                        <entry namest="col1" nameend="col7">Overview of systems in France</entry>
+                        <entry namest="col1" nameend="col7">Overview of systems in Spain</entry>
                     </row>
                     <row>
                         <entry>Class</entry>
@@ -30,6 +30,10 @@
                         <entry>Max Speed</entry>
                         <entry>Av TPK</entry>
                         <entry>Reduction Ratio</entry>
+                        
+                        
+                        
+                        
                     </row>
                     <row>
                         <entry namest="col1" nameend="col7">
@@ -37,9 +41,7 @@
                         </entry>
                     </row>
                     <row>
-                        <entry>
-                            <xref href="unit_a.dita">Unit_a</xref>
-                        </entry>
+                        <entry>Unit_a</entry>
                         <entry>PB</entry>
                         <entry>2 * V8 Diesel</entry>
                         <entry>3 x 3</entry>
@@ -64,28 +66,25 @@
                     <row>
                         <entry>Unit_c</entry>
                         <entry>PBA</entry>
-                        <entry morerows="1">5 * V8 Diesel%TEST-85%</entry>
+                        <entry>5 * V8 Diesel%TEST-85%</entry>
                         <entry>1 x 3</entry>
                         <entry>34 Kts</entry>
                         <entry>JR</entry>
-                        <entry morerows="1">Unk%TEST-85%</entry>
+                        <entry>Unk%TEST-85%</entry>
                     </row>
                     <row>
                         <entry>
-                            <xref href="unit_d_star.dita">Unit_d</xref>
+                            *<xref href="unit_db.dita">Unit_db_d</xref>
                         </entry>
                         <entry>PBF</entry>
-                        <entry morerows="1">2 * 4 (FPP)%TEST-85%</entry>
-                        <entry>16.6</entry>
-                        <entry>Est 1000</entry>
-                    </row>
-                    <row>
-                        <entry>Unit_eww</entry>
-                        <entry>PBF</entry>
                         <entry>2 * V6 Diesel</entry>
+                        <entry>2 * 4 (FPP)</entry>
                         <entry>16.6</entry>
                         <entry>Est 1000</entry>
                         <entry>BWW</entry>
+                    </row>
+                    <row>
+                        <entry namest="col1" nameend="col7">Link is to French unit_d</entry>
                     </row>
                 </tbody>
             </tgroup>
