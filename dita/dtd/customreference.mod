@@ -91,7 +91,9 @@ PUBLIC "-//OASIS//ELEMENTS DITA Reference//EN"
 <!ENTITY % property    "property"                                    >
 <!ENTITY % proptype    "proptype"                                    >
 <!ENTITY % propvalue   "propvalue"                                   >
+<!--
 <!ENTITY % propdesc    "propdesc"                                    >
+-->
 <!ENTITY % prophead    "prophead"                                    >
 <!ENTITY % proptypehd  "proptypehd"                                  >
 <!ENTITY % propvaluehd "propvaluehd"                                 >
@@ -241,8 +243,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Reference//EN"
 <!--                    LONG NAME:  Property Head                  -->
 <!ENTITY % prophead.content
                        "((%proptypehd;)?, 
-                         (%propvaluehd;)?, 
-                         (%propdeschd;)?)"
+                         (%propvaluehd;)?)"
 >
 <!ENTITY % prophead.attributes
              "%univ-atts; 
@@ -291,6 +292,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Reference//EN"
 
 
 <!--                    LONG NAME: Property Description Head       -->
+<!--
 <!ENTITY % propdeschd.content
                        "(%tblcell.cnt;)*"
 >
@@ -305,14 +307,13 @@ PUBLIC "-//OASIS//ELEMENTS DITA Reference//EN"
 >
 <!ELEMENT propdeschd    %propdeschd.content;>
 <!ATTLIST propdeschd    %propdeschd.attributes;>
-
+-->
 
 
 <!--                    LONG NAME: Property                        -->
 <!ENTITY % property.content
-                       "((%proptype;)?, 
-                         (%propvalue;)?, 
-                         (%propdesc;)?)"
+                       "((%proptype;), 
+                         (%propvalue;))"
 >
 <!ENTITY % property.attributes
              "%univ-atts; 
@@ -362,6 +363,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Reference//EN"
 
 
 <!--                    LONG NAME: Property Descrption             -->
+<!--
 <!ENTITY % propdesc.content
                        "(%desc.cnt;)*"
 >
@@ -376,7 +378,7 @@ PUBLIC "-//OASIS//ELEMENTS DITA Reference//EN"
 >
 <!ELEMENT propdesc    %propdesc.content;>
 <!ATTLIST propdesc    %propdesc.attributes;>
-
+-->
 
  
 
@@ -393,12 +395,15 @@ PUBLIC "-//OASIS//ELEMENTS DITA Reference//EN"
 <!ATTLIST property    %global-atts;  class  CDATA "- topic/strow       reference/property "  >
 <!ATTLIST proptype    %global-atts;  class  CDATA "- topic/stentry     reference/proptype "  >
 <!ATTLIST propvalue   %global-atts;  class  CDATA "- topic/stentry     reference/propvalue " >
+<!--
 <!ATTLIST propdesc    %global-atts;  class  CDATA "- topic/stentry     reference/propdesc "  >
-
+-->
 <!ATTLIST prophead    %global-atts;  class  CDATA "- topic/sthead      reference/prophead "  >
 <!ATTLIST proptypehd  %global-atts;  class  CDATA "- topic/stentry     reference/proptypehd ">
 <!ATTLIST propvaluehd %global-atts;  class  CDATA "- topic/stentry     reference/propvaluehd ">
+<!--
 <!ATTLIST propdeschd  %global-atts;  class  CDATA "- topic/stentry     reference/propdeschd ">
+-->
 
  
 <!-- ================== End DITA Reference  =========================== -->
