@@ -1,40 +1,40 @@
-<!-- File   : class.mod                                      -->
-<!-- author : Brahnavan Krishnakumar                                -->
-<!-- email  : brahnavank@gmail.com                                  -->
-<!-- Date   : 18 June 2023                                          -->
-<!-- (C) Copyright Deep Blue C Ltd 2023 All Rights Reserved.        -->
+<!-- ============================================================= -->
+<!--                    HEADER                                     -->
+<!-- ============================================================= -->
+<!--  MODULE:    DITA class Mod                                    -->
+<!--  VERSION:   1.2                                               -->
+<!--  DATE:      June 2023                                         -->
+<!--  Delivered as file "class.mod"                                -->
+<!-- ============================================================= -->
 
 <!-- ============ Specialization of declared elements ============  -->
 <!ENTITY % class                 "class">
-<!ENTITY % classbody             "classbody">
-<!ENTITY % classproperties       "classproperties">
-<!ENTITY % property                     "property">
-<!ENTITY % signature                    "signature">
+<!ENTITY % body             "body">
+<!ENTITY % summary       "summary">
+<!ENTITY % signatures                    "signatures">
 <!ENTITY % propulsion                   "propulsion">
 <!ENTITY % remarks                      "remarks">
-
 <!ENTITY % span                           "span">
 
-<!ELEMENT class              ((%title;), (%classbody;), (%signature;), (%propulsion;), (%remarks;))>
+<!ELEMENT class              ((%title;), (%body;))>
 <!ATTLIST class            id ID #REQUIRED
                                   conref CDATA #IMPLIED
                                   %arch-atts;
                                   domains CDATA "&included-domains;"
 >
 
-<!ELEMENT classbody          ((%classproperties;), (%section;)* )>
-<!ATTLIST classbody              
+<!ELEMENT body          ((%summary;), (%signatures;)?, (%propulsion;)?, (%remarks;)? )>
+<!ATTLIST body              
                                         outputclass CDATA #IMPLIED
 >
 
-<!ELEMENT classproperties          (%classproperties; | %property;)* >
-<!ATTLIST classproperties
+<!ELEMENT summary          ((%property;), (%property;), (%property;), (%property;), (%property;), (%property;)) >
+<!ATTLIST summary
                                 outputclass CDATA #IMPLIED
 >
 
-
-<!ELEMENT signature    (%section.cnt;)* >
-<!ATTLIST signature
+<!ELEMENT signatures    (%section.cnt;)* >
+<!ATTLIST signatures
                                   outputclass CDATA #IMPLIED
 >
 
@@ -48,7 +48,7 @@
                                   outputclass CDATA #IMPLIED
 >
 
-<!ELEMENT span    ((%ol;)?, (%p;)*) >
+<!ELEMENT span    ((%ol;)*, (%p;)*) >
 <!ATTLIST span    
                                   conref CDATA #IMPLIED
                                   outputclass CDATA #IMPLIED
@@ -56,17 +56,17 @@
 
 <!--specialization attributes-->
 
-<!-- class reference -->
-<!ATTLIST class              class  CDATA "- topic/topic reference/reference class/class ">
+<!-- class extends reference -->
+<!ATTLIST class              class  CDATA "- topic/topic  reference/reference class/class ">
 
-<!-- extends refBody, classProperties is compulsory, other 3 child elements optional -->
-<!ATTLIST classbody          class  CDATA "- topic/body reference/refBody class/classbody ">
+<!-- body extends refBody, summary is compulsory, other 3 child elements (signature, propulsion, remarks) optional -->
+<!ATTLIST body          class  CDATA "- topic/body reference/refBody class/body ">
 
- <!-- extends properties. unconstrained in Phase 1 but with 6 specific propTypes in Phase 2 -->
-<!ATTLIST classproperties          class  CDATA "- topic/simpletable reference/properties  class/classproperties ">
+<!-- summary extends properties.  -->
+<!ATTLIST summary          class  CDATA "- topic/simpletable reference/properties  class/summary ">
 
-<!-- extends section, allows free content in Phase 1. Constrained table in Phase 2 -->
-<!ATTLIST signature    class  CDATA "- topic/section class/signature ">
+<!-- signatures extends section, allows free content in Phase 1. Constrained table in Phase 2 -->
+<!ATTLIST signatures    class  CDATA "- topic/section class/signatures ">
 
 <!-- extends section -->
 <!ATTLIST propulsion    class  CDATA "- topic/section class/propulsion ">
@@ -76,5 +76,8 @@
 
 <!-- sp extends p -->
 <!ATTLIST span    class  CDATA "- topic/p  class/span ">
+
+
+
 
 

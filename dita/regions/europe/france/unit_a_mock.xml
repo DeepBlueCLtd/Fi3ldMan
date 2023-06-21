@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE class SYSTEM "../../../dtd/class.dtd">
+<class id="unit_a">
+ <title>Unit_a</title>
+ <body>
+  <!-- compulsary -->
+  <summary>
+    <!-- compulsary :  6 times -->
+    <property>
+      <!-- compulsary -->
+      <proptype></proptype>
+      <!-- compulsary -->
+      <propvalue></propvalue>
+    </property>
+    <property>
+     <!-- compulsary -->
+     <proptype></proptype>
+     <!-- compulsary -->
+     <propvalue></propvalue>
+    </property>
+    <property>
+     <!-- compulsary -->
+     <proptype></proptype>
+     <!-- compulsary -->
+     <propvalue></propvalue>
+    </property>
+    <property>
+     <!-- compulsary -->
+     <proptype></proptype>
+     <!-- compulsary -->
+     <propvalue></propvalue>
+    </property>
+    <property>
+     <!-- compulsary -->
+     <proptype></proptype>
+     <!-- compulsary -->
+     <propvalue></propvalue>
+    </property>
+    <property>
+     <!-- compulsary -->
+     <proptype></proptype>
+     <!-- compulsary -->
+     <propvalue></propvalue>
+    </property>
+  </summary>
+  
+  <!-- first element -->
+  <!-- optional -->
+  <signatures>
+   <!-- optional -->
+   <table><tgroup cols="1"><tbody><row><entry>dummy</entry></row></tbody></tgroup></table>
+  </signatures>
+  
+  <!-- second element -->
+  <!-- optional -->
+  <propulsion>
+   <!-- optional -->
+   <p> some narrative content, including a table of varying structure. Plus diagrams, links, etc</p>
+  </propulsion>
+  
+  
+  <!-- third element -->
+  <!-- optional -->
+  <remarks>
+   <!-- optional -->
+   <span>
+  
+   </span>
+  </remarks> 
+ </body>
+</class>
