@@ -553,3 +553,12 @@ html[dir='rtl'] .wh_top_menu:not(.activated-on-click) ul li:hover > ul,
 html[dir='rtl'] .wh_top_menu.activated-on-click ul li.active > ul {
     max-width: 270px;
 }
+
+/* 
+ * custom css 
+ */
+ 
+.wh_topic_content .table .entry{ 
+    border: 1px solid black !important;
+    border-collapse: collapse;
+ }
