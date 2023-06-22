@@ -4,12 +4,10 @@
   "homepage": ".",
   "private": true,
   "dependencies": {
-    "@types/react-dom": "^18.0.9",
-    "http-server": "^14.1.1",
     "serve": "^14.0.1"
   },
   "scripts": {
-    "start": "http-server"
+    "start": "serve dita/out"
   },
   "eslintConfig": {
     "extends": [
