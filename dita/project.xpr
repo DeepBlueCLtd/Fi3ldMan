@@ -10,11 +10,11 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>dita/content/regions.ditamap</String>
+                                    <String>regions.ditamap</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>DITA Map WebHelp Responsive - Copy</String>
+                                        <String>DITA Map WebHelp Responsive</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -89,7 +89,7 @@
                                 <field name="publishingTemplateDataPO">
                                     <publishingTemplate>
                                         <field name="templateRoot">
-                                            <String>/Users/blue_upwork_workspace/blue_git_pull_master_new_6/Fi3ldMan/dita/project/template/oxygen/</String>
+                                            <String>/Users/blue_upwork_workspace/blue_git_pull_master_new_6/Fi3ldMan/dita/template/oxygen/</String>
                                         </field>
                                         <field name="descriptorRelativePath">
                                             <String>oxygen-tiles.opt</String>
@@ -234,7 +234,7 @@
                                     <null/>
                                 </field>
                                 <field name="name">
-                                    <String>DITA Map WebHelp Responsive - Copy</String>
+                                    <String>DITA Map WebHelp Responsive</String>
                                 </field>
                                 <field name="baseURL">
                                     <null/>
