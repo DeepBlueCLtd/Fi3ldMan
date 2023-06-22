@@ -2,16 +2,12 @@
 <!DOCTYPE class SYSTEM "../../../dtd/class.dtd">
 <class id="unit_a">
     <title>Unit_a</title>
-    <!-- compulsory -->
-    <images>
-        <!-- optional -->
-        <image href="images/oscill_c.jpg" align="left"></image>
-        <!-- optional -->
-        <image href="images/oscill_d.jpg" align="left"></image>
-        <!-- optional -->
-        <image href="images/oscill_e.jpg" align="left"></image>
-    </images>
     <body>
+        <images>
+            <image href="images/oscill_c.jpg" align="left"/>
+            <image href="images/oscill_d.jpg" align="left"/>
+            <image href="images/oscill_e.jpg" align="left"/>
+        </images>
         <summary>
             <property>
                 <proptype>Drive</proptype>
@@ -38,11 +34,6 @@
                 <propvalue>4.4</propvalue>
             </property>
         </summary>
-        <!-- compulsory -->
-        <images>
-            <!-- optional -->
-            <image href="images/unit_da.jpg" align="left"></image>
-        </images>
         <signatures>
             <title>Signature</title>
             <table>

@@ -17,14 +17,14 @@
 <!ENTITY % span                           "span">
 <!ENTITY % images                           "images">
 
-<!ELEMENT class              ((%title;), (%images;)?, (%body;))>
+<!ELEMENT class              ((%title;), (%body;))>
 <!ATTLIST class            id ID #REQUIRED
                                   conref CDATA #IMPLIED
                                   %arch-atts;
                                   domains CDATA "&included-domains;"
 >
 
-<!ELEMENT body          ((%summary;), (%images;), (%signatures;)?, (%propulsion;)?, (%remarks;)? )>
+<!ELEMENT body          ((%images;), (%summary;), (%signatures;)?, (%propulsion;)?, (%remarks;)? )>
 <!ATTLIST body              
                                         outputclass CDATA #IMPLIED
 >
@@ -55,7 +55,7 @@
                                   outputclass CDATA #IMPLIED
 >
 
-<!ELEMENT images              ((%image;)?, (%image;)?, (%image;)?)>
+<!ELEMENT images              ((%image;)*)>
 <!ATTLIST images
                                   outputclass CDATA #IMPLIED
 >
