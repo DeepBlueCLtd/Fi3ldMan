@@ -3,4 +3,16 @@
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="links_1">
     <title>Europe</title>
+    <body>
+      <table>
+        <tgroup cols="2">
+          <tbody>
+            <row>
+              <entry><xref href="france/france.dita">Germany</xref></entry>
+              <entry><xref href="spain/spain.dita">Spain</xref></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </body>
 </topic>
