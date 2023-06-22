@@ -37,6 +37,10 @@
                 <propvalue>4.4</propvalue>
             </property>
         </summary>
+        <images>
+            <!-- optional -->
+            <image href="images/oscill_e.jpg" align="left"></image>
+        </images>
         <signatures>
             <title>Signature</title>
             <table>
@@ -101,8 +105,8 @@
                             <entry>2-1000.4</entry>
                             <entry namest="col3" nameend="col4">H2, 4, 21, 145</entry>
                             <entry namest="col5" nameend="col6">The quick brown fox does
-                                something similar <xref href="#">Tool
-                                    screenshot a</xref><xref href="#">Tool screenshot b</xref></entry>
+                                something similar <xref href="images/oscill_e.jpg" format="jpg">Tool
+                                    screenshot a</xref><xref href="images/oscill_e.jpg" format="jpg">Tool screenshot b</xref></entry>
                         </row>
                         <row>
                             <entry>Unk BBA</entry>
