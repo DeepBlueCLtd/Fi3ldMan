@@ -9,7 +9,7 @@
     "serve": "^14.0.1"
   },
   "scripts": {
-    "start": "http-server index.html"
+    "start": "http-server"
   },
   "eslintConfig": {
     "extends": [
