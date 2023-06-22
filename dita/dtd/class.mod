@@ -15,15 +15,16 @@
 <!ENTITY % propulsion                   "propulsion">
 <!ENTITY % remarks                      "remarks">
 <!ENTITY % span                           "span">
+<!ENTITY % images                           "images">
 
-<!ELEMENT class              ((%title;), (%body;))>
+<!ELEMENT class              ((%title;), (%images;)?, (%body;))>
 <!ATTLIST class            id ID #REQUIRED
                                   conref CDATA #IMPLIED
                                   %arch-atts;
                                   domains CDATA "&included-domains;"
 >
 
-<!ELEMENT body          ((%summary;), (%signatures;)?, (%propulsion;)?, (%remarks;)? )>
+<!ELEMENT body          ((%summary;), (%images;), (%signatures;)?, (%propulsion;)?, (%remarks;)? )>
 <!ATTLIST body              
                                         outputclass CDATA #IMPLIED
 >
@@ -54,6 +55,11 @@
                                   outputclass CDATA #IMPLIED
 >
 
+<!ELEMENT images              ((%image;)?, (%image;)?, (%image;)?)>
+<!ATTLIST images
+                                  outputclass CDATA #IMPLIED
+>
+
 <!--specialization attributes-->
 
 <!-- class extends reference -->
@@ -76,6 +82,9 @@
 
 <!-- sp extends p -->
 <!ATTLIST span    class  CDATA "- topic/p  class/span ">
+
+<!-- images -->
+<!ATTLIST images             %global-atts;  class CDATA "- topic/body reference/refBody class/images ">
 
 
 

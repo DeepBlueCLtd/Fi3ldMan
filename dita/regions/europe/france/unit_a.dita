@@ -2,6 +2,15 @@
 <!DOCTYPE class SYSTEM "../../../dtd/class.dtd">
 <class id="unit_a">
     <title>Unit_a</title>
+    <!-- compulsory -->
+    <images>
+        <!-- optional -->
+        <image href="images/unit_db_2.jpg" align="left"></image>
+        <!-- optional -->
+        <image href="images/unit_db_2.jpg" align="left"></image>
+        <!-- optional -->
+        <image href="images/unit_db_2.jpg" align="left"></image>
+    </images>
     <body>
         <summary>
             <property>
@@ -29,6 +38,13 @@
                 <propvalue>4.4</propvalue>
             </property>
         </summary>
+        <!-- compulsory -->
+        <images>
+            <!-- optional -->
+            <image href="images/unit_db_2.jpg" align="left"></image>
+            <!-- optional -->
+            <image href="images/unit_db_2.jpg" align="left"></image>
+        </images>
         <signatures>
             <title>Signature</title>
             <table>
