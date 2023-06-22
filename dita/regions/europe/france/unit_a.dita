@@ -3,6 +3,11 @@
 <class id="unit_a">
     <title>Unit_a</title>
     <body>
+        <images>
+            <image href="images/oscill_c.jpg" align="left"/>
+            <image href="images/oscill_d.jpg" align="left"/>
+            <image href="images/oscill_e.jpg" align="left"/>
+        </images>
         <summary>
             <property>
                 <proptype>Drive</proptype>

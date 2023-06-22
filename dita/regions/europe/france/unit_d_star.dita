@@ -2,7 +2,13 @@
 <!DOCTYPE class SYSTEM "../../../dtd/class.dtd">
 <class id="unit_a">
     <title>Unit_d</title>
+
     <body>
+        <images>
+            <image href="images/oscill_c.jpg" align="left"/>
+            <image href="images/oscill_d.jpg" align="left"/>
+            <image href="images/oscill_e.jpg" align="left"/>
+        </images>
         <summary>
             <property>
                 <proptype>Drive</proptype>
@@ -93,8 +99,8 @@
                             <entry>2-1000.4</entry>
                             <entry namest="col3" nameend="col4">H2, 4, 21, 145</entry>
                             <entry namest="col5" nameend="col6">The quick brown fox does
-                                something similar <xref href="#">Tool
-                                    screenshot a</xref><xref href="#">Tool screenshot b</xref></entry>
+                                something similar <xref href="images/oscill_e.jpg" format="jpg">Tool
+                                    screenshot a</xref><xref href="images/oscill_e.jpg" format="jpg">Tool screenshot b</xref></entry>
                         </row>
                         <row>
                             <entry>Unk BBA</entry>

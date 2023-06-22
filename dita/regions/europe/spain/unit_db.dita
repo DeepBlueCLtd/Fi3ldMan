@@ -3,6 +3,9 @@
 <class id="unit_db">
     <title>Unit_db</title>
     <body>
+        <images>
+            <image href="images/TEST-48.jpg"/>
+        </images>
         <summary>
             <property>
                 <proptype>Drive</proptype>
