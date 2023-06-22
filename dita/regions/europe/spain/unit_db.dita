@@ -2,6 +2,9 @@
 <!DOCTYPE class SYSTEM "../../../dtd/class.dtd">
 <class id="unit_db">
     <title>Unit_db</title>
+    <images>
+        <image href="images/TEST-48.jpg"></image>
+    </images>
     <body>
         <summary>
             <property>
@@ -29,6 +32,9 @@
                 <propvalue>14</propvalue>
             </property>
         </summary>
+        <images>
+            <image href="images/unit_db_2.jpg"></image>
+        </images>
         <signatures>
             <title>Signature</title>
             <table>

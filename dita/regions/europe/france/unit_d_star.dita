@@ -2,6 +2,14 @@
 <!DOCTYPE class SYSTEM "../../../dtd/class.dtd">
 <class id="unit_a">
     <title>Unit_d</title>
+    <images>
+        <!-- optional -->
+        <image href="images/oscill_c.jpg" align="left"></image>
+        <!-- optional -->
+        <image href="images/oscill_d.jpg" align="left"></image>
+        <!-- optional -->
+        <image href="images/oscill_e.jpg" align="left"></image>
+    </images>
     <body>
         <summary>
             <property>

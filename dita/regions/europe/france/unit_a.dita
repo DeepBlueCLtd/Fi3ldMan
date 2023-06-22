@@ -5,11 +5,11 @@
     <!-- compulsory -->
     <images>
         <!-- optional -->
-        <image href="images/unit_db_2.jpg" align="left"></image>
+        <image href="images/oscill_c.jpg" align="left"></image>
         <!-- optional -->
-        <image href="images/unit_db_2.jpg" align="left"></image>
+        <image href="images/oscill_d.jpg" align="left"></image>
         <!-- optional -->
-        <image href="images/unit_db_2.jpg" align="left"></image>
+        <image href="images/oscill_e.jpg" align="left"></image>
     </images>
     <body>
         <summary>
@@ -41,9 +41,7 @@
         <!-- compulsory -->
         <images>
             <!-- optional -->
-            <image href="images/unit_db_2.jpg" align="left"></image>
-            <!-- optional -->
-            <image href="images/unit_db_2.jpg" align="left"></image>
+            <image href="images/unit_da.jpg" align="left"></image>
         </images>
         <signatures>
             <title>Signature</title>
