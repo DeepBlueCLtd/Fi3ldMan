@@ -9,7 +9,7 @@
     "serve": "^14.0.1"
   },
   "scripts": {
-    "start": "http-server index.html"
+    "start": "serve dita/out"
   },
   "eslintConfig": {
     "extends": [
