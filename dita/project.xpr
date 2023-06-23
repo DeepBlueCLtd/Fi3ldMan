@@ -14,7 +14,7 @@
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>DITA Map WebHelp Responsive</String>
+                                        <String>FieldMan DITA Map WebHelp Responsive</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -257,7 +257,7 @@
                                     <null/>
                                 </field>
                                 <field name="name">
-                                    <String>DITA Map WebHelp Responsive</String>
+                                    <String>FieldMan DITA Map WebHelp Responsive</String>
                                 </field>
                                 <field name="baseURL">
                                     <null/>
