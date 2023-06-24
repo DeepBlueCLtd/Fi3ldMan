@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE class SYSTEM "../../../../dtd/class.dtd">
+<class id="unit_a">
+    <title>Unit_a</title>
+    <body>
+        <images>
+            <image href="images/oscill_c.jpg" align="left"/>
+            <image href="images/oscill_d.jpg" align="left"/>
+            <image href="images/oscill_e.jpg" align="left"/>
+        </images>
+        <summary>
+            <property>
+                <proptype>Drive</proptype>
+                <propvalue>4 x V8 Diesel</propvalue>
+            </property>
+            <property>
+                <proptype>Mode</proptype>
+                <propvalue>DDA/C</propvalue>
+            </property>
+            <property>
+                <proptype>Shaft x Blade</proptype>
+                <propvalue>2 * 6</propvalue>
+            </property>
+            <property>
+                <proptype>R:R</proptype>
+                <propvalue>22.4:1</propvalue>
+            </property>
+            <property>
+                <proptype>Max Speed</proptype>
+                <propvalue>12</propvalue>
+            </property>
+            <property>
+                <proptype>Av TPK</proptype>
+                <propvalue>4.4</propvalue>
+            </property>
+        </summary>
+        <signatures>
+            <title>Signature</title>
+            <table>
+                <tgroup cols="4">
+                    <thead>
+                        <row>
+                            <entry>Source</entry>
+                            <entry>Ratio/Freq</entry>
+                            <entry>Harmonics</entry>
+                            <entry>Remarks</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>DDA</entry>
+                            <entry>12.3</entry>
+                            <entry>H3-5</entry>
+                            <entry>Dominant in cold weather</entry>
+                        </row>
+                        <row>
+                            <entry>FGAR</entry>
+                            <entry>22-45</entry>
+                            <entry>H2</entry>
+                            <entry>Only once warm-up complete</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </signatures>
+
+        <propulsion>
+            <title>Propulsion</title>
+            <p> some narrative content, including a table of varying structure. Plus diagrams,
+                links, etc </p>
+        </propulsion>
+
+        <remarks>
+            <title>Remarks</title>
+            <span>
+                <ol>
+                    <li>Only introduced since summer 2013</li>
+                    <li>Similar to unit_x, but with cheaper components</li>
+                    <li>Can take 30 minutes to warm up</li>
+                    <li>Be wary of unshielded 440/480V power line.</li>
+                </ol>
+                <p> More amplifying remarks </p>
+            </span>
+        </remarks>
+    </body>
+</class>

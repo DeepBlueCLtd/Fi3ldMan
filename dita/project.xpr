@@ -10,7 +10,47 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>regions/regions.ditamap</String>
+                                    <String>index.ditamap</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>FieldMan DITA Map WebHelp Responsive</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>DITAMAP</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>index/regions/regions.ditamap</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>FieldMan DITA Map WebHelp Responsive</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>DITAMAP</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>index/regions.ditamap</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -31,6 +71,46 @@
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>regions.ditamap</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>FieldMan DITA Map WebHelp Responsive</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>DITAMAP</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>regions/regions.ditamap</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>FieldMan DITA Map WebHelp Responsive</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>DITAMAP</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../upwork_testing_sandbox2/dita-tasks/Input/Ja-Content/0000058951-001-JA.ditamap</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -109,7 +189,7 @@
                                 <field name="publishingTemplateDataPO">
                                     <publishingTemplate>
                                         <field name="templateRoot">
-                                            <String>${pd}/template/oxygen/</String>
+                                            <String>/Users/blue_upwork_workspace/blue_git_pull_master_new_11_dtd/Fi3ldMan/dita/template/oxygen/</String>
                                         </field>
                                         <field name="descriptorRelativePath">
                                             <String>oxygen-tiles.opt</String>
@@ -250,6 +330,29 @@
                                                 </String-array>
                                             </field>
                                         </ditaParameter>
+                                        <ditaParameter>
+                                            <field name="name">
+                                                <String>-i</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>${pd}/index.ditamap</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </ditaParameter>
                                     </list>
                                 </field>
                                 <field name="jvmArgs">
@@ -363,5 +466,7 @@
     </meta>
     <projectTree name="project.xpr">
         <folder path="."/>
+        <file name="index/regions/europe/france/unit_a.dita"/>
+        <file name="index/regions/europe/france/unit_d_star.dita"/>
     </projectTree>
 </project>
