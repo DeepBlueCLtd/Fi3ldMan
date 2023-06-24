@@ -7,6 +7,7 @@
             <image href="images/TEST-48.jpg"/>
         </images>
         <summary>
+            <!--
             <property>
                 <proptype>Drive</proptype>
                 <propvalue>4 Diesel</propvalue>
@@ -31,6 +32,35 @@
                 <proptype>Av TPK</proptype>
                 <propvalue>14</propvalue>
             </property>
+            -->
+            <table>
+                <tgroup cols="6">
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <tbody>
+                        <row>
+                            <entry>Drive</entry>
+                            <entry>Mode</entry>
+                            <entry>Shaft x Blade</entry>
+                            <entry>R:R</entry>
+                            <entry>Max Speed</entry>
+                            <entry>Av TPK</entry>
+                        </row>
+                        <row>
+                            <entry>4 Diesel</entry>
+                            <entry>PTR</entry>
+                            <entry>2 * 4 (GRR)</entry>
+                            <entry>412.8:1</entry>
+                            <entry>40 kts</entry>
+                            <entry>14</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
         </summary>
         <signatures>
             <title>Signature</title>

@@ -10,6 +10,7 @@
             <image href="images/oscill_e.jpg" align="left"/>
         </images>
         <summary>
+            <!--
             <property>
                 <proptype>Drive</proptype>
                 <propvalue>4 x V8 Diesel</propvalue>
@@ -34,6 +35,35 @@
                 <proptype>Av TPK</proptype>
                 <propvalue>4.4</propvalue>
             </property>
+            -->
+            <table>
+                <tgroup cols="6">
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <tbody>
+                        <row>
+                            <entry>Drive</entry>
+                            <entry>Mode</entry>
+                            <entry>Shaft x Blade</entry>
+                            <entry>R:R</entry>
+                            <entry>Max Speed</entry>
+                            <entry>Av TPK</entry>
+                        </row>
+                        <row>
+                            <entry>4 x V8 Diesel</entry>
+                            <entry>DDA</entry>
+                            <entry>2 * 6</entry>
+                            <entry>22.4:1</entry>
+                            <entry>12</entry>
+                            <entry>4.4</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
         </summary>
         <signatures>
             <title>Signature</title>
