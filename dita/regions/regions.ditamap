@@ -4,8 +4,9 @@
     <topicmeta/>
     <topicref href="regions.dita" id="ID0EGFAC">
         <topicmeta/>
-        <!-- regions / europe / france --> 
         <topicref href="europe/europe.ditamap" format="ditamap"></topicref>
+ 
+    
     </topicref>
 </map>
 

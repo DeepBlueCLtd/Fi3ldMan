@@ -1,5 +1,6 @@
 <?xml version="1.0"?>          
-<!DOCTYPE country SYSTEM "../../../dtd/country.dtd">          
+<!DOCTYPE country
+  PUBLIC "-//FIELDMAN//DTD DITA country//EN" "country.dtd">             
 <country id="france-id">
     <title>France</title>
     

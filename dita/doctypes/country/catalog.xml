@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"          
+    prefer="public">  
+    
+    <public 
+        publicId="-//FIELDMAN//DTD DITA country//EN"  
+        uri="dtd/country.dtd"/>
+    <!--
+    <public publicId="urn:pubid:com.fieldman.doctypes:doctypes:dita:class"
+        uri="class.dtd"
+    />
+    -->
+    <system systemId="urn:pubid:com.fieldman.doctypes:doctypes:dita:country.dtd"
+        uri="country.dtd"
+    />
+    
+
+</catalog>  

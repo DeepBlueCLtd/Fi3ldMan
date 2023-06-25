@@ -2,7 +2,7 @@
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
     <title></title>
-    <topicref  href="france.dita" id="ID0ENGAC">
+    <topicref  href="france.dita" format="dita" id="ID0ENGAC">
         <topicmeta/>
         <topicref  href="unit_a.dita" id="ID0EUCAE">
             <topicmeta/>

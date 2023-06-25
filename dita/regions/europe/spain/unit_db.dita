@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE class SYSTEM "../../../dtd/class.dtd">
+<!DOCTYPE class
+  PUBLIC "-//FIELDMAN//DTD DITA class//EN" "class.dtd"> 
 <class id="unit_db">
     <title>Unit_db</title>
     <body>

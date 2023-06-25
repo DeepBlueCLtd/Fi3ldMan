@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project basedir="/Users/blue_upwork_workspace/blue_git_pull_new_13_dtd/Fi3ldMan/dita/template/oxygen" name="Copy template resources" default="copy-template-resources">
+    <target name="copy-template-resources">
+        <mkdir dir="/Users/blue_upwork_workspace/blue_git_pull_new_13_dtd/Fi3ldMan/dita/out/webhelp-responsive/oxygen-webhelp/template"/>
+        <copy todir="/Users/blue_upwork_workspace/blue_git_pull_new_13_dtd/Fi3ldMan/dita/out/webhelp-responsive/oxygen-webhelp/template" overwrite="yes" failonerror="yes" verbose="yes">
+            <fileset dir=".">
+                <include name="oxygen.css"/>
+            </fileset>
+            <fileset dir=".">
+                <include name="notes.css"/>
+            </fileset>
+            <fileset dir=".">
+                <include name="resources/**/*"/>
+                <exclude name="resources/**/*.svn"/>
+                <exclude name="resources/**/*.git"/>
+            </fileset>
+        </copy>
+    </target>
+</project>
