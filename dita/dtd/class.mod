@@ -24,7 +24,7 @@
                                   domains CDATA "&included-domains;"
 >
 
-<!ELEMENT body          ((%images;), (%summary;), (%signatures;)?, (%propulsion;)?, (%remarks;)? )>
+<!ELEMENT body          ((%images;), (%summary;), (%signatures;)?, (%propulsion;)?, (%remarks;)?, (%related-links;)?)>
 <!ATTLIST body              
                                         outputclass CDATA #IMPLIED
 >

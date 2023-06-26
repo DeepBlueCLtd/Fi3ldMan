@@ -1,13 +1,14 @@
-var keywords=[{w:"Context",p:["p0"]},{w:"Sensitive",p:["p0"]},{w:"Help",p:["p0"]},{w:"Europe",p:["p1"]},{w:"France",p:["p2"]},{w:"Unit_a",p:["p3"]},{w:"Unit_d",p:["p4"]},{w:"Spain",p:["p5"]},{w:"Unit_db",p:["p6"]},{w:"Regions",p:["p7"]}];
+var keywords=[{w:"Context",p:["p0"]},{w:"Sensitive",p:["p0"]},{w:"Help",p:["p0"]},{w:"Europe",p:["p1"]},{w:"French",p:["p2"]},{w:"Power",p:["p2"]},{w:"Units",p:["p2"]},{w:"France",p:["p3"]},{w:"Unit_a",p:["p4"]},{w:"Unit_d",p:["p5"]},{w:"Spain",p:["p6"]},{w:"Unit_db",p:["p7"]},{w:"Regions",p:["p8"]}];
 var ph={};
 ph["p0"]=[0, 1, 2];
 ph["p1"]=[3];
-ph["p2"]=[4];
-ph["p3"]=[5];
-ph["p4"]=[6];
-ph["p5"]=[7];
-ph["p6"]=[8];
-ph["p7"]=[9];
+ph["p2"]=[4, 5, 6];
+ph["p3"]=[7];
+ph["p4"]=[8];
+ph["p5"]=[9];
+ph["p6"]=[10];
+ph["p7"]=[11];
+ph["p8"]=[12];
 var keywordsInfo = {
     keywords: keywords,
     ph: ph

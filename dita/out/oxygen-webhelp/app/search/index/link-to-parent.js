@@ -1,2 +1,2 @@
 /*Maps current topic to its parent: "topicIndex:parentIndex". -1 represents the map.*/
-var linkToParent = {5:1,3:2,6:5,1:7,2:1,4:2,7:-1};
+var linkToParent = {7:6,1:8,4:3,3:1,5:3,6:1,8:-1};
