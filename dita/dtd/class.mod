@@ -13,6 +13,7 @@
 <!ENTITY % summary       "summary">
 <!ENTITY % signatures                    "signatures">
 <!ENTITY % propulsion                   "propulsion">
+<!ENTITY % propulsionRef                   "propulsionRef">
 <!ENTITY % remarks                      "remarks">
 <!ENTITY % span                           "span">
 <!ENTITY % images                           "images">
@@ -24,7 +25,7 @@
                                   domains CDATA "&included-domains;"
 >
 
-<!ELEMENT body          ((%images;), (%summary;), (%signatures;)?, (%propulsion;)?, (%remarks;)? )>
+<!ELEMENT body          ((%images;), (%summary;), (%signatures;)?, (%propulsion; | %propulsionRef;)?, (%remarks;)? )>
 <!ATTLIST body              
                                         outputclass CDATA #IMPLIED
 >
@@ -43,6 +44,11 @@
 
 <!ELEMENT propulsion    (%section.cnt;)* >
 <!ATTLIST propulsion    
+                                  outputclass CDATA #IMPLIED
+>
+
+<!ELEMENT propulsionRef    ((%title;)?, (%xref;)?) >
+<!ATTLIST propulsionRef    
                                   outputclass CDATA #IMPLIED
 >
 
@@ -78,6 +84,9 @@
 
 <!-- extends section -->
 <!ATTLIST propulsion    class  CDATA "- topic/section class/propulsion ">
+
+<!-- extends section -->
+<!ATTLIST propulsionRef    class  CDATA "- topic/section class/propulsionRef ">
 
 <!-- extends section -->
 <!ATTLIST remarks    class  CDATA "- topic/section class/remarks ">
