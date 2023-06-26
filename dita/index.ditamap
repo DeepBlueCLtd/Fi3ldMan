@@ -2,8 +2,7 @@
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
     <topicmeta/>
-    <topicref href="regions/index.dita" format="dita" id="ID0EGFAC">
+    <topicref href="regions/regions.ditamap" format="ditamap">
         <topicmeta/>
-        <topicref href="regions/regions.ditamap" format="ditamap"></topicref>
     </topicref>
 </map>
