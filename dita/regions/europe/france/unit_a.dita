@@ -8,7 +8,7 @@
             <image href="images/oscill_d.jpg" align="left"/>
             <image href="images/oscill_e.jpg" align="left"/>
         </images>
-        <summary id="IA1" >
+        <summary id="summary" >
             <!--
             <property>
                 <proptype>Drive</proptype>
@@ -66,7 +66,7 @@
                 </tgroup>
             </table>
         </summary>
-        <signatures id="IA2">
+        <signatures id="signatures">
             <title>Signature</title>
             <table>
                 <tgroup cols="4">
@@ -96,13 +96,13 @@
             </table>
         </signatures>
 
-        <propulsion id="IA3">
+        <propulsion id="propulsion">
             <title>Propulsion</title>
             <p> some narrative content, including a table of varying structure. Plus diagrams,
                 links, etc </p>
         </propulsion>
 
-        <remarks id="IA4">
+        <remarks id="remarks">
             <title>Remarks</title>
             <span>
                 <ol>
