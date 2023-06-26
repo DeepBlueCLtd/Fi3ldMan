@@ -43,7 +43,7 @@
                     <colspec colwidth="16.7%"/>
                     <colspec colwidth="16.7%"/>
                     <colspec colwidth="16.7%"/>
-                    <tbody>
+                    <thead>
                         <row>
                             <entry>Drive</entry>
                             <entry>Mode</entry>
@@ -52,6 +52,8 @@
                             <entry>Max Speed</entry>
                             <entry>Av TPK</entry>
                         </row>
+                    </thead>
+                    <tbody>
                         <row>
                             <entry>4 x V8 Diesel</entry>
                             <entry>DDA</entry>
