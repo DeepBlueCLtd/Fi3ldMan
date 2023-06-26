@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+      <loc>regions/index.html</loc>
+      <lastmod>2023-06-26T01:47:59Z</lastmod>
+   </url>
+   <url>
+      <loc>regions/regions.html</loc>
+      <lastmod>2023-06-26T01:47:59Z</lastmod>
+   </url>
+   <url>
+      <loc>regions/europe/europe.html</loc>
+      <lastmod>2023-06-26T01:47:59Z</lastmod>
+   </url>
+   <url>
+      <loc>regions/europe/france/france.html</loc>
+      <lastmod>2023-06-26T01:47:59Z</lastmod>
+   </url>
+   <url>
+      <loc>regions/europe/france/unit_a.html</loc>
+      <lastmod>2023-06-26T01:47:59Z</lastmod>
+   </url>
+   <url>
+      <loc>regions/europe/france/unit_d_star.html</loc>
+      <lastmod>2023-06-26T01:47:59Z</lastmod>
+   </url>
+   <url>
+      <loc>regions/europe/spain/spain.html</loc>
+      <lastmod>2023-06-26T01:47:59Z</lastmod>
+   </url>
+   <url>
+      <loc>regions/europe/spain/unit_db.html</loc>
+      <lastmod>2023-06-26T01:47:59Z</lastmod>
+   </url>
+</urlset>

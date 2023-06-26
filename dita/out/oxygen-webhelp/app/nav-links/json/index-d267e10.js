@@ -1,1 +1,1 @@
-define({"topics":[{"title":"Regions","href":"regions\/regions.html","attributes":{"data-id":"links_1"},"menu":{"hasChildren":true},"tocID":"links_1-d267e18","next":"links_1-d267e18"}]});
+oxy_webhelp_navlinks = {"index-d267e10":{"topics":[{"title":"Regions","href":"regions\/regions.html","attributes":{"data-id":"links_1"},"menu":{"hasChildren":true},"tocID":"links_1-d267e18","next":"links_1-d267e18"}]}};
