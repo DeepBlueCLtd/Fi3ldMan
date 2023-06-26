@@ -9,7 +9,7 @@
             <image href="images/oscill_d.jpg" align="left"/>
             <image href="images/oscill_e.jpg" align="left"/>
         </images>
-        <summary>
+        <summary id="IDS1">
             <!--
             <property>
                 <proptype>Drive</proptype>
@@ -67,7 +67,7 @@
                 </tgroup>
             </table>
         </summary>
-        <signatures>
+        <signatures id="IDS2">
             <title>Signature</title>
             <table>
                 <tgroup cols="6">
@@ -188,7 +188,7 @@
             </table>
         </signatures>
         
-        <propulsion>
+        <propulsion id="IDS3">
             <title>Propulsion</title>
             <table>
                 <tgroup cols="4">
@@ -256,7 +256,7 @@
             </table>
         </propulsion>
         
-        <remarks>
+        <remarks id="IDS4">
             <title>Remarks</title>
             <span>
                 <ol>
