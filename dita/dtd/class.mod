@@ -28,8 +28,10 @@
 <!ATTLIST body              
                                         outputclass CDATA #IMPLIED
 >
-
+<!--
 <!ELEMENT summary          ((%property;), (%property;), (%property;), (%property;), (%property;), (%property;)) >
+-->
+<!ELEMENT summary          ((%table;)) >
 <!ATTLIST summary
                                 outputclass CDATA #IMPLIED
 >
@@ -69,7 +71,7 @@
 <!ATTLIST body          class  CDATA "- topic/body reference/refBody class/body ">
 
 <!-- summary extends properties.  -->
-<!ATTLIST summary          class  CDATA "- topic/simpletable reference/properties  class/summary ">
+<!ATTLIST summary          class  CDATA "- topic/section class/summary ">
 
 <!-- signatures extends section, allows free content in Phase 1. Constrained table in Phase 2 -->
 <!ATTLIST signatures    class  CDATA "- topic/section class/signatures ">
