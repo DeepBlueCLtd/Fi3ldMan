@@ -6,7 +6,7 @@
         <images>
             <image href="images/TEST-48.jpg"/>
         </images>
-        <summary>
+        <summary id="summary">
             <!--
             <property>
                 <proptype>Drive</proptype>
@@ -64,7 +64,7 @@
                 </tgroup>
             </table>
         </summary>
-        <signatures>
+        <signatures id="signatures">
             <title>Signature</title>
             <table>
                 <tgroup cols="6">
@@ -169,13 +169,13 @@
             </table>
         </signatures>
         
-        <propulsion>
+        <propulsion id="propulsion">
             <title>Propulsion</title>
             <p> some narrative content, including a table of varying structure. Plus diagrams,
                 links, etc </p>
         </propulsion>
         
-        <remarks>
+        <remarks id="remarks">
             <title>Remarks</title>
             <span>
                 <ol>
