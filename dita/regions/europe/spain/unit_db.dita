@@ -169,11 +169,11 @@
             </table>
         </signatures>
 
-        <propulsionref>
+        <propulsionRef id='propulsion'>
             <title>Propulsion</title>
             <!-- TODO: link the `propulsion` section in the document -->
             <xref href="spain_propulsion.dita" format="dita"></xref>
-        </propulsionref>
+        </propulsionRef>
         
         <remarks id="remarks">
             <title>Remarks</title>
