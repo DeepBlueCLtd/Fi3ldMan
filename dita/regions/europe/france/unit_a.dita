@@ -116,16 +116,24 @@
             </span>
         </remarks>
         
-        <links id="links">
-            <title>Fr power unit</title>
-            <!--
-            <related-links scope="local" format="dita">
-                <link href="fr_power_units.dita">
-                    <linktext>Fr power unit</linktext>
-                </link>
-            </related-links>
-            -->
-            <xref href="fr_power_units.dita">Fr power unit</xref>
+        <!--
+        <related-links scope="local" format="dita">
+            <link id="link" href="fr_power_units.dita">
+                <linktext>Fr power unit</linktext>
+            </link>
+        </related-links>
+        -->
+        
+        <links>
+            <rellink id="rel">
+                <title>Fr power unit</title>
+                <xref href="fr_power_units.dita" format="dita">Fr power unit</xref>
+            </rellink>
+            
+            <rellink id="external">
+                <title>External link</title>
+                <xref href="https://www.google.com" format="html">External</xref>
+            </rellink>
         </links>
       
     </body>

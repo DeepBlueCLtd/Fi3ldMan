@@ -17,6 +17,7 @@
 <!ENTITY % span                           "span">
 <!ENTITY % images                           "images">
 <!ENTITY % links                           "links">
+<!ENTITY % rellink                          "rellink">
 
 
 <!ELEMENT class              ((%title;), (%body;))>
@@ -57,11 +58,19 @@
 >
 <!ATTLIST remarks id ID #REQUIRED>
 
-<!ELEMENT links   ((%title;)?, (%xref;)*)>
+<!ELEMENT links   (%rellink;)*>
 <!ATTLIST links     
                                   outputclass CDATA #IMPLIED
 >
-<!ATTLIST links id ID #REQUIRED>
+
+
+<!ELEMENT rellink   ((%title;)?, (%xref;)*)>
+<!ATTLIST rellink     
+                                  outputclass CDATA #IMPLIED
+>
+
+
+<!ATTLIST rellink id ID #REQUIRED>
 
 <!ELEMENT span    ((%ol;)*, (%p;)*) >
 <!ATTLIST span    
@@ -96,6 +105,9 @@
 
 <!-- extends section -->
 <!ATTLIST links    class  CDATA "- topic/section class/links ">
+
+<!-- extends section -->
+<!ATTLIST rellink    class  CDATA "- topic/section class/rellink ">
 
 
 <!-- sp extends p -->
