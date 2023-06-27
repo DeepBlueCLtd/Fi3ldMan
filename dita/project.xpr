@@ -103,7 +103,7 @@
                                     <String>${pd}</String>
                                 </field>
                                 <field name="outputDir">
-                                    <String>${pd}/out/webhelp-responsive</String>
+                                    <String>${pd}/out/</String>
                                 </field>
                                 <field name="tempDir">
                                     <String>${pd}/temp/webhelp-responsive</String>
