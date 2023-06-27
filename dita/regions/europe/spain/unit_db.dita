@@ -4,35 +4,9 @@
     <title>Unit_db</title>
     <body>
         <images>
-            <image href="images/TEST-48.jpg"/>
+            <image  scale="33" href="images/TEST-48.jpg"/>
         </images>
         <summary id="summary">
-            <!--
-            <property>
-                <proptype>Drive</proptype>
-                <propvalue>4 Diesel</propvalue>
-            </property>
-            <property>
-                <proptype>Mode</proptype>
-                <propvalue>PTR/C</propvalue>
-            </property>
-            <property>
-                <proptype>Shaft x Blade</proptype>
-                <propvalue>2 * 4 (GRR)</propvalue>
-            </property>
-            <property>
-                <proptype>R:R</proptype>
-                <propvalue>412.8:1</propvalue>
-            </property>
-            <property>
-                <proptype>Max Speed</proptype>
-                <propvalue>40 kts</propvalue>
-            </property>
-            <property>
-                <proptype>Av TPK</proptype>
-                <propvalue>14</propvalue>
-            </property>
-            -->
             <table>
                 <tgroup cols="6">
                     <colspec colwidth="16.7%"/>
@@ -156,7 +130,7 @@
                                 sit deserunt cillum sit duis minim. Nisi ea ullamco minim
                                 duis elit consectetur mollit ea mollit sunt voluptate. Esse
                                 nulla id mollit ad deserunt Lorem deserunt excepteur
-                                nostrud. <image href="images/unit_db_2.jpg"/> Figure 2.
+                                nostrud. <image  scale="33"  href="images/unit_db_2.jpg"/> Figure 2.
                                 Dominant frequency Est commodo id in est irure.</entry>
                         </row>
                         <row>

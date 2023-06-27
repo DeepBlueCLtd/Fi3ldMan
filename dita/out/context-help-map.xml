@@ -7,4 +7,8 @@
    <appContext helpID="unit_a" path="regions/europe/france/unit_d_star.html"/>
    <appContext helpID="france-id" path="regions/europe/spain/spain.html"/>
    <appContext helpID="unit_db" path="regions/europe/spain/unit_db.html"/>
+   <appContext helpID="france-id" path="regions/europe/france/france.html"/>
+   <appContext helpID="unit_a" path="regions/europe/france/unit_a.html"/>
+   <appContext helpID="unit_a" path="regions/europe/france/unit_d_star.html"/>
+   <appContext helpID="unit_db" path="regions/europe/spain/unit_db.html"/>
 </map>
