@@ -36,16 +36,19 @@
 <!ATTLIST summary
                                 outputclass CDATA #IMPLIED
 >
+<!ATTLIST summary id ID #REQUIRED>
 
 <!ELEMENT signatures    (%section.cnt;)* >
 <!ATTLIST signatures
                                   outputclass CDATA #IMPLIED
 >
+<!ATTLIST signatures id ID #REQUIRED>
 
 <!ELEMENT propulsion    (%section.cnt;)* >
 <!ATTLIST propulsion    
                                   outputclass CDATA #IMPLIED
 >
+<!ATTLIST propulsion id ID #REQUIRED>
 
 <!ELEMENT propulsionRef    ((%title;)?, (%xref;)?) >
 <!ATTLIST propulsionRef    
@@ -56,6 +59,7 @@
 <!ATTLIST remarks     
                                   outputclass CDATA #IMPLIED
 >
+<!ATTLIST remarks id ID #REQUIRED>
 
 <!ELEMENT span    ((%ol;)*, (%p;)*) >
 <!ATTLIST span    
