@@ -95,6 +95,7 @@
                 </tgroup>
             </table>
         </signatures>
+        
 
         <propulsion id="propulsion">
             <title>Propulsion</title>
@@ -114,10 +115,18 @@
                 <p> More amplifying remarks </p>
             </span>
         </remarks>
-        <related-links scope="local" format="dita">
-            <link href="fr_power_units.dita">
-                <linktext>Fr power unit</linktext>
-            </link>
-        </related-links>
+        
+        <links id="links">
+            <title>Fr power unit</title>
+            <!--
+            <related-links scope="local" format="dita">
+                <link href="fr_power_units.dita">
+                    <linktext>Fr power unit</linktext>
+                </link>
+            </related-links>
+            -->
+            <xref href="fr_power_units.dita">Fr power unit</xref>
+        </links>
+      
     </body>
 </class>

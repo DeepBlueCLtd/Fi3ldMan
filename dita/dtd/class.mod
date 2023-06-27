@@ -16,6 +16,8 @@
 <!ENTITY % remarks                      "remarks">
 <!ENTITY % span                           "span">
 <!ENTITY % images                           "images">
+<!ENTITY % links                           "links">
+
 
 <!ELEMENT class              ((%title;), (%body;))>
 <!ATTLIST class            id ID #REQUIRED
@@ -24,7 +26,7 @@
                                   domains CDATA "&included-domains;"
 >
 
-<!ELEMENT body          ((%images;), (%summary;), (%signatures;)?, (%propulsion;)?, (%remarks;)?, (%related-links;)?)>
+<!ELEMENT body          ((%images;), (%summary;), (%signatures;)?, (%propulsion;)?, (%remarks;)?, (%links;)?)>
 <!ATTLIST body              
                                         outputclass CDATA #IMPLIED
 >
@@ -54,6 +56,12 @@
                                   outputclass CDATA #IMPLIED
 >
 <!ATTLIST remarks id ID #REQUIRED>
+
+<!ELEMENT links   ((%title;)?, (%xref;)*)>
+<!ATTLIST links     
+                                  outputclass CDATA #IMPLIED
+>
+<!ATTLIST links id ID #REQUIRED>
 
 <!ELEMENT span    ((%ol;)*, (%p;)*) >
 <!ATTLIST span    
@@ -85,6 +93,10 @@
 
 <!-- extends section -->
 <!ATTLIST remarks    class  CDATA "- topic/section class/remarks ">
+
+<!-- extends section -->
+<!ATTLIST links    class  CDATA "- topic/section class/links ">
+
 
 <!-- sp extends p -->
 <!ATTLIST span    class  CDATA "- topic/p  class/span ">
