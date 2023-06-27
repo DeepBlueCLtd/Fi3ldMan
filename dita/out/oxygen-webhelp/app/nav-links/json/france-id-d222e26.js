@@ -1,1 +1,0 @@
-oxy_webhelp_navlinks = {"france-id-d222e26":{"topics":[{"title":"Unit_a","href":"europe\/france\/unit_a.html","attributes":{"data-id":"unit_a"},"menu":{"hasChildren":false},"tocID":"unit_a-d222e34","topics":[]},{"title":"Unit_d","href":"europe\/france\/unit_d_star.html","attributes":{"data-id":"unit_a"},"menu":{"hasChildren":false},"tocID":"unit_a-d222e42","topics":[]}]}};
