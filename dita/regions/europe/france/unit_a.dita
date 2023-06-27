@@ -114,7 +114,7 @@
                 <p> More amplifying remarks </p>
             </span>
         </remarks>
-        <related-links scope="external" format="dita">
+        <related-links scope="local" format="dita">
             <link href="fr_power_units.dita">
                 <linktext>Fr power unit</linktext>
             </link>
