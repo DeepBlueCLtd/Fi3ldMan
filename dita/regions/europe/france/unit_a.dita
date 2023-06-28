@@ -90,24 +90,14 @@
             </span>
         </remarks>
         
-        <!--
-        <links>
-            <rellink id="power">
-                <title>Fr power unit</title>
-                <xref href="fr_power_units.dita" format="dita"/>
-            </rellink>
-            <rellink id="cooling">
-                <title>Fr cooling unit</title>
-                <xref href="fr_cooling_units.dita" format="dita"/>
-            </rellink>
-        </links>
-        -->
-        <links id="links">
-            <title>Related Links</title>
-            <ol>
-                <li><xref href="fr_power_units.dita" format="dita"/></li>
-                <li><xref href="fr_cooling_units.dita" format="dita"/></li>
-            </ol>       
-        </links>      
+        
+        <related-pages id="related" scope="local" format="dita">
+            <title> Related links </title>
+            <link href="fr_power_units.dita" >
+            </link>
+            <link href="fr_cooling_units.dita" >
+            </link>
+        </related-pages>      
+           
     </body>
 </class>
