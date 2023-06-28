@@ -69,6 +69,7 @@
                 </tgroup>
             </table>
         </signatures>
+        
 
         <propulsion id="propulsion">
             <title>Propulsion</title>
@@ -88,5 +89,17 @@
                 <p> More amplifying remarks </p>
             </span>
         </remarks>
+        
+        <links>
+            <rellink id="power">
+                <title>Fr power unit</title>
+                <xref href="fr_power_units.dita" format="dita"/>
+            </rellink>
+            <rellink id="cooling">
+                <title>Fr cooling unit</title>
+                <xref href="fr_cooling_units.dita" format="dita"/>
+            </rellink>
+        </links>
+      
     </body>
 </class>
