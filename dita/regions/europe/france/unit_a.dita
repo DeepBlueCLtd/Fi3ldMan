@@ -90,6 +90,7 @@
             </span>
         </remarks>
         
+        <!--
         <links>
             <rellink id="power">
                 <title>Fr power unit</title>
@@ -100,6 +101,16 @@
                 <xref href="fr_cooling_units.dita" format="dita"/>
             </rellink>
         </links>
+        -->
+        
+        <related-links scope="local" format="dita">
+            <link href="fr_power_units.dita">
+                <linktext>Fr power unit</linktext>
+            </link>
+            <link href="fr_cooling_units.dita">
+                <linktext>Fr cooling unit</linktext>
+            </link>
+        </related-links>
       
     </body>
 </class>
