@@ -19,6 +19,5 @@ var properties =
     "webhelp.show.indexterms.link" : "yes",
     "webhelp.show.main.page.tiles" : "yes",
     "webhelp.show.main.page.toc" : "no",
-    "webhelp.show.publication.toc" : "no",
     "webhelp.top.menu.depth" : "3",
     "webhelp.topic.collapsible.elements.initial.state" : "expanded" };
