@@ -101,7 +101,7 @@
         <links>
             <rellink id="rel">
                 <title>Fr power unit</title>
-                <xref href="fr_power_units.dita" format="dita">Fr power unit</xref>
+                <xref href="fr_power_units.dita" format="dita"/>
             </rellink>
         </links>
       
