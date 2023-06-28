@@ -102,15 +102,12 @@
             </rellink>
         </links>
         -->
-        
-        <related-links id="related" scope="local" format="dita">
-            <link href="fr_power_units.dita">
-                <linktext>Fr power unit</linktext>
-            </link>
-            <link href="fr_cooling_units.dita">
-                <linktext>Fr cooling unit</linktext>
-            </link>
-        </related-links>
-      
+        <links id="links">
+            <title>Related Links</title>
+            <ol>
+                <li><xref href="fr_power_units.dita" format="dita"/></li>
+                <li><xref href="fr_cooling_units.dita" format="dita"/></li>
+            </ol>       
+        </links>      
     </body>
 </class>
