@@ -4,37 +4,11 @@
     <title>Unit_a</title>
     <body>
         <images>
-            <image href="images/oscill_c.jpg" align="left"/>
-            <image href="images/oscill_d.jpg" align="left"/>
-            <image href="images/oscill_e.jpg" align="left"/>
+            <image href="images/oscill_c.jpg" scale="33" align="left"/>
+            <image href="images/oscill_d.jpg" scale="33" align="left"/>
+            <image href="images/oscill_e.jpg" scale="33" align="left"/>
         </images>
         <summary id="summary" >
-            <!--
-            <property>
-                <proptype>Drive</proptype>
-                <propvalue>4 x V8 Diesel</propvalue>
-            </property>
-            <property>
-                <proptype>Mode</proptype>
-                <propvalue>DDA/C</propvalue>
-            </property>
-            <property>
-                <proptype>Shaft x Blade</proptype>
-                <propvalue>2 * 6</propvalue>
-            </property>
-            <property>
-                <proptype>R:R</proptype>
-                <propvalue>22.4:1</propvalue>
-            </property>
-            <property>
-                <proptype>Max Speed</proptype>
-                <propvalue>12</propvalue>
-            </property>
-            <property>
-                <proptype>Av TPK</proptype>
-                <propvalue>4.4</propvalue>
-            </property>
-            -->
             <table>
                 <tgroup cols="6">
                     <colspec colwidth="16.7%"/>

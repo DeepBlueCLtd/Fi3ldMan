@@ -13,6 +13,7 @@
 <!ENTITY % summary       "summary">
 <!ENTITY % signatures                    "signatures">
 <!ENTITY % propulsion                   "propulsion">
+<!ENTITY % propulsionRef                   "propulsionRef">
 <!ENTITY % remarks                      "remarks">
 <!ENTITY % span                           "span">
 <!ENTITY % images                           "images">
@@ -27,7 +28,7 @@
                                   domains CDATA "&included-domains;"
 >
 
-<!ELEMENT body          ((%images;), (%summary;), (%signatures;)?, (%propulsion;)?, (%remarks;)?, (%links;)?)>
+<!ELEMENT body          ((%images;), (%summary;), (%signatures;)?, (%propulsion; | %propulsionRef;)?, (%remarks;)?, (%links;)? )>
 <!ATTLIST body              
                                         outputclass CDATA #IMPLIED
 >
@@ -51,6 +52,12 @@
                                   outputclass CDATA #IMPLIED
 >
 <!ATTLIST propulsion id ID #REQUIRED>
+
+<!ELEMENT propulsionRef    ((%title;)?, (%xref;)?) >
+<!ATTLIST propulsionRef    
+                                  outputclass CDATA #IMPLIED
+>
+<!ATTLIST propulsionRef id ID #REQUIRED>
 
 <!ELEMENT remarks    ((%title;)?, (%span;)*) >
 <!ATTLIST remarks     
@@ -101,6 +108,9 @@
 <!ATTLIST propulsion    class  CDATA "- topic/section class/propulsion ">
 
 <!-- extends section -->
+<!ATTLIST propulsionRef    class  CDATA "- topic/section class/propulsionRef ">
+
+<!-- extends section -->
 <!ATTLIST remarks    class  CDATA "- topic/section class/remarks ">
 
 <!-- extends section -->
@@ -115,6 +125,7 @@
 
 <!-- images -->
 <!ATTLIST images             %global-atts;  class CDATA "- topic/body reference/refBody class/images ">
+
 
 
 
