@@ -19,7 +19,6 @@ var properties =
     "webhelp.show.indexterms.link" : "yes",
     "webhelp.show.main.page.tiles" : "yes",
     "webhelp.show.main.page.toc" : "no",
-    "webhelp.show.navigation.links" : "no",
     "webhelp.show.print.link" : "no",
     "webhelp.show.publication.toc" : "no",
     "webhelp.top.menu.depth" : "3",
