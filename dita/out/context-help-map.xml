@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map>
    <appContext helpID="links_1" path="regions/regions.html"/>
+   <appContext helpID="links_1" path="regions/europe/europe.html"/>
+   <appContext helpID="france-id" path="regions/europe/france/france.html"/>
+   <appContext helpID="unit_a" path="regions/europe/france/unit_a.html"/>
+   <appContext helpID="unit_a" path="regions/europe/france/unit_d_star.html"/>
+   <appContext helpID="france-id" path="regions/europe/spain/spain.html"/>
+   <appContext helpID="unit_db" path="regions/europe/spain/unit_db.html"/>
    <appContext helpID="france-id" path="regions/europe/france/france.html"/>
    <appContext helpID="unit_a" path="regions/europe/france/unit_a.html"/>
    <appContext helpID="unit_a" path="regions/europe/france/unit_d_star.html"/>

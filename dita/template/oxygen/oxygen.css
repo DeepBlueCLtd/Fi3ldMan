@@ -8,6 +8,11 @@
     display: none
 }
 
+.related-pages .xref {
+    display: list-item
+}
+
+
 /*
  * ==============================================
  * Style changes for Fi3ldMan project above this block

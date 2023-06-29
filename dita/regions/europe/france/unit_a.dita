@@ -8,7 +8,7 @@
             <image href="images/oscill_d.jpg" scale="33" align="left"/>
             <image href="images/oscill_e.jpg" scale="33" align="left"/>
         </images>
-        <summary id="summary" >
+        <summary id="summary">
             <table>
                 <tgroup cols="6">
                     <colspec colwidth="16.7%"/>
@@ -69,14 +69,11 @@
                 </tgroup>
             </table>
         </signatures>
-        
-
         <propulsion id="propulsion">
             <title>Propulsion</title>
             <p> some narrative content, including a table of varying structure. Plus diagrams,
-                links, etc </p>
+                links, etc <xref href="fr_cooling_units.dita#fr_power_units/diesel"/></p>
         </propulsion>
-
         <remarks id="remarks">
             <title>Remarks</title>
             <span>
@@ -89,17 +86,10 @@
                 <p> More amplifying remarks </p>
             </span>
         </remarks>
-        
-        <links>
-            <rellink id="power">
-                <title>Fr power unit</title>
-                <xref href="fr_power_units.dita" format="dita"/>
-            </rellink>
-            <rellink id="cooling">
-                <title>Fr cooling unit</title>
-                <xref href="fr_cooling_units.dita" format="dita"/>
-            </rellink>
-        </links>
-      
+        <related-pages id="related">
+            <title> Related links </title>
+            <xref href="fr_power_units.dita#fr_power_units/diesel">French diesel power units</xref>
+            <xref href="fr_cooling_units.dita"/>
+        </related-pages>
     </body>
 </class>
