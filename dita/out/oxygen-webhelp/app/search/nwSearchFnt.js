@@ -1,6 +1,5 @@
-function nwSearchFnt(index, options, stemmer, util) {
-
-	/*
+define(["index", "options", "stemmer", "util"], function(index, options, stemmer, util) {
+    /*
 
      David Cramer
      <david AT thingbag DOT net>
@@ -45,11 +44,6 @@ function nwSearchFnt(index, options, stemmer, util) {
      7. Accept as valid search words that contains only 2 characters
 
      */
-     
-     this.index = index;
-     this.options = options;
-     this.stemmer = stemmer;
-     this.util = util;
 
     /**
      * Is set to true when the CJK tokenizer is used.
@@ -105,7 +99,7 @@ function nwSearchFnt(index, options, stemmer, util) {
      * The default boolean search operator.
      * @type {string}
      */
-    var defaultOperator = options.get('webhelp.search.default.operator');
+    var defaultOperator = "or";
 
 
     /**
@@ -209,9 +203,44 @@ function nwSearchFnt(index, options, stemmer, util) {
         this.breadcrumb = breadcrumb;
     }
 
-    this.performSearch = function(searchQuery, _callback) {
-    	var result = performSearchInternal(searchQuery);
-        _callback(result);
+    function performSearchDriver(searchQuery, _callback) {
+        var indexerLanguage = options.getIndexerLanguage();
+        var useKuromoji = indexerLanguage.indexOf("ja") != -1 && options.getBoolean('webhelp.enable.search.kuromoji.js')
+                && !util.isLocal();
+
+        if (indexerLanguage.indexOf("ja") != -1 && util.isLocal() && options.getBoolean('webhelp.enable.search.kuromoji.js')) {
+            var note = $('<div/>').addClass('col-xs-12 col-sm-12 col-md-12 col-lg-12')
+                .html(localNote);
+            $('#searchResults').before(note);
+        }
+
+        if (useKuromoji) {
+            require(["kuromoji"], function (kuromoji) {
+                kuromoji.builder({ dicPath: "oxygen-webhelp/lib/kuromoji/dict" }).build(function (err, tokenizer) {
+                    // tokenizer is ready
+                    var tokens = tokenizer.tokenize(searchQuery);
+
+                    var finalWordsList = [];
+                    for (var w in tokens) {
+                        var word = tokens[w].surface_form;
+                        if (word!=" ") {
+                            finalWordsList.push(word);
+                        }
+                    }
+
+                    if (finalWordsList.length) {
+                        var finalWordsString = finalWordsList.join(" ");
+
+                        _callback(performSearchInternal(finalWordsString));
+                    } else {
+                        util.debug("Empty set");
+                    }
+                });
+            })
+
+        } else {
+            _callback(performSearchInternal(searchQuery));
+        }
     }
 
     /**
@@ -226,6 +255,7 @@ function nwSearchFnt(index, options, stemmer, util) {
         util.debug("searchQuery", searchQuery);
         init();
 
+        var initialSearchExpression = searchQuery;
         var phraseSearch = false;
         searchQuery = searchQuery.trim();
         if (searchQuery.length > 2 && !useCJKTokenizing) {
@@ -235,11 +265,13 @@ function nwSearchFnt(index, options, stemmer, util) {
                 (firstChar == "'" || firstChar == '"') &&
                 (lastChar == "'" || lastChar == '"');
            	if(phraseSearch) {
-           		searchQuery = searchQuery.substring(1, searchQuery.length-1);
+           		initialSearchExpression = initialSearchExpression.substring(1,initialSearchExpression.length-1);
            	}
         }
-		var initialSearchExpression = searchQuery;
-	
+
+        // Remove ' and " characters
+        searchQuery = searchQuery.replace(/"/g, " ").replace(/'/g, " ");
+
         var errorMsg;
         try {
             realSearchQuery = preprocessSearchQuery(searchQuery, phraseSearch);
@@ -1696,4 +1728,8 @@ function nwSearchFnt(index, options, stemmer, util) {
         return re.test(toTest);
     }
 
-}
+    return {
+        performSearch: performSearchDriver
+    }
+
+});

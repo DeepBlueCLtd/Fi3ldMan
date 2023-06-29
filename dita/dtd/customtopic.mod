@@ -512,8 +512,8 @@ PUBLIC "-//OASIS//ELEMENTS DITA Topic//EN"
 <!--                      LINKING GROUPING                         -->
 <!-- ============================================================= -->
 
-
 <!--                    LONG NAME: Related Links                   -->
+
 <!ENTITY % related-links.content
                        "(%link; | 
                          %linklist; | 
