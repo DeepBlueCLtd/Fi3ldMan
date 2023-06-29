@@ -517,9 +517,9 @@ PUBLIC "-//OASIS//ELEMENTS DITA Topic//EN"
 <!ENTITY % related-pages     
                         "related-pages"                              >
 <!ENTITY % related-pages.content
-                       "(%title;? | %link; | 
+                       "(%title;?, (%link; | 
                          %linklist; | 
-                         %linkpool;)*"
+                         %linkpool;)*)"
 >
 <!ENTITY % related-pages.attributes
              "%relational-atts;
