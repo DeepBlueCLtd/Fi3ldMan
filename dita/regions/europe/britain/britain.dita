@@ -5,13 +5,11 @@
     <title>Europe</title>
     <body>
         <table>
-            <tgroup cols="3">
+            <tgroup cols="2">
                 <tbody>
                     <row>
-                        <entry><xref href="france/france.dita">France</xref></entry>
-                        <entry><xref href="spain/spain.dita" audience="deny-wales"
-                            >Spain</xref></entry>
-                        <entry><xref href="britain/britain.dita">Britain</xref></entry>
+                        <entry><xref href="hybrid.dita">Hybrid<image href="images/oscill_e.jpg"></image></xref></entry>
+                        <entry><xref href="composite.dita">Compsite<image href="images/oscill_d.jpg"></image></xref></entry>
                     </row>
                 </tbody>
             </tgroup>
