@@ -86,7 +86,7 @@
                 <p> More amplifying remarks </p>
             </span>
         </remarks>
-        <related-pages id="related" scope="local" format="dita">
+        <related-pages id="related">
             <title> Related links </title>
             <xref href="fr_power_units.dita#fr_power_units/diesel">French diesel power units</xref>
             <xref href="fr_cooling_units.dita"/>

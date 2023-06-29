@@ -82,13 +82,8 @@
 
 <!--                    LONG NAME: Related Pages                   -->
 <!ELEMENT related-pages ((%title;), (%xref;)*) >
-<!ATTLIST related-pages
-              %relational-atts;
-              %univ-atts;
-              outputclass 
-                        CDATA
-                                  #IMPLIED
->
+<!ATTLIST related-pages outputclass CDATA #IMPLIED>
+<!ATTLIST related-pages id ID #REQUIRED>
 
 
 <!--specialization attributes-->
