@@ -17,10 +17,10 @@
 <!ENTITY % remarks                      "remarks">
 <!ENTITY % span                           "span">
 <!ENTITY % images                           "images">
-
+<!ENTITY % related-pages "related-pages">
 
 <!ELEMENT class              ((%title;), (%body;))>
-<!ATTLIST class            id ID #REQUIRED
+<!ATTLIST class                   id ID #REQUIRED
                                   conref CDATA #IMPLIED
                                   %arch-atts;
                                   domains CDATA "&included-domains;"
@@ -79,6 +79,17 @@
 <!ATTLIST images
                                   outputclass CDATA #IMPLIED
 >
+
+<!--                    LONG NAME: Related Pages                   -->
+<!ELEMENT related-pages ((%title;), (%xref;)*) >
+<!ATTLIST related-pages
+              %relational-atts;
+              %univ-atts;
+              outputclass 
+                        CDATA
+                                  #IMPLIED
+>
+
 
 <!--specialization attributes-->
 

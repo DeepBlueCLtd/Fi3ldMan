@@ -512,26 +512,6 @@ PUBLIC "-//OASIS//ELEMENTS DITA Topic//EN"
 <!--                      LINKING GROUPING                         -->
 <!-- ============================================================= -->
 
-
-<!--                    LONG NAME: Related Pages                   -->
-<!ENTITY % related-pages     
-                        "related-pages"                              >
-<!ENTITY % related-pages.content
-                       "(%title;, %xref;*)"
->
-<!ENTITY % related-pages.attributes
-             "%relational-atts;
-              %univ-atts;
-              outputclass 
-                        CDATA
-                                  #IMPLIED"
->
-<!ELEMENT related-pages    %related-pages.content;>
-<!ATTLIST related-pages    %related-pages.attributes;>
-
-
-
-
 <!--                    LONG NAME: Related Links                   -->
 
 <!ENTITY % related-links.content
@@ -700,8 +680,6 @@ PUBLIC "-//OASIS//ELEMENTS DITA Topic//EN"
 <!ATTLIST prolog    %global-atts;  class CDATA "- topic/prolog "     >
 <!ATTLIST related-links 
                     %global-atts;  class CDATA "- topic/related-links ">
-<!ATTLIST related-paegs 
-                    %global-atts;  class CDATA "- topic/related-paegs ">
 <!ATTLIST searchtitle 
                     %global-atts;  class CDATA "- topic/searchtitle ">
 <!ATTLIST section   %global-atts;  class CDATA "- topic/section "    >
