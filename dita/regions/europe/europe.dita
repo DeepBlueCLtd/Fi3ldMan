@@ -9,7 +9,8 @@
                 <tbody>
                     <row>
                         <entry><xref href="france/france.dita">France</xref></entry>
-                        <entry><xref href="spain/spain.dita">Spain</xref></entry>
+                        <entry><xref href="spain/spain.dita" audience="deny-wales"
+                            >Spain</xref></entry>
                     </row>
                 </tbody>
             </tgroup>

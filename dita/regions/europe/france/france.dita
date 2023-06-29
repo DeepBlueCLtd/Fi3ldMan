@@ -47,7 +47,7 @@
                         <entry>Unk</entry>
                         <entry>Unk</entry>
                     </row>
-                    <row>
+                    <row audience="deny-france">
                         <entry>Unit_b</entry>
                         <entry>PBF</entry>
                         <entry>2 * V6 Diesel%TEST-85%</entry>
@@ -79,7 +79,7 @@
                         <entry>16.6</entry>
                         <entry>Est 1000</entry>
                     </row>
-                    <row>
+                    <row audience="deny-wales">
                         <entry>Unit_eww</entry>
                         <entry>PBF</entry>
                         <entry>2 * V6 Diesel</entry>
