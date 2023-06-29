@@ -160,6 +160,10 @@
                         <Boolean>false</Boolean>
                     </entry>
                     <entry>
+                        <String>enable.project.master.files.support</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
                         <String>key.editor.format.xml.option.pane</String>
                         <Boolean>true</Boolean>
                     </entry>
@@ -735,6 +739,9 @@
         </options>
     </meta>
     <projectTree name="project.xpr">
+        <folder masterFiles="true" name="Main Files">
+            <file name="index.ditamap"/>
+        </folder>
         <folder path="."/>
     </projectTree>
 </project>
