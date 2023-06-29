@@ -4,15 +4,15 @@
 <topic id="links_1">
     <title>Europe</title>
     <body>
-      <table>
-        <tgroup cols="2">
-          <tbody>
-            <row>
-              <entry><xref href="france/france.dita">France</xref></entry>
-              <entry><xref href="spain/spain.dita">Spain</xref></entry>
-            </row>
-          </tbody>
-        </tgroup>
-      </table>
+        <table>
+            <tgroup cols="2">
+                <tbody>
+                    <row>
+                        <entry><xref href="france/france.dita">France</xref></entry>
+                        <entry><xref href="spain/spain.dita">Spain</xref></entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
     </body>
 </topic>

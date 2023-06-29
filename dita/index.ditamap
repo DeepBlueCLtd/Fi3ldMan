@@ -3,7 +3,7 @@
 <map>
     <title>Field Manual v4 Feb 2022</title>
     <topicmeta/>
-    <topicref href="regions/regions.ditamap" format="ditamap">
+    <topicref href="regions/regions.dita" format="dita">
         <topicmeta/>
     </topicref>
     <topicref href="regions/europe/france/france.dita" format="dita">
