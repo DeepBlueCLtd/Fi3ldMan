@@ -3,7 +3,7 @@
   <!-- provide the name of the deny-country in the `val` field of 
     the next row, to exclude content with that tag from
   the export -->
-  <prop action="exclude" att="audience" val="deny-france"/>
+  <prop action="exclude" att="audience" val="deny-wales"/>
 </val>
 
 
