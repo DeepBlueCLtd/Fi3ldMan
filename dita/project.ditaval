@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<val>
+  <prop action="include" att="audience" val="deny-france"/>
+  <prop action="include" att="audience" val="deny-spain"/>
+  <prop action="include" att="audience" val="deny-england"/>
+  <prop action="include" att="audience" val="deny-wales"/>
+</val>
+
+
