@@ -118,66 +118,6 @@
                                     <String>*DITA*</String>
                                 </field>
                                 <field name="conditionSetName">
-                                    <String>props</String>
-                                </field>
-                                <field name="ditavalFile">
-                                    <String>/Users/blue_upwork_workspace/blue_upwork_fresh/fresh_workspace_7/Fi3ldMan/dita/props.ditaval</String>
-                                </field>
-                                <field name="useDITAVAL">
-                                    <Boolean>true</Boolean>
-                                </field>
-                                <field name="shortcut">
-                                    <null/>
-                                </field>
-                            </profileConditionsSetInfo>
-                            <profileConditionsSetInfo>
-                                <field name="conditions">
-                                    <serializableOrderedMap/>
-                                </field>
-                                <field name="documentTypePattern">
-                                    <String>*DITA*</String>
-                                </field>
-                                <field name="conditionSetName">
-                                    <String>props-imported</String>
-                                </field>
-                                <field name="ditavalFile">
-                                    <String>/Users/blue_upwork_workspace/blue_upwork_fresh/fresh_workspace_7/Fi3ldMan/dita/props.ditaval</String>
-                                </field>
-                                <field name="useDITAVAL">
-                                    <Boolean>true</Boolean>
-                                </field>
-                                <field name="shortcut">
-                                    <null/>
-                                </field>
-                            </profileConditionsSetInfo>
-                            <profileConditionsSetInfo>
-                                <field name="conditions">
-                                    <serializableOrderedMap/>
-                                </field>
-                                <field name="documentTypePattern">
-                                    <String>*DITA*</String>
-                                </field>
-                                <field name="conditionSetName">
-                                    <String>props-imported1</String>
-                                </field>
-                                <field name="ditavalFile">
-                                    <String>/Users/blue_upwork_workspace/blue_upwork_fresh/fresh_workspace_7/Fi3ldMan/dita/props.ditaval</String>
-                                </field>
-                                <field name="useDITAVAL">
-                                    <Boolean>true</Boolean>
-                                </field>
-                                <field name="shortcut">
-                                    <null/>
-                                </field>
-                            </profileConditionsSetInfo>
-                            <profileConditionsSetInfo>
-                                <field name="conditions">
-                                    <serializableOrderedMap/>
-                                </field>
-                                <field name="documentTypePattern">
-                                    <String>*DITA*</String>
-                                </field>
-                                <field name="conditionSetName">
                                     <String>project</String>
                                 </field>
                                 <field name="ditavalFile">
