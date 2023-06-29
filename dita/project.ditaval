@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <val>
-<!--  <prop action="exclude" att="audience" val="deny-france"/>
-  <prop action="exclude" att="audience" val="deny-spain"/>
-  <prop action="exclude" att="audience" val="deny-england"/> -->
-  <prop action="exclude" att="audience" val="deny-wales"/>
+  <!-- provide the name of the deny-country in the `val` field of 
+    the next row, to exclude content with that tag from
+  the export -->
+  <prop action="exclude" att="audience" val="deny-france"/>
 </val>
 
 
