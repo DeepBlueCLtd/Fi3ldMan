@@ -1,7 +1,7 @@
 <?xml version="1.0"?>          
 <!DOCTYPE classlist SYSTEM "../../../dtd/classlist.dtd">          
 <classlist id="france-id">
-    <title>Britain Hybrid</title>
+    <title>Britain Legacy</title>
     <flag>
         <fig>
             <image href="images/britain_flag.png" alt="flag"/>
@@ -37,7 +37,7 @@
                     </row>
                     <row>
                         <entry>
-                            <xref href="unit_hybrid_a.dita">Unit_a</xref>
+                            <xref href="unit_legacy_a.dita">Unit_legacy_a</xref>
                         </entry>
                         <entry>PB</entry>
                         <entry>2 * V8 Diesel</entry>
@@ -71,7 +71,7 @@
                     </row>
                     <row>
                         <entry>
-                            <xref href="unit_hybrid_d_star.dita">Unit_d</xref>
+                            <xref href="unit_legacy_d_star.dita">Unit_legacy_d_sttar</xref>
                         </entry>
                         <entry>PBF</entry>
                         <entry morerows="1">2 * 4 (FPP)%TEST-85%</entry>
