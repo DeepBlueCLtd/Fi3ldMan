@@ -8,10 +8,10 @@
                 <tbody>
                     <row>
                         <entry>
-                            <xref href="hybrid.dita">Hybrid<image href="images/oscill_e.jpg"></image></xref>
+                            <xref href="../britain_hybrid/britain_hybrid.dita">Hybrid<image width="400px" href="../britain_hybrid/images/oscill_e.jpg"></image></xref>
                         </entry>
                         <entry>
-                            <xref href="composite.dita" format="dita">Compsite<image href="images/oscill_d.jpg"></image></xref>
+                            <xref href="../britain_legacy/britain_legacy.dita" format="dita">Legacy<image width="400px" href="../britain_legacy/images/oscill_c.jpg"></image></xref>
                         </entry>
                     </row>
                 </tbody>
@@ -19,6 +19,8 @@
         </table>
     </body>
     <related-pages id="pg-id">
-        <title></title>
+        <title>Related Pages</title>
+        <xref href="br_cooling_units.dita"/>
+        <xref href="br_power_units.dita"/>
     </related-pages>
 </rich-collection>
