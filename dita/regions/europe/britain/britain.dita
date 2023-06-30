@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE topic
-  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic id="links_1">
-    <title>Europe</title>
+<!DOCTYPE rich-collection SYSTEM "../../../dtd/rich-collection.dtd">
+<rich-collection id="links_1">
+    <title>Britain</title>
     <body>
         <table>
             <tgroup cols="2">
                 <tbody>
                     <row>
-                        <entry><xref href="hybrid.dita">Hybrid<image href="images/oscill_e.jpg"></image></xref></entry>
-                        <entry><xref href="composite.dita">Compsite<image href="images/oscill_d.jpg"></image></xref></entry>
+                        <entry>
+                            <xref href="hybrid.dita">Hybrid<image href="images/oscill_e.jpg"></image></xref>
+                        </entry>
+                        <entry>
+                            <xref href="composite.dita" format="dita">Compsite<image href="images/oscill_d.jpg"></image></xref>
+                        </entry>
                     </row>
                 </tbody>
             </tgroup>
         </table>
     </body>
-</topic>
+    <related-pages id="pg-id">
+        <title></title>
+    </related-pages>
+</rich-collection>
