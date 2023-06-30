@@ -2,10 +2,10 @@
 <!-- ============================================================= -->
 <!--                    HEADER                                     -->
 <!-- ============================================================= -->
-<!--  MODULE:    DITA rich-collection MOD                          -->
+<!--  MODULE:    DITA collection MOD                               -->
 <!--  VERSION:   1.2                                               -->
 <!--  DATE:      June 2023                                         -->
-<!--  Delivered as file "rich-collection.mod"                      -->
+<!--  Delivered as file "collection.mod"                           -->
 <!-- ============================================================= -->
 
 
@@ -44,14 +44,8 @@
 <!-- ============================================================= -->
 <!--                   ELEMENT NAME ENTITIES                       -->
 <!-- ============================================================= -->
-<!ENTITY % rich-collection                "rich-collection" >
+<!ENTITY % collection                "collection" >
 <!ENTITY % title                     "title" >
-<!ENTITY % related-pages                     "related-pages" >
-<!--
-<!ENTITY % countrybody              "countrybody" >
-<!ENTITY % flag                     "flag" >
-<!ENTITY % title                     "title" >
--->
 
 <!-- ============================================================= -->
 <!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
@@ -68,14 +62,13 @@
 <!-- ============================================================= -->
 
 <!--                    LONG NAME: Classlist  -->
-<!ENTITY % rich-collection.content
+<!ENTITY % collection.content
  "
   ((%title;)?,
-  (%body;)?,
-  (%related-pages;)?
+  (%body;)?
   )                   
 ">
-<!ENTITY % rich-collection.attributes
+<!ENTITY % collection.attributes
 '            id         ID                               #REQUIRED
              conref     CDATA                            #IMPLIED
              %arch-atts;
@@ -83,32 +76,19 @@
                         CDATA                            #IMPLIED
              domains    CDATA                "&included-domains;"    
 '>
-<!ELEMENT rich-collection %rich-collection.content; >
-<!ATTLIST rich-collection %rich-collection.attributes; > 
+<!ELEMENT collection %collection.content; >
+<!ATTLIST collection %collection.attributes; > 
 
-<!--                    LONG NAME: related pages details -->
-
-<!ENTITY % related-pages.content
-"
-  ((%title;), (%xref;)*)   
-">
-<!ENTITY % related-pages.attributes
-'            id     ID                                  #REQUIRED
-             outputclass 
-                        CDATA                            #IMPLIED    
-'>
-<!ELEMENT related-pages %related-pages.content; >
-<!ATTLIST related-pages %related-pages.attributes; > 
 
 
 <!-- ============================================================= -->
 <!--                    SPECIALIZATION ATTRIBUTE DECLARATIONS      -->
 <!-- ============================================================= -->
 
-<!ATTLIST rich-collection         %global-atts;  class CDATA "- topic/topic concept/concept rich-collection/rich-collection ">
-<!ATTLIST related-pages           %global-atts;  class CDATA "- topic/section  concept/title rich-collection/related-pages ">
+<!ATTLIST collection         %global-atts;  class CDATA "- topic/topic concept/concept collection/collection ">
 
-<!-- ================== End DITA rich-collection  ======================== -->
+
+<!-- ================== End DITA collection  ======================== -->
 
 
 
