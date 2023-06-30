@@ -2,22 +2,25 @@
 <!-- ============================================================= -->
 <!--                    HEADER                                     -->
 <!-- ============================================================= -->
-<!--  MODULE:    DITA country ENT                                  -->
+<!--  MODULE:    DITA classlist ENT                                -->
 <!--  VERSION:   1.2                                               -->
 <!--  DATE:      June 2023                                         -->
-<!--  Delivered as file "country.ent"                              -->
+<!--  Delivered as file "classlist.ent"                            -->
 <!-- ============================================================= -->
 
+
 <!-- ============================================================= -->
-<!--                    CONCEPT ENTITIES                           -->
+<!--                    CLASSLIST ENTITIES                         -->
 <!-- ============================================================= -->
 
 <!ENTITY concept-att     
   "(topic concept)"
 >
 
-<!ENTITY country-att     
-"(topic concept country)"
+<!ENTITY classlist-att     
+"(topic concept classlist)"
 >
 
-<!-- ================== End Concept Entities ===================== -->
+
+
+<!-- ================== End Classlist Entities ===================== -->

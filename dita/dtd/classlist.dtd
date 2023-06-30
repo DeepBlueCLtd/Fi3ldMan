@@ -2,11 +2,12 @@
 <!-- ============================================================= -->
 <!--                    HEADER                                     -->
 <!-- ============================================================= -->
-<!--  MODULE:    DITA Concept DTD                                  -->
+<!--  MODULE:    DITA classlist DTD                                -->
 <!--  VERSION:   1.2                                               -->
 <!--  DATE:      June 2023                                         -->
-<!--  Delivered as file "country.dtd"                              -->
+<!--  Delivered as file "classlist.dtd"                            -->
 <!-- ============================================================= -->
+
 
 <!-- ============================================================= -->
 <!--                    TOPIC ENTITY DECLARATIONS                  -->
@@ -17,10 +18,10 @@
          "concept.ent"
 >%concept-dec;
 
-<!ENTITY % country-dec     
-  PUBLIC "country.ent" 
-         "country.ent"
->%country-dec;
+<!ENTITY % classlist-dec     
+  PUBLIC "classlist.ent" 
+         "classlist.ent"
+>%classlist-dec;
 
 <!-- ============================================================= -->
 <!--                    DOMAIN ENTITY DECLARATIONS                 -->
@@ -66,6 +67,12 @@
   PUBLIC "-//OASIS//ENTITIES DITA 1.2 User Interface Domain//EN" 
          "uiDomain.ent"                                                       
 >%ui-d-dec;
+<!--
+<!ENTITY % category-dec     
+  PUBLIC "category.ent" 
+         "category.ent"
+>%category-dec;
+-->
 
 <!-- ============================================================= -->
 <!--                    DOMAIN ATTRIBUTE DECLARATIONS              -->
@@ -125,23 +132,38 @@
 
 <!--                    Redefine the infotype entity to exclude 
                         other topic types and disallow nesting     -->
-                        
-<!ENTITY % country-info-types 
+<!ENTITY % classlist-info-types 
                         "concept"                                    >
+
 
 <!-- ============================================================= -->
 <!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
 <!-- ============================================================= -->
 <!--                    Must be declared ahead of the DTDs, which
                         puts @domains first in order               -->
+<!--
+<!ENTITY included-domains 
+                          "&concept-att;
+                           &hi-d-att; 
+                           &ut-d-att; 
+                           &indexing-d-att;
+                           &hazard-d-att;
+                           &abbrev-d-att;
+                           &pr-d-att; 
+                           &sw-d-att;
+                           &ui-d-att; 
+  "
+>
+-->
 
 <!ENTITY included-domains 
                         "
-                         &country-att;
+                         &classlist-att;
                          &hi-d-att; 
                          &ut-d-att;  
                         "                
 >
+
 
 <!-- ============================================================= -->
 <!--                    TOPIC ELEMENT INTEGRATION                  -->
@@ -153,7 +175,6 @@
 "../../base/dtd/topic.mod">
 %topic-type;
 
-
 <!--                    Embed concept to get specific elements     -->
 <!ENTITY % concept-typemod 
                         PUBLIC 
@@ -161,10 +182,12 @@
 "concept.mod">
 %concept-typemod;
 
-<!ENTITY % country-typemod 
-  SYSTEM "country.mod"                                                        
+<!--                    Embed classlist to get specific elements     -->
+
+<!ENTITY % classlist-typemod 
+  SYSTEM "classlist.mod"                                                        
  >                                                     
-%country-typemod;
+%classlist-typemod;
 
 
 <!-- ============================================================= -->
@@ -212,4 +235,4 @@
          "softwareDomain.mod"
 >%sw-d-def;
 
-<!-- ================== End DITA Concept DTD  ==================== -->
+<!-- ================== End DITA Classlist DTD  ==================== -->
