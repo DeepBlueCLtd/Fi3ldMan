@@ -2,10 +2,10 @@
 <!-- ============================================================= -->
 <!--                    HEADER                                     -->
 <!-- ============================================================= -->
-<!--  MODULE:    DITA country MOD                                  -->
+<!--  MODULE:    DITA classlist MOD                                -->
 <!--  VERSION:   1.2                                               -->
 <!--  DATE:      June 2023                                         -->
-<!--  Delivered as file "country.mod"                              -->
+<!--  Delivered as file "classlist.mod"                            -->
 <!-- ============================================================= -->
 
 
@@ -30,12 +30,13 @@
 "
 >
 
+
 <!-- ============================================================= -->
 <!--                   SPECIALIZATION OF DECLARED ELEMENTS         -->
 <!-- ============================================================= -->
 
 
-<!ENTITY % country-info-types 
+<!ENTITY % concept-info-types 
   "%info-types;
   "
 >
@@ -43,12 +44,11 @@
 <!-- ============================================================= -->
 <!--                   ELEMENT NAME ENTITIES                       -->
 <!-- ============================================================= -->
- 
-
-<!ENTITY % country                  "country" >
+<!ENTITY % classlist                "classlist" >
 <!ENTITY % countrybody              "countrybody" >
 <!ENTITY % flag                     "flag" >
- 
+<!ENTITY % title                     "title" >
+
 <!-- ============================================================= -->
 <!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
 <!-- ============================================================= -->
@@ -58,48 +58,67 @@
   ""
 >
 
+
 <!-- ============================================================= -->
 <!--                    ELEMENT DECLARATIONS                       -->
 <!-- ============================================================= -->
 
-<!--                    LONG NAME: country -->
-
-<!ELEMENT country       ((%title;), 
+<!--                    LONG NAME: Classlist  -->
+<!ENTITY % classlist.content
+ "
+  ((%title;)?,
    (%flag;), 
-   (%titlealts;)?,
-   (%prolog;)?, 
-   (%countrybody;)?, 
-   (%related-links;)?,
-   (%body;)*, (%country-info-types;)* )  >
-<!ATTLIST country
-             id         ID                               #REQUIRED
+   (%countrybody;)?)                   
+">
+<!ENTITY % classlist.attributes
+'            id         ID                               #REQUIRED
              conref     CDATA                            #IMPLIED
              %arch-atts;
-             domains    CDATA                "&included-domains;"  
->
+             outputclass 
+                        CDATA                            #IMPLIED
+             domains    CDATA                "&included-domains;"    
+'>
+<!ELEMENT classlist %classlist.content; >
+<!ATTLIST classlist %classlist.attributes; > 
 
+<!--                    LONG NAME: countrybody details -->
+<!ENTITY % countrybody.content
+"
+  (%table; | %section;)*    
+">
+<!ENTITY % countrybody.attributes
+'
+             outputclass 
+                        CDATA                            #IMPLIED    
+'>
+<!ELEMENT countrybody %countrybody.content; >
+<!ATTLIST countrybody %countrybody.attributes; > 
 
-<!--                    LONG NAME: country -->      
-
-<!ELEMENT countrybody              (%table; | %section;)*>
-<!ATTLIST countrybody
-                                  outputclass CDATA #IMPLIED
->
-
-<!--                    LONG NAME: flag -->   
-
-<!ELEMENT flag              (%fig;)?>
-<!ATTLIST flag
-                                  outputclass CDATA #IMPLIED
->
-
+<!--                    LONG NAME: flag details -->
+<!ENTITY % flag.content
+"
+  (%fig;)?    
+">
+<!ENTITY % flag.attributes
+'
+             outputclass 
+                        CDATA                            #IMPLIED    
+'>
+<!ELEMENT flag %flag.content; >
+<!ATTLIST flag %flag.attributes; > 
 
 <!-- ============================================================= -->
 <!--                    SPECIALIZATION ATTRIBUTE DECLARATIONS      -->
 <!-- ============================================================= -->
 
-<!ATTLIST country          %global-atts;  class CDATA "- topic/topic concept/concept country/country ">
-<!ATTLIST countrybody      %global-atts;  class CDATA "- topic/body  concept/conbody country/countrybody ">
-<!ATTLIST flag             %global-atts;  class CDATA "- topic/body  concept/conbody country/flag ">
+<!ATTLIST classlist              %global-atts;  class CDATA "- topic/topic concept/concept classlist/classlist ">
+<!ATTLIST title                  %global-atts;  class CDATA "- topic/title  concept/title classlist/title ">
+<!ATTLIST flag                   %global-atts;  class CDATA "- topic/body  concept/conbody classlist/flag ">
+<!ATTLIST countrybody            %global-atts;  class CDATA "- topic/body  concept/conbody classlist/countrybody ">
+
 
 <!-- ================== End DITA Concept  ======================== -->
+
+
+
+
