@@ -45,7 +45,7 @@
 <!--                   ELEMENT NAME ENTITIES                       -->
 <!-- ============================================================= -->
 <!ENTITY % classlist                "classlist" >
-<!ENTITY % countrybody              "countrybody" >
+<!ENTITY % classlistbody              "classlistbody" >
 <!ENTITY % flag                     "flag" >
 <!ENTITY % title                     "title" >
 
@@ -68,7 +68,7 @@
  "
   ((%title;)?,
    (%flag;), 
-   (%countrybody;)?)                   
+   (%classlistbody;)?)                   
 ">
 <!ENTITY % classlist.attributes
 '            id         ID                               #REQUIRED
@@ -81,18 +81,18 @@
 <!ELEMENT classlist %classlist.content; >
 <!ATTLIST classlist %classlist.attributes; > 
 
-<!--                    LONG NAME: countrybody details -->
-<!ENTITY % countrybody.content
+<!--                    LONG NAME: classlistbody details -->
+<!ENTITY % classlistbody.content
 "
   (%table; | %section;)*    
 ">
-<!ENTITY % countrybody.attributes
+<!ENTITY % classlistbody.attributes
 '
              outputclass 
                         CDATA                            #IMPLIED    
 '>
-<!ELEMENT countrybody %countrybody.content; >
-<!ATTLIST countrybody %countrybody.attributes; > 
+<!ELEMENT classlistbody %classlistbody.content; >
+<!ATTLIST classlistbody %classlistbody.attributes; > 
 
 <!--                    LONG NAME: flag details -->
 <!ENTITY % flag.content
@@ -114,7 +114,7 @@
 <!ATTLIST classlist              %global-atts;  class CDATA "- topic/topic concept/concept classlist/classlist ">
 <!ATTLIST title                  %global-atts;  class CDATA "- topic/title  concept/title classlist/title ">
 <!ATTLIST flag                   %global-atts;  class CDATA "- topic/body  concept/conbody classlist/flag ">
-<!ATTLIST countrybody            %global-atts;  class CDATA "- topic/body  concept/conbody classlist/countrybody ">
+<!ATTLIST classlistbody            %global-atts;  class CDATA "- topic/body  concept/conbody classlist/classlistbody ">
 
 
 <!-- ================== End DITA Concept  ======================== -->
