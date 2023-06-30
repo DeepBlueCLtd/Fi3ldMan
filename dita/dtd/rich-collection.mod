@@ -106,7 +106,7 @@
 <!-- ============================================================= -->
 
 <!ATTLIST rich-collection         %global-atts;  class CDATA "- topic/topic concept/concept rich-collection/rich-collection ">
-<!ATTLIST related-pages           %global-atts;  class CDATA "- topic/secrion  concept/title rich-collection/related-pages ">
+<!ATTLIST related-pages           %global-atts;  class CDATA "- topic/section  concept/title rich-collection/related-pages ">
 
 <!-- ================== End DITA rich-collection  ======================== -->
 
