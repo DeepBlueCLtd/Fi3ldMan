@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE class SYSTEM "../../../dtd/class.dtd">
 <class id="unit_a">
-    <title>Unit_a</title>
+    <title>Unit_legacy_a</title>
     <body>
         <images>
             <image href="images/oscill_c.jpg" scale="33" align="left"/>
