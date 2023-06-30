@@ -57,7 +57,9 @@
                             <entry>DDA</entry>
                             <entry>12.3</entry>
                             <entry>H3-5</entry>
-                            <entry>Dominant in cold weather</entry>
+                            <entry>Dominant in cold weather <object
+                                    data="media/file_example_WAV_1MG.wav" outputclass="audio"
+                                /></entry>
                         </row>
                         <row>
                             <entry>FGAR</entry>
