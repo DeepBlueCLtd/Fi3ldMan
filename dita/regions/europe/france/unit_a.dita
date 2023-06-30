@@ -57,22 +57,35 @@
                             <entry>DDA</entry>
                             <entry>12.3</entry>
                             <entry>H3-5</entry>
-                            <entry>Dominant in cold weather</entry>
+                            <entry>Dominant in cold weather <object
+                                    data="media/file_example_WAV_1MG.wav" outputclass="audio"
+                                /></entry>
                         </row>
                         <row>
                             <entry>FGAR</entry>
                             <entry>22-45</entry>
                             <entry>H2</entry>
-                            <entry>Only once warm-up complete</entry>
+                            <entry>
+                                <p>Only once warm-up complete</p>
+                                <p>
+                                    <object data="media/file_example_MP3_700KB.mp3"
+                                        outputclass="audio"/>
+                                </p>
+                            </entry>
                         </row>
                     </tbody>
                 </tgroup>
             </table>
+            
+            
         </signatures>
         <propulsion id="propulsion">
             <title>Propulsion</title>
             <p> some narrative content, including a table of varying structure. Plus diagrams,
                 links, etc <xref href="fr_cooling_units.dita#fr_power_units/diesel"/></p>
+            <p>
+                <object data="media/file_example_MP4_480_1_5MG.mp4" outputclass="video"/>
+            </p>
         </propulsion>
         <remarks id="remarks">
             <title>Remarks</title>
@@ -83,7 +96,7 @@
                     <li>Can take 30 minutes to warm up</li>
                     <li>Be wary of unshielded 440/480V power line.</li>
                 </ol>
-                <p> More amplifying remarks </p>
+                <p> More amplifying remarks</p>
             </span>
         </remarks>
         <related-pages id="related">
