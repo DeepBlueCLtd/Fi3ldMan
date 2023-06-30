@@ -47,11 +47,6 @@
 <!ENTITY % rich-collection                "rich-collection" >
 <!ENTITY % title                     "title" >
 <!ENTITY % related-pages                     "related-pages" >
-<!--
-<!ENTITY % countrybody              "countrybody" >
-<!ENTITY % flag                     "flag" >
-<!ENTITY % title                     "title" >
--->
 
 <!-- ============================================================= -->
 <!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
