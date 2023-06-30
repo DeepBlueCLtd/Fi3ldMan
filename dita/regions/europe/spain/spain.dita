@@ -8,7 +8,7 @@
             <image href="spain.jpeg" alt="Geramn flag"/>
         </fig>
     </flag>
-    <countrybody>
+    <classlistbody>
         <table colsep="1" rowsep="1">
             <tgroup cols="7" colsep="1" rowsep="1">
                 <colspec colnum="1" colname="col1"/>
@@ -89,6 +89,6 @@
                 </tbody>
             </tgroup>
         </table>
-    </countrybody>
+    </classlistbody>
 </classlist>
 
