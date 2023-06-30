@@ -67,12 +67,6 @@
   PUBLIC "-//OASIS//ENTITIES DITA 1.2 User Interface Domain//EN" 
          "uiDomain.ent"                                                       
 >%ui-d-dec;
-<!--
-<!ENTITY % category-dec     
-  PUBLIC "category.ent" 
-         "category.ent"
->%category-dec;
--->
 
 <!-- ============================================================= -->
 <!--                    DOMAIN ATTRIBUTE DECLARATIONS              -->
