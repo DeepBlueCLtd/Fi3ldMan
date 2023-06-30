@@ -48,6 +48,7 @@
 <!ENTITY % classlistbody              "classlistbody" >
 <!ENTITY % flag                     "flag" >
 <!ENTITY % title                     "title" >
+<!ENTITY % related-pages                     "related-pages" >
 
 <!-- ============================================================= -->
 <!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
@@ -68,7 +69,9 @@
  "
   ((%title;)?,
    (%flag;), 
-   (%classlistbody;)?)                   
+   (%classlistbody;)?,
+   (%related-pages;)?
+   )                   
 ">
 <!ENTITY % classlist.attributes
 '            id         ID                               #REQUIRED
@@ -107,6 +110,22 @@
 <!ELEMENT flag %flag.content; >
 <!ATTLIST flag %flag.attributes; > 
 
+
+<!--                    LONG NAME: related pages details -->
+
+<!ENTITY % related-pages.content
+"
+  ((%title;), (%xref;)*)   
+">
+<!ENTITY % related-pages.attributes
+'            id     ID                                  #REQUIRED
+             outputclass 
+                        CDATA                            #IMPLIED    
+'>
+<!ELEMENT related-pages %related-pages.content; >
+<!ATTLIST related-pages %related-pages.attributes; > 
+
+
 <!-- ============================================================= -->
 <!--                    SPECIALIZATION ATTRIBUTE DECLARATIONS      -->
 <!-- ============================================================= -->
@@ -115,6 +134,8 @@
 <!ATTLIST title                  %global-atts;  class CDATA "- topic/title  concept/title classlist/title ">
 <!ATTLIST flag                   %global-atts;  class CDATA "- topic/body  concept/conbody classlist/flag ">
 <!ATTLIST classlistbody            %global-atts;  class CDATA "- topic/body  concept/conbody classlist/classlistbody ">
+<!ATTLIST related-pages           %global-atts;  class CDATA "- topic/section  rich-collection/related-pages ">
+
 
 
 <!-- ================== End DITA Concept  ======================== -->

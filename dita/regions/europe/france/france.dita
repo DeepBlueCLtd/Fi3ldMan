@@ -91,5 +91,10 @@
             </tgroup>
         </table>
     </classlistbody>
+    <related-pages id="related-pages">
+        <title>Related pages</title>
+        <xref href="fr_cooling_units.dita" format="dita"></xref>
+        <xref href="fr_power_units.dita" format="dita"></xref>
+    </related-pages>
 </classlist>
 
