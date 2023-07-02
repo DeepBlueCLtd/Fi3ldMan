@@ -13,6 +13,13 @@
 }
 
 
+/* text label for category image links */
+.xref .b {
+    display:block;
+    text-align: center;
+    font-size: 2em;
+}
+
 /*
  * ==============================================
  * Style changes for Fi3ldMan project above this block
