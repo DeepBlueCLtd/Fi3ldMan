@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
       <loc>regions/regions.html</loc>
+<<<<<<< HEAD
       <lastmod>2023-07-02T11:29:52Z</lastmod>
    </url>
    <url>
@@ -19,5 +20,24 @@
    <url>
       <loc>regions/europe/spain/unit_db.html</loc>
       <lastmod>2023-07-02T11:29:52Z</lastmod>
+=======
+      <lastmod>2023-06-30T10:47:57Z</lastmod>
+   </url>
+   <url>
+      <loc>regions/europe/france/france.html</loc>
+      <lastmod>2023-06-30T10:47:57Z</lastmod>
+   </url>
+   <url>
+      <loc>regions/europe/france/unit_a.html</loc>
+      <lastmod>2023-06-30T10:47:57Z</lastmod>
+   </url>
+   <url>
+      <loc>regions/europe/france/unit_d_star.html</loc>
+      <lastmod>2023-06-30T10:47:57Z</lastmod>
+   </url>
+   <url>
+      <loc>regions/europe/spain/unit_db.html</loc>
+      <lastmod>2023-06-30T10:47:57Z</lastmod>
+>>>>>>> main
    </url>
 </urlset>
