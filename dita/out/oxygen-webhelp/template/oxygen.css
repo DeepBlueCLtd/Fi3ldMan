@@ -4,14 +4,39 @@
  * ==============================================
  */
 
+/* don't show section title anchro */
 .permalink {
     display: none
 }
 
+/* make related pages show as a list of items */
 .related-pages .xref {
     display: list-item
 }
 
+/* 
+ * hide borders for image link table 
+ */
+.rich-collection .table-container table,  .rich-collection .table-container table td.entry {
+    border: none;
+}
+
+
+/* 
+ * show borders for tables
+ */
+
+.class .table .entry{ 
+    border: 1px solid black !important;
+    border-collapse: collapse;
+ }
+
+/* text label for category image links */
+.xref .b {
+    display:block;
+    text-align: center;
+    font-size: 2em;
+}
 
 /*
  * ==============================================
@@ -567,12 +592,3 @@ html[dir='rtl'] .wh_top_menu:not(.activated-on-click) ul li:hover > ul,
 html[dir='rtl'] .wh_top_menu.activated-on-click ul li.active > ul {
     max-width: 270px;
 }
-
-/* 
- * custom css 
- */
- 
-.wh_topic_content .table .entry{ 
-    border: 1px solid black !important;
-    border-collapse: collapse;
- }
