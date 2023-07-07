@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE rich-collection SYSTEM "../../../dtd/rich-collection.dtd">
+<!DOCTYPE rich-collection SYSTEM "../../dtd/rich-collection.dtd">
 <rich-collection id="links_1">
     <title>Britain</title>
     <body>
@@ -8,10 +8,10 @@
                 <tbody>
                     <row>
                         <entry>
-                            <xref href="../britain_hybrid/britain_hybrid.dita"><b>Hybrid</b><image width="400px" href="../britain_hybrid/images/oscill_e.jpg"></image></xref>
+                            <xref href="hybrid/britain_hybrid.dita"><b>Hybrid</b><image width="400px" href="hybrid/images/oscill_e.jpg"></image></xref>
                         </entry>
                         <entry>
-                            <xref href="../britain_legacy/britain_legacy.dita" format="dita"><b>Legacy</b><image width="400px" href="../britain_legacy/images/oscill_c.jpg"></image></xref>
+                            <xref href="legacy/britain_legacy.dita" format="dita"><b>Legacy</b><image width="400px" href="legacy/images/oscill_c.jpg"></image></xref>
                         </entry>
                     </row>
                 </tbody>

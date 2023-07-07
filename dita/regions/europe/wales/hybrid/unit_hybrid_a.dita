@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE class SYSTEM "../../../dtd/class.dtd">
+<!DOCTYPE class SYSTEM "../../../../dtd/class.dtd">
 <class id="unit_a">
-    <title>Unit_legacy_a</title>
+    <title>Unit_a</title>
     <body>
         <images>
             <image href="images/oscill_c.jpg" scale="33" align="left"/>
@@ -72,7 +72,7 @@
         <propulsion id="propulsion">
             <title>Propulsion</title>
             <p> some narrative content, including a table of varying structure. Plus diagrams,
-                links, etc <xref href="../britain/br_cooling_units.dita#br_power_units/diesel"/></p>
+                links, etc <xref href="../br_cooling_units.dita#br_power_units/diesel"/></p>
         </propulsion>
         <remarks id="remarks">
             <title>Remarks</title>
@@ -88,8 +88,8 @@
         </remarks>
         <related-pages id="related">
             <title> Related links </title>
-            <xref href="../britain/br_power_units.dita#br_power_units/diesel">French diesel power units</xref>
-            <xref href="../britain/br_cooling_units.dita"/>
+            <xref href="../br_power_units.dita#br_power_units/diesel">French diesel power units</xref>
+            <xref href="../br_cooling_units.dita"/>
         </related-pages>
     </body>
 </class>
