@@ -9,7 +9,7 @@
       <area>
         <shape>poly</shape>
         <coords>550,211,522,231,515,263,540,275,564,269,561,231,555,214</coords>
-        <xref format="dita" href="europe/europe.dita">Britain</xref>
+        <xref format="dita" href="./britain/britain.dita">Britain</xref>
       </area>
       <area>
         <shape>poly</shape>
