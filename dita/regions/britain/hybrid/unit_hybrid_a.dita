@@ -74,18 +74,58 @@
             <p> some narrative content, including a table of varying structure. Plus diagrams,
                 links, etc <xref href="../br_cooling_units.dita#br_power_units/diesel"/></p>
         </propulsion>
-        <remarks id="remarks">
-            <title>Remarks</title>
-            <span>
-                <ol>
-                    <li>Only introduced since summer 2013</li>
-                    <li>Similar to unit_x, but with cheaper components</li>
-                    <li>Can take 30 minutes to warm up</li>
-                    <li>Be wary of unshielded 440/480V power line.</li>
-                </ol>
-                <p> More amplifying remarks </p>
-            </span>
-        </remarks>
+	<remarks id="remarks">
+			<title>Remarks</title>
+			<span>
+				<p id="image9">
+					<image href="./content/images/unit_da.jpg"/>
+				</p>
+				<p>
+      Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+      ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget,
+      tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
+      Aenean ultricies mi vitae est. Mauris placerat eleifend leo. This paragraph contains a 
+					<xref href="#propulsion">link</xref>
+				</p>
+				<p>
+					<p>And now a table</p>
+					<table>
+						<tgroup cols="2">
+                            <colspec colname="col1"/>
+							<colspec colname="col2"/>
+							<tbody>								
+								<row>
+									<entry>Cell one</entry>
+									<entry>Cell two</entry>
+								</row>
+								<row>
+									<entry namest="col1" nameend="col2">Cell three, with a <xref href="#">link</xref>
+									</entry>
+								</row>
+							</tbody>
+						</tgroup>
+					</table>
+				</p>
+				<ul>
+					<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+					<li>Aliquam tincidunt mauris eu risus.</li>
+					<li>Vestibulum auctor dapibus neque.</li>
+				</ul>
+				<p>
+					<p>1. Item one</p>
+					<p>2. Item two</p>
+					<p>3. Item three</p>
+				</p>
+				<ol>
+					<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+					<li>Aliquam tincidunt mauris eu risus.</li>
+				</ol>
+				<p>
+					<p id="bba_background">Background to BBA</p>
+      Dolore mollit consequat sint amet magna dolore voluptate. Dolor ullamco mollit aliquip qui velit elit. Nostrud dolor minim ut laborum aliqua laborum. Dolore mollit consequat sint amet magna dolore voluptate. Dolor ullamco mollit aliquip qui velit elit. Nostrud dolor minim ut laborum aliqua laborum. Dolore mollit consequat sint amet magna dolore voluptate. Dolor ullamco mollit aliquip qui velit elit. Nostrud dolor minim ut laborum aliqua laborum. Dolore mollit consequat sint amet magna dolore voluptate. Dolor ullamco mollit aliquip qui velit elit. Nostrud dolor minim ut laborum aliqua laborum. Dolore mollit consequat sint amet magna dolore voluptate. Dolor ullamco mollit aliquip qui velit elit. Nostrud dolor minim ut laborum aliqua laborum.
+				</p>
+			</span>
+		</remarks>
         <related-pages id="related">
             <title> Related links </title>
             <xref href="../br_power_units.dita#br_power_units/diesel">French diesel power units</xref>
