@@ -4,9 +4,9 @@
     <title>Unit_a</title>
     <body>
         <images>
-            <image href="images/oscill_c.jpg" scale="33" align="left"/>
-            <image href="images/oscill_d.jpg" scale="33" align="left"/>
-            <image href="images/oscill_e.jpg" scale="33" align="left"/>
+            <image href="content/images/oscill_c.jpg" scale="33" align="left"/>
+            <image href="content/images/oscill_d.jpg" scale="33" align="left"/>
+            <image href="content/images/oscill_e.jpg" scale="33" align="left"/>
         </images>
         <summary id="summary">
             <table>
@@ -71,8 +71,9 @@
         </signatures>
         <propulsion id="propulsion">
             <title>Propulsion</title>
+            <!-- note: we need to allow for paragraphs of text insude propulsion -->
             <p> some narrative content, including a table of varying structure. Plus diagrams,
-                links, etc <xref href="../br_cooling_units.dita#br_power_units/diesel"/></p>
+                links, etc <xref href="../br_cooling_units.dita#br_cooling_units/diesel"/></p>
         </propulsion>
 	<remarks id="remarks">
 			<title>Remarks</title>
@@ -88,7 +89,7 @@
 					<xref href="#propulsion">link</xref>
 				</p>
 				<p>
-					<p>And now a table</p>
+					And now a table
 					<table>
 						<tgroup cols="2">
                             <colspec colname="col1"/>
@@ -106,16 +107,24 @@
 						</tgroup>
 					</table>
 				</p>
+			    <!-- need to support UL lists -->
 				<ul>
 					<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
 					<li>Aliquam tincidunt mauris eu risus.</li>
 					<li>Vestibulum auctor dapibus neque.</li>
 				</ul>
+			    <!-- we should probably track instances of lists like this, and convert them to OL -->
+			    <!--
 				<p>
 					<p>1. Item one</p>
 					<p>2. Item two</p>
 					<p>3. Item three</p>
-				</p>
+				</p> -->
+			    <ol>
+			        <li>Item one</li>
+			        <li>Item two</li>
+			        <li>Item three</li>
+			    </ol>
 				<ol>
 					<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
 					<li>Aliquam tincidunt mauris eu risus.</li>

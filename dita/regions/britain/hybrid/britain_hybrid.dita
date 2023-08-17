@@ -4,7 +4,7 @@
     <title>Britain Hybrid</title>
     <flag>
         <fig>
-            <image href="images/britain_flag.png" alt="flag"/>
+            <image href="content/images/britain_flag.png" alt="flag"/>
         </fig>
     </flag>
     <classlistbody>

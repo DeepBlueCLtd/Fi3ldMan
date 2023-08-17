@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="br_power_units">
+<reference id="br_cooling_units">
     <title>British Hybrid Cooling Units</title>
     <shortdesc>Oveview of Hybrid cooling units found in Britain, with their weak areas</shortdesc>
     <refbody> 
@@ -8,7 +8,7 @@
             <title>Natural</title>
             <fig id="fig_fml_sbh_yxb">
                 <title>Cooling units</title>
-                <image href="images/cooling_unit.jpg" scale="50" id="image_gml_sbh_yxb"/>
+                <image href="content/images/cooling_unit.jpg" scale="50" id="image_gml_sbh_yxb"/>
             </fig>
             <p>Quisque quis justo et erat condimentum euismod. Quisque fermentum quam velit, eu
                 bibendum ante ullamcorper a. Aliquam eu auctor enim. Donec cursus convallis nibh, at
