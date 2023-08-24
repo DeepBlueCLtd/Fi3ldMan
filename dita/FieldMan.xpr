@@ -299,6 +299,26 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>FieldMan.ditamap</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>FieldMan DITA Map WebHelp Responsive</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>DITAMAP</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>../../LegacyMan/target/dita/Britain/Britain.dita</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -778,9 +798,9 @@
             </serialized>
         </options>
     </meta>
-    <projectTree name="project.xpr">
+    <projectTree name="FieldMan.xpr">
         <folder masterFiles="true" name="Main Files">
-            <file name="index.ditamap"/>
+            <file name="FieldMan.ditamap"/>
         </folder>
         <folder path="."/>
     </projectTree>
