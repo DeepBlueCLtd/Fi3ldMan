@@ -4,7 +4,7 @@
     <title>Unit_db</title>
     <body>
         <images>
-            <image  scale="33" href="images/TEST-48.jpg"/>
+            <image  scale="33" href="content/images/TEST-48.jpg"/>
         </images>
         <summary id="summary">
             <table>
@@ -130,7 +130,7 @@
                                 sit deserunt cillum sit duis minim. Nisi ea ullamco minim
                                 duis elit consectetur mollit ea mollit sunt voluptate. Esse
                                 nulla id mollit ad deserunt Lorem deserunt excepteur
-                                nostrud. <image  scale="33"  href="images/unit_db_2.jpg"/> Figure 2.
+                                nostrud. <image  scale="33"  href="content/images/unit_db_2.jpg"/> Figure 2.
                                 Dominant frequency Est commodo id in est irure.</entry>
                         </row>
                         <row>

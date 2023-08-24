@@ -35,7 +35,7 @@
 <!ATTLIST signatures id ID #REQUIRED
                                   outputclass CDATA #IMPLIED
 >
-<!ELEMENT propulsion    (%section.cnt;)* >
+<!ELEMENT propulsion    ((%title;)?, (%span;)*) >
 <!ATTLIST propulsion    id ID #REQUIRED
                                   outputclass CDATA #IMPLIED
 >
@@ -53,7 +53,7 @@
 <!ATTLIST links    id ID #REQUIRED
                                   outputclass CDATA #IMPLIED
 >
-<!ELEMENT span    ((%ol;)*, (%p;)*) >
+<!ELEMENT span    ((%ul; | %ol; | %p;)*) >
 <!ATTLIST span    
                                   conref CDATA #IMPLIED
                                   outputclass CDATA #IMPLIED

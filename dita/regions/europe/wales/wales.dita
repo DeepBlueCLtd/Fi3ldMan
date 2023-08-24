@@ -8,10 +8,10 @@
                 <tbody>
                     <row>
                         <entry>
-                            <xref href="hybrid/wales_hybrid.dita"><b>Hybrid</b><image width="400px" href="hybrid/images/oscill_e.jpg"></image></xref>
+                            <xref href="hybrid/wales_hybrid.dita"><b>Hybrid</b><image width="400px" href="hybrid/content/images/oscill_e.jpg"></image></xref>
                         </entry>
                         <entry>
-                            <xref href="legacy/wales_legacy.dita" format="dita"><b>Legacy</b><image width="400px" href="legacy/images/oscill_c.jpg"></image></xref>
+                            <xref href="legacy/wales_legacy.dita" format="dita"><b>Legacy</b><image width="400px" href="legacy/content/images/oscill_c.jpg"></image></xref>
                         </entry>
                     </row>
                 </tbody>

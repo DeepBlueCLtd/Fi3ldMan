@@ -4,9 +4,9 @@
     <title>Unit_a</title>
     <body>
         <images>
-            <image href="images/oscill_c.jpg" scale="33" align="left"/>
-            <image href="images/oscill_d.jpg" scale="33" align="left"/>
-            <image href="images/oscill_e.jpg" scale="33" align="left"/>
+            <image href="content/images/oscill_c.jpg" scale="33" align="left"/>
+            <image href="content/images/oscill_d.jpg" scale="33" align="left"/>
+            <image href="content/images/oscill_e.jpg" scale="33" align="left"/>
         </images>
         <summary id="summary">
             <table>
