@@ -8,6 +8,7 @@
 <!-- ============================================================= -->
 <!-- ============ Specialization of declared elements ============  -->
 <!ENTITY % class                 "class">
+<!ENTITY % title             "title">
 <!ENTITY % body             "body">
 <!ENTITY % summary       "summary">
 <!ENTITY % signatures                    "signatures">
@@ -15,7 +16,14 @@
 <!ENTITY % propulsionRef                   "propulsionRef">
 <!ENTITY % remarks                      "remarks">
 <!ENTITY % span                           "span">
+<!ENTITY % section.cnt                           "section.cnt">
+<!ENTITY % table                           "table">
+<!ENTITY % xref                           "xref">
+<!ENTITY % ul                           "ul">
+<!ENTITY % ol                           "ol">
+<!ENTITY % p                           "p">
 <!ENTITY % images                           "images">
+<!ENTITY % image                           "image">
 <!ENTITY % related-pages "related-pages">
 <!ELEMENT class              ((%title;), (%body;))>
 <!ATTLIST class                   id ID #REQUIRED
@@ -83,7 +91,21 @@
 <!ATTLIST remarks    class  CDATA "- topic/section class/remarks ">
 <!-- extends section -->
 <!ATTLIST related-pages    class  CDATA "- topic/section class/related-pages ">
+<!-- table extends table -->
+<!ATTLIST table    class  CDATA "- topic/table  class/table ">
+<!-- title extends title -->
+<!ATTLIST title    class  CDATA "- topic/title  class/title ">
 <!-- sp extends p -->
 <!ATTLIST span    class  CDATA "- topic/p  class/span ">
+<!-- p extends p -->
+<!ATTLIST p    class  CDATA "- topic/p  class/p ">
+<!-- ul extends ul -->
+<!ATTLIST ul    class  CDATA "- topic/ul  class/ul ">
+<!-- ol extends ol -->
+<!ATTLIST ol    class  CDATA "- topic/ol  class/ol ">
+<!-- xref extends xref -->
+<!ATTLIST xref    class  CDATA "- topic/xref  class/xref ">
 <!-- images -->
-<!ATTLIST images             %global-atts;  class CDATA "- topic/body reference/refBody class/images ">
+<!ATTLIST images  %global-atts;  class CDATA "- topic/body reference/refBody class/images ">
+<!-- image -->
+<!ATTLIST image  class CDATA "- topic/image class/image ">
