@@ -23,7 +23,7 @@
                                   %arch-atts;
                                   domains CDATA "&included-domains;"
 >
-<!ELEMENT body          ((%images;), (%summary;), (%signatures;)?, (%propulsion; | %propulsionRef;)?, (%remarks;)?, (%related-pages;)? )>
+<!ELEMENT body          ((%images;), (%summary;)?, (%signatures;)?, (%propulsion; | %propulsionRef;)?, (%remarks;)?, (%related-pages;)? )>
 <!ATTLIST body              
                                         outputclass CDATA #IMPLIED
 >
