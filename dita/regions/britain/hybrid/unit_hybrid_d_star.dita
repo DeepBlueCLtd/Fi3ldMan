@@ -164,70 +164,74 @@
         
         <propulsion id="propulsion">
             <title>Propulsion</title>
-            <table>
-                <tgroup cols="4">
-                    <colspec colnum="1" colname="col1"/>
-                    <colspec colnum="2" colname="col2"/>
-                    <colspec colnum="3" colname="col3"/>
-                    <colspec colnum="4" colname="col4"/>
-                    <thead>
-                        <row>
-                            <entry namest="col1" nameend="col4">
-                                <b>Unit_D_Star</b>
-                            </entry>
-                        </row>
-                    </thead>
-                    <tbody>
-                        
-                        <row>
-                            <entry>
-                                <b>Cruise Plant</b>
-                            </entry>
-                            <entry>4 * PR32 Diesel Engines %TEST-162%</entry>
-                            <entry>
-                                <b>Shaft x Blade</b>
-                            </entry>
-                            <entry>2 * 4 (GRR)</entry>
-                        </row>
-                        <row>
-                            <entry morerows="1">
-                                <b>Boost Plant</b>
-                            </entry>
-                            <entry morerows="1">None</entry>
-                            <entry>
-                                <b>Range</b>
-                            </entry>
-                            <entry>123nm @ 8kts</entry>
-                        </row>
-                        <row>
-                            <entry>
-                                <b>Max Speed</b>
-                            </entry>
-                            <entry>40 kts</entry>
-                        </row>
-                        <row>
-                            <entry>
-                                <b>Reduction Ratio</b>
-                            </entry>
-                            <entry>412.8:1</entry>
-                            <entry>
-                                <b>Av TPK</b>
-                            </entry>
-                            <entry>~14</entry>
-                        </row>
-                        <row>
-                            <entry>
-                                <b>Max TRPM</b>
-                            </entry>
-                            <entry>1400</entry>
-                            <entry>
-                                <b>Max SRPM</b>
-                            </entry>
-                            <entry>0-1600</entry>
-                        </row>
-                    </tbody>
-                </tgroup>
-            </table>
+            <span>
+                <p>
+                    <table>
+                        <tgroup cols="4">
+                            <colspec colnum="1" colname="col1"/>
+                            <colspec colnum="2" colname="col2"/>
+                            <colspec colnum="3" colname="col3"/>
+                            <colspec colnum="4" colname="col4"/>
+                            <thead>
+                                <row>
+                                    <entry namest="col1" nameend="col4">
+                                        <b>Unit_D_Star</b>
+                                    </entry>
+                                </row>
+                            </thead>
+                            <tbody>
+                                
+                                <row>
+                                    <entry>
+                                        <b>Cruise Plant</b>
+                                    </entry>
+                                    <entry>4 * PR32 Diesel Engines %TEST-162%</entry>
+                                    <entry>
+                                        <b>Shaft x Blade</b>
+                                    </entry>
+                                    <entry>2 * 4 (GRR)</entry>
+                                </row>
+                                <row>
+                                    <entry morerows="1">
+                                        <b>Boost Plant</b>
+                                    </entry>
+                                    <entry morerows="1">None</entry>
+                                    <entry>
+                                        <b>Range</b>
+                                    </entry>
+                                    <entry>123nm @ 8kts</entry>
+                                </row>
+                                <row>
+                                    <entry>
+                                        <b>Max Speed</b>
+                                    </entry>
+                                    <entry>40 kts</entry>
+                                </row>
+                                <row>
+                                    <entry>
+                                        <b>Reduction Ratio</b>
+                                    </entry>
+                                    <entry>412.8:1</entry>
+                                    <entry>
+                                        <b>Av TPK</b>
+                                    </entry>
+                                    <entry>~14</entry>
+                                </row>
+                                <row>
+                                    <entry>
+                                        <b>Max TRPM</b>
+                                    </entry>
+                                    <entry>1400</entry>
+                                    <entry>
+                                        <b>Max SRPM</b>
+                                    </entry>
+                                    <entry>0-1600</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </table>                    
+                </p>                
+            </span>
         </propulsion>
         
         <remarks id="remarks">

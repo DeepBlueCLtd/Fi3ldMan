@@ -71,8 +71,10 @@
         </signatures>
         <propulsion id="propulsion">
             <title>Propulsion</title>
-            <p> some narrative content, including a table of varying structure. Plus diagrams,
-                links, etc <xref href="../br_cooling_units.dita#br_power_units/diesel"/></p>
+            <span>
+                <p> some narrative content, including a table of varying structure. Plus diagrams,
+                    links, etc</p>                
+            </span>
         </propulsion>
         <remarks id="remarks">
             <title>Remarks</title>
@@ -88,8 +90,6 @@
         </remarks>
         <related-pages id="related">
             <title> Related links </title>
-            <xref href="../br_power_units.dita#br_power_units/diesel">French diesel power units</xref>
-            <xref href="../br_cooling_units.dita"/>
         </related-pages>
     </body>
 </class>
