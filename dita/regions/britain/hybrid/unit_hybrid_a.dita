@@ -3,11 +3,6 @@
 <class id="unit_a">
     <title>Unit_a</title>
     <body>
-        <related-pages id="related">
-            <title> Related links </title>
-            <xref href="../br_power_units.dita#br_power_units/diesel">French diesel power units</xref>
-            <xref href="../br_cooling_units.dita"/>
-        </related-pages>
         <images>
             <image href="content/images/oscill_c.jpg" scale="33" align="left"/>
             <image href="content/images/oscill_d.jpg" scale="33" align="left"/>
@@ -140,5 +135,9 @@
 				</p>
 			</span>
 		</remarks>
+        <related-links id="related">
+            <link href="../br_power_units.dita#br_power_units/diesel"><linktext>French diesel power units</linktext></link>
+            <link href="../br_cooling_units.dita"/>
+        </related-links>
     </body>
 </class>
