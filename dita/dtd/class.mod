@@ -25,13 +25,15 @@
 <!ENTITY % images                           "images">
 <!ENTITY % image                           "image">
 <!ENTITY % related-pages "related-pages">
+<!ENTITY % related-links "related-links">
+
 <!ELEMENT class              ((%title;), (%body;))>
 <!ATTLIST class                   id ID #REQUIRED
                                   conref CDATA #IMPLIED
                                   %arch-atts;
                                   domains CDATA "&included-domains;"
 >
-<!ELEMENT body          ((%related-pages;)?, (%images;), (%summary;)?, (%signatures;)?, (%propulsion; | %propulsionRef;)?, (%remarks;)? )>
+<!ELEMENT body          ((%related-pages;)?, (%images;), (%summary;)?, (%signatures;)?, (%propulsion; | %propulsionRef;)?, (%remarks;)?, (%related-links;)? )>
 <!ATTLIST body              
                                         outputclass CDATA #IMPLIED
 >
@@ -70,15 +72,18 @@
 <!ATTLIST images
                                   outputclass CDATA #IMPLIED
 >
+<!--
 <!ELEMENT related-pages ((%title;), (%xref;)*) >
 <!ATTLIST related-pages 
                                     id ID #REQUIRED
-                                    outputclass CDATA #IMPLIED>
+                                    outputclass CDATA #IMPLIED> -->
 <!--specialization attributes-->
 <!-- class extends reference -->
 <!ATTLIST class              class  CDATA "- topic/topic  reference/reference class/class ">
 <!-- body extends refBody, summary is compulsory, other 3 child elements (signature, propulsion, remarks) optional -->
 <!ATTLIST body          class  CDATA "- topic/body reference/refBody class/body ">
+<!-- related links  -->
+<!ATTLIST related-links          class  CDATA "- topic/related-links class/related-links ">
 <!-- summary extends properties.  -->
 <!ATTLIST summary          class  CDATA "- topic/section class/summary ">
 <!-- signatures extends section, allows free content in Phase 1. Constrained table in Phase 2 -->
@@ -89,8 +94,9 @@
 <!ATTLIST propulsionRef    class  CDATA "- topic/section class/propulsionRef ">
 <!-- extends section -->
 <!ATTLIST remarks    class  CDATA "- topic/section class/remarks ">
-<!-- extends section -->
-<!ATTLIST related-pages    class  CDATA "- topic/section class/related-pages ">
+<!--
+<!- extends section ->
+<!ATTLIST related-pages    class  CDATA "- topic/section class/related-pages "> -->
 <!-- table extends table -->
 <!ATTLIST table    class  CDATA "- topic/table  class/table ">
 <!-- title extends title -->

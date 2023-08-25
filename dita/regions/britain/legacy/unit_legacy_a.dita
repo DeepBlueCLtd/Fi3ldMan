@@ -3,11 +3,6 @@
 <class id="unit_a">
     <title>Unit_legacy_a</title>
     <body>
-        <related-pages id="related">
-            <title> Related links </title>
-            <xref href="../br_power_units.dita#br_power_units/diesel">French diesel power units</xref>
-            <xref href="../br_cooling_units.dita"/>
-        </related-pages>
         <images>
             <image href="content/images/oscill_c.jpg" scale="33" align="left"/>
             <image href="content/images/oscill_d.jpg" scale="33" align="left"/>
@@ -32,5 +27,17 @@
                 <p> More amplifying remarks </p>
             </span>
         </remarks>
+        <related-links>
+            <link href="legacy_power.dita#legacy-power/diesel"><linktext>Legacy Power - Diesel</linktext></link>
+            <link href="legacy_power.dita#legacy-power/gasoline"><linktext>Legacy Power = Gasoline</linktext></link>
+            <link href="legacy_power.dita#legacy-power/hydrogen"><linktext>Legacy Power - Hydrogen</linktext></link>
+            <link href="legacy_filtration.dita#legacy-filtration/composite"><linktext>Legacy Filtration = Composite</linktext></link>
+            <link href="legacy_filtration.dita#legacy-filtration/polymer"><linktext>Legacy Filtration = Polyer</linktext></link>
+            <link href="legacy_filtration.dita#legacy-filtration/sand"><linktext>Legacy Filtration = Sand</linktext></link>
+            <link href="../br_power_units.dita#br_power_units/diesel">
+                <linktext>French diesel power units</linktext>
+            </link>
+            <link href="../br_cooling_units.dita"></link>
+        </related-links>
     </body>
 </class>
