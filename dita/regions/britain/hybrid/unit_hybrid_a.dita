@@ -75,7 +75,7 @@
             <span><p>some narrative content, including a table of varying structure. Plus diagrams,
                 links, etc <xref href="../br_cooling_units.dita#br_cooling_units/diesel"/></p></span>
         </propulsion>
-	<remarks id="remarks">
+	    <remarks id="remarks">
 			<title>Remarks</title>
 			<span>
 				<p id="image9">
