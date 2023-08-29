@@ -17,11 +17,13 @@
 <!ENTITY % remarks                      "remarks">
 <!ENTITY % span                           "span">
 <!ENTITY % section.cnt                           "section.cnt">
+<!ENTITY % arch-atts                           "arch-atts">
 <!ENTITY % table                           "table">
 <!ENTITY % xref                           "xref">
 <!ENTITY % ul                           "ul">
 <!ENTITY % ol                           "ol">
 <!ENTITY % p                           "p">
+<!ENTITY % fig                           "fig">
 <!ENTITY % images                           "images">
 <!ENTITY % image                           "image">
 <!ENTITY % related-pages "related-pages">
@@ -33,7 +35,7 @@
                                   %arch-atts;
                                   domains CDATA "&included-domains;"
 >
-<!ELEMENT body          ((%related-pages;)?, (%images;), (%summary;)?, (%signatures;)?, (%propulsion; | %propulsionRef;)?, (%remarks;)?, (%related-links;)? )>
+<!ELEMENT body          ((%related-pages;)?, (%images;), (%summary;)?, (%signatures;)?, (%propulsion; | %propulsionRef;)?, (%remarks;)?, (%section.cnt;)*, (%related-links;)? )>
 <!ATTLIST body              
                                         outputclass CDATA #IMPLIED
 >
@@ -63,7 +65,7 @@
 <!ATTLIST links    id ID #REQUIRED
                                   outputclass CDATA #IMPLIED
 >
-<!ELEMENT span    ((%ul; | %ol; | %p; | %table;)*) >
+<!ELEMENT span    ((%ul; | %ol; | %p; | %table; | %fig;)*) >
 <!ATTLIST span    
                                   conref CDATA #IMPLIED
                                   outputclass CDATA #IMPLIED
@@ -109,6 +111,8 @@
 <!ATTLIST ul    class  CDATA "- topic/ul  class/ul ">
 <!-- ol extends ol -->
 <!ATTLIST ol    class  CDATA "- topic/ol  class/ol ">
+<!-- fig extends fig -->
+<!ATTLIST fig    class  CDATA "- topic/fig  class/fig ">
 <!-- xref extends xref -->
 <!ATTLIST xref    class  CDATA "- topic/xref  class/xref ">
 <!-- images -->
