@@ -69,6 +69,7 @@
 >
 <!ELEMENT span    ((%ul; | %ol; | %p; | %table; | %fig;)*) >
 <!ATTLIST span    
+                                  id CDATA #IMPLIED
                                   conref CDATA #IMPLIED
                                   outputclass CDATA #IMPLIED
 >
