@@ -8,13 +8,8 @@
             <image href="content/images/oscill_d.jpg" scale="33" align="left"/>
             <image href="content/images/oscill_e.jpg" scale="33" align="left"/>
         </images>
-        <propulsion id="propulsion">
-            <title>Propulsion</title>
-            <span>
-                <p> some narrative content, including a table of varying structure. Plus diagrams,
-                    links, etc <xref href="../br_cooling_units.dita#br_cooling_units/diesel"/></p>                
-            </span>
-        </propulsion>
+        <!-- note, instead of propulsion, we have link to propulsion section in another doc -->
+        <propulsionRef id="propulsion" href="legacy_power.dita#legacy-power/propulsion"  ></propulsionRef>
         <remarks id="remarks">
             <title>Remarks</title>
             <span>
