@@ -3,12 +3,19 @@
 <class id="unit_a">
     <title>Unit_legacy_a</title>
     <body>
+        <related-pages id="related">
+            <title>Related Pages</title>
+            <xref href="../../../britain/br_power_units.dita#br_power_units/diesel"/>
+            <xref href="../../../britain/br_cooling_units.dita"/>
+        </related-pages>
         <images>
+            <title>Images</title>
             <image href="content/images/oscill_c.jpg" scale="33" align="left"/>
             <image href="content/images/oscill_d.jpg" scale="33" align="left"/>
             <image href="content/images/oscill_e.jpg" scale="33" align="left"/>
         </images>
         <summary id="summary">
+            <title>Summary</title>
             <table>
                 <tgroup cols="6">
                     <colspec colwidth="16.7%"/>
@@ -88,9 +95,5 @@
                 <p> More amplifying remarks </p>
             </span>
         </remarks>
-        <related-links id="related">
-            <link href="../../../britain/br_power_units.dita#br_power_units/diesel"/>
-            <link href="../../../britain/br_cooling_units.dita"/>
-        </related-links>
     </body>
 </class>

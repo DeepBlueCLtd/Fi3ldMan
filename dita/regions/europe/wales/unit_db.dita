@@ -4,9 +4,11 @@
     <title>Unit_db</title>
     <body>
         <images>
-            <image  scale="33" href="images/TEST-48.jpg"/>
+            <title>Images</title>
+            <image  scale="33" href="./content/images/TEST-48.jpg"/>
         </images>
         <summary id="summary">
+            <title>Summary</title>
             <table>
                 <tgroup cols="6">
                     <colspec colwidth="16.7%"/>
@@ -130,7 +132,7 @@
                                 sit deserunt cillum sit duis minim. Nisi ea ullamco minim
                                 duis elit consectetur mollit ea mollit sunt voluptate. Esse
                                 nulla id mollit ad deserunt Lorem deserunt excepteur
-                                nostrud. <image  scale="33"  href="images/unit_db_2.jpg"/> Figure 2.
+                                nostrud. <image  scale="33"  href="./content/images/unit_db_2.jpg"/> Figure 2.
                                 Dominant frequency Est commodo id in est irure.</entry>
                         </row>
                         <row>
@@ -146,7 +148,7 @@
         <propulsionRef id='propulsion'>
             <title>Propulsion</title>
             <!-- TODO: link the `propulsion` section in the document -->
-            <xref href="spain_propulsion.dita" format="dita"></xref>
+            <xref href="./wa_cooling_units.dita" format="dita"></xref>
         </propulsionRef>
         
         <remarks id="remarks">

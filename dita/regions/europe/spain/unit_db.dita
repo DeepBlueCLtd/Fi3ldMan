@@ -3,10 +3,16 @@
 <class id="unit_db">
     <title>Unit_db</title>
     <body>
+        <related-pages id="related-pages">
+            <title>Related Pages</title>
+            
+        </related-pages>
         <images>
+            <title>Images</title>
             <image  scale="33" href="content/images/TEST-48.jpg"/>
         </images>
         <summary id="summary">
+            <title>Summary</title>
             <table>
                 <tgroup cols="6">
                     <colspec colwidth="16.7%"/>
@@ -143,7 +149,10 @@
             </table>
         </signatures>
 
-        <propulsionRef id='propulsion'  href="spain_propulsion.dita#spain_propulsion/propulsion" format="dita"/>
+        <propulsionRef id='propulsion'>
+            <title>Propulsion</title>
+            <xref href="./spain_propulsion.dita#spain_propulsion/propulsion" format="dita"/>
+        </propulsionRef>
         
         <remarks id="remarks">
             <title>Remarks</title>
