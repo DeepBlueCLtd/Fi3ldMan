@@ -9,7 +9,7 @@
             <image href="content/images/oscill_e.jpg" scale="33" align="left"/>
         </images>
         <!-- note, instead of propulsion, we have link to propulsion section in another doc -->
-        <propulsionRef id="propulsion" href="legacy_power.dita#legacy-power/propulsion"  ></propulsionRef>
+        <propulsionRef id="propulsion" href="legacy_power.dita#legacy-power/propulsion" format="dita"/>
         <remarks id="remarks">
             <title>Remarks</title>
             <span>

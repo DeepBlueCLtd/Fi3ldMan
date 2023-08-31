@@ -18,9 +18,8 @@
             </tgroup>
         </table>
     </body>
-    <related-pages id="pg-id">
-        <title>Related Pages</title>
-        <xref href="wa_cooling_units.dita"/>
-        <xref href="wa_power_units.dita"/>
-    </related-pages>
+    <related-links>
+        <link href="wa_cooling_units.dita"/>
+        <link href="wa_power_units.dita"/>
+    </related-links>
 </rich-collection>

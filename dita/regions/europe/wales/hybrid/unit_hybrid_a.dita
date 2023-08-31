@@ -3,9 +3,6 @@
 <class id="unit_a">
     <title>Unit_a</title>
     <body>
-        <related-pages id="related">
-            <title> Related links </title>
-        </related-pages>
         <images>
             <image href="content/images/oscill_c.jpg" scale="33" align="left"/>
             <image href="content/images/oscill_d.jpg" scale="33" align="left"/>
