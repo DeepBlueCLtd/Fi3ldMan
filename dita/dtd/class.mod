@@ -35,7 +35,7 @@
                                   %arch-atts;
                                   domains CDATA "&included-domains;"
 >
-<!ELEMENT body          ((%related-pages;)?, (%images;), (%summary;)?, (%signatures;)?, (%propulsion; | %propulsionRef;)?, (%remarks;)?, (%related-links;)? )>
+<!ELEMENT body          ( (%images;), (%summary;)?, (%signatures;)?, (%propulsion; | %propulsionRef;)?, (%remarks;)?, (%related-links;)? )>
 <!ATTLIST body              
                                         outputclass CDATA #IMPLIED
 >
@@ -57,6 +57,7 @@
 >
 <!ATTLIST propulsionRef id ID #REQUIRED
                         href CDATA #REQUIRED
+                        format CDATA #REQUIRED
 >
 
 <!ELEMENT remarks    ((%title;)?, (%span;)*) >
