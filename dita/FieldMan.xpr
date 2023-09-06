@@ -800,7 +800,7 @@
     </meta>
     <projectTree name="FieldMan.xpr">
         <folder masterFiles="true" name="Main Files">
-            <file name="FieldMan.ditamap"/>
+            <file name="FieldMan_Simple.ditamap"/>
         </folder>
         <folder path="."/>
     </projectTree>

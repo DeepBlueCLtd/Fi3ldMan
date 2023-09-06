@@ -1,0 +1,1 @@
+This is a DITA version of the FieldMan using the DITA Specialization created for this project.

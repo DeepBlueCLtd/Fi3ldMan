@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="unit_a">
+    <title>Unit_legacy_a</title>
+    <refbody>
+        <section id="images">
+            <title>Images</title>
+            <image href="content/images/oscill_c.jpg" scale="33" align="left"/>
+            <image href="content/images/oscill_d.jpg" scale="33" align="left"/>
+            <image href="content/images/oscill_e.jpg" scale="33" align="left"/>
+        </section>
+        <section id="summary">
+            <title>Summary</title>
+            <table>
+                <tgroup cols="6">
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <colspec colwidth="16.7%"/>
+                    <thead>
+                        <row>
+                            <entry>Drive</entry>
+                            <entry>Mode</entry>
+                            <entry>Shaft x Blade</entry>
+                            <entry>R:R</entry>
+                            <entry>Max Speed</entry>
+                            <entry>Av TPK</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>4 x V8 Diesel</entry>
+                            <entry>DDA</entry>
+                            <entry>2 * 6</entry>
+                            <entry>22.4:1</entry>
+                            <entry>12</entry>
+                            <entry>4.4</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </section>
+        <section id="signatures">
+            <title>Signature</title>
+            <table>
+                <tgroup cols="4">
+                    <thead>
+                        <row>
+                            <entry>Source</entry>
+                            <entry>Ratio/Freq</entry>
+                            <entry>Harmonics</entry>
+                            <entry>Remarks</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>DDA</entry>
+                            <entry>12.3</entry>
+                            <entry>H3-5</entry>
+                            <entry>Dominant in cold weather</entry>
+                        </row>
+                        <row>
+                            <entry>FGAR</entry>
+                            <entry>22-45</entry>
+                            <entry>H2</entry>
+                            <entry>Only once warm-up complete</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </section>
+        <section id="propulsion">
+            <title>Propulsion</title>
+            <p> some narrative content, including a table of varying structure. Plus diagrams,
+                links, etc <xref
+                    href="../../../britain/br_cooling_units.dita#br_cooling_units/diesel"/></p>
+        </section>
+        <section id="remarks">
+            <title>Remarks</title>
+            <ol>
+                <li>Only introduced since summer 2013</li>
+                <li>Similar to unit_x, but with cheaper components</li>
+                <li>Can take 30 minutes to warm up</li>
+                <li>Be wary of unshielded 440/480V power line.</li>
+            </ol>
+            <p> More amplifying remarks </p>
+        </section>
+    </refbody>
+    <related-links id="related">
+        <link href="../../../britain/br_power_units.dita#br_power_units/diesel"/>
+        <link href="../../../britain/br_cooling_units.dita"/>
+    </related-links>
+</reference>
