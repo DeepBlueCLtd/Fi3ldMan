@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="links_1">
+    <title>Europe</title>
+    <body>
+        <table>
+            <tgroup cols="3">
+                <tbody>
+                    <row>
+                        <entry><xref href="france/france.dita">France</xref></entry>
+                        <entry><xref href="spain/spain.dita" audience="deny-wales"
+                            >Spain</xref></entry>
+                        <entry><xref href="wales/wales.dita">Wales</xref></entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </body>
+</topic>
