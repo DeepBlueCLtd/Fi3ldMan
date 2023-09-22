@@ -88,23 +88,133 @@
                 Mauris placerat eleifend leo. This paragraph contains a <xref
                     href="#unit_a/propulsion">link</xref>
             </p>
-            <p> And now a table <table>
-                    <tgroup cols="2">
-                        <colspec colname="col1"/>
-                        <colspec colname="col2"/>
-                        <tbody>
-                            <row>
-                                <entry>Cell one</entry>
-                                <entry>Cell two</entry>
-                            </row>
-                            <row>
-                                <entry namest="col1" nameend="col2">Cell three, with a <xref
-                                        href="#unit_a/signatures">link</xref>
-                                </entry>
-                            </row>
-                        </tbody>
-                    </tgroup>
-                </table>
+            <p> </p>
+            <p>And now a set of tables, organised inside a table:<table frame="none" rowsep="0"
+                colsep="0" id="table_apz_k5j_wyb">
+                <title>Temperature Related Indicators</title>
+                <tgroup cols="3" align="center">
+                    <colspec colname="c1" colnum="1" colwidth="33%"/>
+                    <colspec colname="c2" colnum="2" colwidth="33%"/>
+                    <colspec colname="c3" colnum="3" colwidth="33%"/>
+                    <tbody>
+                        <row>
+                            <entry valign="top"><p> <table frame="all" rowsep="1" colsep="1"
+                                id="table_kn4_n5j_wyb">
+                                <tgroup cols="1" align="center">
+                                    <colspec colname="c1" colnum="1" colwidth="1*"/>
+                                    <thead>
+                                        <row>
+                                            <entry>Under 6 Degrees</entry>
+                                        </row>
+                                    </thead>
+                                    <tbody>
+                                        <row>
+                                            <entry>Second clue</entry>
+                                        </row>
+                                        <row>
+                                            <entry>Take a guess Take a guess Take a guess Take a guess Take a guess </entry>
+                                        </row>
+                                        <row>
+                                            <entry>More like luck</entry>
+                                        </row>
+                                        <row>
+                                            <entry>Luck like more</entry>
+                                        </row>
+                                        <row>
+                                            <entry>And before</entry>
+                                        </row>
+                                    </tbody>
+                                </tgroup>
+                            </table></p></entry>
+                            <entry valign="top"><p><table frame="all" rowsep="1" colsep="1"
+                                id="table_o51_p5j_wyb">
+                                <tgroup cols="1" align="center">
+                                    <colspec colname="c1" colnum="1" colwidth="1*"/>
+                                    <thead>
+                                        <row>
+                                            <entry>6 to 12 Degs</entry>
+                                        </row>
+                                    </thead>
+                                    <tbody>
+                                        <row>
+                                            <entry>Wait for it to cool</entry>
+                                        </row>
+                                        <row>
+                                            <entry>Try delta</entry>
+                                        </row>
+                                        <row>
+                                            <entry>Try amorph</entry>
+                                        </row>
+                                        <row>
+                                            <entry>Try dingo</entry>
+                                        </row>
+                                        <row>
+                                            <entry>Try delta Luck like moreLuck like moreLuck
+                                                like moreLuck like moreLuck like moreLuck like
+                                                moreLuck like moreLuck like more</entry>
+                                        </row>
+                                        <row>
+                                            <entry>Luck like moreLuck like moreLuck like
+                                                moreLuck like moreLuck like moreLuck like moreLuck
+                                                like more</entry>
+                                        </row>
+                                    </tbody>
+                                </tgroup>
+                            </table></p></entry>
+                            <entry valign="top"><p><table frame="all" rowsep="1" colsep="1"
+                                id="table_gcb_q5j_wyb">
+                                
+                                <tgroup cols="1" align="center">
+                                    <colspec colname="c1" colnum="1" colwidth="1*"/>
+                                    <thead>
+                                        <row>
+                                            <entry>Above 13 Degs</entry>
+                                        </row>
+                                    </thead>
+                                    <tbody>
+                                        <row>
+                                            <entry>Luck like more</entry>
+                                        </row>
+                                        <row>
+                                            <entry>Luck like moreLuck like more</entry>
+                                        </row>
+                                        <row>
+                                            <entry>Luck like moreLuck like moreLuck like
+                                                more</entry>
+                                        </row>
+                                        <row>
+                                            <entry>Luck like more</entry>
+                                        </row>
+                                        <row>
+                                            <entry>Luck like moreLuck like more</entry>
+                                        </row>
+                                        <row>
+                                            <entry>Luck like moreLuck like more</entry>
+                                        </row>
+                                    </tbody>
+                                </tgroup>
+                            </table></p></entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table></p>
+            <p>And now a table <table id="table_ekf_g5j_wyb" frame="all" colsep="1" rowsep="1">
+                <tgroup cols="2">
+                    <colspec colname="col1"/>
+                    <colspec colname="col2"/>
+                    <tbody>
+                        <row>
+                            <entry>Cell one</entry>
+                            <entry>Cell two</entry>
+                        </row>
+                        <row>
+                            <entry namest="col1" nameend="col2">Cell three, with a <xref
+                                href="#unit_a/signatures">link</xref>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
             </p>
             <!-- need to support UL lists -->
             <ul>
