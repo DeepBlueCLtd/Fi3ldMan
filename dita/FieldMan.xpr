@@ -487,13 +487,13 @@
                                 <field name="filters">
                                     <ditavalFilters>
                                         <field name="useDitavalFilePath">
-                                            <Boolean>true</Boolean>
+                                            <Boolean>false</Boolean>
                                         </field>
                                         <field name="useAppliedConditionSet">
                                             <Boolean>false</Boolean>
                                         </field>
                                         <field name="appliedConditionSet">
-                                            <null/>
+                                            <String>Company-B</String>
                                         </field>
                                         <field name="ditavalFilePath">
                                             <String>file:${pd}/project.ditaval</String>
