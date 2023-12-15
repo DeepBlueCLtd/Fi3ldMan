@@ -2,7 +2,7 @@
 <!DOCTYPE reference
   PUBLIC '-//OASIS//DTD DITA Reference//EN'
   'reference.dtd'>
-<reference id="Bravo_Transducer">
+<reference id="Bravo_Transducer"  audience="Company-B">
 	<title>
 Bravo Transducer
 </title>

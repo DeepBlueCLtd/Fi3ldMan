@@ -10,6 +10,35 @@
                         <profilingAttributeStyle-array>
                             <profilingAttributeStyle>
                                 <field name="attributeValue">
+                                    <String>[ANY]</String>
+                                </field>
+                                <field name="foregroundColor">
+                                    <Integer>0</Integer>
+                                </field>
+                                <field name="backgroundColor">
+                                    <Integer>-1645057</Integer>
+                                </field>
+                                <field name="docTypePattern">
+                                    <String>*DITA*</String>
+                                </field>
+                                <field name="attributeName">
+                                    <String>audience</String>
+                                </field>
+                                <field name="attributeGroupName">
+                                    <String>[ANY]</String>
+                                </field>
+                                <field name="textDecoration">
+                                    <null/>
+                                </field>
+                                <field name="bold">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="italic">
+                                    <Boolean>false</Boolean>
+                                </field>
+                            </profilingAttributeStyle>
+                            <profilingAttributeStyle>
+                                <field name="attributeValue">
                                     <String>deny-england</String>
                                 </field>
                                 <field name="foregroundColor">
@@ -124,35 +153,6 @@
                                     <Boolean>false</Boolean>
                                 </field>
                             </profilingAttributeStyle>
-                            <profilingAttributeStyle>
-                                <field name="attributeValue">
-                                    <String>[ANY]</String>
-                                </field>
-                                <field name="foregroundColor">
-                                    <Integer>0</Integer>
-                                </field>
-                                <field name="backgroundColor">
-                                    <Integer>-1645057</Integer>
-                                </field>
-                                <field name="docTypePattern">
-                                    <String>*DITA*</String>
-                                </field>
-                                <field name="attributeName">
-                                    <String>audience</String>
-                                </field>
-                                <field name="attributeGroupName">
-                                    <String>[ANY]</String>
-                                </field>
-                                <field name="textDecoration">
-                                    <null/>
-                                </field>
-                                <field name="bold">
-                                    <Boolean>false</Boolean>
-                                </field>
-                                <field name="italic">
-                                    <Boolean>false</Boolean>
-                                </field>
-                            </profilingAttributeStyle>
                         </profilingAttributeStyle-array>
                     </entry>
                     <entry>
@@ -197,10 +197,10 @@
                                     <profileConditionValue-array>
                                         <profileConditionValue>
                                             <field name="value">
-                                                <String>deny-england</String>
+                                                <String>Company-A</String>
                                             </field>
                                             <field name="description">
-                                                <null/>
+                                                <String></String>
                                             </field>
                                             <field name="level">
                                                 <Integer>0</Integer>
@@ -211,38 +211,10 @@
                                         </profileConditionValue>
                                         <profileConditionValue>
                                             <field name="value">
-                                                <String>deny-france</String>
+                                                <String>Company-B</String>
                                             </field>
                                             <field name="description">
-                                                <null/>
-                                            </field>
-                                            <field name="level">
-                                                <Integer>0</Integer>
-                                            </field>
-                                            <field name="renderName">
-                                                <null/>
-                                            </field>
-                                        </profileConditionValue>
-                                        <profileConditionValue>
-                                            <field name="value">
-                                                <String>deny-spain</String>
-                                            </field>
-                                            <field name="description">
-                                                <null/>
-                                            </field>
-                                            <field name="level">
-                                                <Integer>0</Integer>
-                                            </field>
-                                            <field name="renderName">
-                                                <null/>
-                                            </field>
-                                        </profileConditionValue>
-                                        <profileConditionValue>
-                                            <field name="value">
-                                                <String>deny-wales</String>
-                                            </field>
-                                            <field name="description">
-                                                <null/>
+                                                <String></String>
                                             </field>
                                             <field name="level">
                                                 <Integer>0</Integer>
@@ -260,7 +232,7 @@
                                     <String> </String>
                                 </field>
                                 <field name="attributeRenderName">
-                                    <null/>
+                                    <String>Companies</String>
                                 </field>
                             </profileConditionInfo>
                         </profileConditionInfo-array>
@@ -270,16 +242,64 @@
                         <profileConditionsSetInfo-array>
                             <profileConditionsSetInfo>
                                 <field name="conditions">
+                                    <serializableOrderedMap>
+                                        <entry>
+                                            <String>audience</String>
+                                            <String-array>
+                                                <String>Company-A</String>
+                                                <String>Company-B</String>
+                                            </String-array>
+                                        </entry>
+                                    </serializableOrderedMap>
+                                </field>
+                                <field name="documentTypePattern">
+                                    <String>*DITA*</String>
+                                </field>
+                                <field name="conditionSetName">
+                                    <String>Company A</String>
+                                </field>
+                                <field name="ditavalFile">
+                                    <String>${pd}\ditaval\company-a.ditaval</String>
+                                </field>
+                                <field name="useDITAVAL">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="shortcut">
+                                    <null/>
+                                </field>
+                            </profileConditionsSetInfo>
+                            <profileConditionsSetInfo>
+                                <field name="conditions">
                                     <serializableOrderedMap/>
                                 </field>
                                 <field name="documentTypePattern">
                                     <String>*DITA*</String>
                                 </field>
                                 <field name="conditionSetName">
-                                    <String>project</String>
+                                    <String>Company-B</String>
                                 </field>
                                 <field name="ditavalFile">
-                                    <String>${pd}/project.ditaval</String>
+                                    <String>${pd}\ditaval\company-B.ditaval</String>
+                                </field>
+                                <field name="useDITAVAL">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="shortcut">
+                                    <null/>
+                                </field>
+                            </profileConditionsSetInfo>
+                            <profileConditionsSetInfo>
+                                <field name="conditions">
+                                    <serializableOrderedMap/>
+                                </field>
+                                <field name="documentTypePattern">
+                                    <String>*DITA*</String>
+                                </field>
+                                <field name="conditionSetName">
+                                    <String>All</String>
+                                </field>
+                                <field name="ditavalFile">
+                                    <String>${pd}\ditaval\all.ditaval</String>
                                 </field>
                                 <field name="useDITAVAL">
                                     <Boolean>true</Boolean>
@@ -299,7 +319,7 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>FieldMan_Simple.ditamap</String>
+                                    <String>FieldMan.ditamap</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -319,7 +339,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>FieldMan.ditamap</String>
+                                    <String>FieldMan_Simple.ditamap</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -524,6 +544,29 @@
                                     <list>
                                         <ditaParameter>
                                             <field name="name">
+                                                <String>args.disable.security.checks</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>yes</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </ditaParameter>
+                                        <ditaParameter>
+                                            <field name="name">
                                                 <String>args.figurelink.style</String>
                                             </field>
                                             <field name="description">
@@ -676,29 +719,6 @@
                                                 </String-array>
                                             </field>
                                         </ditaParameter>
-                                        <ditaParameter>
-                                            <field name="name">
-                                                <String>args.disable.security.checks</String>
-                                            </field>
-                                            <field name="description">
-                                                <String></String>
-                                            </field>
-                                            <field name="value">
-                                                <String>yes</String>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <null/>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>5</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <null/>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <null/>
-                                            </field>
-                                        </ditaParameter>
                                     </list>
                                 </field>
                                 <field name="jvmArgs">
@@ -805,10 +825,6 @@
                                 </field>
                             </ditaScenario>
                         </scenario-array>
-                    </entry>
-                    <entry>
-                        <String>show.colors.and.styles.default.value</String>
-                        <Boolean>true</Boolean>
                     </entry>
                     <entry>
                         <String>show.profiling.attributes</String>

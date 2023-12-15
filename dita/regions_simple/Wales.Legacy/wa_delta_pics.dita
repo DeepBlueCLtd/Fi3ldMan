@@ -2,7 +2,7 @@
 <!DOCTYPE reference
   PUBLIC '-//OASIS//DTD DITA Reference//EN'
   'reference.dtd'>
-<reference id="wa_delta_pics">
+<reference id="wa_delta_pics" audience="Company-B">
 	<title>
 banjo Pics
 </title>

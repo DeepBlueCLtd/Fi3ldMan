@@ -2,7 +2,7 @@
 <!DOCTYPE reference
   PUBLIC '-//OASIS//DTD DITA Reference//EN'
   'reference.dtd'>
-<reference id="unit_delta12">
+<reference id="unit_delta12" audience="Company-B">
 	<title>
 Unit delta General Signature
 </title>
