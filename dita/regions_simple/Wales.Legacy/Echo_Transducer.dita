@@ -2,7 +2,7 @@
 <!DOCTYPE reference
   PUBLIC '-//OASIS//DTD DITA Reference//EN'
   'reference.dtd'>
-<reference id="Echo_Transducer">
+<reference id="Echo_Transducer" audience="Company-B">
 	<title>
 Echo Transducer
 </title>

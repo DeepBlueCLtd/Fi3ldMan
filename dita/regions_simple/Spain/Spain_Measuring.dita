@@ -2,7 +2,7 @@
 <!DOCTYPE reference
   PUBLIC '-//OASIS//DTD DITA Reference//EN'
   'reference.dtd'>
-<reference id="Spain_Measuring">
+<reference id="Spain_Measuring" audience="Company-A">
 	<title>Spanish Measuring Standards</title>
 	<shortdesc/>
 	<refbody>

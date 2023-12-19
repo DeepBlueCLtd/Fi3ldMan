@@ -2,7 +2,7 @@
 <!DOCTYPE reference
   PUBLIC '-//OASIS//DTD DITA Reference//EN'
   'reference.dtd'>
-<reference id="Britain_Measuring">
+<reference id="Britain_Measuring" audience="Company-B">
 	<title>British Measuring Standards</title>
 	<shortdesc/>
 	<refbody>

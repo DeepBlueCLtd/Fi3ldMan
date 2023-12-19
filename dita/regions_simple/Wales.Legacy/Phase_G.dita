@@ -2,7 +2,7 @@
 <!DOCTYPE reference
   PUBLIC '-//OASIS//DTD DITA Reference//EN'
   'reference.dtd'>
-<reference id="Phase_G">
+<reference id="Phase_G" audience="Company-B">
 	<title>
 Phase G UNITS OVERVIEW
 </title>

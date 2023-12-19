@@ -2,7 +2,7 @@
 <!DOCTYPE reference
   PUBLIC '-//OASIS//DTD DITA Reference//EN'
   'reference.dtd'>
-<reference id="FR_A27_Unit">
+<reference id="FR_A27_Unit" audience="Company-B">
 	<title>
 A27 (some-name) ABC
 </title>

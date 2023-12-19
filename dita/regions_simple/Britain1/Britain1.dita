@@ -2,7 +2,7 @@
 <!DOCTYPE reference
   PUBLIC '-//OASIS//DTD DITA Reference//EN'
   'reference.dtd'>
-<reference id="Britain">
+<reference id="Britain" audience="Company-B">
 	<title>Britain</title>
 	<refbody>
 		<table outputclass="ImageLinksTable">

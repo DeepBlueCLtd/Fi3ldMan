@@ -2,7 +2,7 @@
 <!DOCTYPE reference
   PUBLIC '-//OASIS//DTD DITA Reference//EN'
   'reference.dtd'>
-<reference id="WA_transducers">
+<reference id="WA_transducers" audience="Company-B">
 	<title>
 BR Complex - TRANSDUCERS
 </title>
