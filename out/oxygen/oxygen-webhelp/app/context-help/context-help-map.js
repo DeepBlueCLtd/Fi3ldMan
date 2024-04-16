@@ -1,0 +1,1 @@
+var contextHelpMap = [{"appname":"", "appid":"PD_1", "path":"PlatformData/PD_1.html"},{"appname":"", "appid":"Abbreviations", "path":"QuickLinksData/Abbreviations.html"},{"appname":"", "appid":"Warning", "path":"Introduction/Warning.html"},{"appname":"", "appid":"Contents_Index", "path":"QuickLinksData/Contents_Index.html"}];
