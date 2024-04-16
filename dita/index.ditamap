@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+    <title>Field Manual v5 Feb 2022</title>
+    <topicmeta/>
+    <topicref href="./PlatformData/PD_1.dita" format="dita">
+        <topicmeta/>
+    </topicref>
+    <topicref href="./QuickLinksData/Abbreviations.dita" format="dita">
+        <topicmeta/>
+    </topicref>
+    <topicref href="./Introduction/Warning.dita" format="dita">
+        <topicmeta/>
+    </topicref>
+    <topicref href="./QuickLinksData/Contents_Index.dita" format="dita">
+        <topicmeta/>
+    </topicref>
+</map>
