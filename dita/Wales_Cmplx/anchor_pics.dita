@@ -17,7 +17,7 @@ Anchor Pics
 			<title/>
 			<div id="image10">
 				<xref format="dita" href="./unit_anchors.dita">
-					<image href="Content/Images/daf_1b.jpeg"/>
+					<image href="Content/Images/daf_1b.jpeg" id="reverse_image"/>
 				</xref>
 				<p>Click the picture to return to the previous page. 1.</p>
 			</div>

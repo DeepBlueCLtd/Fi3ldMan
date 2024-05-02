@@ -197,6 +197,9 @@ Anchor 1
 										<li>Total control</li>
 										<li>Intermediate control</li>
 										<li>Not under control</li>
+										<li>See <xref
+												href="anchor_pics.dita#anchor_pics/reverse_image"
+												format="dita">reverse image</xref></li>
 									</ul>
 								</entry>
 							</row>
@@ -253,6 +256,9 @@ Anchor 1
 										<li>Total control</li>
 										<li>Intermediate control</li>
 										<li>Not under control</li>
+										<li>See <xref
+												href="anchor_pics.dita#anchor_pics/reverse_image"
+												>reverse image</xref></li>
 									</ul>
 								</entry>
 							</row>
