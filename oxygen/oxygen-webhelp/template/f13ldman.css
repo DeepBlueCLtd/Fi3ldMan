@@ -1,6 +1,11 @@
 
 /* user-defined CSS */
 
+
+.image {
+  height: fit-content
+}
+
 /* styling for related links */
 .related-links a[href$='.xls'], a[href$='.xlsx'] {
   background: transparent url(resources/images/icon_excel.gif) center right no-repeat !important;
