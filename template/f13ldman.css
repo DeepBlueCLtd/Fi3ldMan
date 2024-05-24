@@ -235,26 +235,32 @@ padding: 0 10px;
 
 .colorRed {
   color: #F00;
+  border-color: #000;
 }
 
 .colorPink {
   color: #F0F;
+  border-color: #000;
 }
 
 .colorBlue {
   color: #00F;
+  border-color: #000;
 }
 
 .colorGray {
   color: #777;
+  border-color: #000;
 }
 
 .colorOrange {
   color: #FC0;
+  border-color: #000;
 }
 
 .colorLightBlue {
   color: #0FF;
+  border-color: #000;
 }
 
 
