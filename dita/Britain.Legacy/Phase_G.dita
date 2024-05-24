@@ -17,6 +17,8 @@ Phase G UNITS OVERVIEW
 			<title/>
 			<div id="PageLayer">
 				<p> </p>
+				<p outputclass="notes"><b>Notes</b><?linebreak?><ph outputclass="colorRed">Red</ph> items have been
+					recently updated</p>
 				<table colsep="1" frame="all" rowsep="1">
 					<tgroup cols="6">
 						<colspec colname="c1"/>
@@ -74,7 +76,7 @@ Phase G UNITS OVERVIEW
 								<entry outputclass="bkYellow"/>
 								<entry outputclass="bkBlue"/>
 							</row>
-							<row>
+							<row outputclass="colorRed">
 								<entry>3.2 - 3.55</entry>
 								<entry>TEX BBQ</entry>
 								<entry/>
