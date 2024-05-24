@@ -309,8 +309,8 @@ padding: 0 10px;
       padding-right: 200px;
   }
 
-    /* make the related links float */
-    .notes {
+  /* make the notes block float */
+  .notes {
       background-color: #EFEFFA; 
       position:fixed;
       width: 200px;
