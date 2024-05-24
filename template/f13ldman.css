@@ -109,9 +109,9 @@ figure {
   .wh_tiles-item {
     display: flex;
     width: 100%;
-    /* & > div {
+    & > div {
       width: 50%;
-    } */
+    }
   }
 }
 
