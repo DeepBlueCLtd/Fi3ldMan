@@ -86,16 +86,14 @@ Anchor
 									</ul>
 								</entry>
 							</row>
-							<row>
+							<row outputclass="colorRed">
 								<entry outputclass="bkLightGray">BR</entry>
 								<entry>S5</entry>
 								<entry nameend="c4" namest="c3">H1</entry>
 								<entry nameend="c6" namest="c5">Discrete. Doublets common</entry>
 							</row>
 							<row>
-								<entry outputclass="bkLightGray">
-									<xref format="dita" href="./Phase_F_Size.dita#Phase_F_Size/prop">Cat b Engine R</xref>
-								</entry>
+								<entry outputclass="bkLightGray"> Cat b Engine R </entry>
 								<entry>2-100.4, 112, 132</entry>
 								<entry nameend="c4" namest="c3">H1, 3, 21 - 45, 55</entry>
 								<entry nameend="c6" namest="c5">
@@ -568,85 +566,117 @@ Anchor
 						</tbody>
 					</tgroup>
 				</table>
-				<table colsep="1" frame="all" rowsep="1">
-					<tgroup cols="4">
-						<colspec colname="c1"/>
-						<colspec colname="c2"/>
-						<colspec colname="c3"/>
-						<colspec colname="c4"/>
-						<tbody>
-							<row>
-								<entry align="center" nameend="c4" namest="c1">
-									<b>Unit Anchors Resolved Bands</b>
-								</entry>
-							</row>
-							<row>
-								<entry align="center" nameend="c2" namest="c1" outputclass="bkLightGray">
-									<b>Version 1</b>
-								</entry>
-								<entry align="center" nameend="c4" namest="c3" outputclass="bkLightGray">
-									<b>Version 2</b>
-								</entry>
-							</row>
-							<row>
-								<entry align="center" outputclass="bkLightGray">
-									<b>Designed</b>
-								</entry>
-								<entry align="center" outputclass="bkLightGray">
-									<b>Measured</b>
-								</entry>
-								<entry align="center" outputclass="bkLightGray">
-									<b>Designed</b>
-								</entry>
-								<entry align="center" outputclass="bkLightGray">
-									<b>Measured</b>
-								</entry>
-							</row>
-							<row>
-								<entry align="center" outputclass="bkLightGray">
-									<b>1-4</b>
-								</entry>
-								<entry align="center">5-12</entry>
-								<entry align="center" outputclass="bkLightGray">
-									<b>16-25</b>
-								</entry>
-								<entry align="center">5-12</entry>
-							</row>
-							<row>
-								<entry align="center" outputclass="bkLightGray">
-									<b>1-9</b>
-								</entry>
-								<entry align="center">5-12</entry>
-								<entry align="center" outputclass="bkLightGray">
-									<b>16-45</b>
-								</entry>
-								<entry align="center">5-12</entry>
-							</row>
-							<row>
-								<entry align="center"/>
-								<entry align="center"/>
-								<entry align="center" outputclass="bkLightGray">
-									<b>16-55</b>
-								</entry>
-								<entry align="center">5-12</entry>
-							</row>
-							<row>
-								<entry align="center"/>
-								<entry align="center"/>
-								<entry align="center" outputclass="bkLightGray">
-									<b>16-65</b>
-								</entry>
-								<entry align="center">5-12</entry>
-							</row>
-						</tbody>
-					</tgroup>
-				</table>
 			</div>
 		</section>
 		<section>
 			<title/>
+			<p>Some content goes in here. </p>
+			<p>
+				<table frame="all" rowsep="1" colsep="1" id="table_yvf_kc2_3bc">
+					<tgroup cols="2">
+						<colspec colname="c1" colnum="1" colwidth="1*"/>
+						<colspec colname="c2" colnum="2" colwidth="1*"/>
+						<thead>
+							<row>
+								<entry outputclass="bkLightGray">Heading one</entry>
+								<entry outputclass="bkLightGray">Heading two</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>content c1</entry>
+								<entry>c2</entry>
+							</row>
+							<row>
+								<entry>d1</entry>
+								<entry>d2</entry>
+							</row>
+							<row>
+								<entry>e1</entry>
+								<entry>e2</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+			</p>
 			<div id="BottomLayer2">
-				<p id="number3"/>
+				<p id="number3">
+					<table colsep="1" frame="all" rowsep="1" id="table_bmb_zkd_3bc">
+						<tgroup cols="4">
+							<colspec colname="c1"/>
+							<colspec colname="c2"/>
+							<colspec colname="c3"/>
+							<colspec colname="c4"/>
+							<tbody>
+								<row>
+									<entry align="center" nameend="c4" namest="c1">
+										<b>Unit Anchors Resolved Bands</b>
+									</entry>
+								</row>
+								<row>
+									<entry align="center" nameend="c2" namest="c1"
+										outputclass="bkLightGray">
+										<b>Version 1</b>
+									</entry>
+									<entry align="center" nameend="c4" namest="c3"
+										outputclass="bkLightGray">
+										<b>Version 2</b>
+									</entry>
+								</row>
+								<row>
+									<entry align="center" outputclass="bkLightGray">
+										<b>Designed</b>
+									</entry>
+									<entry align="center" outputclass="bkLightGray">
+										<b>Measured</b>
+									</entry>
+									<entry align="center" outputclass="bkLightGray">
+										<b>Designed</b>
+									</entry>
+									<entry align="center" outputclass="bkLightGray">
+										<b>Measured</b>
+									</entry>
+								</row>
+								<row>
+									<entry align="center" outputclass="bkLightGray">
+										<b>1-4</b>
+									</entry>
+									<entry align="center">5-12</entry>
+									<entry align="center" outputclass="bkLightGray">
+										<b>16-25</b>
+									</entry>
+									<entry align="center">5-12</entry>
+								</row>
+								<row>
+									<entry align="center" outputclass="bkLightGray">
+										<b>1-9</b>
+									</entry>
+									<entry align="center">5-12</entry>
+									<entry align="center" outputclass="bkLightGray">
+										<b>16-45</b>
+									</entry>
+									<entry align="center">5-12</entry>
+								</row>
+								<row>
+									<entry align="center"/>
+									<entry align="center"/>
+									<entry align="center" outputclass="bkLightGray">
+										<b>16-55</b>
+									</entry>
+									<entry align="center">5-12</entry>
+								</row>
+								<row>
+									<entry align="center"/>
+									<entry align="center"/>
+									<entry align="center" outputclass="bkLightGray">
+										<b>16-65</b>
+									</entry>
+									<entry align="center">5-12</entry>
+								</row>
+							</tbody>
+						</tgroup>
+					</table>
+				</p>
 				<table colsep="1" frame="all" rowsep="1">
 					<tgroup cols="2">
 						<colspec colname="c1"/>
@@ -763,39 +793,4 @@ Anchor
 			</div>
 		</section>
 	</refbody>
-	<related-links id="related-pages">
-		<link format="dita" href="#unit_anchors/number3">
-			<linktext>Signature</linktext>
-		</link>
-		<link href="./Phase_F_Size.dita">
-			<linktext>Remarks</linktext>
-		</link>
-		<link href="./Phase_F_Size.dita#Phase_F_Size/prop">
-			<linktext>Systems</linktext>
-		</link>
-		<link href="../QuickLinksData/VanesandCranes.dita">
-			<linktext>Vanity Sources</linktext>
-		</link>
-		<link href="./anchor_trans_fit.dita">
-			<linktext>Trans Fit</linktext>
-		</link>
-		<link format="xlsx" href="Content/Complex_HeatCalculator.xlsx">
-			<linktext>Heat calculator</linktext>
-		</link>
-		<link href="./Phase_F.dita#Phase_F/number2">
-			<linktext>Phase F Residue</linktext>
-		</link>
-		<link href="./Phase_F.dita">
-			<linktext>Phase F Overview</linktext>
-		</link>
-		<link href="./BR_transducers.dita">
-			<linktext>Transducers</linktext>
-		</link>
-		<link format="pdf" href="Content/Images/dummy_reference.pdf">
-			<linktext>Unit Anchors Study </linktext>
-		</link>
-		<link href="./unit_anchors.dita">
-			<linktext>Overview</linktext>
-		</link>
-	</related-links>
 </reference>
