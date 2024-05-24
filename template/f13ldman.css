@@ -309,8 +309,8 @@ padding: 0 10px;
       padding-right: 200px;
   }
 
-  /* make the notes block float */
-  .notes {
+  /* make the right-hand notes block float */
+  .rh_notes {
       background-color: #EFEFFA; 
       position:fixed;
       width: 200px;

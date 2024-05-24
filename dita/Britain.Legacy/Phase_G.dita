@@ -17,7 +17,7 @@ Phase G UNITS OVERVIEW
 			<title/>
 			<div id="PageLayer">
 				<p> </p>
-				<p outputclass="notes"><b>Notes</b><?linebreak?><ph outputclass="colorRed">Red</ph> items have been
+				<p outputclass="rh_notes"><b>Notes</b><?linebreak?><ph outputclass="colorRed">Red</ph> items have been
 					recently updated</p>
 				<table colsep="1" frame="all" rowsep="1">
 					<tgroup cols="6">
