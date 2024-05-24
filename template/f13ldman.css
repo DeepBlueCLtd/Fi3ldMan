@@ -109,9 +109,9 @@ figure {
   .wh_tiles-item {
     display: flex;
     width: 100%;
-    & > div {
+    /* & > div {
       width: 50%;
-    }
+    } */
   }
 }
 
@@ -308,7 +308,17 @@ padding: 0 10px;
   .body {
       padding-right: 200px;
   }
-  
+
+    /* make the related links float */
+    .notes {
+      background-color: #EFEFFA; 
+      position:fixed;
+      width: 200px;
+      right:0;
+      top:200px;
+      z-index: 1000;
+  }
+
   /* make the related links float */
   .wh_related_links {
       background-color: #EFEFFA; 
@@ -336,7 +346,7 @@ padding: 0 10px;
       position:fixed;
       width: 200px;
       right:0;
-      top:200px;
+      top:300px;
       z-index: 1000;
   }
 }
