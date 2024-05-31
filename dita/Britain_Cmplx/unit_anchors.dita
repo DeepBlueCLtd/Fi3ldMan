@@ -88,17 +88,19 @@ Anchor
 							</row>
 							<row outputclass="colorRed">
 								<entry outputclass="bkLightGray">BR</entry>
-								<entry>S5</entry>
+								<entry outputclass="colorBlue">S5</entry>
 								<entry nameend="c4" namest="c3">H1</entry>
-								<entry nameend="c6" namest="c5">Discrete. Doublets common</entry>
+								<entry nameend="c6" namest="c5">
+									<p>Discrete. Doublets common</p>
+								</entry>
 							</row>
-							<row>
+							<row outputclass="colorRed">
 								<entry outputclass="bkLightGray"> Cat b Engine R </entry>
 								<entry>2-100.4, 112, 132</entry>
 								<entry nameend="c4" namest="c3">H1, 3, 21 - 45, 55</entry>
-								<entry nameend="c6" namest="c5">
-									 The quick brown fox does something similar with a link for 
-									<xref format="dita" href="./BR_transducers.dita">
+								<entry nameend="c6" namest="c5"> The quick brown fox does something
+									similar with a link for <xref format="dita"
+										href="./BR_transducers.dita">
 										<b>Transducers</b>
 									</xref>
 								</entry>
@@ -262,11 +264,12 @@ Anchor
 									</ul>
 								</entry>
 							</row>
-							<row>
+							<row outputclass="colorRed">
 								<entry outputclass="bkLightGray">BR</entry>
 								<entry>S5</entry>
 								<entry nameend="c4" namest="c3">H1</entry>
-								<entry align="left" nameend="c6" namest="c5">Discrete. Doublets common</entry>
+								<entry align="left" nameend="c6" namest="c5">Discrete. Doublets
+									common</entry>
 							</row>
 							<row>
 								<entry outputclass="bkLightGray"/>
@@ -793,4 +796,9 @@ Anchor
 			</div>
 		</section>
 	</refbody>
+	<related-links>
+		<link href="Phase_F.dita#Phase_F/BottomLayer2">
+			<linktext>Some link text</linktext>
+		</link>
+	</related-links>
 </reference>
