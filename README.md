@@ -1,6 +1,7 @@
 # Fi3ldMan
 Field Service Manual with advanced data exploitation
 
-See the `dita` folder for the DITA Specialization used in this project.
+## Supported by
+The development of F1i3ldMan templates has been supported by [Oxygen XML](http://www.oxygenxml.com)
 
-![burndown](https://docs.google.com/spreadsheets/d/e/2PACX-1vS4RYYUIkU93MCcW95v64qu00MSFEgq7RXvMgtL21ad0uHNW2gTnS7HBzYS7AZsZ8ladWYJ8VZ1WV_w/pubchart?oid=1341797319&format=image)_
+![Oxygen Logo](http://www.oxygenxml.com/img/resources/oxygen190x62.png)
