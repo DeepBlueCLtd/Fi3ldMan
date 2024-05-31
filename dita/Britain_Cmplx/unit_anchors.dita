@@ -12,6 +12,13 @@
 Anchor
 	</title>
 	<shortdesc/>
+	<prolog>
+		<metadata>
+			<keywords>
+				<keyword>Ancho</keyword>
+			</keywords>
+		</metadata>
+	</prolog>
 	<refbody>
 		<section>
 			<title/>
