@@ -16762,7 +16762,7 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                                         <String>audience</String>
                                                     </field>
                                                     <field name="attrValue">
-                                                        <String>deny-france</String>
+                                                        <String>-france</String>
                                                     </field>
                                                 </ditavalSimpleFilter>
                                             </list>
