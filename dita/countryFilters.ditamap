@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE subjectScheme PUBLIC "-//OASIS//DTD DITA Subject Scheme Map//EN" "subjectScheme.dtd"> 
+<subjectScheme>
+    <hasInstance>
+        <subjectdef keys="excludeCountriesKey">
+            <!-- A tree of related values -->
+            <subjectdef keys="-france">
+            </subjectdef>
+        </subjectdef>
+    </hasInstance>
+    <enumerationdef>
+        <!-- Bind an attribute to a tree of related values -->
+        <attributedef name="audience"/>
+        <subjectdef keyref="excludeCountriesKey"/>
+    </enumerationdef>
+    <enumerationdef>
+        <attributedef name="platform"/>
+        <subjectdef/>
+    </enumerationdef>
+    <enumerationdef>
+        <attributedef name="product"/>
+        <subjectdef/>
+    </enumerationdef>
+    <enumerationdef>
+        <attributedef name="props"/>
+        <subjectdef/>
+    </enumerationdef>
+    <enumerationdef>
+        <attributedef name="otherprops"/>
+        <subjectdef/>
+    </enumerationdef>
+    <enumerationdef>
+        <attributedef name="rev"/>
+        <subjectdef/>
+    </enumerationdef>
+</subjectScheme>
