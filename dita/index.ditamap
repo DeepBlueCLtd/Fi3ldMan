@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
-    <title>Field Manual v4 Feb 2022</title>
+    <title>Field Manual v4 Feb 2022 FRANCE</title>
     <topicmeta/>
     <topicref href="./PlatformData/PD_1.dita" format="dita">
         <topicmeta/>
@@ -15,4 +15,6 @@
     <topicref href="./QuickLinksData/Contents_Index.dita" format="dita">
         <topicmeta/>
     </topicref>
+    <topicref href="countryFilters.ditamap" format="ditamap" type="subjectScheme"
+        navtitle="Country Filters"/>
 </map>

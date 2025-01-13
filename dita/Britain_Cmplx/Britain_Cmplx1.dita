@@ -40,11 +40,9 @@
 						<row>
 							<entry nameend="c7" namest="c1">Steam Driven</entry>
 						</row>
-						<row>
+						<row audience="-france">
 							<entry>
-								<image href="Content/Images/yellow.jpg"/>
-								Aragorn
-							</entry>
+								<image href="Content/Images/yellow.jpg"/> Aragorn </entry>
 							<entry>PBA</entry>
 							<entry>3 * V8 Diesel</entry>
 							<entry>2 x 3</entry>
@@ -79,7 +77,7 @@
 							<entry>BWW</entry>
 						</row>
 						<row>
-							<entry nameend="c6" namest="c1">
+							<entry nameend="c7" namest="c2">
 								This has a different cooling system to that originally purchased. See the Thorpe 
 								<xref format="dita" href="./Bravo_Transducer.dita">P6643</xref>
 								 specification

@@ -35,7 +35,7 @@ Quick Look Guide to vanes
 				</table>
 			</div>
 			<div id="PolarityTable">
-				<table colsep="1" frame="all" rowsep="1">
+				<table colsep="1" frame="all" outputclass="sortable" rowsep="1">
 					<tgroup cols="5">
 						<colspec colname="c1"/>
 						<colspec colname="c2"/>
@@ -56,7 +56,7 @@ Quick Look Guide to vanes
 								<entry outputclass="bkDarkGray">
 									<b>0.78</b>
 								</entry>
-								<entry outputclass="bkDarkGray">
+								<entry outputclass="bkDarkGray sorttable_nosort">
 									<b>1.2</b>
 								</entry>
 							</row>

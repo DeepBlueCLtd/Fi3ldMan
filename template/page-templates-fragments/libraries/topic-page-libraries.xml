@@ -12,4 +12,5 @@
     <script defer="defer" src="${oxygen-webhelp-assets-dir}/app/commons.js?buildId=${oxygen-webhelp-build-number}"></script>
     <script defer="defer" src="${oxygen-webhelp-assets-dir}/app/topic.js?buildId=${oxygen-webhelp-build-number}"></script>
     <script defer="defer" src="${oxygen-webhelp-assets-dir}/template/resources/current-handler.js?buildId=${oxygen-webhelp-build-number}"></script>
+    <script defer="defer" src="${oxygen-webhelp-assets-dir}/template/resources/sorttable.js?buildId=${oxygen-webhelp-build-number}"></script>
 </head>
