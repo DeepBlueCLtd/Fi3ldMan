@@ -386,6 +386,16 @@ padding: 0 10px;
   width: 100%;
 }
 
+/* Sortable table header styling */
+table.sortable thead {
+    cursor: ns-resize;
+}
+
+/* Sortable tables styling for unsortable column */
+table.sortable  .sorttable_nosort {
+  cursor: default;
+}
+
 /*
 * ==============================================
 * Style changes for Fi3ldMan project above this block
