@@ -235,26 +235,32 @@ padding: 0 10px;
 
 .colorRed {
   color: #F00;
+  border-color: #000;
 }
 
 .colorPink {
   color: #F0F;
+  border-color: #000;
 }
 
 .colorBlue {
   color: #00F;
+  border-color: #000;
 }
 
 .colorGray {
   color: #777;
+  border-color: #000;
 }
 
 .colorOrange {
   color: #FC0;
+  border-color: #000;
 }
 
 .colorLightBlue {
   color: #0FF;
+  border-color: #000;
 }
 
 
@@ -302,7 +308,17 @@ padding: 0 10px;
   .body {
       padding-right: 200px;
   }
-  
+
+  /* make the right-hand notes block float */
+  .rh_notes {
+      background-color: #EFEFFA; 
+      position:fixed;
+      width: 200px;
+      right:0;
+      top:200px;
+      z-index: 1000;
+  }
+
   /* make the related links float */
   .wh_related_links {
       background-color: #EFEFFA; 
@@ -330,7 +346,7 @@ padding: 0 10px;
       position:fixed;
       width: 200px;
       right:0;
-      top:200px;
+      top:300px;
       z-index: 1000;
   }
 }
@@ -368,6 +384,16 @@ padding: 0 10px;
 /** make the contents index go full width */
 .contents-index {
   width: 100%;
+}
+
+/* Sortable tables */
+table.sortable thead {
+    cursor: ns-resize;
+}
+
+/* Sortable tables */
+table.sortable  .sorttable_nosort {
+  cursor: default;
 }
 
 /*
