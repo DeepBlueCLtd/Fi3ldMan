@@ -35,7 +35,7 @@ Quick Look Guide to vanes
 				</table>
 			</div>
 			<div id="PolarityTable">
-				<table colsep="1" frame="all" rowsep="1">
+				<table colsep="1" frame="all" outputclass="sortable" rowsep="1">
 					<tgroup cols="5">
 						<colspec colname="c1"/>
 						<colspec colname="c2"/>
