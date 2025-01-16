@@ -53,7 +53,7 @@ Quick Look Guide to vanes
 								<entry outputclass="bkDarkGray">
 									<b>0.6</b>
 								</entry>
-								<entry outputclass="bkDarkGray">
+								<entry outputclass="bkDarkGray sorttable_fman">
 									<b>0.78</b>
 								</entry>
 								<entry outputclass="bkDarkGray sorttable_nosort">
@@ -71,7 +71,8 @@ Quick Look Guide to vanes
 									<b>16-17</b>
 								</entry>
 								<entry>
-									<b>18-55</b>
+									18-44<?linebreak?>
+									(Prob 22)
 								</entry>
 								<entry>
 									<b>56-105</b>
@@ -89,6 +90,7 @@ Quick Look Guide to vanes
 								</entry>
 								<entry>
 									<b>16-55</b>
+									(21)
 								</entry>
 								<entry>
 									<b>56-105</b>
@@ -106,6 +108,7 @@ Quick Look Guide to vanes
 								</entry>
 								<entry>
 									<b>26-55</b>
+									(Prob 43)
 								</entry>
 								<entry>
 									<b>56-105</b>
@@ -122,7 +125,7 @@ Quick Look Guide to vanes
 									<b>20-25</b>
 								</entry>
 								<entry>
-									<b>26-55</b>
+									<b>26-55<?linebreak?>(Prob 31)</b>
 								</entry>
 								<entry>
 									<b>56-105</b>
@@ -138,9 +141,7 @@ Quick Look Guide to vanes
 								<entry>
 									<b>20-25</b>
 								</entry>
-								<entry>
-									<b>26-55</b>
-								</entry>
+								<entry> Unk </entry>
 								<entry>
 									<b>56-105</b>
 								</entry>
@@ -155,9 +156,7 @@ Quick Look Guide to vanes
 								<entry outputclass="bkLightGray">
 									<b>20-25</b>
 								</entry>
-								<entry>
-									<b>26-55</b>
-								</entry>
+								<entry> Unk (Prob 30) </entry>
 								<entry>
 									<b>56-105</b>
 								</entry>
