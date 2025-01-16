@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="Warning">
+	<title>What's New</title>
+	<shortdesc>What's New details</shortdesc>
+	<refbody>
+		<section>
+			<title>Introduction</title>
+			<div id="Body">
+				<p outputclass="h1">Admin</p>
+				<p>Here is a good detailed list of what has changed. The features that have changed are
+					highlighed with this figure: <image align="center" href="Content/Images/yellow.jpg" /> </p>
+				<p>
+					And then there's the long table of changes, with links to pages.
+				</p>
+			</div>
+		</section>
+	</refbody>
+</reference>
