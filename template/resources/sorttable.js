@@ -1,5 +1,9 @@
 /*
   SortTable
+   * NOTE: this source file has been modified by Ian Mayo in order to support a specific sort mechanism
+   * that favours integers in brackets over the rest of the string. 
+   * January 2025
+   * 
   version 2
   7th April 2007
   Stuart Langridge, http://www.kryogenix.org/code/browser/sorttable/
@@ -169,7 +173,7 @@ sorttable = {
     for (var i=0; i<table.tBodies[0].rows.length; i++) {
       text = sorttable.getInnerText(table.tBodies[0].rows[i].cells[column]);
       if (text != '') {
-        if (text.match(/^-?[£$¤]?[\d,.]+%?$/)) {
+        if (text.match(/^-?[ï¿½$ï¿½]?[\d,.]+%?$/)) {
           return sorttable.sort_numeric;
         }
         // check for a date: dd/mm/yyyy or dd/mm/yy
@@ -299,6 +303,30 @@ sorttable = {
     if (dt1==dt2) return 0;
     if (dt1<dt2) return -1;
     return 1;
+  },
+  numInBracketsOrAll: function(str) {
+    /** custom extractor that tries to get a number inside brackets,
+     * else it returns the whole string
+     */
+    const brackets = /\(([^)]+)\)/;
+    const match = str.match(brackets);
+    if (match && match[1]) {
+      const digits = /\b\d+\b/;
+      const match2 = match[1].match(digits)
+      if (match2) {
+        return match2[0]
+      } else {
+        return str
+      }
+    } else {
+      return str
+    }
+  },
+  sort_fman: function(a,b) {
+    /** custom comparator that users custuom value extractor */
+    const a1 = '' + sorttable.numInBracketsOrAll(a[0])
+    const b1 = '' + sorttable.numInBracketsOrAll(b[0])
+    return a1.localeCompare(b1)
   },
 
   shaker_sort: function(list, comp_func) {
