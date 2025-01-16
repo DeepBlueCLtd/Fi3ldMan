@@ -386,12 +386,12 @@ padding: 0 10px;
   width: 100%;
 }
 
-/* Sortable tables */
+/* Sortable table header styling */
 table.sortable thead {
     cursor: ns-resize;
 }
 
-/* Sortable tables */
+/* Sortable tables styling for unsortable column */
 table.sortable  .sorttable_nosort {
   cursor: default;
 }
