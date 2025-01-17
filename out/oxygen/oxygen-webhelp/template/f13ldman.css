@@ -386,15 +386,29 @@ padding: 0 10px;
   width: 100%;
 }
 
-/* Sortable table header styling */
+/* Sortable table - styling for sortable column */
 table.sortable thead {
     cursor: ns-resize;
 }
 
-/* Sortable tables styling for unsortable column */
+/* Sortable tables - styling for unsortable column */
 table.sortable  .sorttable_nosort {
   cursor: default;
 }
+
+table.sortable thead td {
+    background-color: #BBB;
+}
+
+table.sortable thead td.sorttable_nosort {
+    background-color: #999;
+}
+
+table.sortable thead td:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after, 
+table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
+    content: " \25B4\25BE" 
+}
+
 
 /*
 * ==============================================
