@@ -213,7 +213,7 @@ Unit delta General Signature
 							<row>
 								<entry outputclass="bkLightGray">
 									<p outputclass="bold">
-										<image href="Content/Images/Yellow3.jpg"/>
+										<image href="Content/Images/Yellow3.jpg" id="Unk BBA"/>
 										Unk BBA
 									</p>
 								</entry>
@@ -269,7 +269,7 @@ Unit delta General Signature
 							<row>
 								<entry outputclass="bkLightGray">
 									<p outputclass="bold">
-										<image href="Content/Images/Yellow3.jpg"/>
+										<image href="Content/Images/Yellow3.jpg" id="Unk BBA"/>
 										Unk BBA
 									</p>
 								</entry>
@@ -325,7 +325,7 @@ Unit delta General Signature
 							<row>
 								<entry outputclass="bkLightGray">
 									<p outputclass="bold">
-										<image href="Content/Images/Yellow3.jpg"/>
+										<image href="Content/Images/Yellow3.jpg" id="DRA-22"/>
 										Unk BBA
 									</p>
 								</entry>

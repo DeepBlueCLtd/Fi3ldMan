@@ -259,7 +259,7 @@ Banjo
 							<row>
 								<entry outputclass="bkLightGray">
 									<p outputclass="bold">
-										<image href="Content/Images/Yellow3.jpg"/> Unk BBA </p>
+										<image href="Content/Images/Yellow3.jpg" id="DRAU_SDG"/> Unk BBA </p>
 								</entry>
 								<entry>25 &amp; CSR</entry>
 								<entry nameend="c4" namest="c3">H1</entry>
