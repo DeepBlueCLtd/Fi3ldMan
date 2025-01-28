@@ -24,7 +24,7 @@ Quick Look Guide to vanes
 							</row>
 							<row>
 								<entry morerows="1">Polarity Rate = </entry>
-								<entry>Watts/Hr - Amps/meter</entry>
+								<entry rowsep="1">Watts/Hr - Amps/meter</entry>
 								<entry morerows="1">  * 225 </entry>
 							</row>
 							<row>
@@ -62,7 +62,7 @@ Quick Look Guide to vanes
 							</row>
 							<row>
 								<entry align="center" outputclass="bkDarkGray">
-									<b>2</b>
+									<b>Alpha</b>
 								</entry>
 								<entry outputclass="bkGreen">
 									<b>12-15</b>
@@ -80,7 +80,7 @@ Quick Look Guide to vanes
 							</row>
 							<row>
 								<entry align="center" outputclass="bkDarkGray">
-									<b>4</b>
+									<b>Charlie</b>
 								</entry>
 								<entry outputclass="bkLightGray">
 									<b>10-12</b>
@@ -89,16 +89,14 @@ Quick Look Guide to vanes
 									<b>13-15</b>
 								</entry>
 								<entry>
-									<b>16-55</b>
-									(21)
-								</entry>
+									<b>16-55</b> (210) </entry>
 								<entry>
 									<b>56-105</b>
 								</entry>
 							</row>
 							<row>
 								<entry align="center" outputclass="bkDarkGray">
-									<b>6</b>
+									<b>Echo</b>
 								</entry>
 								<entry outputclass="bkLightGray">
 									<b>8-19</b>
@@ -107,16 +105,14 @@ Quick Look Guide to vanes
 									<b>20-25</b>
 								</entry>
 								<entry>
-									<b>26-55</b>
-									(Prob 43)
-								</entry>
+									<b>25-54</b> (Prob 43) </entry>
 								<entry>
 									<b>56-105</b>
 								</entry>
 							</row>
 							<row>
 								<entry align="center" outputclass="bkDarkGray">
-									<b>8</b>
+									<b>Golf</b>
 								</entry>
 								<entry outputclass="bkLightGray">
 									<b>8-19</b>
@@ -125,7 +121,7 @@ Quick Look Guide to vanes
 									<b>20-25</b>
 								</entry>
 								<entry>
-									<b>26-55<?linebreak?>(Prob 31)</b>
+									<b>26-55<?linebreak?>(Unk)</b>
 								</entry>
 								<entry>
 									<b>56-105</b>
@@ -133,7 +129,7 @@ Quick Look Guide to vanes
 							</row>
 							<row>
 								<entry align="center" outputclass="bkDarkGray">
-									<b>10</b>
+									<b>India</b>
 								</entry>
 								<entry outputclass="bkLightGray">
 									<b>8-19</b>
@@ -141,14 +137,14 @@ Quick Look Guide to vanes
 								<entry>
 									<b>20-25</b>
 								</entry>
-								<entry> Unk </entry>
+								<entry> </entry>
 								<entry>
 									<b>56-105</b>
 								</entry>
 							</row>
 							<row>
 								<entry align="center" outputclass="bkDarkGray">
-									<b>12</b>
+									<b>Lima</b>
 								</entry>
 								<entry outputclass="bkLightGray">
 									<b>8-19</b>
