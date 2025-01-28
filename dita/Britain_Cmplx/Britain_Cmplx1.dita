@@ -117,8 +117,7 @@
 						<row>
 							<entry>
 								<b/>
-								<ph outputclass="colorRed">*</ph><image
-									href="Content/Images/Yellow4.jpg" id="image_zph_mxn_22c"/>
+								<ph outputclass="colorRed">*</ph><image href="Content/Images/Yellow3.jpg" id="image_zph_mxn_22c"/>
 								<b>Unit Foxtrot Alpha</b>
 							</entry>
 							<entry>PBF</entry>
