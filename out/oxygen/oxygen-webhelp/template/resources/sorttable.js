@@ -309,24 +309,45 @@ sorttable = {
      * else it returns the whole string
      */
     const brackets = /\(([^)]+)\)/;
+    const digits = /\b\d+\b/;
     const match = str.match(brackets);
     if (match && match[1]) {
-      const digits = /\b\d+\b/;
       const match2 = match[1].match(digits)
       if (match2) {
-        return match2[0]
-      } else {
-        return str
+        return parseInt(match2[0])
       }
-    } else {
-      return str
     }
+    // extract the first word from the string. The first word could
+    // terminate in whitespace or a hyphen
+    str = str.replace('-',' ')
+    const words = str.split(/\s+/)
+    const res = words[0]
+    // check if res is a number
+    if (res.match(digits)) {
+      return parseInt(res)
+    } 
+    return res
   },
   sort_fman: function(a,b) {
     /** custom comparator that users custuom value extractor */
-    const a1 = '' + sorttable.numInBracketsOrAll(a[0])
-    const b1 = '' + sorttable.numInBracketsOrAll(b[0])
-    return a1.localeCompare(b1)
+    const a1 = sorttable.numInBracketsOrAll(a[0])
+    const b1 = sorttable.numInBracketsOrAll(b[0])
+    console.log(a1, b1, typeof a1, typeof b1)
+    // check if they are both numbers
+    if (typeof a1 == 'number' && typeof b1 == 'number') {
+      return a1 - b1
+    } else {
+      // check if the first on is a number
+      if (typeof a1 == 'number') {
+        return -1
+      }
+      // check if the second one is a number
+      if (typeof b1 == 'number') {
+        return 1
+      }
+      // both strings, use text compare
+      return a1.localeCompare(b1)
+    }
   },
 
   shaker_sort: function(list, comp_func) {
