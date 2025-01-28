@@ -9,8 +9,9 @@
 			<div id="Body">
 				<p outputclass="h1">Admin</p>
 				<p>Here is a good detailed list of what has changed.</p>
-				<p>The features that have changed are highlighed with this figure: <image
-					href="Content/Images/Yellow3.jpg" align="center"  id="image_usc_514_22c"/> or
+				<p>The features that have changed are highlighed with this figure: 
+					<image 
+						href="Content/Images/Yellow3.jpg" id="image_usc_514_22c"/> or
 					this figure <image href="Content/Images/Yellow4.jpg" align="center"
 						id="image_dbt_q14_22c"/>
 				</p>
