@@ -328,6 +328,24 @@ padding: 0 10px;
       top:200px;
       z-index: 1000;
   }
+  
+  .wh_harmonics {
+      background-color: rgba(255, 250, 205, 0.8);
+      position:fixed;
+      width: 250px;
+      right:0;
+      top:500px;
+      z-index: 1000;
+  }
+  
+  .wh_harmonics table {
+      margin-bottom: 0px;
+      margin-top: 0px;
+  }
+
+  .wh_harmonics table td {
+      padding: 0;
+  }
 
   /** the next blocks are for plain DITA-OT export
   /* make the related links float */
@@ -408,6 +426,55 @@ table.sortable thead td:not(.sorttable_sorted):not(.sorttable_sorted_reverse):no
 table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
     content: " \25B4\25BE" 
 }
+
+/******
+ * display calculated harmonics
+ */
+.calc_harms {
+    background-color: rgba(255, 250, 205, 0.8);
+    line-height: 1.2em;
+} 
+
+.calc_harms dt {
+  float: left;
+  margin-right: 10px;
+  font-weight: normal;
+}
+
+.calc_harms dd {
+    display: block;
+    margin-bottom: 0;
+}
+
+/******
+ * enter harmonics details
+ */
+.wh_harmonics {
+    text-align: center;
+} 
+.wh_harmonics table {
+    border: 0px
+}
+.wh_harmonics td {
+    text-align: right;
+    line-height: 1.4em;
+}
+
+.wh_harmonics td.obs {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.wh_harmonics input {
+   width: 50px;  
+   margin: 0 !important;
+}
+
+.wh_harmonics textarea {
+   width: 120px; 
+}
+
+
 /*
 * ==============================================
 * Style changes for Fi3ldMan project above this block
