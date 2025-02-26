@@ -328,24 +328,7 @@ padding: 0 10px;
       top:200px;
       z-index: 1000;
   }
-  
-  .wh_harmonics {
-      position:fixed;
-      width: 250px;
-      right:0;
-      top:500px;
-      z-index: 1000;
-  }
-  
-  .wh_harmonics table {
-      margin-bottom: 0px;
-      margin-top: 0px;
-  }
-
-  .wh_harmonics table td {
-      padding: 0;
-  }
-
+ 
   /** the next blocks are for plain DITA-OT export
   /* make the related links float */
   .relref {
@@ -430,6 +413,7 @@ table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):no
  * display calculated harmonics
  */
 .calc_harms,  .wh_harmonics  {
+    font-family: monospace;
     background-color: rgba(255, 250, 205, 0.8);
     border: 1px solid rgb(255, 191, 0);
     border-spacing: 4px;
@@ -439,6 +423,8 @@ table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):no
 
 .calc_harms td {
   font-weight: normal;
+  line-height: 1.2em;
+  font-size: 90%;
   padding: 0px;
   padding-left: 2px;
   margin: 0px;
@@ -446,24 +432,41 @@ table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):no
   text-align: right;
 }
 .calc_harms td:first-child {
-  width: 40px;
-  padding-right: 5px;
+  padding-right: 2px;
   text-align: left;
 } 
 
+.calc_harms tr.match {
+  background-color: #000;
+  border-color: #000;
+  color: #FFF;
+  font-weight: bold;
+}
+
+tr.match_row {
+  background-color: rgba(255, 250, 205, 0.4);
+}
 
 /******
  * enter harmonics details
  */
 .wh_harmonics {
-    text-align: center;
+  position:fixed;
+  width: 250px;
+  right:0;
+  top:500px;
+  z-index: 1000;
+  text-align: center;
 } 
-.wh_harmonics table {
-    border: 0px
+.wh_harmonics table, table.calc_harms {
+    margin-bottom: 0px;
+    margin-top: 0px;  
 }
+
 .wh_harmonics td {
     text-align: right;
     line-height: 1.4em;
+    padding: 0;
 }
 
 .wh_harmonics td.obs {
@@ -480,6 +483,9 @@ table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):no
    width: 120px; 
 }
 
+.wh_harmonics strong {
+  font-family: sans-serif;
+}
 
 /*
 * ==============================================
