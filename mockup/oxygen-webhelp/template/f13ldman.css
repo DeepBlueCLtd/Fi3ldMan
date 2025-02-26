@@ -330,7 +330,6 @@ padding: 0 10px;
   }
   
   .wh_harmonics {
-      background-color: rgba(255, 250, 205, 0.8);
       position:fixed;
       width: 250px;
       right:0;
@@ -430,12 +429,12 @@ table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):no
 /******
  * display calculated harmonics
  */
-.calc_harms  {
+.calc_harms,  .wh_harmonics  {
     background-color: rgba(255, 250, 205, 0.8);
+    border: 1px solid rgb(255, 191, 0);
     border-spacing: 4px;
     border-collapse: separate;
     border-radius: 5px;
-    border: 1px solid rgb(255, 191, 0);
 } 
 
 .calc_harms td {
