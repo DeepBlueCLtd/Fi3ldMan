@@ -4,13 +4,10 @@ const harmForm = `<div class=" wh_harmonics d-print-none ">
 <strong>Harmonic Calculator 2 &#x1F50D;</strong>
   <form name="harmonics-form" on>
     <table>
-      <tr><td style="width:100px">SR:<input name="sr" value="5"/></td>
-        <td class="obs" rowspan="2">Observed:<textarea name="obs" rows="3">180
-34.6
-6651.84
-</textarea></td>
+      <tr><td style="width:100px">SR:<input name="sr" value=""/></td>
+        <td class="obs" rowspan="2">Observed:<textarea name="obs" rows="3"></textarea></td>
       </tr>
-      <tr><td>CSR:<input name="csr" value="12.3"/></td></tr>
+      <tr><td>CSR:<input name="csr" value=""/></td></tr>
     </table>   
   </form>
 </div>`
@@ -26,13 +23,9 @@ const hCalc = {
           hCalc.processTable(table)
         }
       });  
-      // remove the harmonics form, if it exists
-      document.querySelector('form[name="harmonics-form"]')?.remove()
-
       // find the div with the class 'wh_content_area', and insert the harmonics form at the end of it
       const contentArea = document.querySelector('.wh_content_area')
       if (contentArea) {
-        console.log('contentArea found')
         contentArea.insertAdjacentHTML('beforeend', harmForm)
         // find the new harmonics form and attach event handlers to it
         const harmonicsForm = document.querySelector('form[name="harmonics-form"]')
@@ -46,7 +39,6 @@ const hCalc = {
       if (formValues) {
         hCalc.calcHarmonics(formValues, hCalc.sigRows)
       }
-      console.log('formValues', formValues)
     }
   }, 
   calcHarmonics: function(formValues, rows) {
@@ -54,6 +46,13 @@ const hCalc = {
     forEach(rows, function(row) {
       // remove the table with class 'calc_harms', if it exists
       row.row.cells[2].querySelector('table.calc_harms')?.remove()
+      // if the row has a class of 'match_row', remove that class
+      row.row.classList.remove('match_row')
+      // check we have relevant data
+      const rowType = row.ratio.type
+      if (rowType === 's' && !formValues.sr) return
+      if (rowType === 'c' && !formValues.csr) return
+//      if (rowType === 'a' && (!formValues.obs || !formValues.obs.length)) return
       // create a table element
       const table = document.createElement('table')
       // add the class 'calc_harms'
@@ -65,25 +64,41 @@ const hCalc = {
         // create a cell for this harmonic
         const harmCell = document.createElement('td')
         // add the harmonic to this cell
-        harmCell.textContent = 'H' + harm
+        harmCell.textContent = 'H' + harm + ':'
         const scaledCell = document.createElement('td')
         const trimNumber = (num) => {
           return Math.round(num * 100) / 100
         }
+        let scaledHarmonic = ''
+        let matchesObs = false
         if (harm === '...') {
-          scaledCell.textContent = ''
+          harmCell.textContent = '...'
+          scaledHarmonic = ''
         } else {
           switch(row.ratio.type) {
             case 's':
-              scaledCell.textContent = trimNumber(harm * row.ratio.value * formValues.sr)
+              scaledHarmonic = trimNumber(harm * row.ratio.value * formValues.sr)
               break
             case 'c':
-              scaledCell.textContent = trimNumber(harm * row.ratio.value * formValues.csr)
+              scaledHarmonic = trimNumber(harm * row.ratio.value * formValues.csr)
               break
             default: {
-              scaledCell.textContent = row.ratio.value.replace(/\d+(?:\.\d+)?/g, n => trimNumber(n*harm))
+              scaledHarmonic = row.ratio.value.replace(/\d+(?:\.\d+)?/g, n => {
+                const res = trimNumber(n*harm)
+                const obsArray = formValues.obs
+                if (obsArray.includes(res)) matchesObs = true
+                return res
+              })
             }
           }  
+        }
+        if (Array.isArray(formValues.obs) && formValues.obs.includes(scaledHarmonic)) {
+          matchesObs = true
+        }
+        scaledCell.textContent = scaledHarmonic
+        if (matchesObs) {
+          row.row.classList.add('match_row')
+          harmRow.classList.add('match_harmonic')
         }
         // add this cell to the row
         harmRow.appendChild(harmCell)
@@ -103,11 +118,11 @@ const hCalc = {
           field.parentNode.querySelector('div.error')?.remove()
         }
         field.value = field.value.trim()
+        if (field.value === '') return
         // use a regexp to check that the value is an integer, a decimal, or a series of comma/whitespace/newline separated numbers
         field.value = field.value.replace(/,/g, '')
         const re = /^[-+]?[0-9]*\.?[0-9]+(?:,[\s0-9]+)*$/
         if (!re.test(field.value)) {
-          console.log(`${field.value} not a number`)
           // create an error div element
           const errorDiv = document.createElement('div')
           errorDiv.classList.add('error')
@@ -138,13 +153,7 @@ const hCalc = {
     const inputs = form.querySelectorAll('input')
     const textareas = form.querySelectorAll('textarea')
     const handleInputChange = function(value) {
-      if (parseFloat(value)) {
-        console.log('parsed', value)
-        // trigger 'init'
-        hCalc.init()
-      } else {
-        console.log('unable to parse', value)
-      }
+      hCalc.init()
     }
     // add change handler to each input and textarea
     forEach(inputs, function(input) {
@@ -184,7 +193,6 @@ const hCalc = {
         sigRows.push({row: row, ratio: ratioText, harmonics: harmonics})
       }
     })
-    console.log('rows', sigRows)
     hCalc.sigRows = sigRows
   },
   cleanRow: function(row) {
