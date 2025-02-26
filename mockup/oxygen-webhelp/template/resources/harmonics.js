@@ -52,7 +52,6 @@ const hCalc = {
       const rowType = row.ratio.type
       if (rowType === 's' && !formValues.sr) return
       if (rowType === 'c' && !formValues.csr) return
-//      if (rowType === 'a' && (!formValues.obs || !formValues.obs.length)) return
       // create a table element
       const table = document.createElement('table')
       // add the class 'calc_harms'
