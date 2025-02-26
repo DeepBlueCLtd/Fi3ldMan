@@ -1,0 +1,11 @@
+
+ { "facets" : 
+  [ 
+   { "key" : "excludeCountriesKey",
+    "navtitle" : "",
+    "categories" : 
+    [ 
+     { "key" : "-france",
+      "navtitle" : "",
+      "categories" : 
+      [  ] } ] } ] }
