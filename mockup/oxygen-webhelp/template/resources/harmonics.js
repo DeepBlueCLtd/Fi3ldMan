@@ -1,5 +1,20 @@
 console.log('harmonics.js loaded');
 
+const harmForm = `<div class=" wh_harmonics d-print-none ">
+<strong>Harmonic Calculator 2 &#x1F50D;</strong>
+  <form name="harmonics-form" on>
+    <table>
+      <tr><td style="width:100px">SR:<input name="sr" value="5"/></td>
+        <td class="obs" rowspan="2">Observed:<textarea name="obs" rows="3">180
+34.6
+6651.84
+</textarea></td>
+      </tr>
+      <tr><td>CSR:<input name="csr" value="12.3"/></td></tr>
+    </table>   
+  </form>
+</div>`
+
 const hCalc = {
   sigStable: undefined,
   sigRows: undefined,
@@ -14,12 +29,13 @@ const hCalc = {
       // remove the harmonics form, if it exists
       document.querySelector('form[name="harmonics-form"]')?.remove()
 
-      // insert the harmonics form
-      // also attach an event handler to the form named 'harmonics-form'
-      const harmonicsForm = document.querySelector('form[name="harmonics-form"]')
-      if (harmonicsForm) {
-        console.log('harmonics-form found')
-        // add change handlers to the inputs and textareas in this form
+      // find the div with the class 'wh_content_area', and insert the harmonics form at the end of it
+      const contentArea = document.querySelector('.wh_content_area')
+      if (contentArea) {
+        console.log('contentArea found')
+        contentArea.insertAdjacentHTML('beforeend', harmForm)
+        // find the new harmonics form and attach event handlers to it
+        const harmonicsForm = document.querySelector('form[name="harmonics-form"]')
         hCalc.addChangeHandlers(harmonicsForm)
       }
     }
@@ -45,15 +61,24 @@ const hCalc = {
     // find the inputs and text areas in this form
     const inputs = form.querySelectorAll('input')
     const textareas = form.querySelectorAll('textarea')
+    const handleInputChange = function(value) {
+      if (parseFloat(value)) {
+        console.log('parsed', value)
+        // trigger 'init'
+        hCalc.init()
+      } else {
+        console.log('unable to parse', value)
+      }
+    }
     // add change handler to each input and textarea
     forEach(inputs, function(input) {
-      input.addEventListener('change', function() {
-        console.log('input changed', input.name)
+      input.addEventListener('keyup', function() {
+        handleInputChange(input.value)
       })
     })
     forEach(textareas, function(textarea) {
-      textarea.addEventListener('change', function() {
-        console.log('textarea changed', textarea.name)
+      textarea.addEventListener('keyup', function() {
+        handleInputChange(textarea.value)
       })
     })
   }, 
