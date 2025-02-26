@@ -52,6 +52,8 @@ const hCalc = {
   calcHarmonics: function(formValues, rows) {
     // loop through the rows
     forEach(rows, function(row) {
+      // remove the table with class 'calc_harms', if it exists
+      row.row.cells[2].querySelector('table.calc_harms')?.remove()
       // create a table element
       const table = document.createElement('table')
       // add the class 'calc_harms'
@@ -63,14 +65,34 @@ const hCalc = {
         // create a cell for this harmonic
         const harmCell = document.createElement('td')
         // add the harmonic to this cell
-        harmCell.textContent = harm
+        harmCell.textContent = 'H' + harm
+        const scaledCell = document.createElement('td')
+        const trimNumber = (num) => {
+          return Math.round(num * 100) / 100
+        }
+        if (harm === '...') {
+          scaledCell.textContent = ''
+        } else {
+          switch(row.ratio.type) {
+            case 's':
+              scaledCell.textContent = trimNumber(harm * row.ratio.value * formValues.sr)
+              break
+            case 'c':
+              scaledCell.textContent = trimNumber(harm * row.ratio.value * formValues.csr)
+              break
+            default: {
+              scaledCell.textContent = row.ratio.value.replace(/\d+(?:\.\d+)?/g, n => trimNumber(n*harm))
+            }
+          }  
+        }
         // add this cell to the row
         harmRow.appendChild(harmCell)
+        harmRow.appendChild(scaledCell)
         // add the row to the table
         table.appendChild(harmRow)
       })
       // add the table to the row
-      console.log('row', row, row.cells, row.children)
+      row.row.cells[2].appendChild(table)
       
     })
   },
