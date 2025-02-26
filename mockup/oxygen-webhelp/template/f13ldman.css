@@ -430,21 +430,28 @@ table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):no
 /******
  * display calculated harmonics
  */
-.calc_harms {
+.calc_harms  {
     background-color: rgba(255, 250, 205, 0.8);
-    line-height: 1.2em;
+    border-spacing: 4px;
+    border-collapse: separate;
+    border-radius: 5px;
+    border: 1px solid rgb(255, 191, 0);
 } 
 
-.calc_harms dt {
-  float: left;
-  margin-right: 10px;
+.calc_harms td {
   font-weight: normal;
+  padding: 0px;
+  padding-left: 2px;
+  margin: 0px;
+  border: 0px;
+  text-align: right;
 }
+.calc_harms td:first-child {
+  width: 40px;
+  padding-right: 5px;
+  text-align: left;
+} 
 
-.calc_harms dd {
-    display: block;
-    margin-bottom: 0;
-}
 
 /******
  * enter harmonics details
