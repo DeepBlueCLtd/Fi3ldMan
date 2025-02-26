@@ -42,21 +42,75 @@ const hCalc = {
     if (hCalc.sigRows) {
       // find the harmonics div, with a classname of wh_harmonics
       const harmonicsDiv = document.querySelector('.wh_harmonics')
-      if (harmonicsDiv) {
-        // extract the values of the input controls in the table, in the harmonics div
-        const cr = harmonicsDiv.querySelector('input[name="csr"]')
-        const sr = harmonicsDiv.querySelector('input[name="sr"]')
-        const obs = harmonicsDiv.querySelector('textarea[name="obs"]')
-        // convert obs to a series of numbers separated by whitespace, newlines, or commas
-        const obsValues = obs.value.split(/[,\s]+/).map(n => parseFloat(n))
-        // strip out any values that aren't numbers
-        const goodValues = obsValues.filter(n => !isNaN(n))
-        const formValues = { csr: cr.value, sr: sr.value, obs: goodValues }
-        console.log(formValues)
+      const formValues = hCalc.getFormContents(harmonicsDiv)
+      if (formValues) {
+        hCalc.calcHarmonics(formValues, hCalc.sigRows)
       }
+      console.log('formValues', formValues)
     }
-    
   }, 
+  calcHarmonics: function(formValues, rows) {
+    // loop through the rows
+    forEach(rows, function(row) {
+      // create a table element
+      const table = document.createElement('table')
+      // add the class 'calc_harms'
+      table.classList.add('calc_harms')
+      // loop through the harmonics in this row
+      forEach(row.harmonics, function(harm) {
+        // create a row for this harmonic
+        const harmRow = document.createElement('tr')
+        // create a cell for this harmonic
+        const harmCell = document.createElement('td')
+        // add the harmonic to this cell
+        harmCell.textContent = harm
+        // add this cell to the row
+        harmRow.appendChild(harmCell)
+        // add the row to the table
+        table.appendChild(harmRow)
+      })
+      // add the table to the row
+      console.log('row', row, row.cells, row.children)
+      
+    })
+  },
+  getFormContents: function(harmonicsDiv) {
+    if (harmonicsDiv) {
+      const checkField = function(field) {
+        if (field.parentNode.querySelector('div.error')) {
+          field.parentNode.querySelector('div.error')?.remove()
+        }
+        field.value = field.value.trim()
+        // use a regexp to check that the value is an integer, a decimal, or a series of comma/whitespace/newline separated numbers
+        field.value = field.value.replace(/,/g, '')
+        const re = /^[-+]?[0-9]*\.?[0-9]+(?:,[\s0-9]+)*$/
+        if (!re.test(field.value)) {
+          console.log(`${field.value} not a number`)
+          // create an error div element
+          const errorDiv = document.createElement('div')
+          errorDiv.classList.add('error')
+          errorDiv.textContent = 'invalid'
+          // put the div into the parent cell, after the input control
+          field.parentNode.insertBefore(errorDiv, field)
+        }
+      }
+      // extract the values of the input controls in the table, in the harmonics div
+      const cr = harmonicsDiv.querySelector('input[name="csr"]')
+      const sr = harmonicsDiv.querySelector('input[name="sr"]')
+      const obs = harmonicsDiv.querySelector('textarea[name="obs"]')
+      checkField(cr)
+      checkField(sr)
+      // checkField(obs)
+      // convert obs to a series of numbers separated by whitespace, newlines, or commas
+      const obsValues = obs.value.split(/[,\s]+/).map(n => parseFloat(n))
+      // strip out any values that aren't numbers
+      const goodValues = obsValues.filter(n => !isNaN(n))
+      const formValues = { csr: cr.value, sr: sr.value, obs: goodValues }
+      return formValues
+    } else {
+      return undefined
+    }
+  },
   addChangeHandlers: function(form) {
     // find the inputs and text areas in this form
     const inputs = form.querySelectorAll('input')
