@@ -1,4 +1,3 @@
-
 /* user-defined CSS */
 
 /* styling for related links */
@@ -444,6 +443,11 @@ table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):no
 }
 tr.match_row {
   background-color: rgba(144, 238, 144, 0.2);
+}
+
+tr.match_harmonic {
+  color: rgba(255, 250, 205, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 /******
