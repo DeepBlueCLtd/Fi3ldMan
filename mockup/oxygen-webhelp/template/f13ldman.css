@@ -461,7 +461,10 @@ tr.match_row {
     margin-bottom: 0px;
     margin-top: 0px;  
 }
-
+.wh_harmonics div.error {
+  color: red;
+  font-size: 70%;
+}
 .wh_harmonics td {
     text-align: right;
     line-height: 1.4em;
