@@ -198,6 +198,9 @@ const hCalc = {
         // retrieve the form values from local storage
         const formString = JSON.stringify({})
         hCalc.initialiseForm(harmonicsForm, formString)
+        // store formString in browser local storage
+        localStorage.setItem(FORM_KEY, formString)  
+
       } else {
         // store the form contents in local storage
         const harmonicsDiv = document.querySelector('.wh_harmonics')
