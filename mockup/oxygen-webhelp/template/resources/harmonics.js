@@ -232,7 +232,6 @@ const hCalc = {
         // store formString in browser local storage
         localStorage.setItem(FORM_KEY, formString)  
       } else if (value === 'Calc') {
-        console.log('do speed calc')
         const harmonicsForm = document.querySelector('.wh_harmonics')
         const speed = harmonicsForm?.querySelector('input.speed')
         const sr = harmonicsForm?.querySelector('input[name="sr"]')
