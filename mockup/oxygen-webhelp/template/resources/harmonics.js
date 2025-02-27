@@ -268,14 +268,8 @@ const hCalc = {
     }
     // add change handler to each input and textarea
     forEach(inputs, function(input) {
-      console.log('adding handler to', input)
       switch (input.type) {
         case 'checkbox':
-          input.addEventListener('change', function(e) {
-            handleInputChange(input.checked)
-          })
-          break
-        case 'radio':
           input.addEventListener('change', function(e) {
             handleInputChange(input.checked)
           })
