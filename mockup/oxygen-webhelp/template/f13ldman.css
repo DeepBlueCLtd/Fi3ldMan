@@ -465,7 +465,7 @@ tr.match_harmonic {
     margin-bottom: 0px;
     margin-top: 0px;  
 }
-.wh_harmonics div.error {
+.wh_harmonics .error {
   color: red;
   font-size: 70%;
 }
@@ -477,9 +477,13 @@ tr.match_harmonic {
 .wh_harmonics input.working {
   width: 20px;
 }
+.wh_harmonics .speed-head {
+  display: block;
+  margin-top: 30px;
+}
 
 .wh_harmonics input.clear {
-  width: 60px;
+  width: 70px;
   float: right;
 }
 

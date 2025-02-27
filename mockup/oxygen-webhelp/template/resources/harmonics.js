@@ -11,6 +11,10 @@ const harmForm = `<div class=" wh_harmonics d-print-none ">
     </table>
     <input class="clear" name="clear" value="Clear" type="button"/>
   </form>
+  <strong class="speed-head">Speed calculator</strong>
+  <form class="speed-form">
+    Speed:<input class='speed' /> <input type="button" value="Calc"/>
+  </form>
 </div>`
 
 const FORM_KEY = 'harmonics-for-key'
@@ -18,6 +22,7 @@ const FORM_KEY = 'harmonics-for-key'
 const hCalc = {
   sigStable: undefined,
   sigRows: undefined,
+  tpk: undefined,
   init: function() {
     if (!hCalc.sigsTable) {
       forEach(document.getElementsByTagName('table'), function(table) {
@@ -38,6 +43,32 @@ const hCalc = {
           const formString = localStorage.getItem(FORM_KEY)
           hCalc.initialiseForm(harmonicsForm, formString)
           hCalc.addChangeHandlers(harmonicsForm)
+
+              // also try the TPF value
+          const row2 = hCalc.sigsTable.rows[1]
+          const fifthCell = row2.cells[5]
+          if (fifthCell.textContent) {
+            const match = fifthCell.textContent.match(/(\d+(?:\.\d+)?)/)
+            if (match) {
+              hCalc.tpk = parseFloat(match)
+            } else {
+              // disable the calc button
+              const calcButton = harmonicsForm?.querySelector('input[type="button"][value="Calc"]')
+              const speedInput = harmonicsForm?.querySelector('.speed')
+              if (calcButton) {
+                // append a div error next to the calc button
+                const errorDiv = document.createElement('span')
+                errorDiv.classList.add('error')
+                errorDiv.textContent = 'Disabled, TPK not found'
+                // put the div into the parent cell, after the input control
+                calcButton.parentNode.insertBefore(errorDiv, calcButton)
+                // remove the calcButton
+                calcButton.remove()
+                speedInput.remove()
+              }
+            }
+          }
+
         }
       }
     }
@@ -200,7 +231,15 @@ const hCalc = {
         hCalc.initialiseForm(harmonicsForm, formString)
         // store formString in browser local storage
         localStorage.setItem(FORM_KEY, formString)  
-
+      } else if (value === 'Calc') {
+        console.log('do speed calc')
+        const speedForm = document.querySelector('.wh_harmonics .speed-form')
+        const speed = speedForm?.querySelector('input.speed')
+        if (speed) {
+          speed.value = '22'
+        } else {
+          console.log('speed not found', speedForm, speed)
+        }
       } else {
         // store the form contents in local storage
         const harmonicsDiv = document.querySelector('.wh_harmonics')
@@ -224,6 +263,7 @@ const hCalc = {
     }
     // add change handler to each input and textarea
     forEach(inputs, function(input) {
+      console.log('adding handler to', input)
       switch (input.type) {
         case 'checkbox':
           input.addEventListener('change', function(e) {
@@ -237,7 +277,7 @@ const hCalc = {
           break
         case 'button':
           input.addEventListener('click', function(e) {
-            handleInputChange('clear')
+            handleInputChange(input.value)
           })
           break  
         default:
@@ -274,7 +314,6 @@ const hCalc = {
         }
         // this cell contains a series of harmonics separated by commas, or as ranges between two numbers. Extract the single values, and the ranges as pairs of numbers
         const harmonics = hCalc.getHarmonicsData(harmCell.textContent)
-        // console.log(ratioText)
         sigRows.push({row: row, ratio: ratioText, harmonics: harmonics})
       }
     })
