@@ -9,7 +9,7 @@ const harmForm = `<div class=" wh_harmonics d-print-none ">
       </tr>
       <tr><td>CSR:<input name="csr" value=""/></td></tr>
     </table>
-    <input class="clear" value="Clear" type="button"/>
+    <input class="clear" name="clear" value="Clear" type="button"/>
   </form>
 </div>`
 
@@ -50,6 +50,20 @@ const hCalc = {
       }
     }
   }, 
+  enableForm: function(enabled) {
+    // get the form
+    const form = document.querySelector('.wh_harmonics')
+    // get the inputs
+    const cr = form.querySelector('input[name="csr"]')
+    const sr = form.querySelector('input[name="sr"]')
+    const obs = form.querySelector('textarea[name="obs"]')
+    const clear = form.querySelector('input[name="clear"]')
+    // set them enabled/disabled according to 'enabled'
+    cr.disabled = !enabled
+    sr.disabled = !enabled
+    obs.disabled = !enabled
+    clear.disabled = !enabled
+},
   initialiseForm: function(form, formString) {
     if (formString) {
       const formValues = JSON.parse(formString)
@@ -197,7 +211,12 @@ const hCalc = {
           }
         }
       }
-      
+
+      // enable/disable the form if the working checkbox is checked/unchecked
+      if ([false, true].includes(value)) {   
+        hCalc.enableForm(value)
+      }
+
       hCalc.init()
     }
     // add change handler to each input and textarea
