@@ -12,6 +12,8 @@ const harmForm = `<div class=" wh_harmonics d-print-none ">
   </form>
 </div>`
 
+const FORM_KEY = 'harmonics-for-key'
+
 const hCalc = {
   sigStable: undefined,
   sigRows: undefined,
@@ -22,14 +24,18 @@ const hCalc = {
           hCalc.sigsTable = table
           hCalc.processTable(table)
         }
-      });  
-      // find the div with the class 'wh_content_area', and insert the harmonics form at the end of it
-      const contentArea = document.querySelector('.wh_content_area')
-      if (contentArea) {
-        contentArea.insertAdjacentHTML('beforeend', harmForm)
-        // find the new harmonics form and attach event handlers to it
-        const harmonicsForm = document.querySelector('form[name="harmonics-form"]')
-        hCalc.addChangeHandlers(harmonicsForm)
+      });
+      // only insert the search form if this is a signatures page
+      if (hCalc.sigsTable && hCalc.sigRows) {
+        // find the div with the class 'wh_content_area', and insert the harmonics form at the end of it
+        const contentArea = document.querySelector('.wh_content_area')
+        if (contentArea) {
+          contentArea.insertAdjacentHTML('beforeend', harmForm)
+          // find the new harmonics form and attach event handlers to it
+          const harmonicsForm = document.querySelector('form[name="harmonics-form"]')
+          hCalc.initialiseForm(harmonicsForm)
+          hCalc.addChangeHandlers(harmonicsForm)
+        }
       }
     }
     if (hCalc.sigRows) {
@@ -41,6 +47,20 @@ const hCalc = {
       }
     }
   }, 
+  initialiseForm: function(form) {
+        // retrieve the form values from local storage
+        const formString = localStorage.getItem(FORM_KEY)
+        if (formString) {
+          const formValues = JSON.parse(formString)
+          const cr = form.querySelector('input[name="csr"]')
+          const sr = form.querySelector('input[name="sr"]')
+          const obs = form.querySelector('textarea[name="obs"]')
+          cr.value = formValues.csr
+          sr.value = formValues.sr
+          obs.value = formValues.obs    
+        }
+
+  },
   calcHarmonics: function(formValues, rows) {
     // loop through the rows
     forEach(rows, function(row) {
@@ -152,6 +172,19 @@ const hCalc = {
     const inputs = form.querySelectorAll('input')
     const textareas = form.querySelectorAll('textarea')
     const handleInputChange = function(value) {
+
+      // store the form contents in local storage
+      const harmonicsDiv = document.querySelector('.wh_harmonics')
+      const formValues = hCalc.getFormContents(harmonicsDiv)
+      if (formValues) {
+        // check if any form value is non-nully
+        if(formValues.csr || formValues.sr || (formValues.obs &&  formValues.obs.length > 0)) {
+          const formString = JSON.stringify(formValues)
+          // store formString in browser local storage
+          localStorage.setItem(FORM_KEY, formString)  
+        }
+      }
+      
       hCalc.init()
     }
     // add change handler to each input and textarea
