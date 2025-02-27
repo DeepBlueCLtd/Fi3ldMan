@@ -1,14 +1,15 @@
 console.log('harmonics.js loaded');
 
 const harmForm = `<div class=" wh_harmonics d-print-none ">
-<strong>Harmonic Calculator 2 &#x1F50D;</strong>
+<strong>&#x1F50D; Harmonic Calculator 2 <input class="working" name="working" checked type="checkbox"/>On</strong>
   <form name="harmonics-form" on>
     <table>
       <tr><td style="width:100px">SR:<input name="sr" value=""/></td>
         <td class="obs" rowspan="2">Observed:<textarea name="obs" rows="3"></textarea></td>
       </tr>
       <tr><td>CSR:<input name="csr" value=""/></td></tr>
-    </table>   
+    </table>
+    <input class="clear" value="Clear" type="button"/>
   </form>
 </div>`
 
@@ -32,8 +33,10 @@ const hCalc = {
         if (contentArea) {
           contentArea.insertAdjacentHTML('beforeend', harmForm)
           // find the new harmonics form and attach event handlers to it
-          const harmonicsForm = document.querySelector('form[name="harmonics-form"]')
-          hCalc.initialiseForm(harmonicsForm)
+          const harmonicsForm = document.querySelector('.wh_harmonics')
+          // retrieve the form values from local storage
+          const formString = localStorage.getItem(FORM_KEY)
+          hCalc.initialiseForm(harmonicsForm, formString)
           hCalc.addChangeHandlers(harmonicsForm)
         }
       }
@@ -47,19 +50,18 @@ const hCalc = {
       }
     }
   }, 
-  initialiseForm: function(form) {
-        // retrieve the form values from local storage
-        const formString = localStorage.getItem(FORM_KEY)
-        if (formString) {
-          const formValues = JSON.parse(formString)
-          const cr = form.querySelector('input[name="csr"]')
-          const sr = form.querySelector('input[name="sr"]')
-          const obs = form.querySelector('textarea[name="obs"]')
-          cr.value = formValues.csr
-          sr.value = formValues.sr
-          obs.value = formValues.obs    
-        }
-
+  initialiseForm: function(form, formString) {
+    if (formString) {
+      const formValues = JSON.parse(formString)
+      const cr = form.querySelector('input[name="csr"]')
+      const sr = form.querySelector('input[name="sr"]')
+      const obs = form.querySelector('textarea[name="obs"]')
+      const working = form.querySelector('input[name="working"]')
+      cr.value = formValues.csr || ''
+      sr.value = formValues.sr || ''
+      obs.value = formValues.obs || ''
+      working.checked = formValues.working || true
+    }
   },
   calcHarmonics: function(formValues, rows) {
     // loop through the rows
@@ -68,6 +70,7 @@ const hCalc = {
       row.row.cells[2].querySelector('table.calc_harms')?.remove()
       // if the row has a class of 'match_row', remove that class
       row.row.classList.remove('match_row')
+      if(!formValues.working) return
       // check we have relevant data
       const rowType = row.ratio.type
       if (rowType === 's' && !formValues.sr) return
@@ -156,12 +159,14 @@ const hCalc = {
       const obs = harmonicsDiv.querySelector('textarea[name="obs"]')
       checkField(cr)
       checkField(sr)
+      const working = harmonicsDiv.querySelector('input[name="working"]')
+
       // checkField(obs)
       // convert obs to a series of numbers separated by whitespace, newlines, or commas
       const obsValues = obs.value.split(/[,\s]+/).map(n => parseFloat(n))
       // strip out any values that aren't numbers
       const goodValues = obsValues.filter(n => !isNaN(n))
-      const formValues = { csr: cr.value, sr: sr.value, obs: goodValues }
+      const formValues = { csr: cr.value, sr: sr.value, obs: goodValues, working: working.checked }
       return formValues
     } else {
       return undefined
@@ -172,16 +177,24 @@ const hCalc = {
     const inputs = form.querySelectorAll('input')
     const textareas = form.querySelectorAll('textarea')
     const handleInputChange = function(value) {
-
-      // store the form contents in local storage
-      const harmonicsDiv = document.querySelector('.wh_harmonics')
-      const formValues = hCalc.getFormContents(harmonicsDiv)
-      if (formValues) {
-        // check if any form value is non-nully
-        if(formValues.csr || formValues.sr || (formValues.obs &&  formValues.obs.length > 0)) {
-          const formString = JSON.stringify(formValues)
-          // store formString in browser local storage
-          localStorage.setItem(FORM_KEY, formString)  
+      // special case for the clear button
+      if (value === 'clear') {
+        // find the new harmonics form and attach event handlers to it
+        const harmonicsForm = document.querySelector('.wh_harmonics')
+        // retrieve the form values from local storage
+        const formString = JSON.stringify({})
+        hCalc.initialiseForm(harmonicsForm, formString)
+      } else {
+        // store the form contents in local storage
+        const harmonicsDiv = document.querySelector('.wh_harmonics')
+        const formValues = hCalc.getFormContents(harmonicsDiv)
+        if (formValues) {
+          // check if any form value is non-nully
+          if(formValues.csr || formValues.sr || (formValues.obs &&  formValues.obs.length > 0)) {
+            const formString = JSON.stringify(formValues)
+            // store formString in browser local storage
+            localStorage.setItem(FORM_KEY, formString)  
+          }
         }
       }
       
@@ -189,9 +202,27 @@ const hCalc = {
     }
     // add change handler to each input and textarea
     forEach(inputs, function(input) {
-      input.addEventListener('keyup', function() {
-        handleInputChange(input.value)
-      })
+      switch (input.type) {
+        case 'checkbox':
+          input.addEventListener('change', function(e) {
+            handleInputChange(input.checked)
+          })
+          break
+        case 'radio':
+          input.addEventListener('change', function(e) {
+            handleInputChange(input.checked)
+          })
+          break
+        case 'button':
+          input.addEventListener('click', function(e) {
+            handleInputChange('clear')
+          })
+          break  
+        default:
+          input.addEventListener('keyup', function() {
+            handleInputChange(input.value)
+          })
+      }
     })
     forEach(textareas, function(textarea) {
       textarea.addEventListener('keyup', function() {

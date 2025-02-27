@@ -474,6 +474,14 @@ tr.match_harmonic {
     line-height: 1.4em;
     padding: 0;
 }
+.wh_harmonics input.working {
+  width: 20px;
+}
+
+.wh_harmonics input.clear {
+  width: 60px;
+  float: right;
+}
 
 .wh_harmonics td.obs {
     text-align: left;
