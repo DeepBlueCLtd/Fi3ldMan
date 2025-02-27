@@ -233,12 +233,17 @@ const hCalc = {
         localStorage.setItem(FORM_KEY, formString)  
       } else if (value === 'Calc') {
         console.log('do speed calc')
-        const speedForm = document.querySelector('.wh_harmonics .speed-form')
-        const speed = speedForm?.querySelector('input.speed')
-        if (speed) {
-          speed.value = '22'
-        } else {
-          console.log('speed not found', speedForm, speed)
+        const harmonicsForm = document.querySelector('.wh_harmonics')
+        const speed = harmonicsForm?.querySelector('input.speed')
+        const sr = harmonicsForm?.querySelector('input[name="sr"]')
+        if (speed && sr) {
+          if (speed.value && !sr.value) {
+            sr.value = parseFloat(speed.value) / hCalc.tpk
+          } else if (!speed.value && sr.value) {
+            speed.value = parseFloat(sr.value) * hCalc.tpk
+          } else {
+            window.alert('One of Speed or SR must be empty')
+          }
         }
       } else {
         // store the form contents in local storage
