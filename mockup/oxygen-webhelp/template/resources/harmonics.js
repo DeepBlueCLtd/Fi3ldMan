@@ -201,15 +201,18 @@ const hCalc = {
     row.cells[2].querySelector('table.calc_harms')?.remove()
   },
   getRatioData: function(text) {
+    // we have a special case where an item uses the construct `S1 or S3`.  Look for this, and ignore it
+    if (text.toLowerCase().includes(' or ')) return
+
     // see if this cell contains the letter S followed by a number (including decimals)
     const match = text.match(/S(\d+(?:\.\d+)?)/)
     if (match) {
       return {type:'s', 'value': parseFloat(match[1])}
     }
-    // see if this cell contains a number followed by ' x CSR'. If it does, extract the type and number
-    let match2 = text.match(/(\d+) x CSR/)
-    if (match2) {
-      return {type:'c', 'value': parseInt(match2[1])}
+    // see if this cell contains an integer or a decimal floating point number followed by ' x CSR'. If it does, extract the type and number
+    let match1 = text.match(/(\d+(?:\.\d+)?) x CSR/)
+    if (match1) {
+      return {type:'c', 'value': parseFloat(match1[1])}
     }
     // extract all numbers from the text using regex
     // const matches = text.match(/\d+(?:\.\d+)?/g) || []
