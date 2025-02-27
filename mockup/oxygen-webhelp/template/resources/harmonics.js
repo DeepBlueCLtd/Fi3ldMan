@@ -11,10 +11,10 @@ const harmForm = `<div class=" wh_harmonics d-print-none ">
     </table>
     <input class="clear" name="clear" value="Clear" type="button"/>
   </form>
-  <strong class="speed-head">Speed calculator</strong>
+  <!--<strong class="speed-head">Speed calculator</strong>
   <form class="speed-form">
     Speed:<input class='speed' /> <input type="button" value="Calc"/>
-  </form>
+  </form>-->
 </div>`
 
 const FORM_KEY = 'harmonics-for-key'
@@ -223,7 +223,7 @@ const hCalc = {
     const textareas = form.querySelectorAll('textarea')
     const handleInputChange = function(value) {
       // special case for the clear button
-      if (value === 'clear') {
+      if (value === 'Clear') {
         // find the new harmonics form and attach event handlers to it
         const harmonicsForm = document.querySelector('.wh_harmonics')
         // retrieve the form values from local storage
