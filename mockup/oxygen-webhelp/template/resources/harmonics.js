@@ -328,7 +328,7 @@ const hCalc = {
         // see if the is a bold harmonic
         if (harmCell.querySelector('b')) {
           const boldItem = harmCell.querySelector('b')
-          dominant = parseInt(boldItem.textContent)
+          dominant = parseInt(boldItem.textContent.trim())
         }
         const rowData = {row: row, ratio: ratioText, harmonics: harmonics, dominant: dominant}
         DEBUG && console.log('row data', rowData)
