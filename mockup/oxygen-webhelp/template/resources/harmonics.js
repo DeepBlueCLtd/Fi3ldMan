@@ -142,6 +142,7 @@ const hCalc = {
         }
         let scaledHarmonic = ''
         let matchesObs = false
+        const isDominant =  harm === row.dominant
         if (harm === '...') {
           harmCell.textContent = '...'
           scaledHarmonic = ''
@@ -172,6 +173,10 @@ const hCalc = {
         if (matchesObs) {
           row.row.classList.add('match_row')
           harmRow.classList.add('match_harmonic')
+        }
+        if (isDominant) {
+          harmCell.classList.add('dominant')
+          scaledCell.classList.add('dominant')
         }
         // add this cell to the row
         harmRow.appendChild(harmCell)
@@ -319,7 +324,15 @@ const hCalc = {
         // this cell contains a series of harmonics separated by commas, or as ranges between two numbers. Extract the single values, and the ranges as pairs of numbers
         const harmonics = hCalc.getHarmonicsData(harmCell.textContent)
         DEBUG && console.log('ratio', ratioText, 'harmonics', harmonics)
-        sigRows.push({row: row, ratio: ratioText, harmonics: harmonics})
+        let dominant = ''
+        // see if the is a bold harmonic
+        if (harmCell.querySelector('b')) {
+          const boldItem = harmCell.querySelector('b')
+          dominant = parseInt(boldItem.textContent)
+        }
+        const rowData = {row: row, ratio: ratioText, harmonics: harmonics, dominant: dominant}
+        DEBUG && console.log('row data', rowData)
+        sigRows.push(rowData)
       }
     })
     hCalc.sigRows = sigRows

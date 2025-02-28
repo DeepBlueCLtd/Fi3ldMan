@@ -450,6 +450,10 @@ tr.match_harmonic {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.calc_harms .dominant {
+  font-weight: bold !important;
+}
+
 /******
  * enter harmonics details
  */
