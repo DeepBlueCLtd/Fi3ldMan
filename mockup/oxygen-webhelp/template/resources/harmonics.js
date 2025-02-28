@@ -1,5 +1,5 @@
 console.log('harmonics.js loaded');
-
+const DEBUG = false
 const harmForm = `<div class=" wh_harmonics d-print-none ">
 <strong>&#x1F50D; Harmonic Calculator 2 <input class="working" name="working" checked type="checkbox"/>On</strong>
   <form name="harmonics-form" on>
@@ -27,6 +27,7 @@ const hCalc = {
     if (!hCalc.sigsTable) {
       forEach(document.getElementsByTagName('table'), function(table) {
         if (table.getAttribute('data-cols')=== '6') {
+          DEBUG && console.log('found signatures table', table)
           hCalc.sigsTable = table
           hCalc.processTable(table)
         }
@@ -48,9 +49,11 @@ const hCalc = {
           const row2 = hCalc.sigsTable.rows[1]
           const fifthCell = row2.cells[5]
           if (fifthCell.textContent) {
+            DEBUG && console.log('TPK', fifthCell.textContent)
             const match = fifthCell.textContent.match(/(\d+(?:\.\d+)?)/)
             if (match) {
               hCalc.tpk = parseFloat(match)
+              DEBUG && console.log('Parsed TPK', hCalc.tpk)
             } else {
               // disable the calc button
               const calcButton = harmonicsForm?.querySelector('input[type="button"][value="Calc"]')
@@ -98,6 +101,7 @@ const hCalc = {
   initialiseForm: function(form, formString) {
     if (formString) {
       const formValues = JSON.parse(formString)
+      DEBUG && console.log('initialising form', formValues)
       const cr = form.querySelector('input[name="csr"]')
       const sr = form.querySelector('input[name="sr"]')
       const obs = form.querySelector('textarea[name="obs"]')
@@ -109,7 +113,7 @@ const hCalc = {
     }
   },
   calcHarmonics: function(formValues, rows) {
-    // loop through the rows
+    DEBUG && console.log('Calc harmonics, working:', formValues.working, 'sr:', formValues.sr, 'csr:', formValues.csr, 'obs', formValues.obs)    // loop through the rows
     forEach(rows, function(row) {
       // remove the table with class 'calc_harms', if it exists
       row.row.cells[2].querySelector('table.calc_harms')?.remove()
@@ -162,6 +166,8 @@ const hCalc = {
         if (Array.isArray(formValues.obs) && formValues.obs.includes(scaledHarmonic)) {
           matchesObs = true
         }
+        DEBUG && console.log('Calc harmonic', harm, scaledHarmonic, 'matches obs', matchesObs)
+
         scaledCell.textContent = scaledHarmonic
         if (matchesObs) {
           row.row.classList.add('match_row')
@@ -312,6 +318,7 @@ const hCalc = {
         }
         // this cell contains a series of harmonics separated by commas, or as ranges between two numbers. Extract the single values, and the ranges as pairs of numbers
         const harmonics = hCalc.getHarmonicsData(harmCell.textContent)
+        DEBUG && console.log('ratio', ratioText, 'harmonics', harmonics)
         sigRows.push({row: row, ratio: ratioText, harmonics: harmonics})
       }
     })
