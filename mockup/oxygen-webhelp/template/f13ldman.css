@@ -446,6 +446,7 @@ table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):no
   margin-left: 5px;
   font-weight: bold;
   text-align: center;
+  font-size: 0.9em;
 }
 
 tr.match_row {
