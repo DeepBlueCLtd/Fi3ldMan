@@ -1,5 +1,7 @@
 console.log('harmonics.js loaded');
 const DEBUG = false
+const SHOW_ABSOLUTE_CALCS = true
+const FREQ_ERROR = 1
 const harmForm = `<div class=" wh_harmonics d-print-none ">
 <strong>&#x1F50D; Harmonic Calculator 2 <input class="working" name="working" checked type="checkbox"/>On</strong>
   <form name="harmonics-form" on>
@@ -164,7 +166,10 @@ const hCalc = {
             }
           }  
         }
-        if (Array.isArray(formValues.obs) && formValues.obs.includes(scaledHarmonic)) {
+        if (Array.isArray(formValues.obs) && formValues.obs.find((value) => {
+          const res = Math.abs(value - scaledHarmonic) <= FREQ_ERROR
+          return res
+        })) {
           matchesObs = true
         }
         DEBUG && console.log('Calc harmonic', harm, scaledHarmonic, 'matches obs', matchesObs)
