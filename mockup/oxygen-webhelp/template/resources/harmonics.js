@@ -4,10 +4,10 @@ const harmForm = `<div class=" wh_harmonics d-print-none ">
 <strong>&#x1F50D; Harmonic Calculator 2 <input class="working" name="working" checked type="checkbox"/>On</strong>
   <form name="harmonics-form" on>
     <table>
-      <tr><td style="width:100px">SR:<input name="sr" value=""/></td>
-        <td class="obs" rowspan="2">Observed:<textarea name="obs" rows="3"></textarea></td>
+      <tr><td style="width:100px">SR (Hz):<input name="sr" value=""/></td>
+        <td class="obs" rowspan="2">Observed (Hz):<textarea name="obs" rows="3"></textarea></td>
       </tr>
-      <tr><td>CSR:<input name="csr" value=""/></td></tr>
+      <tr><td>CSR (Hz):<input name="csr" value=""/></td></tr>
     </table>
     <input class="clear" name="clear" value="Clear" type="button"/>
   </form>
@@ -169,7 +169,7 @@ const hCalc = {
         }
         DEBUG && console.log('Calc harmonic', harm, scaledHarmonic, 'matches obs', matchesObs)
 
-        scaledCell.textContent = scaledHarmonic
+        scaledCell.textContent = scaledHarmonic + ' Hz'
         if (matchesObs) {
           row.row.classList.add('match_row')
           harmRow.classList.add('match_harmonic')
