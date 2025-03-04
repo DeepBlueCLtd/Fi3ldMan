@@ -450,6 +450,10 @@ tr.match_harmonic {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.matches {
+  background-color: rgba(244, 191, 0, 0.3) !important;
+}
+
 .calc_harms .dominant {
   font-weight: bold !important;
 }
@@ -461,7 +465,7 @@ tr.match_harmonic {
   position:fixed;
   width: 250px;
   right:0;
-  top:500px;
+  top:580px;
   z-index: 1000;
   text-align: center;
 } 

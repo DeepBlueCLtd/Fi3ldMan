@@ -7,7 +7,7 @@ const harmForm = `<div class=" wh_harmonics d-print-none ">
   <form name="harmonics-form" on>
     <table>
       <tr><td style="width:100px">SR (Hz):<input name="sr" value=""/></td>
-        <td class="obs" rowspan="2">Observed (Hz):<textarea name="obs" rows="3"></textarea></td>
+        <td class="obs" rowspan="2">Observed (Hz):<span name='h_tick' style='font-size: 1em'></span><textarea name="obs" rows="3"></textarea></td>
       </tr>
       <tr><td>CSR (Hz):<input name="csr" value=""/></td></tr>
     </table>
@@ -116,6 +116,7 @@ const hCalc = {
   },
   calcHarmonics: function(formValues, rows) {
     DEBUG && console.log('Calc harmonics, working:', formValues.working, 'sr:', formValues.sr, 'csr:', formValues.csr, 'obs', formValues.obs)    // loop through the rows
+    let harmsMatches = 0
     forEach(rows, function(row) {
       // remove the table with class 'calc_harms', if it exists
       row.row.cells[2].querySelector('table.calc_harms')?.remove()
@@ -170,6 +171,7 @@ const hCalc = {
           const res = Math.abs(value - scaledHarmonic) <= FREQ_ERROR
           return res
         })) {
+          harmsMatches++
           matchesObs = true
         }
         DEBUG && console.log('Calc harmonic', harm, scaledHarmonic, 'matches obs', matchesObs)
@@ -193,6 +195,23 @@ const hCalc = {
       row.row.cells[2].appendChild(table)
       
     })
+    // find the tick
+    const harmonicsDiv = document.querySelector('.wh_harmonics')
+    const tickMarker = harmonicsDiv.querySelector('span[name="h_tick"]')
+    // remove matches class from harmonicsDiv
+    harmonicsDiv.classList.remove('matches')
+    console.log('tickMarker', tickMarker)
+    if (harmsMatches > 0) {
+      tickMarker.textContent = '\u2714' + ` (${harmsMatches} matches)`
+      // set style:display to false for this element
+      tickMarker.style.display = 'block'
+      harmonicsDiv.classList.add('matches')
+    } else {
+      tickMarker.textContent = ''
+      // set style:display to false for this element
+      tickMarker.style.display = 'none'
+    }
+
   },
   getFormContents: function(harmonicsDiv) {
     if (harmonicsDiv) {
