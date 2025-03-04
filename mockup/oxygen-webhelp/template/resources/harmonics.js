@@ -230,7 +230,8 @@ const hCalc = {
     // remove matches class from harmonicsDiv
     harmonicsDiv.classList.remove('matches')
     if (harmsMatches > 0) {
-      tickMarker.textContent = '\u2714' + ` (${harmsMatches} matches)`
+      const suffix = harmsMatches === 1 ? 'match' : 'matches'
+      tickMarker.textContent = '\u2714' + ` (${harmsMatches} ${suffix})`
       // set style:display to false for this element
       tickMarker.style.display = 'block'
       harmonicsDiv.classList.add('matches')
