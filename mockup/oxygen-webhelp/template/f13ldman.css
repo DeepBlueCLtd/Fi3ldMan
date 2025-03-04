@@ -441,6 +441,13 @@ table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):no
   color: #FFF;
   font-weight: bold;
 }
+
+.first_harm {
+  margin-left: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
 tr.match_row {
   background-color: rgba(244, 191, 0, 0.3);
 }

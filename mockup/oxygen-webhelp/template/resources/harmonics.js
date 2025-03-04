@@ -2,6 +2,8 @@ console.log('harmonics.js loaded');
 const DEBUG = false
 const SHOW_ABSOLUTE_CALCS = true
 const FREQ_ERROR = 1
+
+
 const harmForm = `<div class=" wh_harmonics d-print-none ">
 <strong>&#x1F50D; Harmonic Calculator 2 <input class="working" name="working" checked type="checkbox"/>On</strong>
   <form name="harmonics-form" on>
@@ -115,10 +117,15 @@ const hCalc = {
     }
   },
   calcHarmonics: function(formValues, rows) {
+    const trimNumber = (num) => {
+      return Math.round(num * 100) / 100
+    }
+
     DEBUG && console.log('Calc harmonics, working:', formValues.working, 'sr:', formValues.sr, 'csr:', formValues.csr, 'obs', formValues.obs)    // loop through the rows
     let harmsMatches = 0
     forEach(rows, function(row) {
       // remove the table with class 'calc_harms', if it exists
+      row.row.cells[1].querySelector('.first_harm')?.remove()
       row.row.cells[2].querySelector('table.calc_harms')?.remove()
       // if the row has a class of 'match_row', remove that class
       row.row.classList.remove('match_row')
@@ -128,9 +135,27 @@ const hCalc = {
       if (rowType === 's' && !formValues.sr) return
       if (rowType === 'c' && !formValues.csr) return
       // create a table element
-      const table = document.createElement('table')
+      const harms_table = document.createElement('table')
+      const first_harm = document.createElement('div')
       // add the class 'calc_harms'
-      table.classList.add('calc_harms')
+      harms_table.classList.add('calc_harms')
+      // stick in the first harmonic div into the first cell
+      if (rowType === 's' || rowType === 'c') {
+        first_harm.classList.add('calc_harms')
+        first_harm.classList.add('first_harm')
+        let firstHarmonic = ''
+        switch(row.ratio.type) {
+          case 's':
+            firstHarmonic = trimNumber(row.ratio.value * formValues.sr)
+            break
+          case 'c':
+            firstHarmonic = trimNumber(row.ratio.value * formValues.csr)
+            break
+          default:
+            firstHarmonic = ''
+        }
+        first_harm.textContent = 'H1:' + firstHarmonic + ' Hz'
+      }
       // loop through the harmonics in this row
       forEach(row.harmonics, function(harm) {
         // create a row for this harmonic
@@ -140,9 +165,6 @@ const hCalc = {
         // add the harmonic to this cell
         harmCell.textContent = 'H' + harm + ':'
         const scaledCell = document.createElement('td')
-        const trimNumber = (num) => {
-          return Math.round(num * 100) / 100
-        }
         let scaledHarmonic = ''
         let matchesObs = false
         const isDominant =  harm === row.dominant
@@ -189,10 +211,11 @@ const hCalc = {
         harmRow.appendChild(harmCell)
         harmRow.appendChild(scaledCell)
         // add the row to the table
-        table.appendChild(harmRow)
+        harms_table.appendChild(harmRow)
       })
       // add the table to the row
-      row.row.cells[2].appendChild(table)
+      row.row.cells[2].appendChild(harms_table)
+      row.row.cells[1].appendChild(first_harm)
       
     })
     // find the tick
@@ -200,7 +223,6 @@ const hCalc = {
     const tickMarker = harmonicsDiv.querySelector('span[name="h_tick"]')
     // remove matches class from harmonicsDiv
     harmonicsDiv.classList.remove('matches')
-    console.log('tickMarker', tickMarker)
     if (harmsMatches > 0) {
       tickMarker.textContent = '\u2714' + ` (${harmsMatches} matches)`
       // set style:display to false for this element
@@ -356,7 +378,10 @@ const hCalc = {
         }
         const rowData = {row: row, ratio: ratioText, harmonics: harmonics, dominant: dominant}
         DEBUG && console.log('row data', rowData)
-        sigRows.push(rowData)
+        // only include row if we are showing absolute calcs, or if this is not an absolute ratio
+        if(SHOW_ABSOLUTE_CALCS || rowData.ratio.type !== 'a') {
+          sigRows.push(rowData)
+        }
       }
     })
     hCalc.sigRows = sigRows
