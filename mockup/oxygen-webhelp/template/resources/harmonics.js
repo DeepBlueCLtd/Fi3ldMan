@@ -181,10 +181,16 @@ const hCalc = {
               break
             default: {
               scaledHarmonic = row.ratio.value.replace(/\d+(?:\.\d+)?/g, n => {
-                const res = trimNumber(n*harm)
+                const scaled = trimNumber(n*harm)
                 const obsArray = formValues.obs
-                if (obsArray.includes(res)) matchesObs = true
-                return res
+                if (obsArray.find(value => {
+                  const res = Math.abs(value - scaled) <= FREQ_ERROR
+                  return res
+                })) {
+                  matchesObs = true
+                  harmsMatches++
+                }
+                return scaled
               })
             }
           }  
