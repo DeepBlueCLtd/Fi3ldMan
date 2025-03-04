@@ -442,7 +442,7 @@ table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):no
   font-weight: bold;
 }
 tr.match_row {
-  background-color: rgba(144, 238, 144, 0.2);
+  background-color: rgba(243, 140, 43, 0.3);
 }
 
 tr.match_harmonic {
