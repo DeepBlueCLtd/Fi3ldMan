@@ -98,7 +98,7 @@ Unit A28
 									<p outputclass="bold">
 										<image href="Content/Images/Yellow3.jpg"/> Unk Banjo </p>
 								</entry>
-								<entry>25 &amp; CSR</entry>
+								<entry>25 x CSR</entry>
 								<entry nameend="c4" namest="c3">H1</entry>
 								<entry nameend="c6" namest="c5">
 									CBR 34 with 
@@ -110,7 +110,7 @@ Unit A28
 								<entry outputclass="bkLightGray">
 									<xref format="dita" href="./Phase_F_Size.dita#Phase_F_Size/prop">Unk BBA</xref>
 								</entry>
-								<entry>135 &amp; CSR</entry>
+								<entry>135 x CSR</entry>
 								<entry nameend="c4" namest="c3">H1 &amp; 2</entry>
 								<entry nameend="c6" namest="c5">
 									CBR 54334. And some
