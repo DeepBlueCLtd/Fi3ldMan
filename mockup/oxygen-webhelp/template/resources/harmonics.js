@@ -1,13 +1,17 @@
 console.log('harmonics.js loaded');
 const DEBUG = false
+const SHOW_ABSOLUTE_CALCS = true
+const FREQ_ERROR = 1
+
+
 const harmForm = `<div class=" wh_harmonics d-print-none ">
 <strong>&#x1F50D; Harmonic Calculator 2 <input class="working" name="working" checked type="checkbox"/>On</strong>
   <form name="harmonics-form" on>
     <table>
-      <tr><td style="width:100px">SR:<input name="sr" value=""/></td>
-        <td class="obs" rowspan="2">Observed:<textarea name="obs" rows="3"></textarea></td>
+      <tr><td style="width:100px">SR (Hz):<input name="sr" value=""/></td>
+        <td class="obs" rowspan="2">Observed (Hz):<span name='h_tick' style='font-size: 1em'></span><textarea name="obs" rows="3"></textarea></td>
       </tr>
-      <tr><td>CSR:<input name="csr" value=""/></td></tr>
+      <tr><td>CSR (Hz):<input name="csr" value=""/></td></tr>
     </table>
     <input class="clear" name="clear" value="Clear" type="button"/>
   </form>
@@ -113,9 +117,15 @@ const hCalc = {
     }
   },
   calcHarmonics: function(formValues, rows) {
+    const trimNumber = (num) => {
+      return Math.round(num * 100) / 100
+    }
+
     DEBUG && console.log('Calc harmonics, working:', formValues.working, 'sr:', formValues.sr, 'csr:', formValues.csr, 'obs', formValues.obs)    // loop through the rows
+    let harmsMatches = 0
     forEach(rows, function(row) {
       // remove the table with class 'calc_harms', if it exists
+      row.row.cells[1].querySelector('.first_harm')?.remove()
       row.row.cells[2].querySelector('table.calc_harms')?.remove()
       // if the row has a class of 'match_row', remove that class
       row.row.classList.remove('match_row')
@@ -125,9 +135,27 @@ const hCalc = {
       if (rowType === 's' && !formValues.sr) return
       if (rowType === 'c' && !formValues.csr) return
       // create a table element
-      const table = document.createElement('table')
+      const harms_table = document.createElement('table')
+      const first_harm = document.createElement('div')
       // add the class 'calc_harms'
-      table.classList.add('calc_harms')
+      harms_table.classList.add('calc_harms')
+      // stick in the first harmonic div into the first cell
+      if (rowType === 's' || rowType === 'c') {
+        first_harm.classList.add('calc_harms')
+        first_harm.classList.add('first_harm')
+        let firstHarmonic = ''
+        switch(row.ratio.type) {
+          case 's':
+            firstHarmonic = trimNumber(row.ratio.value * formValues.sr)
+            break
+          case 'c':
+            firstHarmonic = trimNumber(row.ratio.value * formValues.csr)
+            break
+          default:
+            firstHarmonic = ''
+        }
+        first_harm.textContent = 'H1:' + firstHarmonic + ' Hz'
+      }
       // loop through the harmonics in this row
       forEach(row.harmonics, function(harm) {
         // create a row for this harmonic
@@ -137,9 +165,6 @@ const hCalc = {
         // add the harmonic to this cell
         harmCell.textContent = 'H' + harm + ':'
         const scaledCell = document.createElement('td')
-        const trimNumber = (num) => {
-          return Math.round(num * 100) / 100
-        }
         let scaledHarmonic = ''
         let matchesObs = false
         const isDominant =  harm === row.dominant
@@ -156,20 +181,30 @@ const hCalc = {
               break
             default: {
               scaledHarmonic = row.ratio.value.replace(/\d+(?:\.\d+)?/g, n => {
-                const res = trimNumber(n*harm)
+                const scaled = trimNumber(n*harm)
                 const obsArray = formValues.obs
-                if (obsArray.includes(res)) matchesObs = true
-                return res
+                if (obsArray.find(value => {
+                  const res = Math.abs(value - scaled) <= FREQ_ERROR
+                  return res
+                })) {
+                  matchesObs = true
+                  harmsMatches++
+                }
+                return scaled
               })
             }
           }  
         }
-        if (Array.isArray(formValues.obs) && formValues.obs.includes(scaledHarmonic)) {
+        if (Array.isArray(formValues.obs) && formValues.obs.find((value) => {
+          const res = Math.abs(value - scaledHarmonic) <= FREQ_ERROR
+          return res
+        })) {
+          harmsMatches++
           matchesObs = true
         }
         DEBUG && console.log('Calc harmonic', harm, scaledHarmonic, 'matches obs', matchesObs)
 
-        scaledCell.textContent = scaledHarmonic
+        scaledCell.textContent = scaledHarmonic + ' Hz'
         if (matchesObs) {
           row.row.classList.add('match_row')
           harmRow.classList.add('match_harmonic')
@@ -182,12 +217,30 @@ const hCalc = {
         harmRow.appendChild(harmCell)
         harmRow.appendChild(scaledCell)
         // add the row to the table
-        table.appendChild(harmRow)
+        harms_table.appendChild(harmRow)
       })
       // add the table to the row
-      row.row.cells[2].appendChild(table)
+      row.row.cells[2].appendChild(harms_table)
+      row.row.cells[1].appendChild(first_harm)
       
     })
+    // find the tick
+    const harmonicsDiv = document.querySelector('.wh_harmonics')
+    const tickMarker = harmonicsDiv.querySelector('span[name="h_tick"]')
+    // remove matches class from harmonicsDiv
+    harmonicsDiv.classList.remove('matches')
+    if (harmsMatches > 0) {
+      const suffix = harmsMatches === 1 ? 'match' : 'matches'
+      tickMarker.textContent = '\u2714' + ` (${harmsMatches} ${suffix})`
+      // set style:display to false for this element
+      tickMarker.style.display = 'block'
+      harmonicsDiv.classList.add('matches')
+    } else {
+      tickMarker.textContent = ''
+      // set style:display to false for this element
+      tickMarker.style.display = 'none'
+    }
+
   },
   getFormContents: function(harmonicsDiv) {
     if (harmonicsDiv) {
@@ -332,7 +385,10 @@ const hCalc = {
         }
         const rowData = {row: row, ratio: ratioText, harmonics: harmonics, dominant: dominant}
         DEBUG && console.log('row data', rowData)
-        sigRows.push(rowData)
+        // only include row if we are showing absolute calcs, or if this is not an absolute ratio
+        if(SHOW_ABSOLUTE_CALCS || rowData.ratio.type !== 'a') {
+          sigRows.push(rowData)
+        }
       }
     })
     hCalc.sigRows = sigRows

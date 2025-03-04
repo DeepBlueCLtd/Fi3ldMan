@@ -441,13 +441,26 @@ table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):no
   color: #FFF;
   font-weight: bold;
 }
+
+.first_harm {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.9em;
+}
+
 tr.match_row {
-  background-color: rgba(144, 238, 144, 0.2);
+  background-color: rgba(244, 191, 0, 0.3);
 }
 
 tr.match_harmonic {
   color: rgba(255, 250, 205, 0.8);
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.matches {
+  background-color: rgba(244, 191, 0, 0.3) !important;
 }
 
 .calc_harms .dominant {
@@ -461,7 +474,7 @@ tr.match_harmonic {
   position:fixed;
   width: 250px;
   right:0;
-  top:500px;
+  top:580px;
   z-index: 1000;
   text-align: center;
 } 
