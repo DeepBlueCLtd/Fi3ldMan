@@ -1,4 +1,3 @@
-
 /* user-defined CSS */
 
 /* styling for related links */
@@ -328,7 +327,7 @@ padding: 0 10px;
       top:200px;
       z-index: 1000;
   }
-
+ 
   /** the next blocks are for plain DITA-OT export
   /* make the related links float */
   .relref {
@@ -408,6 +407,121 @@ table.sortable thead td:not(.sorttable_sorted):not(.sorttable_sorted_reverse):no
 table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
     content: " \25B4\25BE" 
 }
+
+/******
+ * display calculated harmonics
+ */
+.calc_harms,  .wh_harmonics  {
+    font-family: monospace;
+    background-color: rgba(255, 250, 205, 0.8);
+    border: 1px solid rgb(255, 191, 0);
+    border-spacing: 4px;
+    border-collapse: separate;
+    border-radius: 5px;
+} 
+
+.calc_harms td {
+  font-weight: normal;
+  line-height: 1.2em;
+  font-size: 90%;
+  padding: 0px;
+  padding-left: 2px;
+  margin: 0px;
+  border: 0px;
+  text-align: right;
+}
+.calc_harms td:first-child {
+  padding-right: 2px;
+  text-align: left;
+} 
+
+.calc_harms tr.match {
+  background-color: #000;
+  border-color: #000;
+  color: #FFF;
+  font-weight: bold;
+}
+
+.first_harm {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+tr.match_row {
+  background-color: rgba(244, 191, 0, 0.3);
+}
+
+tr.match_harmonic {
+  color: rgba(255, 250, 205, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.matches {
+  background-color: rgba(244, 191, 0, 0.3) !important;
+}
+
+.calc_harms .dominant {
+  font-weight: bold !important;
+}
+
+/******
+ * enter harmonics details
+ */
+.wh_harmonics {
+  position:fixed;
+  width: 250px;
+  right:0;
+  top:580px;
+  z-index: 1000;
+  text-align: center;
+} 
+.wh_harmonics table, table.calc_harms {
+    margin-bottom: 0px;
+    margin-top: 0px;  
+}
+.wh_harmonics .error {
+  color: red;
+  font-size: 70%;
+}
+.wh_harmonics td {
+    text-align: right;
+    line-height: 1.4em;
+    padding: 0;
+}
+.wh_harmonics input.working {
+  width: 20px;
+}
+.wh_harmonics .speed-head {
+  display: block;
+  margin-top: 30px;
+}
+
+.wh_harmonics input.clear {
+  width: 70px;
+  float: right;
+}
+
+.wh_harmonics td.obs {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.wh_harmonics input {
+   width: 50px;  
+   margin: 0 !important;
+}
+
+.wh_harmonics textarea {
+   width: 120px; 
+}
+
+.wh_harmonics strong {
+  font-family: sans-serif;
+}
+
 /*
 * ==============================================
 * Style changes for Fi3ldMan project above this block

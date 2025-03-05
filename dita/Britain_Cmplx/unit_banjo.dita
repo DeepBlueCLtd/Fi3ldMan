@@ -98,7 +98,7 @@ Banjo
 									<p outputclass="bold">
 										<image href="Content/Images/Yellow3.jpg"/> Unk Banjo </p>
 								</entry>
-								<entry>25 &amp; CSR</entry>
+								<entry>25 x CSR</entry>
 								<entry nameend="c4" namest="c3">H1</entry>
 								<entry nameend="c6" namest="c5">
 									CBR 34 with 
@@ -110,7 +110,7 @@ Banjo
 								<entry outputclass="bkLightGray">
 									<xref format="dita" href="./Phase_F_Size.dita#Phase_F_Size/prop">Unk BBA</xref>
 								</entry>
-								<entry>135 &amp; CSR</entry>
+								<entry>135 x CSR</entry>
 								<entry nameend="c4" namest="c3">H1 &amp; 2</entry>
 								<entry nameend="c6" namest="c5">
 									CBR 54334. And some
@@ -155,7 +155,7 @@ Banjo
 									<p outputclass="bold">
 										<image href="Content/Images/Yellow3.jpg"/> Unk BBA </p>
 								</entry>
-								<entry>25 &amp; CSR</entry>
+								<entry>25 x CSR</entry>
 								<entry nameend="c4" namest="c3">H1</entry>
 								<entry nameend="c6" namest="c5">
 									CBR 34 with 
@@ -167,7 +167,7 @@ Banjo
 								<entry outputclass="bkLightGray">
               Unk BBA
             </entry>
-								<entry>135 &amp; CSR</entry>
+								<entry>135 x CSR</entry>
 								<entry nameend="c4" namest="c3">H1 &amp; 2</entry>
 								<entry nameend="c6" namest="c5">
 									CBR 54334. And some
@@ -208,7 +208,7 @@ Banjo
 									<p outputclass="bold">
 										<image href="Content/Images/Yellow3.jpg"/> Unk BBA </p>
 								</entry>
-								<entry>25 &amp; CSR</entry>
+								<entry>25 x CSR</entry>
 								<entry nameend="c4" namest="c3">H1</entry>
 								<entry nameend="c6" namest="c5">
 									CBR 34 with 
@@ -220,7 +220,7 @@ Banjo
 								<entry outputclass="bkLightGray">
               Unk BBA
             </entry>
-								<entry>135 &amp; CSR</entry>
+								<entry>135 x CSR</entry>
 								<entry nameend="c4" namest="c3">H1 &amp; 2</entry>
 								<entry nameend="c6" namest="c5">
 									CBR 54334. And some
@@ -261,7 +261,7 @@ Banjo
 									<p outputclass="bold">
 										<image href="Content/Images/Yellow3.jpg" id="DRAU_SDG"/> Unk BBA </p>
 								</entry>
-								<entry>25 &amp; CSR</entry>
+								<entry>25 x CSR</entry>
 								<entry nameend="c4" namest="c3">H1</entry>
 								<entry nameend="c6" namest="c5">
 									CBR 34 with 
@@ -273,7 +273,7 @@ Banjo
 								<entry outputclass="bkLightGray">
               Unk BBA
             </entry>
-								<entry>135 &amp; CSR</entry>
+								<entry>135 x CSR</entry>
 								<entry nameend="c4" namest="c3">H1 &amp; 2</entry>
 								<entry nameend="c6" namest="c5">
 									CBR 54334. And some
@@ -314,7 +314,7 @@ Banjo
 									<p outputclass="bold">
 										<image href="Content/Images/Yellow3.jpg"/> Unk BBA </p>
 								</entry>
-								<entry>25 &amp; CSR</entry>
+								<entry>25 x CSR</entry>
 								<entry nameend="c4" namest="c3">H1</entry>
 								<entry nameend="c6" namest="c5">
 									CBR 34 with 
@@ -326,7 +326,7 @@ Banjo
 								<entry outputclass="bkLightGray">
               Unk BBA
             </entry>
-								<entry>135 &amp; CSR</entry>
+								<entry>135 x CSR</entry>
 								<entry nameend="c4" namest="c3">H1 &amp; 2</entry>
 								<entry nameend="c6" namest="c5">
 									CBR 54334. And some
@@ -366,7 +366,7 @@ Banjo
 								<entry outputclass="bkLightGray">
               Unk BBA
             </entry>
-								<entry>135 &amp; CSR</entry>
+								<entry>135 x CSR</entry>
 								<entry nameend="c4" namest="c3">H1 &amp; 2</entry>
 								<entry nameend="c6" namest="c5">
 									CBR 54334. And some
@@ -385,12 +385,12 @@ Banjo
 							</row>
 							<row>
 								<entry morerows="1" outputclass="bkLightGray">Unk BBA</entry>
-								<entry>135 &amp; CSR (high)</entry>
+								<entry>135 x CSR (high)</entry>
 								<entry morerows="1" nameend="c4" namest="c3">H1 &amp; 2</entry>
 								<entry morerows="1" nameend="c6" namest="c5">CBR 54334</entry>
 							</row>
 							<row>
-								<entry>124 &amp; CSR (low)</entry>
+								<entry>124 x CSR (low)</entry>
 							</row>
 						</tbody>
 					</tgroup>
