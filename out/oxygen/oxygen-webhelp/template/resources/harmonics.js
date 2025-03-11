@@ -5,7 +5,7 @@ const FREQ_ERROR = 1
 
 
 const harmForm = `<div class=" wh_harmonics d-print-none ">
-<strong>&#x1F50D; Harmonic Calculator 2 <input class="working" name="working" checked type="checkbox"/>On</strong>
+<strong>&#x1F50D; Harmonic Calculator <input class="working" name="working" checked type="checkbox"/>On</strong>
   <form name="harmonics-form" on>
     <table>
       <tr><td style="width:100px">SR (Hz):<input name="sr" value=""/></td>
@@ -15,6 +15,7 @@ const harmForm = `<div class=" wh_harmonics d-print-none ">
     </table>
     <input class="clear" name="clear" value="Clear" type="button"/>
   </form>
+  <input class="absolute" name="absolute" type="checkbox"/>Calc absolute</input>
   <!--<strong class="speed-head">Speed calculator</strong>
   <form class="speed-form">
     Speed:<input class='speed' /> <input type="button" value="Calc"/>
@@ -27,6 +28,7 @@ const hCalc = {
   sigStable: undefined,
   sigRows: undefined,
   tpk: undefined,
+  calcAbsolute: undefined,
   init: function() {
     if (!hCalc.sigsTable) {
       forEach(document.getElementsByTagName('table'), function(table) {
@@ -36,6 +38,7 @@ const hCalc = {
           hCalc.processTable(table)
         }
       });
+      hCalc.calcAbsolute = false
       // only insert the search form if this is a signatures page
       if (hCalc.sigsTable && hCalc.sigRows) {
         // find the div with the class 'wh_content_area', and insert the harmonics form at the end of it
@@ -134,6 +137,7 @@ const hCalc = {
       const rowType = row.ratio.type
       if (rowType === 's' && !formValues.sr) return
       if (rowType === 'c' && !formValues.csr) return
+      if (rowType === 'a' && !hCalc.calcAbsolute) return
       // create a table element
       const harms_table = document.createElement('table')
       const first_harm = document.createElement('div')
@@ -165,6 +169,7 @@ const hCalc = {
         // add the harmonic to this cell
         harmCell.textContent = 'H' + harm + ':'
         const scaledCell = document.createElement('td')
+        scaledCell.classList.add('scaled')
         let scaledHarmonic = ''
         let matchesObs = false
         const isDominant =  harm === row.dominant
@@ -285,7 +290,7 @@ const hCalc = {
     // find the inputs and text areas in this form
     const inputs = form.querySelectorAll('input')
     const textareas = form.querySelectorAll('textarea')
-    const handleInputChange = function(value) {
+    const handleInputChange = function(value, name) {
       // special case for the clear button
       if (value === 'Clear') {
         // find the new harmonics form and attach event handlers to it
@@ -323,8 +328,13 @@ const hCalc = {
       }
 
       // enable/disable the form if the working checkbox is checked/unchecked
-      if ([false, true].includes(value)) {   
+      if (name === 'working' && [false, true].includes(value)) {   
         hCalc.enableForm(value)
+      }
+
+      // enable/disable absolute calc if the absolute checkbox is checked/unchecked
+      if (name === 'absolute' && [false, true].includes(value)) {   
+        hCalc.calcAbsolute = value
       }
 
       hCalc.init()
@@ -334,7 +344,7 @@ const hCalc = {
       switch (input.type) {
         case 'checkbox':
           input.addEventListener('change', function(e) {
-            handleInputChange(input.checked)
+            handleInputChange(input.checked, input.name)
           })
           break
         case 'button':
