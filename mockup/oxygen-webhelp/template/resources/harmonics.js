@@ -169,6 +169,7 @@ const hCalc = {
         // add the harmonic to this cell
         harmCell.textContent = 'H' + harm + ':'
         const scaledCell = document.createElement('td')
+        scaledCell.classList.add('scaled')
         let scaledHarmonic = ''
         let matchesObs = false
         const isDominant =  harm === row.dominant

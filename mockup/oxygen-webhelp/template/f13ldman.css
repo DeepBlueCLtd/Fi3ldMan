@@ -412,15 +412,31 @@ table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):no
  * display calculated harmonics
  */
 .calc_harms,  .wh_harmonics  {
-    font-family: monospace;
-    background-color: rgba(255, 250, 205, 0.8);
-    border: 1px solid rgb(255, 191, 0);
-    border-spacing: 4px;
-    border-collapse: separate;
+  font-family: monospace;
+  background-color: rgba(255, 250, 205, 0.8);
+  border: 1px solid rgb(255, 191, 0);
+  border-spacing: 4px;
+  border-collapse: separate;
     border-radius: 5px;
 } 
 
+@keyframes animateDown {
+  0% {
+    opacity: 0.4;
+    transform: translatey(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translatey(0);
+  }
+}
+
+.calc_harms td.scaled {
+  animation: animateDown 0.2s linear forwards;
+}
+
 .calc_harms td {
+
   font-weight: normal;
   line-height: 1.2em;
   font-size: 90%;
