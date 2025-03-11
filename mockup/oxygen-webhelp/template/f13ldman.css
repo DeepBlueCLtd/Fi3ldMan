@@ -494,6 +494,9 @@ tr.match_harmonic {
 .wh_harmonics input.working {
   width: 20px;
 }
+.wh_harmonics input.absolute {
+  width: 20px;
+}
 .wh_harmonics .speed-head {
   display: block;
   margin-top: 30px;
