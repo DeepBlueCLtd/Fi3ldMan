@@ -5,7 +5,7 @@ const FREQ_ERROR = 1
 
 
 const harmForm = `<div class=" wh_harmonics d-print-none ">
-<strong>&#x1F50D; Harmonic Calculator<input class="working" name="working" checked type="checkbox"/>On</strong>
+<strong>&#x1F50D; Harmonic Calculator <input class="working" name="working" checked type="checkbox"/>On</strong>
   <form name="harmonics-form" on>
     <table>
       <tr><td style="width:100px">SR (Hz):<input name="sr" value=""/></td>
@@ -169,6 +169,7 @@ const hCalc = {
         // add the harmonic to this cell
         harmCell.textContent = 'H' + harm + ':'
         const scaledCell = document.createElement('td')
+        scaledCell.classList.add('scaled')
         let scaledHarmonic = ''
         let matchesObs = false
         const isDominant =  harm === row.dominant
