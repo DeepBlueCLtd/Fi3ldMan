@@ -6,7 +6,6 @@
         <xsl:if test="oxyf:getParameter('webhelp.show.protection') = 'yes'">
             <xsl:copy>
                 <xsl:copy-of select="@*"/>
-                <xsl:attribute name="alt">test</xsl:attribute>
                 <xsl:if test="oxyf:getParameter('webhelp.protection.background.color') != ''">
                     <xsl:attribute name="style">
                         <xsl:text>background-color:</xsl:text>
