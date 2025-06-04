@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has("sl") && urlParams.has("r")) {
+      const sl = urlParams.get("sl");
+      const r = urlParams.get("r");
+    }
+  });
+</script>
+
+  <meta charset="UTF-8">
+  <title>Seasonal Interactivity Demo</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 20px 40px 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 6px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    .highlight {
+      background-color: #ffff99;
+    }
+    .vslider {
+      writing-mode: vertical-rl;
+      transform: none;
+      height: 220px;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has("sl") && urlParams.has("r")) {
+      const toggle = document.querySelector('input[type="checkbox"]');
+      if (toggle) {
+        toggle.checked = true;
+        toggle.dispatchEvent(new Event("click"));
+      }
+    }
+  });
+</script>
+  <h1>Seasonal Transmission Loss Tables</h1>
+  <label>
+    <input type="checkbox" onclick="toggleSeasonalTables(event)"> Enable Interactivity
+  </label>
+  <br><br>
+  <div id="slider_injection_point"></div>
+  <br><br>
+
+  <h2>Spring</h2>
+  <table id="spring_table">
+    <tr><th>Range ↓ / SL →</th><th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th><th>70</th><th>80</th><th>90</th><th>100</th></tr>
+<tr><td>1000</td><td>3.68</td><td>13.68</td><td>23.68</td><td>33.68</td><td>43.68</td><td>53.68</td><td>63.68</td><td>73.68</td><td>83.68</td><td>93.68</td></tr>
+<tr><td>6000</td><td>-5.49</td><td>4.51</td><td>14.51</td><td>24.51</td><td>34.51</td><td>44.51</td><td>54.51</td><td>64.51</td><td>74.51</td><td>84.51</td></tr>
+<tr><td>11000</td><td>-10.98</td><td>-0.98</td><td>9.02</td><td>19.02</td><td>29.02</td><td>39.02</td><td>49.02</td><td>59.02</td><td>69.02</td><td>79.02</td></tr>
+<tr><td>16000</td><td>-15.3</td><td>-5.3</td><td>4.7</td><td>14.7</td><td>24.7</td><td>34.7</td><td>44.7</td><td>54.7</td><td>64.7</td><td>74.7</td></tr>
+<tr><td>21000</td><td>-18.98</td><td>-8.98</td><td>1.02</td><td>11.02</td><td>21.02</td><td>31.02</td><td>41.02</td><td>51.02</td><td>61.02</td><td>71.02</td></tr>
+
+  </table>
+
+  <h2>Summer</h2>
+  <table id="summer_table">
+    <tr><th>Range ↓ / SL →</th><th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th><th>70</th><th>80</th><th>90</th><th>100</th></tr>
+<tr><td>1000</td><td>4.31</td><td>14.31</td><td>24.31</td><td>34.31</td><td>44.31</td><td>54.31</td><td>64.31</td><td>74.31</td><td>84.31</td><td>94.31</td></tr>
+<tr><td>6000</td><td>-3.94</td><td>6.06</td><td>16.06</td><td>26.06</td><td>36.06</td><td>46.06</td><td>56.06</td><td>66.06</td><td>76.06</td><td>86.06</td></tr>
+<tr><td>11000</td><td>-8.88</td><td>1.12</td><td>11.12</td><td>21.12</td><td>31.12</td><td>41.12</td><td>51.12</td><td>61.12</td><td>71.12</td><td>81.12</td></tr>
+<tr><td>16000</td><td>-12.77</td><td>-2.77</td><td>7.23</td><td>17.23</td><td>27.23</td><td>37.23</td><td>47.23</td><td>57.23</td><td>67.23</td><td>77.23</td></tr>
+<tr><td>21000</td><td>-16.08</td><td>-6.08</td><td>3.92</td><td>13.92</td><td>23.92</td><td>33.92</td><td>43.92</td><td>53.92</td><td>63.92</td><td>73.92</td></tr>
+
+  </table>
+
+  <h2>Autumn</h2>
+  <table id="autumn_table">
+    <tr><th>Range ↓ / SL →</th><th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th><th>70</th><th>80</th><th>90</th><th>100</th></tr>
+<tr><td>1000</td><td>3.04</td><td>13.04</td><td>23.04</td><td>33.04</td><td>43.04</td><td>53.04</td><td>63.04</td><td>73.04</td><td>83.04</td><td>93.04</td></tr>
+<tr><td>6000</td><td>-7.04</td><td>2.96</td><td>12.96</td><td>22.96</td><td>32.96</td><td>42.96</td><td>52.96</td><td>62.96</td><td>72.96</td><td>82.96</td></tr>
+<tr><td>11000</td><td>-13.07</td><td>-3.07</td><td>6.93</td><td>16.93</td><td>26.93</td><td>36.93</td><td>46.93</td><td>56.93</td><td>66.93</td><td>76.93</td></tr>
+<tr><td>16000</td><td>-17.83</td><td>-7.83</td><td>2.17</td><td>12.17</td><td>22.17</td><td>32.17</td><td>42.17</td><td>52.17</td><td>62.17</td><td>72.17</td></tr>
+<tr><td>21000</td><td>-21.88</td><td>-11.88</td><td>-1.88</td><td>8.12</td><td>18.12</td><td>28.12</td><td>38.12</td><td>48.12</td><td>58.12</td><td>68.12</td></tr>
+
+  </table>
+
+  <h2>Winter</h2>
+  <table id="winter_table">
+    <tr><th>Range ↓ / SL →</th><th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th><th>70</th><th>80</th><th>90</th><th>100</th></tr>
+<tr><td>1000</td><td>2.41</td><td>12.41</td><td>22.41</td><td>32.41</td><td>42.41</td><td>52.41</td><td>62.41</td><td>72.41</td><td>82.41</td><td>92.41</td></tr>
+<tr><td>6000</td><td>-8.59</td><td>1.41</td><td>11.41</td><td>21.41</td><td>31.41</td><td>41.41</td><td>51.41</td><td>61.41</td><td>71.41</td><td>81.41</td></tr>
+<tr><td>11000</td><td>-15.17</td><td>-5.17</td><td>4.83</td><td>14.83</td><td>24.83</td><td>34.83</td><td>44.83</td><td>54.83</td><td>64.83</td><td>74.83</td></tr>
+<tr><td>16000</td><td>-20.36</td><td>-10.36</td><td>-0.36</td><td>9.64</td><td>19.64</td><td>29.64</td><td>39.64</td><td>49.64</td><td>59.64</td><td>69.64</td></tr>
+<tr><td>21000</td><td>-24.78</td><td>-14.78</td><td>-4.78</td><td>5.22</td><td>15.22</td><td>25.22</td><td>35.22</td><td>45.22</td><td>55.22</td><td>65.22</td></tr>
+
+  </table>
+
+  
+<script>
+const slVals = [10,20,30,40,50,60,70,80,90,100];
+const rVals = [1000,6000,11000,16000,21000,25000];
+
+function transmissionLoss(SL, R, season) {
+  let mod = {spring:1.0, summer:0.9, autumn:1.1, winter:1.2}[season];
+  return +(SL - 20 * Math.sqrt(R / 10000) * mod);
+}
+
+function findBounds(val, arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (val >= arr[i] && val <= arr[i+1]) {
+      return [arr[i], arr[i+1]];
+    }
+  }
+  return [arr[0], arr[1]];
+}
+
+
+function updateAllSeasons() {
+  let slInput = document.getElementById("global_sl");
+  let rInput = document.getElementById("global_range");
+  if (!slInput || !rInput) return;
+
+  const sl = parseFloat(slInput.value);
+  const r = parseFloat(rInput.value);
+
+  // Update URL with current values
+  const params = new URLSearchParams({ sl: sl, r: r });
+  history.replaceState(null, "", "?" + params.toString());
+  document.title = `Seasonal TL | SL=${sl} | R=${r}`;
+
+  if (!slInput || !rInput) return; // Don't proceed if sliders not yet present
+
+  document.getElementById("global_slVal").textContent = sl;
+  document.getElementById("global_rangeVal").textContent = r;
+
+  ["spring", "summer", "autumn", "winter"].forEach(season => {
+    const result = document.getElementById(`${season}_result`);
+    if (!result) return;
+
+    document.getElementById(`${season}_slVal`).textContent = sl;
+    document.getElementById(`${season}_rangeVal`).textContent = r;
+    result.textContent = transmissionLoss(sl, r, season).toFixed(2).padStart(7, '0');
+
+    document.querySelectorAll(`#${season}_table td`).forEach(el => el.classList.remove("highlight"));
+
+    const [slLow, slHigh] = findBounds(sl, slVals);
+    const [rLow, rHigh] = findBounds(r, rVals);
+    [slLow, slHigh].forEach(s => {
+      [rLow, rHigh].forEach(rv => {
+        const cell = document.getElementById(`cell_${season}_${s}_${rv}`);
+        if (cell) cell.classList.add("highlight");
+      });
+    });
+  });
+}
+
+
+function toggleSeasonalTables(event) {
+  const enable = event.target.checked;
+
+  // On first activation, check if URL has sl and r values
+  if (enable) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const slVal = urlParams.get("sl");
+    const rVal = urlParams.get("r");
+
+    if (slVal && rVal) {
+      setTimeout(() => {
+        const sl = document.getElementById("global_sl");
+        const r = document.getElementById("global_range");
+        if (sl && r) {
+          sl.value = slVal;
+          r.value = rVal;
+          updateAllSeasons();
+        }
+      }, 10);
+    }
+  }
+
+
+  const existingSl = document.getElementById("global_sl_container");
+  if (!enable && existingSl) {
+    existingSl.remove();
+    document.getElementById("global_range_container")?.remove();
+  }
+
+  if (enable && !existingSl) {
+    const slContainer = document.createElement("div");
+    slContainer.id = "global_sl_container";
+    slContainer.innerHTML = `
+      <label>SL:
+        <input type="range" id="global_sl" min="10" max="100" step="1" value="50" oninput="updateAllSeasons()" style="width:300px;">
+        <span id="global_slVal">50</span>
+      </label>
+    `;
+    document.getElementById("slider_injection_point").appendChild(slContainer);
+
+    const rContainer = document.createElement("div");
+    rContainer.id = "global_range_container";
+    rContainer.innerHTML = `
+      <label>Range:
+        <input type="range" id="global_range" min="1000" max="25000" step="1000" value="10000" oninput="updateAllSeasons()" style="width:300px;">
+        <span id="global_rangeVal">10000</span>
+      </label>
+    `;
+    document.getElementById("slider_injection_point").appendChild(rContainer);
+  }
+
+  ["spring", "summer", "autumn", "winter"].forEach(season => {
+    const table = document.getElementById(`${season}_table`);
+
+    if (!enable) {
+      const firstRow = document.getElementById(`${season}_result`)?.closest("tr");
+      if (firstRow) table.deleteRow(0);
+      const yCell = document.getElementById(`${season}_yslider`);
+      if (yCell) yCell.remove();
+      document.querySelectorAll(`#${season}_table td`).forEach(td => {
+        td.removeAttribute("id");
+        td.classList.remove("highlight");
+      });
+      return;
+    }
+
+    for (let i = 1; i < table.rows.length; i++) {
+      const rLabel = parseInt(table.rows[i].cells[0].textContent);
+      for (let j = 1; j < table.rows[i].cells.length; j++) {
+        const sl = slVals[j - 1];
+        table.rows[i].cells[j].id = `cell_${season}_${sl}_${rLabel}`;
+      }
+    }
+
+    const slRow = document.createElement("tr");
+    slRow.innerHTML = `
+      <th id="${season}_result">000.00</th>
+      <th>&nbsp;</th>
+      <th colspan="10">
+        <span>SL: <span id="${season}_slVal">50</span></span>
+      </th>`;
+    table.tBodies[0].insertBefore(slRow, table.rows[0]);
+
+    const yRow = table.rows[1];
+    const yCell = document.createElement("th");
+    yCell.id = `${season}_yslider`;
+    yCell.rowSpan = table.rows.length - 1;
+    yCell.innerHTML = `<span>Range: <span id="${season}_rangeVal">10000</span></span>`;
+    yRow.insertBefore(yCell, yRow.firstChild);
+  });
+
+  updateAllSeasons();
+}
+</script>
+
+</body>
+</html>
