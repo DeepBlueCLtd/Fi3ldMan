@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Retrofit Table Interactivity</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    th[rowspan] {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      vertical-align: middle;
+      text-align: center;
+      white-space: nowrap;
+      padding: 20px 5px;
+    }
+    .highlight {
+      background-color: #ffff99;
+    }
+    .vslider {
+      writing-mode: vertical-rl;
+      transform: none;
+      height: 220px;
+    }
+  </style>
+</head>
+<body>
+  <h1>1. Static Reference Table</h1>
+  <table>
+<tr><th>Range ↓ / SL →</th><th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th><th>70</th><th>80</th><th>90</th><th>100</th></tr>
+<tr><td>1000</td><td>3.68</td><td>13.68</td><td>23.68</td><td>33.68</td><td>43.68</td><td>53.68</td><td>63.68</td><td>73.68</td><td>83.68</td><td>93.68</td></tr>
+<tr><td>6000</td><td>-5.49</td><td>4.51</td><td>14.51</td><td>24.51</td><td>34.51</td><td>44.51</td><td>54.51</td><td>64.51</td><td>74.51</td><td>84.51</td></tr>
+<tr><td>11000</td><td>-10.98</td><td>-0.98</td><td>9.02</td><td>19.02</td><td>29.02</td><td>39.02</td><td>49.02</td><td>59.02</td><td>69.02</td><td>79.02</td></tr>
+<tr><td>16000</td><td>-15.3</td><td>-5.3</td><td>4.7</td><td>14.7</td><td>24.7</td><td>34.7</td><td>44.7</td><td>54.7</td><td>64.7</td><td>74.7</td></tr>
+<tr><td>21000</td><td>-18.98</td><td>-8.98</td><td>1.02</td><td>11.02</td><td>21.02</td><td>31.02</td><td>41.02</td><td>51.02</td><td>61.02</td><td>71.02</td></tr>
+</table>
+
+  <h1>2. Interpolated Table (Start Static)</h1>
+  <label><input type="checkbox" onclick="retrofitTable('interp','interpolate')"> Enable Interactivity</label>
+  <table id="interp_table">
+    <tr><th>Range ↓ / SL →</th><th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th><th>70</th><th>80</th><th>90</th><th>100</th></tr>
+<tr><td>1000</td><td>3.68</td><td>13.68</td><td>23.68</td><td>33.68</td><td>43.68</td><td>53.68</td><td>63.68</td><td>73.68</td><td>83.68</td><td>93.68</td></tr>
+<tr><td>6000</td><td>-5.49</td><td>4.51</td><td>14.51</td><td>24.51</td><td>34.51</td><td>44.51</td><td>54.51</td><td>64.51</td><td>74.51</td><td>84.51</td></tr>
+<tr><td>11000</td><td>-10.98</td><td>-0.98</td><td>9.02</td><td>19.02</td><td>29.02</td><td>39.02</td><td>49.02</td><td>59.02</td><td>69.02</td><td>79.02</td></tr>
+<tr><td>16000</td><td>-15.3</td><td>-5.3</td><td>4.7</td><td>14.7</td><td>24.7</td><td>34.7</td><td>44.7</td><td>54.7</td><td>64.7</td><td>74.7</td></tr>
+<tr><td>21000</td><td>-18.98</td><td>-8.98</td><td>1.02</td><td>11.02</td><td>21.02</td><td>31.02</td><td>41.02</td><td>51.02</td><td>61.02</td><td>71.02</td></tr>
+
+  </table>
+
+  <h1>3. Equation-Based Table (Start Static)</h1>
+  <label><input type="checkbox" onclick="retrofitTable('equatn','equation')"> Enable Interactivity</label>
+  <table id="equatn_table">
+    <tr><th>Range ↓ / SL →</th><th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th><th>70</th><th>80</th><th>90</th><th>100</th></tr>
+<tr><td>1000</td><td>3.68</td><td>13.68</td><td>23.68</td><td>33.68</td><td>43.68</td><td>53.68</td><td>63.68</td><td>73.68</td><td>83.68</td><td>93.68</td></tr>
+<tr><td>6000</td><td>-5.49</td><td>4.51</td><td>14.51</td><td>24.51</td><td>34.51</td><td>44.51</td><td>54.51</td><td>64.51</td><td>74.51</td><td>84.51</td></tr>
+<tr><td>11000</td><td>-10.98</td><td>-0.98</td><td>9.02</td><td>19.02</td><td>29.02</td><td>39.02</td><td>49.02</td><td>59.02</td><td>69.02</td><td>79.02</td></tr>
+<tr><td>16000</td><td>-15.3</td><td>-5.3</td><td>4.7</td><td>14.7</td><td>24.7</td><td>34.7</td><td>44.7</td><td>54.7</td><td>64.7</td><td>74.7</td></tr>
+<tr><td>21000</td><td>-18.98</td><td>-8.98</td><td>1.02</td><td>11.02</td><td>21.02</td><td>31.02</td><td>41.02</td><td>51.02</td><td>61.02</td><td>71.02</td></tr>
+
+  </table>
+
+  
+<script>
+function retrofitTable(prefix, mode) {
+  const checkbox = event.target;
+  const table = document.getElementById(prefix + "_table");
+  const existingResult = document.getElementById(prefix + "_result");
+
+  if (!checkbox.checked) {
+    // CLEANUP: remove first row if it was added dynamically
+    if (existingResult && table.rows[0].contains(existingResult)) {
+      table.deleteRow(0);
+    }
+
+    // Remove injected Y-slider cell
+    const ySliderCell = document.getElementById(`${prefix}_yslider`);
+    if (ySliderCell) ySliderCell.remove();
+
+    // Remove injected IDs and highlights
+    for (let i = 2; i < table.rows.length; i++) {
+      const cells = table.rows[i].cells;
+      for (let j = 1; j < cells.length; j++) {
+        cells[j].removeAttribute("id");
+        cells[j].classList.remove("highlight");
+      }
+    }
+
+    // Remove update function reference
+    delete window["update_" + prefix];
+    return;
+  }
+
+  // Do nothing if already active
+  if (existingResult) return;
+
+  // ADD: inject slider row and Y-slider
+  const slVals = [10,20,30,40,50,60,70,80,90,100];
+  const rVals = [1000,6000,11000,16000,21000,25000];
+
+  for (let i = 2; i < table.rows.length; i++) {
+    const rLabel = parseInt(table.rows[i].cells[0].textContent);
+    for (let j = 1; j < table.rows[i].cells.length; j++) {
+      const sl = slVals[j - 1];
+      table.rows[i].cells[j].id = `cell_${prefix}_${sl}_${rLabel}`;
+    }
+  }
+
+  const slRow = document.createElement("tr");
+  slRow.innerHTML = `
+    <th id="${prefix}_result">000.00</th>
+    <th>&nbsp;</th>
+    <th colspan="10">
+      <input type="range" id="${prefix}_sl" min="10" max="100" step="1" value="50" style="width:100%;" oninput="update_${prefix}()">
+      <div>SL: <span id="${prefix}_slVal">50</span></div>
+    </th>`;
+  table.tBodies[0].insertBefore(slRow, table.rows[0]);
+
+  const yLabelRow = table.rows[1];
+  const th = document.createElement("th");
+  th.id = `${prefix}_yslider`;
+  th.rowSpan = table.rows.length - 1;
+  th.innerHTML = `
+    <input type="range" class="vslider" id="${prefix}_range" min="1000" max="25000" step="1000" value="10000" oninput="update_${prefix}()">
+    <div style="writing-mode: horizontal-tb; margin-top: 10px;">Range: <span id="${prefix}_rangeVal">10000</span></div>`;
+  yLabelRow.insertBefore(th, yLabelRow.firstChild);
+
+  window["update_" + prefix] = function () {
+    const sl = parseFloat(document.getElementById(prefix + "_sl").value);
+    const r = parseFloat(document.getElementById(prefix + "_range").value);
+    document.getElementById(prefix + "_slVal").textContent = sl;
+    document.getElementById(prefix + "_rangeVal").textContent = r;
+    document.getElementById(prefix + "_result").textContent = transmissionLoss(sl, r).toFixed(2).padStart(7, '0');
+
+    document.querySelectorAll(`#${prefix}_table td`).forEach(el => el.classList.remove("highlight"));
+
+    if (mode === "interpolate") {
+      const [slLow, slHigh] = findBounds(sl, slVals);
+      const [rLow, rHigh] = findBounds(r, rVals);
+      [slLow, slHigh].forEach(s => {
+        [rLow, rHigh].forEach(rv => {
+          const cell = document.getElementById(`cell_${prefix}_${s}_${rv}`);
+          if (cell) cell.classList.add("highlight");
+        });
+      });
+    }
+  };
+
+  window["update_" + prefix]();
+}
+
+function transmissionLoss(SL, R) {
+  return +(SL - 20 * Math.sqrt(R / 10000));
+}
+
+function findBounds(val, arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (val >= arr[i] && val <= arr[i+1]) {
+      return [arr[i], arr[i+1]];
+    }
+  }
+  return [arr[0], arr[1]];
+}
+</script>
+
+</body>
+</html>
