@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dual Region Heatmap</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; }
+    table { border-collapse: collapse; margin-bottom: 40px; }
+    th, td { border: 1px solid #aaa; padding: 6px 10px; text-align: center; }
+    th { background: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <label><input type="checkbox" id="heatToggle"> Heatmap</label>
+  
+        <h3>North Atlantic</h3>
+        <table class="heatmapTable">
+          <thead>
+            <tr><th>Range ↓ / SL →</th><th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th><th>70</th><th>80</th><th>90</th><th>100</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1000</td><td data-value='-50.00'>-50.00</td><td data-value='-40.00'>-40.00</td><td data-value='-30.00'>-30.00</td><td data-value='-20.00'>-20.00</td><td data-value='-10.00'>-10.00</td><td data-value='0.00'>0.00</td><td data-value='10.00'>10.00</td><td data-value='20.00'>20.00</td><td data-value='30.00'>30.00</td><td data-value='40.00'>40.00</td></tr><tr><td>6000</td><td data-value='-65.56'>-65.56</td><td data-value='-55.56'>-55.56</td><td data-value='-45.56'>-45.56</td><td data-value='-35.56'>-35.56</td><td data-value='-25.56'>-25.56</td><td data-value='-15.56'>-15.56</td><td data-value='-5.56'>-5.56</td><td data-value='4.44'>4.44</td><td data-value='14.44'>14.44</td><td data-value='24.44'>24.44</td></tr><tr><td>11000</td><td data-value='-70.83'>-70.83</td><td data-value='-60.83'>-60.83</td><td data-value='-50.83'>-50.83</td><td data-value='-40.83'>-40.83</td><td data-value='-30.83'>-30.83</td><td data-value='-20.83'>-20.83</td><td data-value='-10.83'>-10.83</td><td data-value='-0.83'>-0.83</td><td data-value='9.17'>9.17</td><td data-value='19.17'>19.17</td></tr><tr><td>16000</td><td data-value='-74.08'>-74.08</td><td data-value='-64.08'>-64.08</td><td data-value='-54.08'>-54.08</td><td data-value='-44.08'>-44.08</td><td data-value='-34.08'>-34.08</td><td data-value='-24.08'>-24.08</td><td data-value='-14.08'>-14.08</td><td data-value='-4.08'>-4.08</td><td data-value='5.92'>5.92</td><td data-value='15.92'>15.92</td></tr><tr><td>21000</td><td data-value='-76.44'>-76.44</td><td data-value='-66.44'>-66.44</td><td data-value='-56.44'>-56.44</td><td data-value='-46.44'>-46.44</td><td data-value='-36.44'>-36.44</td><td data-value='-26.44'>-26.44</td><td data-value='-16.44'>-16.44</td><td data-value='-6.44'>-6.44</td><td data-value='3.56'>3.56</td><td data-value='13.56'>13.56</td></tr>
+          </tbody>
+        </table>
+  
+        <h3>South Atlantic</h3>
+        <table class="heatmapTable">
+          <thead>
+            <tr><th>Range ↓ / SL →</th><th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th><th>70</th><th>80</th><th>90</th><th>100</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1000</td><td data-value='-45.00'>-45.00</td><td data-value='-35.00'>-35.00</td><td data-value='-25.00'>-25.00</td><td data-value='-15.00'>-15.00</td><td data-value='-5.00'>-5.00</td><td data-value='5.00'>5.00</td><td data-value='15.00'>15.00</td><td data-value='25.00'>25.00</td><td data-value='35.00'>35.00</td><td data-value='45.00'>45.00</td></tr><tr><td>6000</td><td data-value='-60.56'>-60.56</td><td data-value='-50.56'>-50.56</td><td data-value='-40.56'>-40.56</td><td data-value='-30.56'>-30.56</td><td data-value='-20.56'>-20.56</td><td data-value='-10.56'>-10.56</td><td data-value='-0.56'>-0.56</td><td data-value='9.44'>9.44</td><td data-value='19.44'>19.44</td><td data-value='29.44'>29.44</td></tr><tr><td>11000</td><td data-value='-65.83'>-65.83</td><td data-value='-55.83'>-55.83</td><td data-value='-45.83'>-45.83</td><td data-value='-35.83'>-35.83</td><td data-value='-25.83'>-25.83</td><td data-value='-15.83'>-15.83</td><td data-value='-5.83'>-5.83</td><td data-value='4.17'>4.17</td><td data-value='14.17'>14.17</td><td data-value='24.17'>24.17</td></tr><tr><td>16000</td><td data-value='-69.08'>-69.08</td><td data-value='-59.08'>-59.08</td><td data-value='-49.08'>-49.08</td><td data-value='-39.08'>-39.08</td><td data-value='-29.08'>-29.08</td><td data-value='-19.08'>-19.08</td><td data-value='-9.08'>-9.08</td><td data-value='0.92'>0.92</td><td data-value='10.92'>10.92</td><td data-value='20.92'>20.92</td></tr><tr><td>21000</td><td data-value='-71.44'>-71.44</td><td data-value='-61.44'>-61.44</td><td data-value='-51.44'>-51.44</td><td data-value='-41.44'>-41.44</td><td data-value='-31.44'>-31.44</td><td data-value='-21.44'>-21.44</td><td data-value='-11.44'>-11.44</td><td data-value='-1.44'>-1.44</td><td data-value='8.56'>8.56</td><td data-value='18.56'>18.56</td></tr>
+          </tbody>
+        </table>
+
+  <script>
+    document.getElementById("heatToggle").addEventListener("change", function() {
+      const tables = document.querySelectorAll(".heatmapTable");
+      tables.forEach(table => {
+        const cells = table.querySelectorAll("td[data-value]");
+        if (!this.checked) {
+          cells.forEach(td => td.style.backgroundColor = "");
+          return;
+        }
+        const values = Array.from(cells).map(td => parseFloat(td.dataset.value));
+        const min = Math.min(...values);
+        const max = Math.max(...values);
+        cells.forEach(td => {
+          const val = parseFloat(td.dataset.value);
+          const ratio = (val - min) / (max - min);
+          const red = Math.round(255 * Math.pow(ratio, 1.5));
+          const blue = Math.round(255 * Math.pow(1 - ratio, 1.5));
+          td.style.backgroundColor = "rgba(" + red + ", 0, " + blue + ", 0.3)";
+        });
+      });
+    });
+  </script>
+</body>
+</html>
