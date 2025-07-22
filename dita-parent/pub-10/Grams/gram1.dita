@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<topic id="Untitled" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:oasis:names:tc:dita:xsd:topic.xsd">
+    <title>Gram 1 - <ph audience="exclude-trainee">Pride of Le Havre</ph></title>
+    <body>
+        <p/>
+        <section id="section_r1z_rym_bgc">
+            <title>Gram </title>
+            <table frame="all" rowsep="1" colsep="1" id="table_uyb_bym_bgc"
+                outputclass="gram-config">
+                <tgroup cols="3" align="center">
+                    <colspec colname="c1" colnum="1" colwidth="1*"/>
+                    <colspec colname="c2" colnum="2" colwidth="1*"/>
+                    <colspec colname="c3" colnum="3" colwidth="1*"/>
+                    <tbody>
+                        <row>
+                            <entry namest="c1" nameend="c3">
+                                <image placement="break" href="images/gram-1.png" align="center"
+                                    id="image_svr_dym_bgc"/>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>param</entry>
+                            <entry>min</entry>
+                            <entry>max</entry>
+                        </row>
+                        <row>
+                            <entry>time</entry>
+                            <entry>0</entry>
+                            <entry>60</entry>
+                        </row>
+                        <row>
+                            <entry>freq</entry>
+                            <entry>100</entry>
+                            <entry>200</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </section>
+        <section id="section_zmv_tym_bgc">
+            <title>Background</title>
+            <p/>
+            <simpletable frame="all" relcolwidth="1.0* 2.7*" id="simpletable_lfd_vym_bgc">
+                <strow>
+                    <stentry>Question</stentry>
+                    <stentry>Theory</stentry>
+                </strow>
+                <strow>
+                    <stentry>Have you considered depth?</stentry>
+                    <stentry/>
+                </strow>
+                <strow>
+                    <stentry>Have you considered height?</stentry>
+                    <stentry/>
+                </strow>
+                <strow>
+                    <stentry>Have you considered the weather?</stentry>
+                    <stentry/>
+                </strow>
+            </simpletable>
+        </section>
+        <section id="section_otc_mcn_bgc" audience="exclude-trainee">
+            <title>Trainer guidance</title>
+            <simpletable frame="all" relcolwidth="1.0* 3.65*" id="simpletable_mng_vzm_bgc">
+                <strow>
+                    <stentry>Feature</stentry>
+                    <stentry>Description</stentry>
+                </strow>
+                <strow>
+                    <stentry>Radar</stentry>
+                    <stentry>Lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem
+                        ipsum lorem ipsum lorem ipsum lorem ipsum</stentry>
+                </strow>
+                <strow>
+                    <stentry>Stereo Wifi</stentry>
+                    <stentry>Lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem
+                        ipsum lorem ipsum lorem ipsum lorem ipsum<p>Lorem ipsum lorem ipsum  lorem
+                            ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+                            ipsum</p></stentry>
+                </strow>
+                <strow>
+                    <stentry>Ticket collection</stentry>
+                    <stentry>
+                        <p>Lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                            lorem ipsum lorem ipsum lorem ipsum</p>
+                        <p>Lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                            lorem ipsum lorem ipsum lorem ipsum</p>
+                        <p>Lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                            lorem ipsum lorem ipsum lorem ipsum</p>
+                    </stentry>
+                </strow>
+            </simpletable>
+        </section>
+    </body>
+</topic>
