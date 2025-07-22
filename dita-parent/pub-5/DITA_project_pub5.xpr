@@ -17199,9 +17199,9 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
             </serialized>
         </options>
     </meta>
-    <projectTree name="DITA_project.xpr">
+    <projectTree name="DITA_project_pub5.xpr">
         <folder masterFiles="true" name="Main Files">
-            <file name="target/dita/index.ditamap"/>
+            <file name="index.ditamap"/>
         </folder>
         <folder path="."/>
     </projectTree>
