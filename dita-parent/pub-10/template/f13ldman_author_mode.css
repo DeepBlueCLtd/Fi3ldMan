@@ -1,0 +1,80 @@
+/* 
+ * reproduce our fieldMan.css styles in the OxygenXML Author mode, by 
+ * matching with the relevant `outputclass`
+ */
+
+[outputclass='colorRed'] {
+  color: #F00;
+  border-color: #000;
+}
+
+[outputclass='colorPink'] {
+  color: #F0F;
+  border-color: #000;
+}
+
+[outputclass='colorBlue'] {
+  color: #00F;
+  border-color: #000;
+}
+
+[outputclass='colorGray'] {
+  color: #777;
+  border-color: #000;
+}
+
+[outputclass='colorOrange'] {
+  color: #FC0;
+  border-color: #000;
+}
+
+[outputclass='colorLightBlue'] {
+  color: #0FF;
+  border-color: #000;
+}
+
+
+[outputclass='bkLightGray'] {
+  background-color: #CCC;    
+}
+
+[outputclass='bkDarkGray'] {
+  background-color: #999;    
+}
+
+[outputclass='bkYellow'] {
+  background-color: #ffff00;    
+}
+
+[outputclass='bkBlue'] {
+  background-color: #0000ff;    
+}
+
+[outputclass='bkRed'] {
+  background-color: #ff0000;    
+}
+
+[outputclass='bkGreen'] {
+  background-color: #00ff00;    
+}
+
+/* make the right-hand notes block float */
+[outputclass='rh_notes'] {
+      background-color: #EFEFFA; 
+      position:fixed;
+      width: 200px;
+      right:0;
+      top:50px;
+      z-index: 1000;
+  }
+  
+/* make the related links float */
+related-links {
+      background-color: #EFEFFA; 
+      position:fixed;
+      width: 200px;
+      right:0;
+      top:150px;
+      z-index: 1000;
+  }
+  
