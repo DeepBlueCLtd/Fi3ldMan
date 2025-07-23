@@ -63,7 +63,7 @@
     </body>
     <related-links>
         <link href="../gram-index.dita" format="dita"></link>
-        <link href="./gram1%20-%202.dita"><linktext>LOFAR 2</linktext></link>
+        <link href="./gram%202.dita"><linktext>LOFAR 1</linktext></link>
         <link href="./gram1%20analysis.dita" audience="-trainee">
             <linktext>ANALYSIS</linktext>
         </link>
