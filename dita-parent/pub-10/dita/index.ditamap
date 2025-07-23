@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+    <title>Field Manual Pub-10 Mar 2025</title>
+    <topicmeta/>
+    <topicref href="./gram-index.dita"/>
+    <topicref href="./Introduction/Security.dita"/>
+</map>

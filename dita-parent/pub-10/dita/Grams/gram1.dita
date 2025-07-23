@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<topic id="Untitled" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:oasis:names:tc:dita:xsd:topic.xsd">
+    <title>Gram 1<ph audience="-trainee"> - Pride of Le Havre</ph></title>
+    <body>
+        <p/>
+        <div id="section_r1z_rym_bgc">
+            <table frame="all" rowsep="1" colsep="1" id="table_uyb_bym_bgc"
+                outputclass="gram-config">
+                <tgroup cols="2" align="center">
+                    <colspec colname="c1" colnum="1" colwidth="1*"/>
+                    <colspec colname="c2" colnum="2" colwidth="1*"/>
+                    <tbody>
+                        <row>
+                            <entry namest="c1" nameend="c2">
+                                <image placement="break" href="images/gram-1.png" align="center"
+                                    id="image_svr_dym_bgc"/>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>time start</entry>
+                            <entry>0</entry>
+                        </row>
+                        <row>
+                            <entry>time end</entry>
+                            <entry>40</entry>
+                        </row>
+                        <row>
+                            <entry>freq start</entry>
+                            <entry>100</entry>
+                        </row>
+                        <row>
+                            <entry>freq end</entry>
+                            <entry>300</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </div>
+        <div id="section_zmv_tym_bgc">
+            <simpletable frame="all" relcolwidth="1.0* 2.7*" id="simpletable_lfd_vym_bgc">
+                <strow>
+                    <stentry>Question</stentry>
+                    <stentry>Theory</stentry>
+                </strow>
+                <strow>
+                    <stentry>Have you considered depth?</stentry>
+                    <stentry/>
+                </strow>
+                <strow>
+                    <stentry>Have you considered height?</stentry>
+                    <stentry/>
+                </strow>
+                <strow>
+                    <stentry>Have you considered the weather?</stentry>
+                    <stentry/>
+                </strow>
+            </simpletable>
+        </div>
+    </body>
+    <related-links>
+        <link href="../gram-index.dita" format="dita"></link>
+        <link href="./gram1%20-%202.dita"><linktext>LOFAR 2</linktext></link>
+        <link href="./gram1%20analysis.dita" audience="-trainee"><linktext>ANALYSIS</linktext></link>
+    </related-links>
+</topic>

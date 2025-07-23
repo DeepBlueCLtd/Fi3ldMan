@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<topic id="Untitled" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:oasis:names:tc:dita:xsd:topic.xsd">
+    <title>Analysis</title>
+    <body>
+        <section id="section_otc_mcn_bgc"><title>Trainer guidance</title><image placement="break"
+                href="images/analysis-table.png" align="center" id="image_eys_3d5_bgc"/></section>
+    </body>
+    <related-links>
+        <link href="../gram-index.dita" format="dita"></link>
+        <link href="./gram1.dita"><linktext>LOFAR 1</linktext></link>
+        <link href="./gram1%20-%202.dita"><linktext>LOFAR 2</linktext></link>
+    </related-links>
+</topic>
