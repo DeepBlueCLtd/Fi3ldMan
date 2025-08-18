@@ -371,6 +371,21 @@ padding: 0 10px;
   text-align: center;
 }
 
+
+.item-list {
+  display: flex;
+  flex-wrap: wrap;
+  white-space: nowrap;    
+  gap: 0.5em; /* spacing between buttons */
+}
+
+.item-list a {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
 .enterBtn:visited {
   color: #333333;
 }
