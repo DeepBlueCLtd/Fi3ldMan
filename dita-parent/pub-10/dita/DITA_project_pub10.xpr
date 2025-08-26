@@ -16749,10 +16749,10 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                     <String>${pd}/out/dita</String>
                                 </field>
                                 <field name="outputDir">
-                                    <String>${pd}/out/oxygen</String>
+                                    <String>${pd}/../out/oxygen</String>
                                 </field>
                                 <field name="tempDir">
-                                    <String>${pd}/out/temp</String>
+                                    <String>${pd}/../out/temp</String>
                                 </field>
                                 <field name="transtype">
                                     <String>webhelp-responsive</String>
@@ -16823,25 +16823,32 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                     <list>
                                         <ditaParameter>
                                             <field name="name">
-                                                <String>args.disable.security.checks</String>
+                                                <String>clean.output</String>
                                             </field>
                                             <field name="description">
-                                                <String></String>
+                                                <null/>
                                             </field>
                                             <field name="value">
                                                 <String>yes</String>
                                             </field>
                                             <field name="defaultValue">
-                                                <null/>
+                                                <String>no</String>
                                             </field>
                                             <field name="type">
-                                                <Integer>5</Integer>
+                                                <Integer>4</Integer>
                                             </field>
                                             <field name="possibleValues">
-                                                <null/>
+                                                <String-array>
+                                                    <String>yes</String>
+                                                    <String>no</String>
+                                                    <null/>
+                                                </String-array>
                                             </field>
                                             <field name="possibleValuesDescriptions">
-                                                <null/>
+                                                <String-array>
+                                                    <String></String>
+                                                    <String></String>
+                                                </String-array>
                                             </field>
                                         </ditaParameter>
                                         <ditaParameter>
@@ -16910,36 +16917,6 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                         </ditaParameter>
                                         <ditaParameter>
                                             <field name="name">
-                                                <String>clean.output</String>
-                                            </field>
-                                            <field name="description">
-                                                <null/>
-                                            </field>
-                                            <field name="value">
-                                                <String>yes</String>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <String>no</String>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>4</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <String-array>
-                                                    <String>yes</String>
-                                                    <String>no</String>
-                                                    <null/>
-                                                </String-array>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <String-array>
-                                                    <String></String>
-                                                    <String></String>
-                                                </String-array>
-                                            </field>
-                                        </ditaParameter>
-                                        <ditaParameter>
-                                            <field name="name">
                                                 <String>force-unique</String>
                                             </field>
                                             <field name="description">
@@ -16983,29 +16960,6 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                             </field>
                                             <field name="type">
                                                 <Integer>2</Integer>
-                                            </field>
-                                            <field name="possibleValues">
-                                                <null/>
-                                            </field>
-                                            <field name="possibleValuesDescriptions">
-                                                <null/>
-                                            </field>
-                                        </ditaParameter>
-                                        <ditaParameter>
-                                            <field name="name">
-                                                <String>webhelp.protection.text</String>
-                                            </field>
-                                            <field name="description">
-                                                <String></String>
-                                            </field>
-                                            <field name="value">
-                                                <String>COMMERCIAL IN CONFIDENCE</String>
-                                            </field>
-                                            <field name="defaultValue">
-                                                <null/>
-                                            </field>
-                                            <field name="type">
-                                                <Integer>0</Integer>
                                             </field>
                                             <field name="possibleValues">
                                                 <null/>
@@ -17102,6 +17056,52 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                                     <String></String>
                                                     <String></String>
                                                 </String-array>
+                                            </field>
+                                        </ditaParameter>
+                                        <ditaParameter>
+                                            <field name="name">
+                                                <String>args.disable.security.checks</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>yes</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>5</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
+                                            </field>
+                                        </ditaParameter>
+                                        <ditaParameter>
+                                            <field name="name">
+                                                <String>webhelp.protection.text</String>
+                                            </field>
+                                            <field name="description">
+                                                <String></String>
+                                            </field>
+                                            <field name="value">
+                                                <String>COMMERCIAL IN CONFIDENCE</String>
+                                            </field>
+                                            <field name="defaultValue">
+                                                <null/>
+                                            </field>
+                                            <field name="type">
+                                                <Integer>0</Integer>
+                                            </field>
+                                            <field name="possibleValues">
+                                                <null/>
+                                            </field>
+                                            <field name="possibleValuesDescriptions">
+                                                <null/>
                                             </field>
                                         </ditaParameter>
                                     </list>
@@ -17221,5 +17221,6 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
         </folder>
         <folder path="../../../../../Downloads/dev-mock-p9-html/"/>
         <folder path="."/>
+        <folder path="../out/"/>
     </projectTree>
 </project>
