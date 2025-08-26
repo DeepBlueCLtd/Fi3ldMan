@@ -8,31 +8,31 @@
             <title>Gram </title>
             <table frame="all" rowsep="1" colsep="1" id="table_uyb_bym_bgc"
                 outputclass="gram-config">
-                <tgroup cols="3" align="center">
+                <tgroup cols="2" align="center">
                     <colspec colname="c1" colnum="1" colwidth="1*"/>
                     <colspec colname="c2" colnum="2" colwidth="1*"/>
-                    <colspec colname="c3" colnum="3" colwidth="1*"/>
                     <tbody>
                         <row>
-                            <entry namest="c1" nameend="c3">
+                            <entry namest="c1" nameend="c2">
                                 <image placement="break" href="images/gram-1.png" align="center"
                                     id="image_svr_dym_bgc"/>
                             </entry>
                         </row>
                         <row>
-                            <entry>param</entry>
-                            <entry>min</entry>
-                            <entry>max</entry>
-                        </row>
-                        <row>
-                            <entry>time</entry>
+                            <entry>time-start</entry>
                             <entry>0</entry>
-                            <entry>60</entry>
                         </row>
                         <row>
-                            <entry>freq</entry>
+                            <entry>time-end</entry>
+                            <entry>40</entry>
+                        </row>
+                        <row>
+                            <entry>freq-start</entry>
                             <entry>100</entry>
-                            <entry>200</entry>
+                        </row>
+                        <row>
+                            <entry>freq-end</entry>
+                            <entry>300</entry>
                         </row>
                     </tbody>
                 </tgroup>

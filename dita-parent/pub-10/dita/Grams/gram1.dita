@@ -18,19 +18,19 @@
                             </entry>
                         </row>
                         <row>
-                            <entry>time start</entry>
+                            <entry>time-start</entry>
                             <entry>0</entry>
                         </row>
                         <row>
-                            <entry>time end</entry>
+                            <entry>time-end</entry>
                             <entry>40</entry>
                         </row>
                         <row>
-                            <entry>freq start</entry>
+                            <entry>freq-start</entry>
                             <entry>100</entry>
                         </row>
                         <row>
-                            <entry>freq end</entry>
+                            <entry>freq-end</entry>
                             <entry>300</entry>
                         </row>
                     </tbody>
