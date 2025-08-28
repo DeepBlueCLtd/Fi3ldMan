@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<topic id="Untitled" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<topic id="gram1-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="urn:oasis:names:tc:dita:xsd:topic.xsd">
-    <title>Gram 2</title>
+    <title>Gram 1-2</title>
     <body>
         <p/>
         <section id="section_r1z_rym_bgc">
@@ -63,7 +63,10 @@
     </body>
     <related-links>
         <link href="../gram-index.dita" format="dita"></link>
-        <link href="./gram1%20-%202.dita"><linktext>LOFAR 2</linktext></link>
+        <link href="./gram1%20-%202.dita" outputclass="current"><linktext>LOFAR 2</linktext></link>
+        <link href="gram1.dita">
+            <linktext>LOFAR 1</linktext>
+        </link>
         <link href="./gram1%20analysis.dita" audience="-trainee">
             <linktext>ANALYSIS</linktext>
         </link>

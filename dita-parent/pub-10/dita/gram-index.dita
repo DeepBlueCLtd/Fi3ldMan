@@ -9,8 +9,8 @@
 		<section>
 			<title/>
 			<div outputclass="item-list">
-			<xref outputclass="enterBtn" href="Grams/gram1.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram%202.dita"/>
+			\1href="\3" outputclass="\2"/>
+			<xref href="Grams/gram%202.dita" outputclass="enterBtn"/>
 			<xref outputclass="enterBtn" href="Grams/gram2%20-%202.dita"/>
 			<xref outputclass="enterBtn" href="Grams/gram%202.dita"/>
 				<xref outputclass="enterBtn" href="Grams/gram1.dita"/>
