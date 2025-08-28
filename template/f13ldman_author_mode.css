@@ -3,6 +3,21 @@
  * matching with the relevant `outputclass`
  */
 
+/* style for large link buttons */
+[outputclass='enterBtn'] {
+  font: bold 28px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  display: inline;
+  text-align: center;
+}
+
 [outputclass='colorRed'] {
   color: #F00;
   border-color: #000;
