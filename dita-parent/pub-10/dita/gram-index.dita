@@ -9,7 +9,7 @@
 		<section>
 			<title/>
 			<div outputclass="item-list">
-			\1href="\3" outputclass="\2"/>
+			<xref href="Grams/gram1.dita" outputclass="enterBtn"/>
 			<xref href="Grams/gram%202.dita" outputclass="enterBtn"/>
 			<xref outputclass="enterBtn" href="Grams/gram2%20-%202.dita"/>
 			<xref outputclass="enterBtn" href="Grams/gram%202.dita"/>
