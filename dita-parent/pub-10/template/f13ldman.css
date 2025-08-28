@@ -15,6 +15,14 @@
   padding-right: 22px;
 }
 
+/** suppress link to current page in related-links */
+.related_link .current {
+  pointer-events: none !important;
+  cursor: default !important;
+  text-decoration: none !important;
+  color: #999 !important;
+  background: none !important;
+}
 
 /* hide web-help header bar in welcome page */
 body#Welcome header.wh_header {
