@@ -62,7 +62,6 @@
         </section>
     </body>
     <related-links>
-        <link href="../gram-index.dita" format="dita"></link>
         <link href="./gram1%20-%202.dita" outputclass="current"><linktext>LOFAR 2</linktext></link>
         <link href="gram1.dita">
             <linktext>LOFAR 1</linktext>
