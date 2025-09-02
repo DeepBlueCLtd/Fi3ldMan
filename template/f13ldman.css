@@ -1,5 +1,8 @@
 /* user-defined CSS */
 
+.container-fluid {
+  max-width: 100% !important;
+}
 /* styling for related links */
 .related-links a[href$='.xls'], a[href$='.xlsx'] {
   background: transparent url(resources/images/icon_excel.gif) center right no-repeat !important;
@@ -15,6 +18,18 @@
   padding-right: 22px;
 }
 
+.related-links {
+  padding: 2px !important;
+}
+
+/** suppress link to current page in related-links */
+.related_link .current {
+  pointer-events: none !important;
+  cursor: default !important;
+  text-decoration: none !important;
+  color: #999 !important;
+  background: none !important;
+}
 
 /* hide web-help header bar in welcome page */
 body#Welcome header.wh_header {
@@ -305,14 +320,13 @@ padding: 0 10px;
   /* pad the right-hand side of hte content, to make space for hte
   floating table of contents */
   .body {
-      padding-right: 200px;
+      padding-right: 70px;
   }
 
   /* make the right-hand notes block float */
   .rh_notes {
       background-color: #EFEFFA; 
       position:fixed;
-      width: 200px;
       right:0;
       top:200px;
       z-index: 1000;
@@ -322,7 +336,6 @@ padding: 0 10px;
   .wh_related_links {
       background-color: #EFEFFA; 
       position:fixed;
-      width: 200px;
       right:0;
       top:200px;
       z-index: 1000;
@@ -331,22 +344,12 @@ padding: 0 10px;
   /** the next blocks are for plain DITA-OT export
   /* make the related links float */
   .relref {
-      background-color: #EFEFFA; 
-      position:fixed;
-      width: 200px;
-      right:200px;
-      top:200px;
-      z-index: 1000;
+      background-color: #EFEFFF; 
   }
 
   /* make the related links float */
   .relinfo {
-      background-color: #EFEFFA; 
-      position:fixed;
-      width: 200px;
-      right:0;
-      top:300px;
-      z-index: 1000;
+      background-color: #EFFFFF; 
   }
 }
 
@@ -369,6 +372,21 @@ padding: 0 10px;
   border-left: 1px solid #CCCCCC;
   display: block;
   text-align: center;
+}
+
+
+.item-list {
+  display: flex;
+  flex-wrap: wrap;
+  white-space: nowrap;    
+  gap: 0.5em; /* spacing between buttons */
+}
+
+.item-list a {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
 .enterBtn:visited {
