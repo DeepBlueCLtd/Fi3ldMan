@@ -1,9 +1,14 @@
 /* user-defined CSS */
 
+.container-fluid {
+  max-width: 100% !important;
+}
+
 /* styling for related links */
 .related-links a[href$='.xls'], a[href$='.xlsx'] {
   background: transparent url(resources/images/icon_excel.gif) center right no-repeat !important;
   padding-right: 22px;
+  padding-left: 0 !important
 }
 
 .related-links a[href^="#"] {
@@ -13,6 +18,10 @@
 .related-links a {
   background: transparent url(resources/images/external_link.svg) center right no-repeat;
   padding-right: 22px;
+}
+
+.related-links {
+  padding: 0 !important
 }
 
 /** suppress link to current page in related-links */
@@ -313,24 +322,19 @@ padding: 0 10px;
   /* pad the right-hand side of hte content, to make space for hte
   floating table of contents */
   .body {
-      padding-right: 200px;
+      padding-right: 80px;
   }
 
   /* make the right-hand notes block float */
   .rh_notes {
       background-color: #EFEFFA; 
-      position:fixed;
-      width: 200px;
-      right:0;
-      top:200px;
-      z-index: 1000;
   }
 
   /* make the related links float */
   .wh_related_links {
       background-color: #EFEFFA; 
       position:fixed;
-      width: 200px;
+      width: 140px;
       right:0;
       top:200px;
       z-index: 1000;
@@ -340,21 +344,11 @@ padding: 0 10px;
   /* make the related links float */
   .relref {
       background-color: #EFEFFA; 
-      position:fixed;
-      width: 200px;
-      right:200px;
-      top:200px;
-      z-index: 1000;
   }
 
   /* make the related links float */
   .relinfo {
       background-color: #EFEFFA; 
-      position:fixed;
-      width: 200px;
-      right:0;
-      top:300px;
-      z-index: 1000;
   }
 }
 

@@ -17252,5 +17252,6 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
         <folder path="../../../../../Downloads/dev-mock-p9-html/"/>
         <folder path="."/>
         <folder path="../out/"/>
+        <folder path="../template/"/>
     </projectTree>
 </project>
