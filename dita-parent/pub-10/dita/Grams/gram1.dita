@@ -18,19 +18,19 @@
                             </entry>
                         </row>
                         <row>
-                            <entry>time start</entry>
+                            <entry>time-start</entry>
                             <entry>0</entry>
                         </row>
                         <row>
-                            <entry>time end</entry>
+                            <entry>time-end</entry>
                             <entry>40</entry>
                         </row>
                         <row>
-                            <entry>freq start</entry>
+                            <entry>freq-start</entry>
                             <entry>100</entry>
                         </row>
                         <row>
-                            <entry>freq end</entry>
+                            <entry>freq-end</entry>
                             <entry>300</entry>
                         </row>
                     </tbody>
@@ -60,6 +60,7 @@
     </body>
     <related-links>
         <link href="../gram-index.dita" format="dita"></link>
+        <link href="gram1.dita" outputclass="current"><linktext>LOFAR 1</linktext></link>
         <link href="./gram1%20-%202.dita"><linktext>LOFAR 2</linktext></link>
         <link href="./gram1%20analysis.dita" audience="-trainee"><linktext>ANALYSIS</linktext></link>
     </related-links>

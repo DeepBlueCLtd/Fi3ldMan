@@ -132,3 +132,4 @@ node_modules
 # Fi3ldMan exclusions
 /dita/temp
 /dita-parent/pub-10/out/
+dita-parent/pub-10/dita/out/

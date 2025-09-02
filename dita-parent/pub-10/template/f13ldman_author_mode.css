@@ -57,24 +57,3 @@
 [outputclass='bkGreen'] {
   background-color: #00ff00;    
 }
-
-/* make the right-hand notes block float */
-[outputclass='rh_notes'] {
-      background-color: #EFEFFA; 
-      position:fixed;
-      width: 200px;
-      right:0;
-      top:50px;
-      z-index: 1000;
-  }
-  
-/* make the related links float */
-related-links {
-      background-color: #EFEFFA; 
-      position:fixed;
-      width: 200px;
-      right:0;
-      top:150px;
-      z-index: 1000;
-  }
-  
