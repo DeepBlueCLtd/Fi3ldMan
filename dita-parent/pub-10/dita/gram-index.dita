@@ -11,25 +11,25 @@
 			<div outputclass="item-list">
 			<xref href="Grams/gram1.dita" outputclass="enterBtn"/>
 			<xref href="Grams/gram%202.dita" outputclass="enterBtn"/>
-			<xref outputclass="enterBtn" href="Grams/gram2%20-%202.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram%202.dita"/>
-				<xref outputclass="enterBtn" href="Grams/gram1.dita"/>
-				<xref outputclass="enterBtn" href="Grams/gram1.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram%202.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram1.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram%202.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram1.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram%202.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram1.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram%202.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram1.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram%202.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram1.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram%202.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram1.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram%202.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram1.dita"/>
-			<xref outputclass="enterBtn" href="Grams/gram%202.dita"/>
+			<xref href="Grams/gram2%20-%202.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram%202.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram1.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram1.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram%202.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram1.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram%202.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram1.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram%202.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram1.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram%202.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram1.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram%202.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram1.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram%202.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram1.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram%202.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram1.dita" outputclass="enterBtn"/>
+			<xref href="Grams/gram%202.dita" outputclass="enterBtn"/>
 			</div>
 		</section>
 	</refbody>
