@@ -158,8 +158,3 @@ All three publications share:
 - Common JavaScript (harmonics.js, sorttable.js, current-handler.js)
 - The "COMMERCIALLY SENSITIVE" protection banner
 - The same tile-based landing page design pattern
-
-## User Guide
-
-A slideshow user guide for maintaining all three publications is published at:
-https://docs.google.com/presentation/d/e/2PACX-1vTXBxKihbXRo7RotANiJe3379ODZULDUD5gQPfCDrSYZX6FZ4fJOKJ7GkBz0TEpg4m3hziBDRS1FdT0/pub?start=false&loop=false&delayms=3000
