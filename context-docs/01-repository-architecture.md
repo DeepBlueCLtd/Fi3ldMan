@@ -140,8 +140,3 @@ The publishing workflow is:
 5. Serve via `npm start` (runs `serve dita/out` on Node.js 18.x)
 
 The project can also be deployed as a static site (e.g., GitHub Pages).
-
-## User Guide
-
-A slideshow user guide for maintaining Pubs 5, 9, and 10 is published at:
-https://docs.google.com/presentation/d/e/2PACX-1vTXBxKihbXRo7RotANiJe3379ODZULDUD5gQPfCDrSYZX6FZ4fJOKJ7GkBz0TEpg4m3hziBDRS1FdT0/pub?start=false&loop=false&delayms=3000
