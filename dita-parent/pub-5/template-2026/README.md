@@ -128,28 +128,29 @@ shape rather than `.ImageLinksTable`, so any future image link table is covered.
 
 ## How to build it
 
-1. **Register the template folder.** In Oxygen: `Options > Preferences > DITA >
-   Publishing Templates`, or in the project's own settings. The `.xpr` currently
-   has `publishing.templates.gallery.directories` set to `${pd}/template`, which
-   resolves to `dita-parent/pub-5/dita/template` — **that folder does not exist**
-   (the template is one level up, in `dita-parent/pub-5/`). Point it at
+This is already set up in `DITA_project_pub5.xpr`: the project registers
+`${pd}/../template-2026` as a publishing template gallery directory, and the
+`Fieldman Webhelp 2026` scenario is associated with `index.ditamap`. Open the
+map and run that scenario.
+
+To recreate it from scratch, or to set up a second scenario:
+
+1. **Register the template folder** — `Options > Preferences > DITA >
+   Publishing Templates`, or the project's own settings. Point it at
    `${pd}/../template-2026`. Alternatively skip the gallery and browse straight
    to `f13ldMan.opt` in step 3.
 2. Open `dita-parent/pub-5/dita/index.ditamap`.
 3. `Configure Transformation Scenario` → duplicate the existing
-   `webhelp-responsive` scenario, name it something like
-   `Fi3ldMan WebHelp 2026`. On the **Templates** tab pick **f13ldMan 2026**
-   (or `Browse for publishing template file` → this folder's `f13ldMan.opt`).
-4. On the **Output** tab set the output directory to something separate from the
-   current one so you can compare, e.g. `${pd}/out/oxygen-2026`.
-5. On the **Parameters** tab, **delete the `webhelp.logo.image` override** if one
-   is present — the template now supplies it. Leave the rest alone.
+   `webhelp-responsive` scenario. On the **Templates** tab pick
+   **f13ldMan 2026** (or `Browse for publishing template file` → this folder's
+   `f13ldMan.opt`).
+4. On the **Output** tab set the output directory — use something separate from
+   an existing build if you want to compare the two side by side.
+5. On the **Parameters** tab, **delete any `webhelp.logo.image` override** —
+   the template now supplies it. Leave the rest alone.
 6. Apply and run.
 
-Then compare, in a browser:
-
-- `dita-parent/pub-5/dita/out/oxygen-2026/index.html` (new)
-- `out/oxygen/index.html` (the good 2024 reference)
+The 2024 reference build, for comparison, is at `out/oxygen/index.html`.
 
 ## What to check first, and why
 
