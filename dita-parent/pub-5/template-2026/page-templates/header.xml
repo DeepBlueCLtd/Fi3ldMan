@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Fi3ldMan header.
+
+    Based on the stock Oxygen 28.1 header.xml, with two Fi3ldMan additions:
+      1. The `wh_header_protection` bar above the navigation bar. It is emitted
+         conditionally by xslt/inc/customHeader.xsl, driven by the
+         `webhelp.show.protection` / `webhelp.protection.text` parameters.
+      2. The `c-nav-bar` / `c-full-width` / `c-no-wrap` hook classes used by
+         f13ldman.css to widen the navigation bar.
+
+    Everything else is stock. When upgrading Oxygen, diff this file against
+    <Oxygen>/frameworks/dita/DITA-OT/plugins/com.oxygenxml.webhelp.responsive/oxygen-webhelp/page-templates/header.xml
+    and re-apply the two additions above.
+-->
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:whc="http://www.oxygenxml.com/webhelp/components">
+    <header class="navbar navbar-default wh_header_protection"/>
+
+    <header class="navbar navbar-default wh_header c-nav-bar">
+        <div class="container-fluid navbar-expand-md c-full-width">
+            <div class="wh_header_flex_container navbar-nav navbar-dark c-no-wrap">
+                <div class="wh_logo_and_publication_title_container">
+                    <div class="wh_logo_and_publication_title">
+                        <whc:include_html href="${webhelp.fragment.before.logo_and_title}"/>
+                        <whc:webhelp_logo class="d-none d-sm-block"/>
+                        <whc:webhelp_publication_title/>
+                        <whc:include_html href="${webhelp.fragment.after.logo_and_title}"/>
+                    </div>
+
+                    <button type="button" data-bs-target="#wh_top_menu_and_indexterms_link" id="wh_menu_mobile_button"
+                        data-bs-toggle="collapse" class="navbar-toggler collapsed wh_toggle_button"
+                        aria-expanded="false" aria-label="${i18n(toggle.menu)}"
+                        aria-controls="wh_top_menu_and_indexterms_link">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+                <!--
+                    Fi3ldMan keeps the search box in the navigation bar. Stock
+                    Oxygen 28.1 moved it into the page body instead, so the
+                    matching block has been removed from wt_index.html,
+                    wt_topic.html and wt_search.html to avoid emitting two
+                    search forms with duplicate ids.
+                -->
+                <whc:webhelp_search_input class="navbar-form wh_main_page_search search" role="form"/>
+
+                <div class="wh_top_menu_and_indexterms_link collapse navbar-collapse" id="wh_top_menu_and_indexterms_link">
+                    <whc:include_html href="${webhelp.fragment.before.top_menu}"/>
+                    <whc:webhelp_top_menu/>
+                    <whc:webhelp_indexterms_link/>
+                    <whc:include_html href="${webhelp.fragment.after.top_menu}"/>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>

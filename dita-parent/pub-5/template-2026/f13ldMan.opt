@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+    Fi3ldMan WebHelp Responsive publishing template, rebuilt on the Oxygen 28.1
+    (2026) base. See README.md in this folder for what changed and why.
+-->
+<publishing-template>
+    <name>f13ldMan 2026</name>
+    <description>Fi3ldMan Field Service Manual - WebHelp Responsive, Oxygen 2026 base</description>
+    <webhelp>
+        <preview-image file="oxygen-tiles.png"/>
+
+        <!--
+            These four layouts are copies of the Oxygen 28.1 stock layouts.
+            wt_terms.html is unmodified. wt_index.html, wt_topic.html and
+            wt_search.html each have exactly one deletion, marked with a
+            "FI3LDMAN DELTA" comment: the stock body-level search input, which
+            Fi3ldMan renders in the navigation bar instead.
+
+            On an Oxygen upgrade, re-copy all four from
+            <Oxygen>/frameworks/dita/DITA-OT/plugins/com.oxygenxml.webhelp.responsive/oxygen-webhelp/page-templates/
+            then re-apply those three deletions. See README.md.
+        -->
+        <html-page-layout-files>
+            <page-layout-file page="search" file="page-templates/wt_search.html"/>
+            <page-layout-file page="topic" file="page-templates/wt_topic.html"/>
+            <page-layout-file page="main" file="page-templates/wt_index.html"/>
+            <page-layout-file page="index-terms" file="page-templates/wt_terms.html"/>
+        </html-page-layout-files>
+
+        <!--
+            Fi3ldMan's own scripts, added on top of whatever Oxygen emits.
+            Replaces the old whc:page_libraries XSLT override.
+        -->
+        <html-fragments>
+            <fragment
+                file="page-templates-fragments/topic-page-head.xml"
+                placeholder="webhelp.fragment.head.topic.page"/>
+        </html-fragments>
+
+        <parameters>
+            <!-- Protection banners, consumed by xslt/inc/customHeader.xsl and customFooter.xsl -->
+            <parameter name="webhelp.show.protection" value="yes"/>
+            <parameter name="webhelp.protection.text" value="COMMERCIALLY SENSITIVE"/>
+            <parameter name="webhelp.protection.background.color" value=""/>
+
+            <!--
+                Declared here, relative to this template folder, rather than as
+                an absolute path in the transformation scenario. The 2026 build
+                emitted src="C:\git\Fi3ldMan\...\corp_logo.png" into every page,
+                which only resolves on the machine that built it.
+            -->
+            <parameter name="webhelp.logo.image" value="corp_logo.png"/>
+
+            <parameter name="webhelp.show.main.page.tiles" value="yes"/>
+            <parameter name="webhelp.show.main.page.toc" value="no"/>
+            <parameter name="webhelp.top.menu.depth" value="3"/>
+            <parameter name="args.figurelink.style" value="TITLE"/>
+            <parameter name="args.tablelink.style" value="TITLE"/>
+            <parameter name="force-unique" value="true"/>
+            <parameter name="webhelp.show.print.link" value="no"/>
+            <parameter name="webhelp.show.publication.toc" value="no"/>
+
+            <!--
+                Dark mode is new in Oxygen 2026. Left off: f13ldman.css still uses
+                hard-coded colours, so a dark theme would render inconsistently.
+                See README.md before turning this on.
+            -->
+            <parameter name="webhelp.enable.dark.mode" value="no"/>
+        </parameters>
+
+        <xslt>
+            <extension
+                file="xslt/customMainPage.xsl"
+                id="com.oxygenxml.webhelp.xsl.createMainPage"/>
+            <extension
+                file="xslt/customTopicPage.xsl"
+                id="com.oxygenxml.webhelp.xsl.dita2webhelp"/>
+            <extension
+                file="xslt/customSearchPage.xsl"
+                id="com.oxygenxml.webhelp.xsl.createSearchPage"/>
+        </xslt>
+
+        <resources>
+            <!--
+                oxygen-theme.css is new in 2026 - it defines the CSS custom
+                properties (wh-* variables) that oxygen.css now reads, so it
+                must come first.
+                Both files are stock; do not edit them, put overrides in
+                f13ldman.css.
+            -->
+            <css file="oxygen-theme.css"/>
+            <css file="oxygen.css"/>
+            <css file="notes.css"/>
+            <css file="f13ldman.css"/>
+            <fileset>
+                <include name="resources/**/*"/>
+                <exclude name="resources/**/*.svn"/>
+                <exclude name="resources/**/*.git"/>
+            </fileset>
+        </resources>
+
+        <online-preview-url>https://www.oxygenxml.com/samples/DITA-WebHelp-Responsive/tiles/oxygen/</online-preview-url>
+        <tags>
+            <tag type="layout">tiles</tag>
+            <tag type="color">blue</tag>
+            <tag type="color">light</tag>
+        </tags>
+    </webhelp>
+</publishing-template>
