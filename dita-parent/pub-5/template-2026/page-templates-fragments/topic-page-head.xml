@@ -1,0 +1,23 @@
+<!--
+    Fi3ldMan custom scripts for topic pages.
+
+    This replaces the old `topic-page-libraries.xml` + the `whc:page_libraries`
+    override in customTopicPage.xsl. That approach hard-coded Oxygen's own asset
+    list (commons.css, commons.js, topic.js), which silently broke on the
+    Oxygen 2024 -> 2026 upgrade when those bundles were renamed and re-split.
+
+    Oxygen now emits its own assets via <whc:page_css> and <whc:page_libraries>
+    in the page layouts; this fragment only adds the three Fi3ldMan scripts on
+    top, so it does not need touching when Oxygen changes its bundling.
+
+    Injected via the `webhelp.fragment.head.topic.page` placeholder - see the
+    <html-fragments> section of f13ldMan.opt.
+
+    The <head> wrapper is ignored - only its children are copied into the output.
+-->
+<head xmlns="http://www.w3.org/1999/xhtml" xmlns:whc="http://www.oxygenxml.com/webhelp/components" whc:version="28.1">
+
+    <script defer="defer" src="${oxygen-webhelp-assets-dir}/template/resources/current-handler.js?buildId=${oxygen-webhelp-build-number}"></script>
+    <script defer="defer" src="${oxygen-webhelp-assets-dir}/template/resources/sorttable.js?buildId=${oxygen-webhelp-build-number}"></script>
+    <script defer="defer" src="${oxygen-webhelp-assets-dir}/template/resources/harmonics.js?buildId=${oxygen-webhelp-build-number}"></script>
+</head>

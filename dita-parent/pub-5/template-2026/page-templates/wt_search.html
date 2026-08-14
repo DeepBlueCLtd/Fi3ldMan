@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:whc="http://www.oxygenxml.com/webhelp/components" whc:version="28.1">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Search Results</title>
+        <whc:page_css page="search"/>
+        <whc:webhelp_skin_resources/>
+        <whc:page_libraries page="search"/>
+        <whc:include_html href="${args.hdf}"/>
+        <whc:include_html href="${webhelp.fragment.head}"/>
+        <whc:include_html href="${webhelp.fragment.head.search.page}"/>
+    </head>
+    <body class="wh_search_page">
+        <a class="visually-hidden-focusable" id="wh_jump_to_content" href="#results">
+            <whc:macro value="${i18n(jump.to.results)}" />
+        </a>
+        <whc:include_html href="${args.hdr}"/>
+        <whc:include_html href="${webhelp.fragment.before.body}"/>
+        <whc:include_html href="${webhelp.fragment.before.body.search.page}"/>
+        
+        <whc:include_html href="${webhelp.fragment.header}"/>
+        
+        <whc:include_html href="${webhelp.fragment.after.header}"/>
+        <whc:include_html href="${webhelp.fragment.after.header.search.page}"/> 
+        
+        <!--
+            FI3LDMAN DELTA: the stock <whc:webhelp_search_input> block was removed
+            from here. Fi3ldMan renders the search box inside the navigation bar
+            (see page-templates/header.xml).
+        -->
+
+        <whc:include_html href="${webhelp.fragment.before.main.content.area}"/>
+        <whc:include_html href="${webhelp.fragment.before.main.content.area.search.page}"/>
+        
+        <div class="container-fluid wh_content_area" id="results">
+            <div class="row">
+                <whc:webhelp_search_results />
+            </div>
+        </div>
+        
+        <whc:include_html href="${webhelp.fragment.after.main.content.area}"/>
+        <whc:include_html href="${webhelp.fragment.after.main.content.area.search.page}"/>
+        
+        <whc:include_html href="${webhelp.fragment.feedback}"/>
+        
+        <whc:include_html href="footer.xml"/>
+        
+        <whc:include_html href="${webhelp.fragment.after.body}"/>
+        <whc:include_html href="${webhelp.fragment.after.body.search.page}"/>
+    </body>
+    <whc:include_html href="${webhelp.google.search.script}"/> 
+</html>
