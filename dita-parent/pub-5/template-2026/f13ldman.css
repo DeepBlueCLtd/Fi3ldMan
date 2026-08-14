@@ -365,6 +365,61 @@ padding: 0 10px;
   text-align: center;
 }
 
+/*
+ * ---------------------------------------------------------------------------
+ * Equal-height linked images.
+ *
+ * Oxygen's own stylesheet contains `.image { height: auto }`, which outranks the
+ * HTML `height` attribute that DITA emits from `<image height="...">`. The
+ * `width` attribute is not overridden, so each image ends up scaled to its own
+ * width at its own aspect ratio - which is why rows of images that are authored
+ * as the same height render at different heights.
+ *
+ * These rules restore a uniform height and let the width follow the aspect
+ * ratio, so nothing is cropped. Adjust the two variables below to retune;
+ * there is no need to touch the content or the images.
+ * ---------------------------------------------------------------------------
+ */
+/* Starting points, not measured values: read off the representative content in
+   this repo rather than the real publication, though the real images are
+   expected to be roughly the same size. The declared height is unreachable from
+   CSS, so a number has to be chosen here - these two variables are the only
+   place to change it. */
+:root {
+  /* Rows of linked images inside a plain DITA <div>. */
+  --f13-image-row-height: 177px;
+
+  /* Linked images used as navigation tiles inside a table cell. */
+  --f13-image-link-height: 150px;
+}
+
+/*
+ * Rows of linked images: a plain DITA <div> holding sibling <xref>s that each
+ * wrap an <image>.
+ *
+ * The `:has(> a.xref + a.xref)` guard restricts this to divs that hold a *row*
+ * of two or more linked images. Without it the selector also catches lone
+ * linked images - country flags in page titles, standalone figures - and would
+ * resize those too. The guard is structural rather than tuned to any particular
+ * content, so it should hold on the real publication.
+ *
+ * :has() needs Chrome/Edge 105+, Safari 15.4+ or Firefox 121+. On anything
+ * older the whole rule is ignored and images fall back to today's uneven
+ * rendering, so the failure mode is safe.
+ */
+.body div.div:has(> a.xref + a.xref) > a.xref > img.image {
+  height: var(--f13-image-row-height);
+  width: auto;
+}
+
+/* Image link tables, i.e. the country landing pages. Written against the
+   generic "linked image in a table cell" shape rather than .ImageLinksTable,
+   so any image link table picks this up regardless of outputclass. */
+.body td > a.xref > img.image {
+  height: var(--f13-image-link-height);
+  width: auto;
+}
+
 /* style for large link buttons */
 .enterBtn {
   font: bold 28px Arial;

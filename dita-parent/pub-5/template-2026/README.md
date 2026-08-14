@@ -50,8 +50,9 @@ Bootstrap 4 (`data-toggle`, `sr-only`, `col-lg-*`) against Bootstrap 5 in 2026
 - **`xslt/inc/customSearch.xsl` is gone.** It forked an Oxygen template purely to
   add a `c-menu` class to the top menu. `f13ldman.css` now targets Oxygen's own
   `.wh_top_menu` instead — same result, one less thing to break on upgrade.
-- **`f13ldman.css` is otherwise unchanged**, apart from that retarget and two
-  explanatory comments.
+- **Linked images are now equal height** — see "Equal-height linked images"
+  below. Everything else in `f13ldman.css` is unchanged apart from that retarget
+  and some explanatory comments.
 - **CSS load order changed** so that `f13ldman.css` now loads *last* (previously
   `notes.css` loaded after it). Overrides now reliably win.
 - **`webhelp.logo.image` is set in the template**, relative to this folder,
@@ -79,6 +80,51 @@ Stock 28.1 sources live in:
 ```
 C:\Program Files\Oxygen XML Editor 28\frameworks\dita\DITA-OT\plugins\com.oxygenxml.webhelp.responsive\oxygen-webhelp\page-templates\
 ```
+
+## Equal-height linked images
+
+Rows of linked images, and the image link tables on the country pages, rendered
+at wildly different sizes. This is **not** a 2026 regression — the markup and the
+relevant CSS are byte-identical between the 2024 and 2026 builds, and no copy of
+`f13ldman.css` anywhere in the repo has ever sized these images. It was simply
+less noticeable before.
+
+The cause: Oxygen's own stylesheet contains `.image { height: auto }`, which
+outranks the HTML `height` attribute that DITA emits from `<image height="...">`.
+The `width` attribute is *not* overridden, so each image ends up scaled to its
+own declared width at its own aspect ratio. That is why images an author sized
+to a common height render at different heights.
+
+`f13ldman.css` now sets an explicit height and lets the width follow the aspect
+ratio, so nothing is cropped and no content or image changes are needed. Two
+variables control it:
+
+| Variable | Default | Applies to |
+| --- | --- | --- |
+| `--f13-image-row-height` | `177px` | Rows of linked images in a plain DITA `<div>` |
+| `--f13-image-link-height` | `150px` | Linked images inside a table cell |
+
+> **The defaults are starting points, not measured values.** They were read off
+> the representative sample content in this repo rather than the real
+> publication, but the real images are expected to be roughly the same size, so
+> they should be about right. CSS cannot read the author's declared height, so a
+> number has to be chosen somewhere; if the real rows turn out to sit at a
+> different height, it is one edit in the `:root` block of `f13ldman.css` and it
+> applies everywhere.
+
+Two things worth knowing about the row rule:
+
+- It is guarded with `:has(> a.xref + a.xref)` so it only applies to divs holding
+  a *row* of two or more linked images. Without that guard the selector also
+  catches lone linked images — country flags in page titles, standalone figures —
+  and would resize those too. The guard is structural rather than tuned to
+  particular content, so it should carry over to the real publication.
+- `:has()` needs Chrome/Edge 105+, Safari 15.4+ or Firefox 121+. On anything
+  older the rule is ignored entirely and images fall back to today's uneven
+  rendering, so the failure mode is safe rather than broken.
+
+The table rule deliberately targets the generic "linked image in a table cell"
+shape rather than `.ImageLinksTable`, so any future image link table is covered.
 
 ## How to build it
 
@@ -143,7 +189,8 @@ These are the parts I could not verify without running Oxygen:
   `wt_index.html` *does* reference it, so under 2026 it would have injected a
   `<head>` fragment into the main page's welcome block. Not carried over.
 - **The DITA content in this repo is representative sample data, not the real
-  publication.** One thing in `f13ldman.css` is coupled to content:
+  publication.** Two things in `f13ldman.css` are coupled to content:
+  - the two image height variables above, called out as needing real values;
   - `[data-id="PD_1"] { width: 100% !important }` (the full-width "Regions"
     tile), which is **pre-existing**, carried over unchanged from the 2024
     template. It keys off a DITA filename prefix; `PD_1` is confirmed as the
