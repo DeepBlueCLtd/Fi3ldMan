@@ -1,5 +1,5 @@
 {
-  "name": "node-build-pack",
+  "name": "fi3ldman",
   "version": "0.1.0",
   "homepage": ".",
   "private": true,
@@ -7,7 +7,7 @@
     "serve": "^14.0.1"
   },
   "scripts": {
-    "start": "serve dita/out"
+    "start": "serve dita-parent/pub-5/dita/out"
   },
   "eslintConfig": {
     "extends": [
@@ -26,9 +26,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "engines": {
-    "node": "18.x"
   },
   "devDependencies": {
     "@types/jest": "^29.2.3",
