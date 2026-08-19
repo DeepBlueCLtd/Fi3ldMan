@@ -12,7 +12,9 @@ installation on that network.
 This document covers that transfer and the target-side setup. For how the
 template itself works, see `11-publishing-template-2026.md`.
 
-**What moves:** `dita-parent/pub-5/template-2026/` — 40 files, about 1.4 MB.
+**What moves:** `dita-parent/pub-5/template-2026/` — 40 files, about 1.4 MB, or
+39 files where `verify-integrity.ps1` is excluded because the target network
+does not permit PowerShell scripts. See Phase D.
 **What does not move:** DITA source, build output, `.git`, `node_modules`, the
 `.xpr` project file. The real source and its project already exist on the target.
 
@@ -30,8 +32,10 @@ Three consequences shape the whole procedure:
 1. **Verify before sending, not after.** A build that has not been run and
    checked on this side should not cross.
 2. **The package must be self-diagnosing.** Integrity must be checkable on the
-   receiving side with no external reference, which is what `MANIFEST.sha256`
-   and `verify-integrity.ps1` are for.
+   receiving side with no external reference, which is what `MANIFEST.sha256`,
+   the archive's `.sha256` sidecar and `verify-integrity.ps1` are for. Where
+   the target forbids scripts, the sidecar and `certutil` carry this instead —
+   see Phase D.
 3. **The documentation travels with the payload.** The person doing the
    target-side work needs the procedure in hand. Include this file.
 
@@ -42,7 +46,8 @@ Three consequences shape the whole procedure:
 | Oxygen version, both sides | **28.1 (2026).** Confirmed present on the target. Verify via `Help > About` |
 | Source-side build | Sample build run and all five verification checks passed |
 | Real corporate logo | See "The logo" below — decide before packaging |
-| Gateway submission route | «site-specific» |
+| Gateway submission route | «site-specific» — see "If the package travels by email" in Phase B if that is the route |
+| Target-side scripting policy | «site-specific» — whether PowerShell scripts may be run there. Decides which Phase D path applies, and whether `verify-integrity.ps1` is worth packaging at all |
 | Target-side template location | «site-specific» — the folder the Oxygen installation there will read from |
 
 > **The version match is not a formality.** This template is built on the 28.1
@@ -128,7 +133,7 @@ The package must contain, at minimum:
 | --- | --- |
 | The complete `template-2026/` folder | The payload |
 | `MANIFEST.sha256` | Integrity verification on arrival |
-| `verify-integrity.ps1` | Ships inside the template folder; runs on stock Windows |
+| `verify-integrity.ps1` | Ships inside the template folder; runs on stock Windows. **Omit where the target forbids PowerShell scripts** — it is then dead weight that also blocks email delivery. Payload becomes 39 files |
 | `README.md` | Ships inside the template folder; change rationale |
 | This document + `11-publishing-template-2026.md` | The target-side operator needs both |
 
@@ -148,13 +153,44 @@ Gateways commonly filter on extension or content type. The payload contains:
 | `.xml` | 3 | Fragments |
 | `.js` | 3 | **Scripts — commonly restricted** |
 | `.opt` | 1 | **Unusual extension; it is plain XML.** May need renaming to `.xml` in transit and renaming back on arrival |
-| `.md`, `.txt`, `.ps1` | 3 | Docs, font licence, verify script |
+| `.md`, `.txt`, `.ps1` | 3 | Docs, font licence, verify script. 2 where the `.ps1` is omitted |
 
 Largest single file is `resources/images/WorldMap.jpg` at ~280 KB; the whole
 payload is ~1.4 MB, so size limits are unlikely to bite.
 
-If any file is stripped, blocked or renamed in transit, `verify-integrity.ps1`
-will report it as `MISSING` or `MISMATCH` on arrival — which is the point.
+If any file is stripped, blocked or renamed in transit, the integrity check in
+Phase D will report it as `MISSING` or `MISMATCH` on arrival — which is the
+point.
+
+### If the package travels by email
+
+Mail providers block `.js` and `.ps1` outright, **and they scan inside
+archives**. Zipping does not conceal them, nor does nesting a zip inside
+another zip, encrypting the archive, or renaming the `.zip` itself — the scan
+is on the contents, not the container extension.
+
+This is not a hypothetical. It was confirmed against Gmail in August 2026: a
+standard package was rejected, and it was still rejected after
+`verify-integrity.ps1` was removed, because the three `.js` files under
+`resources/` were enough on their own.
+
+Those three files cannot simply be dropped. `page-templates-fragments/topic-page-head.xml`
+loads them by name, and verification check 1 in Phase G exists specifically to
+confirm they arrived and load. Two workarounds are available:
+
+| Approach | What it costs | Choose when |
+| --- | --- | --- |
+| **Rename in transit.** Ship the three `.js` files as `.js.txt`; rename them back on arrival | Three manual renames before the template works — and before `MANIFEST.sha256` will verify | The gateway needs to inspect what it passes, or the receiving operator is comfortable with the rename step |
+| **Base64 wrapper.** Encode the whole archive to a `.txt` blob: `base64 -w 76 <archive> > <archive>.b64.txt`. Decode on arrival with `certutil -decode` | The payload is opaque in transit; ~33% larger | The gateway just moves bytes, or the rename is also blocked |
+
+Under either approach, generate `MANIFEST.sha256` over the **real** file names
+before renaming or encoding. The hashes are of file contents, so the manifest
+stays correct across both, and verifies once the payload is back in its proper
+form.
+
+Whichever you use, say so plainly in the package — the receiving operator has
+no way to ask. A short `READ-FIRST.txt` at the archive root covering the rename
+or decode step, and any omitted `verify-integrity.ps1`, is enough.
 
 ---
 
@@ -173,7 +209,17 @@ routinely at your site, record it here so it is not mistaken for corruption:
 
 ## Phase D — Verify integrity on arrival
 
-Before anything else, on the target network:
+Do this before anything else on the target network. The gateway is one-way, so
+this is the only opportunity to establish that what arrived is what was sent.
+
+If the payload was renamed or base64-wrapped for transit (Phase B), restore it
+to its proper form first — rename the `.js.txt` files back, or decode the
+archive. Verification is meaningless until you have.
+
+Which path applies depends on the target's scripting policy, recorded in
+Preconditions.
+
+### Path 1 — where PowerShell scripts are permitted
 
 ```powershell
 cd <template folder>
@@ -192,9 +238,53 @@ additional tooling. It reports `MISSING` for absent files, `MISMATCH` for
 altered ones, and fails loudly if the manifest itself is absent or empty, so an
 unreadable manifest cannot be mistaken for a pass.
 
-**If it reports any problem, stop.** Do not attempt to repair files by hand; a
-partial template produces subtly broken output rather than an obvious failure.
-Re-transfer.
+### Path 2 — where PowerShell scripts are not permitted
+
+`certutil` is a built-in Windows executable, not a script, so it is normally
+available where script execution is barred. Confirm that locally before relying
+on it. «site-specific»
+
+**First check — hash the archive as received, before extracting.** This is one
+command and it covers every file at once:
+
+```
+certutil -hashfile <archive name> SHA256
+```
+
+Compare against the `.sha256` sidecar that travelled with the archive. A match
+means the whole payload is intact and no further checking is needed.
+
+**Second check — only if the archive hash does not match.** A gateway that
+repacks or re-compresses changes the archive hash while leaving the files
+themselves untouched, so a mismatch is not yet evidence of corruption. Fall
+back to per-file hashes against `MANIFEST.sha256`:
+
+```
+certutil -hashfile resources\harmonics.js SHA256
+```
+
+Checking all 39-40 files by hand is not realistic. Prioritise the items most
+likely to be stripped or rewritten in transit:
+
+| Check first | Why |
+| --- | --- |
+| The three `.js` files under `resources/` | Blocked by mail filters and many gateways; the most likely to be missing outright |
+| `f13ldMan.opt` | Unusual extension, may have been renamed |
+| The four `.ttf` fonts under `resources/fonts/` | Binary, and commonly stripped |
+
+A file that is **missing entirely** is the easier case — it will surface as a
+404 in verification check 1 of Phase G. A file that arrived **altered** will
+not, which is why the hashes matter more than the file listing.
+
+### Under either path
+
+**If anything reports a problem, stop.** Do not attempt to repair files by
+hand; a partial template produces subtly broken output rather than an obvious
+failure. Re-transfer.
+
+Where Path 2 was used, the Phase G checklist is carrying more weight than
+usual — it is the main remaining evidence that the transfer was good. Do not
+abbreviate it.
 
 ---
 
@@ -335,8 +425,11 @@ minimum:
 | Date | |
 | Source commit hash | |
 | Package name and SHA-256 of the archive | |
+| Files in payload | 40, or 39 without `verify-integrity.ps1` |
 | Oxygen version, both sides | 28.1 / 28.1 |
-| Verification result on arrival | `Files checked: 40   Problems: 0` |
+| Phase D path used | Path 1 (script) or Path 2 (certutil) |
+| Verification result on arrival | `Files checked: 40   Problems: 0`, or the archive hash compared |
+| Transit encoding, if any | Renamed `.js.txt` / base64 / none |
 | Five-point checklist result | |
 | Image-height values in use | `177px` / `150px` |
 | Any target-side edits made | |
