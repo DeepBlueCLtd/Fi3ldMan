@@ -134,3 +134,7 @@ node_modules
 /dita-parent/pub-10/out/
 dita-parent/pub-10/dita/out/
 dita-parent/pub-5/dita/temp/
+
+# Per-transfer integrity manifest for the publishing template (see
+# context-docs/12-template-transfer-air-gapped-network.md, Phase B)
+dita-parent/pub-5/template-2026/MANIFEST.sha256

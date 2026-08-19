@@ -90,24 +90,37 @@ Run from the repository root, in git bash:
 cd dita-parent/pub-5/template-2026
 
 # Generate the integrity manifest (excludes itself)
-find . -type f -not -name 'MANIFEST*' | sort | xargs sha256sum > MANIFEST.sha256
+# The -b is required: verify-integrity.ps1 parses the binary-mode
+# "<hash> *<path>" form. Plain sha256sum emits "<hash>  <path>", which the
+# script cannot read - it reports every line as unreadable and fails the
+# whole package on arrival.
+find . -type f -not -name 'MANIFEST*' | sort | xargs sha256sum -b > MANIFEST.sha256
 
 # Confirm it verifies here before it travels
 sha256sum -c MANIFEST.sha256 | grep -v ': OK$' || echo 'All files OK'
 ```
 
-Then package the folder. `zip` is not present in this environment; use tar or
-PowerShell:
+`MANIFEST.sha256` is a per-transfer artefact, regenerated on each crossing. It
+is not committed, and is gitignored so packaging does not dirty the tree.
+
+Then package the folder, using whichever archive format the gateway accepts:
 
 ```bash
-# From dita-parent/pub-5/
+# From dita-parent/pub-5/ - .zip
+zip -r -X fi3ldman-template-2026.zip template-2026/
+
+# ...or .tar.gz
 tar -czf fi3ldman-template-2026.tar.gz template-2026/
 ```
 
 ```powershell
-# PowerShell equivalent, if the gateway prefers .zip
+# PowerShell equivalent, where git bash is not available
 Compress-Archive -Path .\template-2026 -DestinationPath .\fi3ldman-template-2026.zip
 ```
+
+Record the SHA-256 of the finished archive in a sidecar file next to it
+(`sha256sum -b <archive> > <archive>.sha256`), not inside the archive - an
+archive cannot contain its own hash.
 
 The package must contain, at minimum:
 
