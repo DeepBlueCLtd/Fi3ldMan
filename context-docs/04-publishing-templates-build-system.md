@@ -1,5 +1,14 @@
 # Fi3ldMan - Publishing Templates & Build System
 
+> **Note on scope.** This document describes the 2024 template generation, built
+> on the Oxygen 25.1 base. For Pub-5 that template has been superseded by
+> `dita-parent/pub-5/template-2026/`, which is built on the Oxygen 28.1 (2026)
+> base and is the one to use — see `11-publishing-template-2026.md`, and
+> `12-template-transfer-air-gapped-network.md` for deploying it to the target
+> network. The material below remains current for the Pub-10 and legacy
+> templates, and for the shared concepts (`.opt` descriptors, XSLT extension
+> points, note styling).
+
 ## Template Architecture
 
 Fi3ldMan uses the Oxygen WebHelp Responsive publishing engine with custom templates. The template system has a layered architecture:

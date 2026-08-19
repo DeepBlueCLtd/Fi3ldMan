@@ -4,6 +4,13 @@ This is the Fi3ldMan publishing template rebuilt on the Oxygen 28.1 WebHelp
 Responsive base. It replaces `../template`, which was built in 2024 on the
 Oxygen 25.1 base and produces broken output under Oxygen 2026.
 
+> This file records **why** the template is built the way it is. For the
+> system-level description — how Oxygen consumes it, the parameter reference and
+> the upgrade procedure — see `context-docs/11-publishing-template-2026.md`. For
+> transferring it to the air-gapped network, see
+> `context-docs/12-template-transfer-air-gapped-network.md`;
+> `verify-integrity.ps1` in this folder is part of that procedure.
+
 ## Why the 2024 template broke under Oxygen 2026
 
 Not CSS class names — those are almost entirely unchanged between 25.1 and 28.1.
