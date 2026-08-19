@@ -176,21 +176,40 @@ standard package was rejected, and it was still rejected after
 
 Those three files cannot simply be dropped. `page-templates-fragments/topic-page-head.xml`
 loads them by name, and verification check 1 in Phase G exists specifically to
-confirm they arrived and load. Two workarounds are available:
+confirm they arrived and load.
 
-| Approach | What it costs | Choose when |
-| --- | --- | --- |
-| **Rename in transit.** Ship the three `.js` files as `.js.txt`; rename them back on arrival | Three manual renames before the template works — and before `MANIFEST.sha256` will verify | The gateway needs to inspect what it passes, or the receiving operator is comfortable with the rename step |
-| **Base64 wrapper.** Encode the whole archive to a `.txt` blob: `base64 -w 76 <archive> > <archive>.b64.txt`. Decode on arrival with `certutil -decode` | The payload is opaque in transit; ~33% larger | The gateway just moves bytes, or the rename is also blocked |
+**The method is to rename them in transit.** Generate `MANIFEST.sha256` first,
+over the real file names, then rename:
 
-Under either approach, generate `MANIFEST.sha256` over the **real** file names
-before renaming or encoding. The hashes are of file contents, so the manifest
-stays correct across both, and verifies once the payload is back in its proper
-form.
+```bash
+# From dita-parent/pub-5/template-2026/, after generating the manifest
+cd resources
+for f in current-handler harmonics sorttable; do mv "$f.js" "$f.js.txt"; done
+```
 
-Whichever you use, say so plainly in the package — the receiving operator has
-no way to ask. A short `READ-FIRST.txt` at the archive root covering the rename
-or decode step, and any omitted `verify-integrity.ps1`, is enough.
+On arrival, before anything else, rename them back:
+
+```
+ren resources\current-handler.js.txt current-handler.js
+ren resources\harmonics.js.txt harmonics.js
+ren resources\sorttable.js.txt sorttable.js
+```
+
+Only the names change. `MANIFEST.sha256` hashes file contents and lists the
+real names, so it stays correct throughout and verifies once the three files
+are back to their proper names — which is also why the rename must come before
+the Phase D check, not after.
+
+> **Base64-wrapping the whole archive was considered and rejected.** It works,
+> and needs no renaming, but recovering the payload means `certutil -decode` on
+> the target. That is a textbook malware-unpacking signature, and on a hardened
+> network it risks being blocked outright or generating a security alert.
+> Renaming three files needs no tooling at all. Do not reintroduce the base64
+> route without checking it against local security policy first.
+
+Say plainly in the package what was renamed — the receiving operator has no way
+to ask. A short `READ-FIRST.txt` at the archive root covering the rename and any
+omitted `verify-integrity.ps1` is enough.
 
 ---
 
@@ -212,9 +231,9 @@ routinely at your site, record it here so it is not mistaken for corruption:
 Do this before anything else on the target network. The gateway is one-way, so
 this is the only opportunity to establish that what arrived is what was sent.
 
-If the payload was renamed or base64-wrapped for transit (Phase B), restore it
-to its proper form first — rename the `.js.txt` files back, or decode the
-archive. Verification is meaningless until you have.
+If the three `.js` files were renamed to `.js.txt` for transit (Phase B),
+rename them back first. `MANIFEST.sha256` lists their real names, so
+verification cannot pass until you have.
 
 Which path applies depends on the target's scripting policy, recorded in
 Preconditions.
@@ -241,8 +260,24 @@ unreadable manifest cannot be mistaken for a pass.
 ### Path 2 — where PowerShell scripts are not permitted
 
 `certutil` is a built-in Windows executable, not a script, so it is normally
-available where script execution is barred. Confirm that locally before relying
-on it. «site-specific»
+available where script execution is barred.
+
+> **Confirm this before you rely on it. «site-specific»** `certutil` is also a
+> well-known dual-use tool, and some hardened builds block it through AppLocker
+> or WDAC, or raise an alert when it runs. If it is unavailable here, this
+> procedure has **no** integrity check on arrival, and that needs resolving with
+> local security before the next transfer — not worked around at the time.
+
+Two things about `certutil -hashfile` catch people out:
+
+- **The algorithm argument is not optional in practice.** Without it the
+  default is SHA-1, not SHA-256. The result is a plausible-looking hash that
+  can never match the manifest, and the natural reading of that is "corrupted
+  in transit" rather than "wrong algorithm". Always pass `SHA256`.
+- **Output formatting varies by Windows version.** Older builds print the hash
+  in space-separated groups; newer ones print one continuous string, and case
+  has varied too. Strip spaces and compare case-insensitively, or a good file
+  reads as a mismatch.
 
 **First check — hash the archive as received, before extracting.** This is one
 command and it covers every file at once:
@@ -429,7 +464,7 @@ minimum:
 | Oxygen version, both sides | 28.1 / 28.1 |
 | Phase D path used | Path 1 (script) or Path 2 (certutil) |
 | Verification result on arrival | `Files checked: 40   Problems: 0`, or the archive hash compared |
-| Transit encoding, if any | Renamed `.js.txt` / base64 / none |
+| `.js` files renamed for transit | Yes / no — and confirm they were renamed back |
 | Five-point checklist result | |
 | Image-height values in use | `177px` / `150px` |
 | Any target-side edits made | |
