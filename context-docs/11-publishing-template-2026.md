@@ -253,8 +253,24 @@ filename. Renaming that source file breaks the rule silently.
 - **Stale `${pd}`-relative scenario paths.** `DITA_project_pub5.xpr` was
   originally a repo-root project; after the move to `dita-parent/pub-5/dita/`,
   `${pd}/template` and `${pd}/template/corp_logo.png` point at folders that no
-  longer exist. Worth a tidy-up pass over the scenario, independently of this
-  template.
+  longer exist. Confirmed against the 2026-08-24 Oxygen 26 publish: the logo
+  came out as a machine-absolute `src="C:\git\Fi3ldMan\...\corp_logo.png"` on
+  97 of 98 pages, and was the only broken reference in the entire output. Both
+  this template and repo-root `template/` now declare
+  `webhelp.logo.image="corp_logo.png"` in `f13ldMan.opt`, but **scenario
+  parameters override template parameters**, so the fix is inert until
+  `webhelp.logo.image` is deleted from the scenario's Parameters tab.
+- **This template was branched from a stale copy of the 2024 template.** It was
+  built on `dita-parent/pub-5/template/`, which was itself copied out of
+  repo-root `template/` on 2025-07-23 (`3c4d040`, "refactor pub-5") and never
+  updated since. The template actually in use — the one repo-root `template/`
+  holds, and the one that produced the Oxygen 26 baseline — carried on gaining
+  fixes until 2025-09-02 (`7f5489f`). Three of them are missing here:
+  `.container-fluid { max-width: 100% }`, the `.related-links` padding and
+  `.related_link .current` suppression in `f13ldman.css`, and the
+  `[outputclass='current']` rule in `f13ldman_author_mode.css`. Port these
+  across before judging any 28.1 output against the baseline, or the diff will
+  show styling regressions that have nothing to do with the Oxygen upgrade.
 - **The DITA content in this repo is representative sample data**, not the real
   publication. The real publications live on the air-gapped network.
 

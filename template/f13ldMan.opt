@@ -19,6 +19,16 @@
             <parameter name="webhelp.show.protection" value="yes"/>
             <parameter name="webhelp.protection.text" value="COMMERCIALLY SENSITIVE"/>
             <parameter name="webhelp.protection.background.color" value=""/>
+
+            <!--
+                Declared here, relative to this template folder, rather than as
+                an absolute path in the transformation scenario. The scenario's
+                webhelp.logo.image=${pd}/template/corp_logo.png resolved to a
+                folder that does not exist and emitted a machine-absolute
+                src="C:\git\Fi3ldMan\...\corp_logo.png" into every page.
+                The scenario parameter must be removed for this to take effect.
+            -->
+            <parameter name="webhelp.logo.image" value="corp_logo.png"/>
             <parameter name="webhelp.show.main.page.tiles" value="yes"/>
             <parameter name="webhelp.show.main.page.toc" value="no"/>
             <parameter name="webhelp.top.menu.depth" value="3"/>
