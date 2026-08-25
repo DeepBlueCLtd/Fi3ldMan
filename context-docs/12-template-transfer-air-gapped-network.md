@@ -77,8 +77,9 @@ which a mistake is cheap.
 
    Then work through the manual checklist in
    `11-publishing-template-2026.md` — all five checks, in a browser. The suite
-   does not cover everything (notably `notes.css`, which the sample content
-   cannot exercise), and this is the last point at which a defect is cheap.
+   asserts only the styling we own, and deliberately says nothing about how
+   Oxygen's own stylesheets render, so a green run is not a substitute for
+   looking at the pages. This is the last point at which a defect is cheap.
 4. Confirm the working tree is clean and the template is committed. The
    transferred template should correspond to a known commit, so that what is on
    the target can be traced back to a specific state of this repository.

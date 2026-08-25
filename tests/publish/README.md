@@ -1,9 +1,13 @@
 # Publish styling tests
 
 Automated checks that **our** contribution to a published WebHelp build
-survived — that `f13ldman.css`, `notes.css` and the three Fi3ldMan scripts are
-loaded, applied, and winning the cascade. Run them in Phase A, before anything
-crosses the gateway.
+survived — that `f13ldman.css` and the three Fi3ldMan scripts are loaded,
+applied, and winning the cascade. Run them in Phase A, before anything crosses
+the gateway.
+
+`f13ldman.css` is the only stylesheet in the template that is ours.
+`oxygen.css`, `oxygen-theme.css`, `oxygen-print.css` and — despite the name —
+`notes.css` are all stock Oxygen files.
 
 ```
 npm test                                  # the live publish, or the baseline
@@ -42,7 +46,7 @@ That draws the line in three places:
 | | |
 | --- | --- |
 | **Asserted** | Computed values declared in `f13ldman.css`; the behaviour of our three scripts; that every asset a page references resolves |
-| **Not asserted** | Any value coming from `oxygen.css`, `app/*.css`, or Bootstrap — fonts, resets, menu layout, tile sizing |
+| **Not asserted** | Any value coming from `oxygen.css`, `notes.css`, `app/*.css`, or Bootstrap — fonts, resets, note boxes, menu layout, tile sizing |
 | **Why 404s still count** | A missing asset is a build defect whoever owns the file. Requesting something that is not there is never correct |
 
 Two consequences worth understanding, because they look like gaps:
@@ -96,19 +100,26 @@ copying the output to a scratch directory, breaking one thing, and pointing
 | `template/f13ldman.css` removed | fail | 25 failures — every override test |
 | Logo deleted, `src` left as a tidy relative path | fail | Caught by `naturalWidth`, the only signal that separates it from working output |
 | Page layouts stop linking any Oxygen stylesheet (no 404 produced) | fail | Caught by the foreign-stylesheet count |
-| **Oxygen restyles its own sheets** — different body font, colours, navbar layout | **pass** | **35 passed.** Their design, not our regression |
+| Stock `notes.css` **deleted** | fail | 11 failures, via the 404 sweep alone |
+| **Oxygen restyles its own sheets** — body font, navbar layout, and the `notes.css` note-box radius | **pass** | **35 passed.** Their design, not our regression |
 
-That last row is the one to re-check after any change to this suite. It is what
-keeps a green run meaningful.
+The last two rows are the pair that defines the scope, and they are the ones to
+re-check after any change to this suite. A stock sheet that has been *restyled*
+is Oxygen exercising its own judgement and must stay green; a stock sheet that
+is *missing* is a broken build and must not. Keeping both true is what makes a
+green run mean something.
 
 ## Known coverage gaps
 
-- **`notes.css` is untested.** The sample content contains no DITA notes at
-  all, so there is nothing on any page for the note-box rules to style. This is
-  also the one place where the 2026 CSS load-order change (`f13ldman.css` now
-  loads last, previously `notes.css` did) is observable — so the reordering is
-  currently unverifiable. Adding a topic with a note to the sample content
-  would close both gaps in one step.
+- **The CSS load order is only verified indirectly.** The 2026 change put
+  `f13ldman.css` last so its overrides reliably win. Nothing in `f13ldman.css`
+  currently contests a rule in a stock sheet on a page the sample content
+  produces, so the ordering is confirmed only by the override assertions
+  passing at all — not by a head-to-head conflict. If a future override starts
+  fighting a stock rule, test that specific pair.
+
+  (`notes.css` used to be listed here as an untested Fi3ldMan file. It is
+  stock Oxygen, so its absence from the suite is correct rather than a gap.)
 - **Dead rules are not flagged.** `.wh_tiles-container`, `.breadcrumb-sticky`,
   `.fullWidthTable`, `.table-separator` and `.permalink` match nothing in the
   current output. They are harmless, but they are also not what they look like.

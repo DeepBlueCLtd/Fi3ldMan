@@ -81,7 +81,8 @@ Everything else in this folder is stock. These are the only customisations:
 | `page-templates/wt_topic.html` | Removes the stock body-level search input (marked `FI3LDMAN DELTA`) |
 | `page-templates/wt_search.html` | Removes the stock body-level search input (marked `FI3LDMAN DELTA`) |
 | `page-templates/wt_terms.html` | None — byte-identical to stock |
-| `xslt/`, `page-templates-fragments/`, `f13ldman.css`, `notes.css`, `resources/corp_logo.png`, `resources/*.js`, `resources/images/*` | Fi3ldMan-owned |
+| `xslt/`, `page-templates-fragments/`, `f13ldman.css`, `resources/corp_logo.png`, `resources/*.js`, `resources/images/*` | Fi3ldMan-owned |
+| `oxygen.css`, `oxygen-theme.css`, `oxygen-print.css`, `notes.css` | Stock — replaced wholesale on upgrade, never edited. `notes.css` looks like ours and is not: Oxygen generates it from the note-styling options picked when a template is created |
 
 Stock 28.1 sources live in:
 

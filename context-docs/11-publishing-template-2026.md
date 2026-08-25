@@ -129,15 +129,27 @@ Declared in `<resources>`, and the order is deliberate:
 | --- | --- | --- | --- |
 | 1 | `oxygen-theme.css` | Stock 2026 | **New in 2026.** Defines the `wh-*` CSS custom properties that `oxygen.css` reads, so it must load first |
 | 2 | `oxygen.css` | Stock 2026 | No longer forked — the 2024 copy contained zero Fi3ldMan edits |
-| 3 | `notes.css` | Fi3ldMan | DITA note-box styling |
-| 4 | `f13ldman.css` | Fi3ldMan | Branding and overrides |
+| 3 | `notes.css` | Stock | DITA note-box styling. **Stock, despite the name** — see below |
+| 4 | `f13ldman.css` | Fi3ldMan | Branding and overrides. The only stylesheet here that is ours |
 
 `f13ldman.css` now loads **last**; under the 2024 template `notes.css` loaded
 after it, so overrides did not reliably win.
 
 > **Put all overrides in `f13ldman.css`.** Never edit `oxygen-theme.css`,
-> `oxygen.css` or `oxygen-print.css` — they are stock and are replaced wholesale
-> on the next Oxygen upgrade.
+> `oxygen.css`, `oxygen-print.css` or `notes.css` — they are stock and are
+> replaced wholesale on the next Oxygen upgrade.
+
+`notes.css` reads as a Fi3ldMan file and is not one. Oxygen generates it from
+the note-styling options chosen when a publishing template is created, which is
+why it carries markers like `/*notes-colors-colorful*/`. Verified: the copy in
+repo-root `template/` is byte-identical to the `notes.css` in every stock
+template shipped with Oxygen 26. The `template-2026/` copy differs from Oxygen
+26's by a single line — the `note_restriction` background — which is a change
+between Oxygen versions, not a Fi3ldMan edit.
+
+Two things follow. Note-box appearance is not ours to defend, so the test suite
+does not assert it. And on the next upgrade `notes.css` gets replaced from
+stock along with the other three, not carried across.
 
 ## Parameters
 
@@ -362,8 +374,9 @@ does not turn the suite red. A failure should always mean we broke something.
 That is verified too: a build with Oxygen's fonts, colours and navbar layout
 deliberately altered still passes all 35.
 
-See `tests/publish/README.md`, including its coverage gaps — `notes.css` is not
-among the things it can check, so checks 3 to 5 below still earn their place.
+See `tests/publish/README.md`, including its coverage gaps. It does not replace
+the manual checks below, which cover appearance the suite deliberately leaves
+alone.
 
 ### On the air-gapped side: work through these by hand
 
@@ -388,10 +401,10 @@ mechanism, which is the one genuinely new thing in this template.
    `oxygen-webhelp/page-templates/*`.
 2. Take the new stock files and re-apply the deltas from the table above — all
    three are commented in place with `FI3LDMAN DELTA`.
-3. Replace `oxygen.css`, `oxygen-theme.css` and `oxygen-print.css` with the new
-   stock versions. **Do not merge** — they carry no Fi3ldMan edits.
-4. Leave `f13ldman.css`, `notes.css`, `xslt/` and `page-templates-fragments/`
-   alone.
+3. Replace `oxygen.css`, `oxygen-theme.css`, `oxygen-print.css` and `notes.css`
+   with the new stock versions. **Do not merge** — all four are stock and carry
+   no Fi3ldMan edits.
+4. Leave `f13ldman.css`, `xslt/` and `page-templates-fragments/` alone.
 5. Rebuild and work through the verification checklist.
 
 Because nothing in the template names an Oxygen asset, an upgrade should be

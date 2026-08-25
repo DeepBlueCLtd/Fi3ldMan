@@ -42,17 +42,17 @@ test.describe('assets', () => {
     }
   })
 
-  test('the Fi3ldMan stylesheets are present and load', async ({ page }) => {
+  test('the Fi3ldMan stylesheet is present and loads', async ({ page }) => {
     const assets = await visit(page, PAGES.topic)
 
-    // f13ldman.css carries the branding and the overrides; notes.css the DITA
-    // note boxes. Both are ours, and both are named in <resources>, so their
-    // absence is a template fault rather than an Oxygen one.
-    for (const sheet of ['f13ldman.css', 'notes.css']) {
-      const hits = assets.matching(sheet)
-      expect(hits.length, `${sheet} was never requested`).toBeGreaterThan(0)
-      expect(hits[0].status, `${sheet} did not load`).toBe(200)
-    }
+    // f13ldman.css is the only stylesheet in this template that is ours. It
+    // carries the branding and every override, and it is named in
+    // <resources>, so its absence is a template fault rather than an Oxygen
+    // one. notes.css and oxygen.css are stock, and are checked only by the
+    // blanket 404 sweep above.
+    const hits = assets.matching('f13ldman.css')
+    expect(hits.length, 'f13ldman.css was never requested').toBeGreaterThan(0)
+    expect(hits[0].status, 'f13ldman.css did not load').toBe(200)
   })
 
   test('the page still asks for the stylesheets we do not own', async ({
@@ -71,7 +71,7 @@ test.describe('assets', () => {
     const foreign = await page.$$eval('link[rel="stylesheet"]', (links) =>
       links
         .map((l) => /** @type {HTMLLinkElement} */ (l).href)
-        .filter((h) => !/f13ldman\.css|notes\.css/.test(h)),
+        .filter((h) => !/f13ldman\.css/.test(h)),
     )
     expect(
       foreign.length,

@@ -154,6 +154,12 @@ Key style rules:
 
 ### `notes.css` - Note Box Styling
 
+**Stock Oxygen, not a Fi3ldMan file**, despite sitting alongside ones that are.
+Oxygen generates it from the note-styling options chosen when a publishing
+template is created. The copy in repo-root `template/` is byte-identical to the
+one in every stock template shipped with Oxygen 26. Replace it from stock on
+upgrade; do not edit it, and put any note overrides in `f13ldman.css`.
+
 DITA note types with color-coded boxes:
 | Note Type | Border Color | Background |
 |-----------|-------------|------------|
