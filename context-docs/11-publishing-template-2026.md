@@ -338,8 +338,30 @@ To set up a scenario from scratch:
 
 ## Verification checklist
 
-Run these after any build, on either network. On the air-gapped side this
-checklist is the only feedback loop available, so work through all five.
+### On the development side: run the tests
+
+```
+npm test
+```
+
+`tests/publish/` loads the published output in a headless browser and asserts
+computed style and asset status codes — 42 checks covering the five items
+below and a good deal besides. Run it before anything is packaged for transfer.
+
+It exists because **this failure mode is invisible in the HTML.** The 25.1 →
+28.1 breakage changed no markup at all: Oxygen renamed its bundles, the
+template kept asking for the old names, and every page 404'd on its base
+styling while still containing exactly the right elements and classes. Only
+computed style and network status distinguish that from a good build, and the
+suite is verified to fail when the breakage is deliberately reintroduced. See
+`tests/publish/README.md`, including its list of coverage gaps — `notes.css` is
+not among the things it can check.
+
+### On the air-gapped side: work through these by hand
+
+Node and npm are not available there, so the manual checks remain the only
+feedback loop. Work through all five — and note that check 2 is the one people
+get wrong, because a broken logo looks correct in the page source.
 
 | # | Check | How | If it fails |
 | --- | --- | --- | --- |

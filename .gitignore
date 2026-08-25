@@ -141,3 +141,12 @@ dita-parent/pub-5/dita/out/
 # Per-transfer integrity manifest for the publishing template (see
 # context-docs/12-template-transfer-air-gapped-network.md, Phase B)
 dita-parent/pub-5/template-2026/MANIFEST.sha256
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+
+# This project's lockfile is yarn.lock. An npm install alongside it
+# produces two lockfiles that drift apart silently.
+package-lock.json

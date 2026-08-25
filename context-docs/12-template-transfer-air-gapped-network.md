@@ -64,9 +64,21 @@ which a mistake is cheap.
 
 1. Open `dita-parent/pub-5/dita/index.ditamap` in Oxygen.
 2. Run the **`Fieldman Webhelp 2026`** transformation scenario.
-3. Work through the full verification checklist in
-   `11-publishing-template-2026.md` — all five checks, in a browser, on the
-   generated output.
+3. Verify the build, in this order:
+
+   ```
+   PUBLISH_DIR=<the output directory> npm test
+   ```
+
+   The suite must be green before the package is built. It checks computed
+   style and asset status codes in a real browser, which is the only way to
+   see the failure mode this template exists to fix — the 25.1 → 28.1 breakage
+   left the HTML entirely correct. See `tests/publish/README.md`.
+
+   Then work through the manual checklist in
+   `11-publishing-template-2026.md` — all five checks, in a browser. The suite
+   does not cover everything (notably `notes.css`, which the sample content
+   cannot exercise), and this is the last point at which a defect is cheap.
 4. Confirm the working tree is clean and the template is committed. The
    transferred template should correspond to a known commit, so that what is on
    the target can be traced back to a specific state of this repository.
