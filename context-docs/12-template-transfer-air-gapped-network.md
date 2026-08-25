@@ -64,9 +64,22 @@ which a mistake is cheap.
 
 1. Open `dita-parent/pub-5/dita/index.ditamap` in Oxygen.
 2. Run the **`Fieldman Webhelp 2026`** transformation scenario.
-3. Work through the full verification checklist in
-   `11-publishing-template-2026.md` — all five checks, in a browser, on the
-   generated output.
+3. Verify the build, in this order:
+
+   ```
+   PUBLISH_DIR=<the output directory> npm test
+   ```
+
+   The suite must be green before the package is built. It checks computed
+   style and asset status codes in a real browser, which is the only way to
+   see the failure mode this template exists to fix — the 25.1 → 28.1 breakage
+   left the HTML entirely correct. See `tests/publish/README.md`.
+
+   Then work through the manual checklist in
+   `11-publishing-template-2026.md` — all five checks, in a browser. The suite
+   asserts only the styling we own, and deliberately says nothing about how
+   Oxygen's own stylesheets render, so a green run is not a substitute for
+   looking at the pages. This is the last point at which a defect is cheap.
 4. Confirm the working tree is clean and the template is committed. The
    transferred template should correspond to a known commit, so that what is on
    the target can be traced back to a specific state of this repository.
@@ -75,15 +88,23 @@ Record the commit hash — it goes in the transfer record.
 
 ### The logo
 
-`corp_logo.png` in this repository is a **placeholder**, copied from
+`resources/corp_logo.png` in this repository is a **placeholder**, copied from
 `dita/Content/Images/image020.png`. Decide which applies:
 
 - **The real logo is already on the target network.** Leave the placeholder in
   the package and replace the file on the target after transfer (Phase F).
-- **The real logo is available here.** Replace `corp_logo.png` before packaging,
-  re-run Phase A, and commit.
+- **The real logo is available here.** Replace `resources/corp_logo.png` before
+  packaging, re-run Phase A, and commit.
 
 Either way it must not be the placeholder in the published output.
+
+> **Replace it in place — do not move it.** The logo lives under `resources/`
+> because that is the only part of the template Oxygen copies into the output,
+> and `webhelp.logo.image` names the path it lands at. Putting the real logo at
+> the template root instead breaks the logo silently: the build succeeds, the
+> `src` still looks like a sane relative path, and it 404s on every page. See
+> "The logo" in `11-publishing-template-2026.md`. Keeping the filename also
+> avoids a `webhelp.logo.image` edit.
 
 ---
 
@@ -353,8 +374,8 @@ Against the **real** publication's map on the target network:
 5. **Parameters tab: delete any `webhelp.logo.image` override.**
 
    > This is the most common way to break an otherwise correct setup. The
-   > template supplies the logo relative to its own folder. A scenario-level
-   > override reintroduces the absolute-path bug that emitted
+   > template supplies the logo itself. A scenario-level override reintroduces
+   > the absolute-path bug that emitted
    > `src="C:\git\Fi3ldMan\...\corp_logo.png"` into every page — a path that
    > resolves on no machine.
 
@@ -362,8 +383,9 @@ Against the **real** publication's map on the target network:
    protective marking, in which case set `webhelp.protection.text` and
    `webhelp.protection.background.color` here — per export, not in the shared
    template.
-7. If the real logo was not packaged, replace `corp_logo.png` in the template
-   folder now.
+7. If the real logo was not packaged, replace `resources/corp_logo.png` in the
+   template folder now — same path, same filename. Moving it, or putting the
+   real logo at the template root, breaks the logo silently.
 
 ---
 
@@ -376,7 +398,7 @@ Against the **real** publication's map on the target network:
 | # | Check | Fails when |
 | --- | --- | --- |
 | 1 | `harmonics.js`, `sorttable.js`, `current-handler.js` all load; no 404s; no `commons.css` / `commons.js` | The `webhelp.fragment.head.topic.page` mechanism did not take |
-| 2 | Logo present, `src` relative, real logo not placeholder | A `webhelp.logo.image` override survived, or the logo was not replaced |
+| 2 | Logo present, image **actually loads**, real logo not placeholder | A `C:\...` `src` means a `webhelp.logo.image` override survived. A tidy relative `src` that 404s means `corp_logo.png` is no longer under the template's `resources/`. A visible placeholder means the logo was not replaced |
 | 3 | One search box, in the nav bar, working | A `FI3LDMAN DELTA` deletion did not take |
 | 4 | Protection bars top and bottom, correct text and colour | Protection parameters or header/footer XSLT |
 | 5 | Top menu positioned correctly | The `.wh_top_menu` retarget in `f13ldman.css` |
@@ -442,7 +464,7 @@ step 4), nothing live was overwritten and rollback needs no restore.
 | Any edit to `f13ldman.css`, `notes.css`, XSLT, page layouts, fragments or `f13ldMan.opt` made on the development side | Yes — full package |
 | Tuning the two image-height variables | No — edit in place on the target, then mirror the change back into the repository |
 | Different protective marking or banner colour for an export | No — scenario parameters |
-| Replacing the corporate logo | No — replace `corp_logo.png` in place on the target |
+| Replacing the corporate logo | No — overwrite `resources/corp_logo.png` in place on the target, keeping the path and filename |
 | Oxygen upgraded on either side | Yes, after re-basing the template on the new stock files — see the upgrade procedure in `11-publishing-template-2026.md` |
 
 Changes made directly on the target must be mirrored back into this repository,
