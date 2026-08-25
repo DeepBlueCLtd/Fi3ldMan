@@ -148,7 +148,7 @@ Set in the `<parameters>` block of `f13ldMan.opt`:
 | `webhelp.show.protection` | `yes` | Master switch for both protection bars |
 | `webhelp.protection.text` | `COMMERCIALLY SENSITIVE` | Banner text |
 | `webhelp.protection.background.color` | *(empty)* | Banner colour — see below |
-| `webhelp.logo.image` | `corp_logo.png` | Header logo, relative to the template folder |
+| `webhelp.logo.image` | `oxygen-webhelp/template/resources/corp_logo.png` | Header logo, relative to the output root — see below |
 | `webhelp.show.main.page.tiles` | `yes` | Tile-based landing page |
 | `webhelp.show.main.page.toc` | `no` | Hide TOC on the main page |
 | `webhelp.top.menu.depth` | `3` | Three levels of navigation |
@@ -161,20 +161,66 @@ Set in the `<parameters>` block of `f13ldMan.opt`:
 
 ### The logo
 
-`webhelp.logo.image` is declared **in the template**, relative to the template
-folder — not as an absolute path in the transformation scenario. Under the old
-arrangement the 2026 build emitted:
+`webhelp.logo.image` is declared **in the template**, not as an absolute path in
+the transformation scenario. Under the old arrangement the build emitted:
 
 ```html
 src="C:\git\Fi3ldMan\dita-parent\pub-5\dita/template/corp_logo.png"
 ```
 
 into every page — a path that resolves on no machine, including the one that
-built it.
+built it. Confirmed against the 2026-08-25 Oxygen 26 publish: this was the only
+broken reference in the entire output, on 97 of 98 pages.
+
+The value that replaces it looks wrong, and the two obvious "corrections" both
+put the bug back:
+
+```xml
+<parameter name="webhelp.logo.image" value="oxygen-webhelp/template/resources/corp_logo.png"/>
+```
+
+**It is relative to the WebHelp output root, not to the template folder.**
+Oxygen resolves the parameter in its `whr-copy-logo-image` Ant target
+(`com.oxygenxml.webhelp.responsive/build_dita.xml`):
+
+```xml
+<available type="file" file="${webhelp.logo.image}" property="webhelp.logo.image.file"/>
+<if>
+  <isset property="webhelp.logo.image.file"/>
+  <then> <copy file="${webhelp.logo.image}" todir="${output.dir}"/> …
+  <else> <condition property="webhelp.logo.image.output" value="${webhelp.logo.image}"/>
+```
+
+Ant resolves a relative path against **its own basedir**, not the template
+folder, so a template-relative value is never found:
+
+| Value | What happens |
+| --- | --- |
+| Absolute (`C:/git/...`) | Found → copied to the output root → works **only on the build machine**. The original bug. |
+| Template-relative (`corp_logo.png`) | Not found → no copy → emitted verbatim as an output-root-relative URL → **relative `src` pointing at nothing**. |
+| Output-relative (current) | Not found → no copy → emitted verbatim → and the file *is* there, because `<resources>` put it there. **Works.** |
+
+That is why `corp_logo.png` lives in the template's `resources/` folder rather
+than at its root: the `<fileset>` copies `resources/**/*` to
+`<out>/oxygen-webhelp/template/resources/`, and the parameter names where it
+lands. Nothing in the value is machine-specific.
 
 > **Any `webhelp.logo.image` override in a transformation scenario must be
 > deleted.** A scenario-level value overrides the template and reintroduces the
 > bug. This is the single most common way to break a working setup.
+
+Two related traps:
+
+- **Moving `corp_logo.png` out of `resources/` breaks the logo silently.** The
+  build still succeeds and the `src` still looks plausible; it just 404s.
+- **A relative `src` is not proof of a fix.** The intermediate state — scenario
+  override deleted, value template-relative — produces a clean-looking
+  `src="../corp_logo.png"` on every page with no file behind it. Check that the
+  image loads, not just that the path looks right.
+
+The same arrangement is in repo-root `template/`, where it was verified on
+Oxygen 26. The Ant target has the same shape in 28.1, but confirm it on the
+first 28.1 build rather than assuming.
 
 `corp_logo.png` in this repo is a **placeholder**, copied from
 `dita/Content/Images/image020.png`. It must be replaced with the real logo.
@@ -252,9 +298,9 @@ filename. Renaming that source file breaks the rule silently.
   deleted.
 - **Stale `${pd}`-relative scenario paths.** `DITA_project_pub5.xpr` was
   originally a repo-root project; after the move to `dita-parent/pub-5/dita/`,
-  `${pd}/template` and `${pd}/template/corp_logo.png` point at folders that no
-  longer exist. Worth a tidy-up pass over the scenario, independently of this
-  template.
+  `${pd}/template` points at a folder that no longer exists. The
+  `${pd}/template/corp_logo.png` case is resolved — see "The logo" — but the
+  scenario is still worth a tidy-up pass, independently of this template.
 - **The DITA content in this repo is representative sample data**, not the real
   publication. The real publications live on the air-gapped network.
 
@@ -266,8 +312,13 @@ directory, and the **`Fieldman Webhelp 2026`** scenario is associated with
 `index.ditamap`. Open the map and run that scenario.
 
 The older `FieldMan DITA Map WebHelp Responsive` scenario remains alongside it,
-pointing at the 2024 template, so the two can be built and compared. The 2024
-reference build is at `out/oxygen/index.html`.
+pointing at repo-root `template/`, so the two can be built and compared. The
+reference build to compare against is `dita-parent/pub-5/baselines/oxygen-26/` —
+the last known-good output before this template, published on Oxygen 26 and
+verified at zero broken references. `dita-parent/pub-5/baselines/README.md`
+covers how to diff against it; in particular, Oxygen stamps a fresh
+`buildId=<timestamp>` into every asset reference on every run, so an untreated
+diff reports all 98 pages changed and hides the real difference.
 
 To set up a scenario from scratch:
 
@@ -293,7 +344,7 @@ checklist is the only feedback loop available, so work through all five.
 | # | Check | How | If it fails |
 | --- | --- | --- | --- |
 | 1 | Fi3ldMan scripts load on topic pages | Open a topic, check the browser Network tab for `template/resources/harmonics.js`, `sorttable.js`, `current-handler.js`. **No 404s**, and no reference to `commons.css` / `commons.js` | Add the scripts via the scenario's `webhelp.fragment.head.topic.page` parameter, pointing at `page-templates-fragments/topic-page-head.xml` |
-| 2 | Logo shows, with a relative `src` | View source: expect `src="corp_logo.png"`, **not** a `C:\...` path | A `webhelp.logo.image` override is still set in the scenario — delete it |
+| 2 | Logo shows, and the image actually loads | View source: expect `src=".../oxygen-webhelp/template/resources/corp_logo.png"`, `../`-prefixed per page depth, **not** a `C:\...` path. Then confirm it is not a 404 | A `C:\...` path means a `webhelp.logo.image` override is still set in the scenario — delete it. A tidy relative path that 404s means the value is template-relative, or `corp_logo.png` is not under the template's `resources/` — see "The logo" |
 | 3 | Search box is in the nav bar and works | Visual + run a search | Two search boxes means one of the three `FI3LDMAN DELTA` deletions did not take |
 | 4 | Protection bars present, green, top and bottom, reading the expected text | Visual | Exercises `customHeader.xsl` / `customFooter.xsl` and the protection parameters |
 | 5 | Top menu sits correctly | Visual | Exercises the `.c-menu` → `.wh_top_menu` retarget in `f13ldman.css` |

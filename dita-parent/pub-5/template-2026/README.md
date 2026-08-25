@@ -62,11 +62,12 @@ Bootstrap 4 (`data-toggle`, `sr-only`, `col-lg-*`) against Bootstrap 5 in 2026
   and some explanatory comments.
 - **CSS load order changed** so that `f13ldman.css` now loads *last* (previously
   `notes.css` loaded after it). Overrides now reliably win.
-- **`webhelp.logo.image` is set in the template**, relative to this folder,
-  instead of as an absolute path in the transformation scenario. The 2026 build
-  emitted `src="C:\git\Fi3ldMan\dita-parent\pub-5\dita/template/corp_logo.png"`
-  into every page — a path that resolves on no machine, including the one that
-  built it (see "Known issues" below).
+- **`webhelp.logo.image` is set in the template**, not as an absolute path in
+  the transformation scenario. The 2024 build emitted
+  `src="C:\git\Fi3ldMan\dita-parent\pub-5\dita/template/corp_logo.png"` into
+  every page — a path that resolves on no machine, including the one that built
+  it. The value is an **output-relative** path, and `corp_logo.png` lives under
+  `resources/`; see "The logo" below for why it cannot be template-relative.
 
 ## Fi3ldMan deltas against stock 28.1
 
@@ -80,7 +81,7 @@ Everything else in this folder is stock. These are the only customisations:
 | `page-templates/wt_topic.html` | Removes the stock body-level search input (marked `FI3LDMAN DELTA`) |
 | `page-templates/wt_search.html` | Removes the stock body-level search input (marked `FI3LDMAN DELTA`) |
 | `page-templates/wt_terms.html` | None — byte-identical to stock |
-| `xslt/`, `page-templates-fragments/`, `f13ldman.css`, `notes.css`, `corp_logo.png`, `resources/*.js`, `resources/images/*` | Fi3ldMan-owned |
+| `xslt/`, `page-templates-fragments/`, `f13ldman.css`, `notes.css`, `resources/corp_logo.png`, `resources/*.js`, `resources/images/*` | Fi3ldMan-owned |
 
 Stock 28.1 sources live in:
 
@@ -133,6 +134,54 @@ Two things worth knowing about the row rule:
 The table rule deliberately targets the generic "linked image in a table cell"
 shape rather than `.ImageLinksTable`, so any future image link table is covered.
 
+## The logo
+
+`webhelp.logo.image` looks wrong at first glance. It is neither relative to this
+template folder nor a path that exists on disk:
+
+```xml
+<parameter name="webhelp.logo.image" value="oxygen-webhelp/template/resources/corp_logo.png"/>
+```
+
+**It is relative to the WebHelp output root**, and both of the obvious
+"corrections" reintroduce a bug that shipped in the 2024 template.
+
+Oxygen resolves the parameter in its `whr-copy-logo-image` Ant target
+(`build_dita.xml`):
+
+```xml
+<available type="file" file="${webhelp.logo.image}" property="webhelp.logo.image.file"/>
+<if>
+  <isset property="webhelp.logo.image.file"/>
+  <then> <copy file="${webhelp.logo.image}" todir="${output.dir}"/> …
+  <else> <condition property="webhelp.logo.image.output" value="${webhelp.logo.image}"/>
+```
+
+Ant resolves a relative path against **its own basedir**, not this folder. So:
+
+| Value | What happens |
+| --- | --- |
+| Absolute (`C:/git/...`) | Found → copied to the output root → works **only on the build machine**. The 2024 bug. |
+| Template-relative (`corp_logo.png`) | Not found → no copy → value emitted verbatim as an output-root-relative URL → **relative `src` pointing at nothing**. |
+| Output-relative (current) | Not found → no copy → value emitted verbatim → and the file *is* there, because `<resources>` put it there. **Works.** |
+
+That is why `corp_logo.png` lives in `resources/` rather than at the template
+root: the `<fileset>` in `<resources>` copies `resources/**/*` to
+`<out>/oxygen-webhelp/template/resources/`, and the parameter simply names where
+it lands. Nothing about the value is machine-specific.
+
+Two consequences worth knowing:
+
+- **Never set `webhelp.logo.image` in a transformation scenario.** Scenario
+  parameters override template ones, and the natural thing to type there is an
+  absolute path — straight back to the 2024 bug on every topic page.
+- **Moving `corp_logo.png` out of `resources/` breaks the logo silently.** The
+  build still succeeds and the `src` still looks plausible; it just 404s.
+
+Verified against an Oxygen 26 publish of pub-5 — 309 files, zero broken
+references. The Ant target is the same shape in 28.1, but confirm it on the
+first 28.1 build rather than assuming.
+
 ## How to build it
 
 This is already set up in `DITA_project_pub5.xpr`: the project registers
@@ -154,10 +203,15 @@ To recreate it from scratch, or to set up a second scenario:
 4. On the **Output** tab set the output directory — use something separate from
    an existing build if you want to compare the two side by side.
 5. On the **Parameters** tab, **delete any `webhelp.logo.image` override** —
-   the template now supplies it. Leave the rest alone.
+   the template supplies it, and a scenario override reintroduces the
+   machine-absolute path. Leave the rest alone.
 6. Apply and run.
 
-The 2024 reference build, for comparison, is at `out/oxygen/index.html`.
+The reference build to compare against is `dita-parent/pub-5/baselines/oxygen-26/`
+— the last known-good output before this template, published on Oxygen 26. See
+`dita-parent/pub-5/baselines/README.md` for how to diff against it; note in
+particular that Oxygen's per-run `buildId` cache-buster makes every page look
+changed until it is normalised.
 
 ## What to check first, and why
 
@@ -171,10 +225,14 @@ These are the parts I could not verify without running Oxygen:
    *If it fails:* the scripts can instead be added in the transformation
    scenario's `webhelp.fragment.head.topic.page` parameter, pointing at
    `page-templates-fragments/topic-page-head.xml`.
-2. **Is the logo showing, with a relative `src`?** View source and confirm
-   `src="corp_logo.png"` or similar — not a `C:\...` path.
-   *Note:* `corp_logo.png` here is currently the **placeholder** copied from
-   `dita/Content/Images/image020.png`. Replace it with the real logo.
+2. **Is the logo showing, and does the file exist?** View source and confirm
+   `src=".../oxygen-webhelp/template/resources/corp_logo.png"`, prefixed with
+   `../` per page depth — not a `C:\...` path. Then confirm the image actually
+   loads: a relative `src` that 404s is the specific failure this arrangement
+   exists to prevent, and it looks correct in the source. See "The logo".
+   *Note:* `resources/corp_logo.png` here is currently the **placeholder**
+   copied from `dita/Content/Images/image020.png`. Replace it with the real
+   logo.
 3. **Is the search box in the nav bar**, and does searching still work? If two
    search boxes appear, one of the three `FI3LDMAN DELTA` deletions didn't take.
 4. **Are the protection bars present**, green, top and bottom, reading
@@ -209,9 +267,9 @@ These are the parts I could not verify without running Oxygen:
   content-independent. Anything else that looks content-specific is a bug.
 - **The project's `${pd}`-relative scenario paths are stale.** The `.xpr` was
   originally a repo-root project; after the move to `dita-parent/pub-5/dita/`,
-  `${pd}/template` and `${pd}/template/corp_logo.png` both point at folders that
-  no longer exist. Worth a tidy-up pass over the scenario independently of this
-  template.
+  `${pd}/template` points at a folder that no longer exists. The
+  `${pd}/template/corp_logo.png` case is fixed — see "The logo" — but the
+  scenario is still worth a tidy-up pass independently of this template.
 
 ## Upgrading to a future Oxygen version
 

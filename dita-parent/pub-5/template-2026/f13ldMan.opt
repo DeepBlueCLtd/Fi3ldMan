@@ -44,12 +44,21 @@
             <parameter name="webhelp.protection.background.color" value=""/>
 
             <!--
-                Declared here, relative to this template folder, rather than as
-                an absolute path in the transformation scenario. The 2026 build
-                emitted src="C:\git\Fi3ldMan\...\corp_logo.png" into every page,
-                which only resolves on the machine that built it.
+                The value is a path relative to the WebHelp OUTPUT root, not to
+                this template folder. Oxygen's whr-copy-logo-image target does
+                <available type="file" file="${webhelp.logo.image}"/>, which Ant
+                resolves against its own basedir; a template-relative value is
+                never found, so no copy happens and the value is emitted as-is
+                (relativised per page depth). corp_logo.png therefore lives under
+                resources/, which the fileset below copies to
+                <out>/oxygen-webhelp/template/resources/, and this parameter
+                points at where it lands. Verified on Oxygen 26; re-check on 28.1.
+                Do NOT set webhelp.logo.image in the transformation scenario:
+                scenario parameters override template ones, and an absolute path
+                there bakes a machine-specific src="C:\git\Fi3ldMan\..." into
+                every topic page.
             -->
-            <parameter name="webhelp.logo.image" value="corp_logo.png"/>
+            <parameter name="webhelp.logo.image" value="oxygen-webhelp/template/resources/corp_logo.png"/>
 
             <parameter name="webhelp.show.main.page.tiles" value="yes"/>
             <parameter name="webhelp.show.main.page.toc" value="no"/>
