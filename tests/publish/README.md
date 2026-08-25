@@ -109,6 +109,24 @@ is Oxygen exercising its own judgement and must stay green; a stock sheet that
 is *missing* is a broken build and must not. Keeping both true is what makes a
 green run mean something.
 
+## Confirmed against Oxygen 28.1
+
+Both baselines now pass all 35 — `oxygen-26/` (Oxygen 26, repo-root `template/`)
+and `oxygen-28/` (Oxygen 28.1, `template-2026/`).
+
+The suite also met the **genuine** 25.1 → 28.1 breakage along the way, not a
+simulated one: a build was accidentally produced with the 2025 template on
+Oxygen 28.1, and 8 tests failed naming the two 404s exactly. That is what it
+was written for.
+
+Two things it settled that had only been reasoned about before:
+
+- **The logo mechanism works on 28.1.** The Ant behaviour the fix depends on is
+  unchanged there.
+- **The `webhelp.fragment.head.topic.page` injection works.** The three
+  Fi3ldMan scripts load on 94/98 pages, the same as under 26. This was the
+  newest and least proven thing in the template.
+
 ## Known coverage gaps
 
 - **The CSS load order is only verified indirectly.** The 2026 change put
@@ -127,8 +145,9 @@ green run mean something.
   neither Node nor npm, so the manual checklist in
   `context-docs/11-publishing-template-2026.md` remains the feedback loop
   there. These tests reduce what can reach it broken; they do not replace it.
-- **Oxygen 28.1 output has never been through this suite.** Everything here was
-  written against an Oxygen 26 publish. Narrowing the scope to our own CSS
-  makes a clean first run on 28.1 much more likely, but that is a prediction,
-  not a measurement. Read each failure before changing a test — some will be
-  real.
+- **`check-publish.py` is a survey tool, not an oracle.** It regexes `href` and
+  `src` over raw text, so example markup inside an HTML comment counts as a
+  reference. The 28.1 build reports 97 occurrences of
+  `${webhelp.fragment.footer}` for exactly that reason — a documentation
+  comment in `page-templates/footer.xml`. This suite uses real network
+  responses and is unaffected.

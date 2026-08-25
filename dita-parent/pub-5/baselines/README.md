@@ -8,13 +8,20 @@ and is linked from `index.html`. Nor are they build output: they sit outside
 every Oxygen output directory, so a publish with `clean.output=yes` cannot
 delete them.
 
-| Snapshot | Oxygen | Template | Published |
-| --- | --- | --- | --- |
-| `oxygen-26/` | 26 | repo-root `template/` | 2026-08-25 |
+| Snapshot | Oxygen | Template | Published | Suite |
+| --- | --- | --- | --- | --- |
+| `oxygen-26/` | 26 | repo-root `template/` | 2026-08-25 | 35/35 |
+| `oxygen-28/` | 28.1 | `template-2026/` | 2026-08-25 | 35/35 |
 
-`oxygen-26/` is the last known-good output before the move to Oxygen 28.1 and
-`template-2026/`. It verifies clean: 98 pages, 309 files, zero broken
-references, search index built, the three Fi3ldMan scripts on 94/98 pages.
+`oxygen-26/` is the last known-good output *before* the move to Oxygen 28.1 and
+`template-2026/`. `oxygen-28/` is the first known-good output after it — the
+build that confirmed the rebuilt template works. Both verify clean: 98 pages,
+zero broken references, search index built, the three Fi3ldMan scripts on 94/98
+pages.
+
+Keep both. The pair is what makes an upgrade reviewable: the 26 snapshot says
+what the publication used to look like, the 28 snapshot is what a future 28.1
+build is diffed against.
 
 ## Diffing a new publish against a baseline
 
