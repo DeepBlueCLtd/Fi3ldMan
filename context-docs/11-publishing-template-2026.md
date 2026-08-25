@@ -357,7 +357,7 @@ npm test
 ```
 
 `tests/publish/` loads the published output in a headless browser and asserts
-computed style and asset status codes — 35 checks. Run it before anything is
+computed style and asset status codes — 37 checks. Run it before anything is
 packaged for transfer.
 
 It exists because **this failure mode is invisible in the HTML.** The 25.1 →
@@ -372,7 +372,7 @@ scripts, and that every referenced asset resolves. No assertion pins a value
 that a stock Oxygen stylesheet produces, so Oxygen restyling its own output
 does not turn the suite red. A failure should always mean we broke something.
 That is verified too: a build with Oxygen's fonts, colours and navbar layout
-deliberately altered still passes all 35.
+deliberately altered still passes all 37.
 
 See `tests/publish/README.md`, including its coverage gaps. It does not replace
 the manual checks below, which cover appearance the suite deliberately leaves

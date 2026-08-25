@@ -5,11 +5,11 @@
     <link rel="stylesheet" type="text/css" href="../oxygen-webhelp/app/jquery-ui.css?buildId=2026061900"/>
         
     <link rel="stylesheet" type="text/css" href="../oxygen-webhelp/app/topic.css?buildId=2026061900"/>
-<link rel="stylesheet" type="text/css" href="../oxygen-webhelp/template/oxygen-theme.css?buildId=20260825220311"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/template/oxygen.css?buildId=20260825220311"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/template/notes.css?buildId=20260825220311"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/template/f13ldman.css?buildId=20260825220311"/>
-    <script src="../oxygen-webhelp/app/options/properties.js?buildId=20260825220311"></script>
-    <script src="../oxygen-webhelp/app/themes.js?buildId=20260825220311"></script>
+<link rel="stylesheet" type="text/css" href="../oxygen-webhelp/template/oxygen-theme.css?buildId=20260825223404"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/template/oxygen.css?buildId=20260825223404"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/template/notes.css?buildId=20260825223404"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/template/f13ldman.css?buildId=20260825223404"/>
+    <script src="../oxygen-webhelp/app/options/properties.js?buildId=20260825223404"></script>
+    <script src="../oxygen-webhelp/app/themes.js?buildId=20260825223404"></script>
     <script src="../oxygen-webhelp/app/localization/strings.js?buildId=2026061900"></script>
-    <script src="../oxygen-webhelp/app/search/index/keywords.js?buildId=20260825220311"></script>
+    <script src="../oxygen-webhelp/app/search/index/keywords.js?buildId=20260825223404"></script>
     
     <script defer="defer" src="../oxygen-webhelp/app/jquery.js?buildId=2026061900"></script>
     <script defer="defer" src="../oxygen-webhelp/app/jquery-ui.js?buildId=2026061900"></script>
@@ -37,20 +37,7 @@
         
         
         
-        <!--
-    Fi3ldMan header.
-
-    Based on the stock Oxygen 28.1 header.xml, with two Fi3ldMan additions:
-      1. The `wh_header_protection` bar above the navigation bar. It is emitted
-         conditionally by xslt/inc/customHeader.xsl, driven by the
-         `webhelp.show.protection` / `webhelp.protection.text` parameters.
-      2. The `c-nav-bar` / `c-full-width` / `c-no-wrap` hook classes used by
-         f13ldman.css to widen the navigation bar.
-
-    Everything else is stock. When upgrading Oxygen, diff this file against
-    <Oxygen>/frameworks/dita/DITA-OT/plugins/com.oxygenxml.webhelp.responsive/oxygen-webhelp/page-templates/header.xml
-    and re-apply the two additions above.
---><div>
+        <!-- Fi3ldMan header - see README.md, "Page layouts". --><div>
     <header xmlns:whc="http://www.oxygenxml.com/webhelp/components" class="navbar navbar-default wh_header_protection"><div class="header-container mx-auto">COMMERCIALLY SENSITIVE</div></header>
 
     <header class="navbar navbar-default wh_header c-nav-bar">
@@ -59,7 +46,7 @@
                 <div class="wh_logo_and_publication_title_container">
                     <div class="wh_logo_and_publication_title">
                         
-                        <a href="../index.html" class=" wh_logo d-none d-sm-block "><img src="../oxygen-webhelp/template/resources/corp_logo.png?buildId=20260825220311" alt="Field Manual v5 Mar 2025"/></a>
+                        <a href="../index.html" class=" wh_logo d-none d-sm-block "><img src="../oxygen-webhelp/template/resources/corp_logo.png?buildId=20260825223404" alt="Field Manual v5 Mar 2025"/></a>
                         <div class=" wh_publication_title "><a href="../index.html"><span class="title">Field Manual v5 Mar 2025</span></a></div>
                         
                     </div>
@@ -69,13 +56,7 @@
                     </button>
                 </div>
 
-                <!--
-                    Fi3ldMan keeps the search box in the navigation bar. Stock
-                    Oxygen 28.1 moved it into the page body instead, so the
-                    matching block has been removed from wt_index.html,
-                    wt_topic.html and wt_search.html to avoid emitting two
-                    search forms with duplicate ids.
-                -->
+                <!-- Search box stays in the nav bar - see README.md. -->
                 <div class=" wh_search_input navbar-form wh_main_page_search search " role="form"><form id="searchForm" method="get" role="search" action="../search.html"><div><input type="search" placeholder="Search " class="wh_search_textfield" id="textToSearch" name="searchQuery" aria-label="Search query" required="required"/><button type="submit" class="wh_search_button" aria-label="Search"><span class="search_input_text">Search</span></button></div></form></div>
 
                 <div class="wh_top_menu_and_indexterms_link collapse navbar-collapse" id="wh_top_menu_and_indexterms_link">
@@ -92,11 +73,7 @@
         
          
         
-        <!--
-            FI3LDMAN DELTA: the stock <whc:webhelp_search_input> block was removed
-            from here. Fi3ldMan renders the search box inside the navigation bar
-            (see page-templates/header.xml).
-        -->
+        <!-- FI3LDMAN DELTA: stock search-input block removed - see README.md. -->
 
         <div class="container-fluid navbar-expand-md" id="wh_topic_container">
             <div class="row">
@@ -214,23 +191,7 @@ Anchor Pics
             
             
         </div> 
-        <!--
-    Fi3ldMan footer.
-
-    Fi3ldMan replaces the stock Oxygen footer with a single protection bar. It is
-    emitted conditionally by xslt/inc/customFooter.xsl, driven by the
-    `webhelp.show.protection` / `webhelp.protection.text` parameters.
-
-    Note: because the stock `wh_footer` element is not present, the standard
-    `webhelp.fragment.footer` extension point has no effect. If you ever need a
-    real footer, add the stock markup back:
-
-        <footer class="navbar navbar-default wh_footer">
-            <div class=" footer-container mx-auto ">
-                <whc:include_html href="${webhelp.fragment.footer}"/>
-            </div>
-        </footer>
---><div>
+        <!-- Fi3ldMan footer - see README.md, "Page layouts". --><div>
     <footer xmlns:whc="http://www.oxygenxml.com/webhelp/components" class="navbar navbar-default wh_footer_protection"><div class=" footer-container mx-auto "><span>COMMERCIALLY SENSITIVE</span></div></footer>
 </div>
         

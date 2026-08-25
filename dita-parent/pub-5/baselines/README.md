@@ -10,8 +10,8 @@ delete them.
 
 | Snapshot | Oxygen | Template | Published | Suite |
 | --- | --- | --- | --- | --- |
-| `oxygen-26/` | 26 | repo-root `template/` | 2026-08-25 | 35/35 |
-| `oxygen-28/` | 28.1 | `template-2026/` | 2026-08-25 | 35/35 |
+| `oxygen-26/` | 26 | repo-root `template/` | 2026-08-25 | 37/37 |
+| `oxygen-28/` | 28.1 | `template-2026/` | 2026-08-25 | 37/37 |
 
 `oxygen-26/` is the last known-good output *before* the move to Oxygen 28.1 and
 `template-2026/`. `oxygen-28/` is the first known-good output after it — the

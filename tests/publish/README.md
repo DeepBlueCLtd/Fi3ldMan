@@ -68,7 +68,15 @@ Two consequences worth understanding, because they look like gaps:
 | `assets.spec.js` | Every referenced asset resolves; the logo is not a broken image; no machine-absolute paths; the base CSS is still being requested |
 | `fi3ldman-styling.spec.js` | The `f13ldman.css` rules win the cascade |
 | `scripts.spec.js` | The three Fi3ldMan scripts ran, and sorting actually sorts |
+| `page-hygiene.spec.js` | What our page layouts put *into* the deliverable — see below |
 | `helpers.js` | Page list and the response recorder |
+
+`page-hygiene.spec.js` is the one group not about appearance. Oxygen copies
+HTML comments from `page-templates/` verbatim into every published page, so a
+comment there is not a note to the next maintainer — it is content in a
+document that carries a COMMERCIALLY SENSITIVE banner and goes to an air-gapped
+network. It reached 193 KB across one build before anyone noticed, because
+nothing about it is visible from inside the template.
 
 ## Which output is tested
 
@@ -101,17 +109,18 @@ copying the output to a scratch directory, breaking one thing, and pointing
 | Logo deleted, `src` left as a tidy relative path | fail | Caught by `naturalWidth`, the only signal that separates it from working output |
 | Page layouts stop linking any Oxygen stylesheet (no 404 produced) | fail | Caught by the foreign-stylesheet count |
 | Stock `notes.css` **deleted** | fail | 11 failures, via the 404 sweep alone |
-| **Oxygen restyles its own sheets** — body font, navbar layout, and the `notes.css` note-box radius | **pass** | **35 passed.** Their design, not our regression |
+| **Oxygen restyles its own sheets** — body font, navbar layout, and the `notes.css` note-box radius | **pass** | **37 passed.** Their design, not our regression |
+| A build shipping 2 KB/page of template authoring notes | fail | Caught by the comment budget, which names the byte count and lists the offending comments |
 
-The last two rows are the pair that defines the scope, and they are the ones to
-re-check after any change to this suite. A stock sheet that has been *restyled*
-is Oxygen exercising its own judgement and must stay green; a stock sheet that
-is *missing* is a broken build and must not. Keeping both true is what makes a
-green run mean something.
+The **restyled** and **deleted** `notes.css` rows are the pair that defines the
+scope, and they are the ones to re-check after any change to this suite. A
+stock sheet that has been *restyled* is Oxygen exercising its own judgement and
+must stay green; a stock sheet that is *missing* is a broken build and must
+not. Keeping both true is what makes a green run mean something.
 
 ## Confirmed against Oxygen 28.1
 
-Both baselines now pass all 35 — `oxygen-26/` (Oxygen 26, repo-root `template/`)
+Both baselines now pass all 37 — `oxygen-26/` (Oxygen 26, repo-root `template/`)
 and `oxygen-28/` (Oxygen 28.1, `template-2026/`).
 
 The suite also met the **genuine** 25.1 → 28.1 breakage along the way, not a
