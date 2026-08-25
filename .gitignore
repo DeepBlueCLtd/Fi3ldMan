@@ -134,6 +134,9 @@ node_modules
 /dita-parent/pub-10/out/
 dita-parent/pub-10/dita/out/
 dita-parent/pub-5/dita/temp/
+# Oxygen writes pub-5 output here; the browsable copy lives in repo-root out/
+# and the reference snapshot in dita-parent/pub-5/baselines/.
+dita-parent/pub-5/dita/out/
 
 # Per-transfer integrity manifest for the publishing template (see
 # context-docs/12-template-transfer-air-gapped-network.md, Phase B)
