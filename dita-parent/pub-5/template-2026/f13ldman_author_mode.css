@@ -78,3 +78,12 @@ related-links {
       z-index: 1000;
   }
   
+
+/** suppress link to current page in related-links */
+[outputclass='current'] {
+  pointer-events: none !important;
+  cursor: default !important;
+  text-decoration: none !important;
+  color: #999 !important;
+  background: none !important;
+}

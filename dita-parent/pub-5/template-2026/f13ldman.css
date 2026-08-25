@@ -1,5 +1,9 @@
 /* user-defined CSS */
 
+.container-fluid {
+  max-width: 100% !important;
+}
+
 /* styling for related links */
 .related-links a[href$='.xls'], a[href$='.xlsx'] {
   background: transparent url(resources/images/icon_excel.gif) center right no-repeat !important;
@@ -13,6 +17,21 @@
 .related-links a {
   background: transparent url(resources/images/external_link.svg) center right no-repeat;
   padding-right: 22px;
+}
+
+.related-links {
+  padding: 2px !important;
+}
+
+/** suppress link to current page in related-links.
+    The `current` class is applied at run time by resources/current-handler.js,
+    so this rule has no effect until that script has run. */
+.related_link .current {
+  pointer-events: none !important;
+  cursor: default !important;
+  text-decoration: none !important;
+  color: #999 !important;
+  background: none !important;
 }
 
 
@@ -433,6 +452,23 @@ padding: 0 10px;
   border-left: 1px solid #CCCCCC;
   display: block;
   text-align: center;
+}
+
+
+/* Matches nothing in the pub-5 sample content, so the publish tests cannot
+   exercise it. It is live in the real publication on the target network. */
+.item-list {
+  display: flex;
+  flex-wrap: wrap;
+  white-space: nowrap;
+  gap: 0.5em; /* spacing between buttons */
+}
+
+.item-list a {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
 .enterBtn:visited {

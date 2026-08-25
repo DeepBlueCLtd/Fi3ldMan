@@ -93,8 +93,13 @@ test.describe('layout overrides', () => {
 
   test('the menu is right-aligned and horizontal', async ({ page }) => {
     await visit(page, PAGES.topic)
-    expect(await computed(page, '.c-menu > ul', 'display')).toBe('flex')
-    expect(await computed(page, '.c-menu > ul', 'justify-content')).toBe(
+    // Targets `.wh_top_menu`, not the `.c-menu` hook the rules used to use.
+    // The 2024 template added `c-menu` via an XSLT fork; template-2026 dropped
+    // the fork and retargeted at Oxygen's own class. Both templates emit
+    // `wh_top_menu` on the same element, so this selector works against output
+    // from either — and it is where the rules themselves now point.
+    expect(await computed(page, '.wh_top_menu > ul', 'display')).toBe('flex')
+    expect(await computed(page, '.wh_top_menu > ul', 'justify-content')).toBe(
       'flex-end',
     )
   })
