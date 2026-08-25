@@ -114,17 +114,36 @@ test.describe('layout overrides', () => {
         'renamed, which breaks the full-width REGIONS tile silently',
     ).toHaveCount(1)
 
-    const wideWidth = await wide.evaluate((el) => el.getBoundingClientRect().width)
-    const others = await page
-      .locator('.wh_tile:not([data-id="PD_1"])')
-      .evaluateAll((els) => els.map((el) => el.getBoundingClientRect().width))
+    // Measured against its own container rather than against its siblings.
+    // Comparing tiles would make this depend on how Oxygen chooses to size the
+    // others, which is not ours; width: 100% means "as wide as the container",
+    // and that is what the rule promises.
+    const { occupied, containerWidth } = await wide.evaluate((el) => {
+      const parent = /** @type {HTMLElement} */ (el.parentElement)
+      const parentStyle = getComputedStyle(parent)
+      const own = getComputedStyle(el)
+      return {
+        // The tile is a flex item, so its own margins come out of the space it
+        // can occupy. Width plus margins is the honest measure of "as wide as
+        // the container allows"; the margins themselves are Oxygen's to set.
+        occupied:
+          el.getBoundingClientRect().width +
+          parseFloat(own.marginLeft) +
+          parseFloat(own.marginRight),
+        // width:100% resolves against the container's content box, so the
+        // container's own padding comes off first.
+        containerWidth:
+          parent.clientWidth -
+          parseFloat(parentStyle.paddingLeft) -
+          parseFloat(parentStyle.paddingRight),
+      }
+    })
 
-    expect(others.length, 'no other tiles to compare against').toBeGreaterThan(0)
     expect(
-      wideWidth,
-      'the REGIONS tile is not wider than its siblings — the width override ' +
-        'is not applying',
-    ).toBeGreaterThan(Math.max(...others))
+      occupied,
+      'the REGIONS tile is not filling its container — the width override is ' +
+        'not applying',
+    ).toBeCloseTo(containerWidth, 0)
   })
 
   test('tiles carry the Fi3ldMan background', async ({ page }) => {

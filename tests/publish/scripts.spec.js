@@ -32,15 +32,8 @@ test.describe('fi3ldman scripts', () => {
     }
   })
 
-  test('jQuery is available to them', async ({ page }) => {
-    await visit(page, PAGES.topic)
-    // Oxygen supplies jQuery; the menu, TOC and search all depend on it, and
-    // it disappeared entirely in the 28.1 breakage.
-    const version = await page.evaluate(
-      () => /** @type {any} */ (window).jQuery?.fn?.jquery ?? null,
-    )
-    expect(version, 'jQuery is not present').not.toBeNull()
-  })
+  // No jQuery check here: none of the three Fi3ldMan scripts reference it, so
+  // whether Oxygen ships jQuery is Oxygen's business, not a dependency of ours.
 
   test('sorttable installed itself', async ({ page }) => {
     await visit(page, PAGES.table)

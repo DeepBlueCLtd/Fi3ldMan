@@ -1,7 +1,9 @@
 # Publish styling tests
 
-Automated checks that a published WebHelp build is **styled**, not merely
-generated. Run them in Phase A, before anything crosses the gateway.
+Automated checks that **our** contribution to a published WebHelp build
+survived — that `f13ldman.css`, `notes.css` and the three Fi3ldMan scripts are
+loaded, applied, and winning the cascade. Run them in Phase A, before anything
+crosses the gateway.
 
 ```
 npm test                                  # the live publish, or the baseline
@@ -28,13 +30,39 @@ Both matter, and neither is sufficient alone. A stylesheet can return 200 and
 still lose the cascade; a rule can compute correctly and reference a background
 image that 404s.
 
+## Scope: we test what we own
+
+**No assertion here pins a value that a stock Oxygen stylesheet produces.**
+Oxygen is free to restyle its own output — change its fonts, its spacing, its
+navigation layout — and this suite must stay green. It is not our design, and a
+failure here should always mean *we* broke something.
+
+That draws the line in three places:
+
+| | |
+| --- | --- |
+| **Asserted** | Computed values declared in `f13ldman.css`; the behaviour of our three scripts; that every asset a page references resolves |
+| **Not asserted** | Any value coming from `oxygen.css`, `app/*.css`, or Bootstrap — fonts, resets, menu layout, tile sizing |
+| **Why 404s still count** | A missing asset is a build defect whoever owns the file. Requesting something that is not there is never correct |
+
+Two consequences worth understanding, because they look like gaps:
+
+- **Nothing names an Oxygen bundle.** The suite never checks for
+  `commons.css`. It checks that a page links *some* stylesheet that is not
+  ours — which catches a page layout that has stopped emitting the base CSS
+  (a real 25.1 fault, and one that produces no 404 because nothing is
+  requested) without caring what Oxygen calls its files.
+- **Measurements are taken against containers, not siblings.** The full-width
+  REGIONS tile is checked against the width of its own container, not against
+  the other tiles, so that how Oxygen chooses to size the others stays their
+  business.
+
 ## Layout
 
 | File | Covers |
 | --- | --- |
-| `assets.spec.js` | Every referenced asset resolves; the logo is not a broken image; no machine-absolute paths |
-| `oxygen-base.spec.js` | Oxygen's own base styling and the template skin are in effect |
-| `fi3ldman-styling.spec.js` | The Fi3ldMan overrides win the cascade |
+| `assets.spec.js` | Every referenced asset resolves; the logo is not a broken image; no machine-absolute paths; the base CSS is still being requested |
+| `fi3ldman-styling.spec.js` | The `f13ldman.css` rules win the cascade |
 | `scripts.spec.js` | The three Fi3ldMan scripts ran, and sorting actually sorts |
 | `helpers.js` | Page list and the response recorder |
 
@@ -47,7 +75,7 @@ suite runnable on a fresh clone, where the output directory is gitignored.
 The run prints the directory it chose. Check it — passing against last week's
 build is the one failure mode this suite cannot detect for you.
 
-## Two rules for changing these tests
+## The rule for adding tests
 
 **Never let an assertion pass by finding nothing.** `.shortdesc` is checked on
 `Britain_Legacy.html` rather than `Britain1.html` because the latter has no
@@ -56,24 +84,22 @@ alone. `helpers.computed()` asserts the element exists before reading its
 style; keep using it, and if a selector stops matching, repoint it or delete
 the test rather than letting it idle.
 
-**Never name an Oxygen asset.** The suite asserts that *some* stylesheet under
-`oxygen-webhelp/app/` loaded, not that `commons.css` did. Pinning a bundle name
-would rebuild, in the tests, the exact coupling that broke the 2024 template —
-and it would surface the same way: as a baffling failure after an upgrade.
-
 ## Verified against deliberate breakage
 
-A test suite that only ever passes proves nothing, so each of these was
-confirmed to fail when the corresponding defect is introduced:
+A suite that only ever passes proves nothing. Each of these was confirmed by
+copying the output to a scratch directory, breaking one thing, and pointing
+`PUBLISH_DIR` at it:
 
-| Defect injected | Result |
-| --- | --- |
-| Oxygen's `app/commons.css` renamed — the literal 25.1 → 28.1 breakage | 14 failures, every page, starting with `body` still on the 8px user-agent margin |
-| `template/f13ldman.css` removed | Every override test fails, plus the asset checks |
-| Logo file deleted, `src` left as a tidy relative path | Caught by `naturalWidth`, which is the only signal that distinguishes it from working output |
+| Change injected | Expected | Result |
+| --- | --- | --- |
+| Oxygen's `app/commons.css` renamed — the literal 25.1 → 28.1 breakage | fail | 11 failures, every page, via the 404 sweep |
+| `template/f13ldman.css` removed | fail | 25 failures — every override test |
+| Logo deleted, `src` left as a tidy relative path | fail | Caught by `naturalWidth`, the only signal that separates it from working output |
+| Page layouts stop linking any Oxygen stylesheet (no 404 produced) | fail | Caught by the foreign-stylesheet count |
+| **Oxygen restyles its own sheets** — different body font, colours, navbar layout | **pass** | **35 passed.** Their design, not our regression |
 
-Re-run that exercise after any substantial change to the suite. Copy the output
-to a scratch directory, break one thing, point `PUBLISH_DIR` at it.
+That last row is the one to re-check after any change to this suite. It is what
+keeps a green run meaningful.
 
 ## Known coverage gaps
 
@@ -91,7 +117,7 @@ to a scratch directory, break one thing, point `PUBLISH_DIR` at it.
   `context-docs/11-publishing-template-2026.md` remains the feedback loop
   there. These tests reduce what can reach it broken; they do not replace it.
 - **Oxygen 28.1 output has never been through this suite.** Everything here was
-  written against an Oxygen 26 publish. Several assertions encode values that
-  28.1 is expected to preserve, but that is an expectation, not a measurement.
-  Expect a first run against 28.1 to need adjustment, and read each failure
-  before changing the test — some of them will be real.
+  written against an Oxygen 26 publish. Narrowing the scope to our own CSS
+  makes a clean first run on 28.1 much more likely, but that is a prediction,
+  not a measurement. Read each failure before changing a test — some will be
+  real.

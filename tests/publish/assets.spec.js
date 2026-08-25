@@ -55,22 +55,29 @@ test.describe('assets', () => {
     }
   })
 
-  test('an Oxygen base stylesheet loads, whichever era this is', async ({
+  test('the page still asks for the stylesheets we do not own', async ({
     page,
   }) => {
-    const assets = await visit(page, PAGES.topic)
+    await visit(page, PAGES.topic)
 
-    // Deliberately not naming a bundle. 25.1 shipped app/commons.css; 28.1
-    // ships app/bootstrap.css + app/main.css. Pinning either name here would
-    // re-create the exact coupling that broke the 2024 template.
-    const appCss = assets.responses.filter(
-      (r) => r.url.includes('/oxygen-webhelp/app/') && r.url.includes('.css'),
+    // Our page layouts are responsible for *requesting* Oxygen's stylesheets,
+    // even though their contents are not our business. Under 25.1 the main
+    // page layout never called <whc:page_css> and linked no Oxygen CSS at all
+    // — a template fault that produces no 404, because nothing is requested.
+    //
+    // So: count the sheets that are not ours. Deliberately no filenames and no
+    // directory — which bundles Oxygen ships, and what they are called, is
+    // theirs to change.
+    const foreign = await page.$$eval('link[rel="stylesheet"]', (links) =>
+      links
+        .map((l) => /** @type {HTMLLinkElement} */ (l).href)
+        .filter((h) => !/f13ldman\.css|notes\.css/.test(h)),
     )
     expect(
-      appCss.length,
-      'no Oxygen app stylesheet was requested — the page has no base styling',
+      foreign.length,
+      'the page links no stylesheets other than our own — a page layout has ' +
+        'stopped emitting the base CSS',
     ).toBeGreaterThan(0)
-    expect(appCss.every((r) => r.status === 200)).toBe(true)
   })
 
   test('the corporate logo loads and is not a broken image', async ({

@@ -345,17 +345,25 @@ npm test
 ```
 
 `tests/publish/` loads the published output in a headless browser and asserts
-computed style and asset status codes — 42 checks covering the five items
-below and a good deal besides. Run it before anything is packaged for transfer.
+computed style and asset status codes — 35 checks. Run it before anything is
+packaged for transfer.
 
 It exists because **this failure mode is invisible in the HTML.** The 25.1 →
 28.1 breakage changed no markup at all: Oxygen renamed its bundles, the
 template kept asking for the old names, and every page 404'd on its base
 styling while still containing exactly the right elements and classes. Only
 computed style and network status distinguish that from a good build, and the
-suite is verified to fail when the breakage is deliberately reintroduced. See
-`tests/publish/README.md`, including its list of coverage gaps — `notes.css` is
-not among the things it can check.
+suite is verified to fail when the breakage is deliberately reintroduced.
+
+**It tests only what we own** — the `f13ldman.css` rules, the three Fi3ldMan
+scripts, and that every referenced asset resolves. No assertion pins a value
+that a stock Oxygen stylesheet produces, so Oxygen restyling its own output
+does not turn the suite red. A failure should always mean we broke something.
+That is verified too: a build with Oxygen's fonts, colours and navbar layout
+deliberately altered still passes all 35.
+
+See `tests/publish/README.md`, including its coverage gaps — `notes.css` is not
+among the things it can check, so checks 3 to 5 below still earn their place.
 
 ### On the air-gapped side: work through these by hand
 
