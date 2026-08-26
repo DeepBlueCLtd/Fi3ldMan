@@ -16606,7 +16606,7 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>FieldMan DITA Map WebHelp Responsive</String>
+                                        <String>Fieldman Webhelp 2026</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -16799,7 +16799,7 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                     <String>${pd}/out/dita</String>
                                 </field>
                                 <field name="outputDir">
-                                    <String>${pd}/out/oxygen-2025</String>
+                                    <String>${pd}/out/oxygen-2026</String>
                                 </field>
                                 <field name="tempDir">
                                     <String>${pd}/out/temp</String>
