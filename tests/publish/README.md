@@ -71,6 +71,37 @@ Two consequences worth understanding, because they look like gaps:
 | `page-hygiene.spec.js` | What our page layouts put *into* the deliverable — see below |
 | `helpers.js` | Page list and the response recorder |
 
+### `cascade.spec.js` — the one that generalises
+
+The other specs check a **chosen handful** of declarations, and Oxygen 28.1
+proved that is not enough. Its `main.css` introduced
+
+```css
+.simpletable>:not(caption)>*>*, .table>:not(caption)>*>* {
+  background-color: var(--wh-primary-bg,#fff);
+  color: var(--wh-primary-color,#000);
+}
+```
+
+which scores **(0,1,1)** against our `.bkDarkGray` and friends at **(0,1,0)**.
+Six table-cell colour classes rendered white. The HTML was unchanged, the
+classes were still on the elements, `f13ldman.css` loaded and returned 200 —
+and every hand-written test in this suite stayed green.
+
+So `cascade.spec.js` picks nothing. It reads every rule out of `f13ldman.css`
+at run time and asks, per declaration per page: *if this definitely won the
+cascade, would the rendering change?* If yes, it is being overridden and the
+styling is not reaching the reader. The check is empirical rather than a
+specificity calculation — force the value inline with `!important` on the real
+element, in its real context, and see whether the computed value moves. That
+handles units, inheritance and custom properties for free.
+
+Overrides that are legitimate — nearly always one of our own rules beating
+another — live in the `ACCEPTED` map, **each with a reason**. An entry without
+one is a bug someone silenced. A second test fails when an `ACCEPTED` entry
+stops reproducing, so the list shrinks as things are fixed instead of hiding
+the next real regression.
+
 `page-hygiene.spec.js` is the one group not about appearance. Oxygen copies
 HTML comments from `page-templates/` verbatim into every published page, so a
 comment there is not a note to the next maintainer — it is content in a
@@ -80,9 +111,10 @@ nothing about it is visible from inside the template.
 
 ## Which output is tested
 
-In order: `PUBLISH_DIR` if set, else `dita-parent/pub-5/dita/out/oxygen-2025`,
-else `dita-parent/pub-5/baselines/oxygen-26`. The baseline fallback keeps the
-suite runnable on a fresh clone, where the output directory is gitignored.
+In order: `PUBLISH_DIR` if set, else `dita-parent/pub-5/dita/out/webhelp-responsive`
+(where the `Fieldman Webhelp 2026` scenario writes), else
+`dita-parent/pub-5/baselines/oxygen-28`. The baseline fallback keeps the suite
+runnable on a fresh clone, where the output directory is gitignored.
 
 The run prints the directory it chose. Check it — passing against last week's
 build is the one failure mode this suite cannot detect for you.
