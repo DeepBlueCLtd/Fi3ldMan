@@ -151,6 +151,18 @@ Two things follow. Note-box appearance is not ours to defend, so the test suite
 does not assert it. And on the next upgrade `notes.css` gets replaced from
 stock along with the other three, not carried across.
 
+**Fi3ldMan does not use DITA notes at all.** There is not a single `<note>`
+element in any DITA source in this repository — pub-5, pub-10 or the legacy
+content — and the real publications do not use them either. So `notes.css` is
+not merely stock, it is inert: it styles a DITA feature this publication never
+emits.
+
+That closes a question the test suite raised rather than leaving it open. The
+absence of notes from the sample content is not a coverage gap to be filled by
+adding one; it is the content being representative. `notes.css` could be
+dropped from `<resources>` entirely — one less stock file to replace on every
+Oxygen upgrade — though leaving it costs only its download.
+
 ## Parameters
 
 Set in the `<parameters>` block of `f13ldMan.opt`:

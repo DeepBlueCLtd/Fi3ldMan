@@ -177,8 +177,11 @@ Two things it settled that had only been reasoned about before:
   passing at all — not by a head-to-head conflict. If a future override starts
   fighting a stock rule, test that specific pair.
 
-  (`notes.css` used to be listed here as an untested Fi3ldMan file. It is
-  stock Oxygen, so its absence from the suite is correct rather than a gap.)
+  (`notes.css` was twice listed here as a gap — first as an untested Fi3ldMan
+  file, then as sample content missing DITA notes. It is neither. The file is
+  stock Oxygen, and **Fi3ldMan does not use DITA notes**: there is no `<note>`
+  element in any DITA source in this repository, or in the real publications.
+  Nothing to test, and nothing to add to the sample content.)
 - **Dead rules are not flagged.** `.wh_tiles-container`, `.breadcrumb-sticky`,
   `.fullWidthTable`, `.table-separator` and `.permalink` match nothing in the
   current output. They are harmless, but they are also not what they look like.
