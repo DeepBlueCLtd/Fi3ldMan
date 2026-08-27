@@ -90,6 +90,57 @@ Stock 28.1 sources live in:
 C:\Program Files\Oxygen XML Editor 28\frameworks\dita\DITA-OT\plugins\com.oxygenxml.webhelp.responsive\oxygen-webhelp\page-templates\
 ```
 
+## Page layouts
+
+> **Keep comments in these files to one short line.** Oxygen copies HTML
+> comments from the page layouts verbatim into **every published page**. The
+> explanatory notes that used to live in `header.xml` and `footer.xml` were
+> adding ~2 KB to all 98 pages — 193 KB across the build — and put internal
+> implementation detail in front of the reader of a document marked
+> commercially sensitive. The prose lives here instead; the files carry a
+> pointer back. Anything longer than a line belongs in this section.
+
+### `header.xml`
+
+Based on the stock Oxygen 28.1 `header.xml`, with two Fi3ldMan additions:
+
+1. The `wh_header_protection` bar above the navigation bar, emitted
+   conditionally by `xslt/inc/customHeader.xsl` and driven by the
+   `webhelp.show.protection` / `webhelp.protection.text` parameters.
+2. The `c-nav-bar` / `c-full-width` / `c-no-wrap` hook classes, used by
+   `f13ldman.css` to widen the navigation bar.
+
+Everything else is stock. On upgrade, diff against the stock `header.xml` and
+re-apply those two.
+
+The header also keeps `<whc:webhelp_search_input>` in the navigation bar. Stock
+28.1 moved the search box into the page body, which is why the matching block
+is deleted from `wt_index.html`, `wt_topic.html` and `wt_search.html` — leaving
+both would emit two search forms with duplicate ids.
+
+### `footer.xml`
+
+Replaces the stock Oxygen footer with a single protection bar, emitted
+conditionally by `xslt/inc/customFooter.xsl` from the same two parameters.
+
+Because the stock `wh_footer` element is not present, **the standard
+`webhelp.fragment.footer` extension point has no effect.** If a real footer is
+ever needed, restore the stock markup:
+
+```html
+<footer class="navbar navbar-default wh_footer">
+    <div class=" footer-container mx-auto ">
+        <whc:include_html href="${webhelp.fragment.footer}"/>
+    </div>
+</footer>
+```
+
+### `wt_index.html`, `wt_topic.html`, `wt_search.html`
+
+One deletion each — the stock body-level `<whc:webhelp_search_input>` block —
+marked in place with a one-line `FI3LDMAN DELTA` comment. `wt_terms.html` is
+byte-identical to stock.
+
 ## Equal-height linked images
 
 Rows of linked images, and the image link tables on the country pages, rendered

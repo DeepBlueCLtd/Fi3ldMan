@@ -151,6 +151,18 @@ Two things follow. Note-box appearance is not ours to defend, so the test suite
 does not assert it. And on the next upgrade `notes.css` gets replaced from
 stock along with the other three, not carried across.
 
+**Fi3ldMan does not use DITA notes at all.** There is not a single `<note>`
+element in any DITA source in this repository — pub-5, pub-10 or the legacy
+content — and the real publications do not use them either. So `notes.css` is
+not merely stock, it is inert: it styles a DITA feature this publication never
+emits.
+
+That closes a question the test suite raised rather than leaving it open. The
+absence of notes from the sample content is not a coverage gap to be filled by
+adding one; it is the content being representative. `notes.css` could be
+dropped from `<resources>` entirely — one less stock file to replace on every
+Oxygen upgrade — though leaving it costs only its download.
+
 ## Parameters
 
 Set in the `<parameters>` block of `f13ldMan.opt`:
@@ -357,7 +369,7 @@ npm test
 ```
 
 `tests/publish/` loads the published output in a headless browser and asserts
-computed style and asset status codes — 35 checks. Run it before anything is
+computed style and asset status codes — 37 checks. Run it before anything is
 packaged for transfer.
 
 It exists because **this failure mode is invisible in the HTML.** The 25.1 →
@@ -372,7 +384,7 @@ scripts, and that every referenced asset resolves. No assertion pins a value
 that a stock Oxygen stylesheet produces, so Oxygen restyling its own output
 does not turn the suite red. A failure should always mean we broke something.
 That is verified too: a build with Oxygen's fonts, colours and navbar layout
-deliberately altered still passes all 35.
+deliberately altered still passes all 37.
 
 See `tests/publish/README.md`, including its coverage gaps. It does not replace
 the manual checks below, which cover appearance the suite deliberately leaves

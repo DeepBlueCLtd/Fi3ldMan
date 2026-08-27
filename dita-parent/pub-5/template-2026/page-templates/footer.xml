@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-    Fi3ldMan footer.
-
-    Fi3ldMan replaces the stock Oxygen footer with a single protection bar. It is
-    emitted conditionally by xslt/inc/customFooter.xsl, driven by the
-    `webhelp.show.protection` / `webhelp.protection.text` parameters.
-
-    Note: because the stock `wh_footer` element is not present, the standard
-    `webhelp.fragment.footer` extension point has no effect. If you ever need a
-    real footer, add the stock markup back:
-
-        <footer class="navbar navbar-default wh_footer">
-            <div class=" footer-container mx-auto ">
-                <whc:include_html href="${webhelp.fragment.footer}"/>
-            </div>
-        </footer>
--->
+<!-- Fi3ldMan footer - see README.md, "Page layouts". -->
 <div xmlns="http://www.w3.org/1999/xhtml" xmlns:whc="http://www.oxygenxml.com/webhelp/components">
     <footer class="navbar navbar-default wh_footer_protection"/>
 </div>

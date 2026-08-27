@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-    Fi3ldMan header.
-
-    Based on the stock Oxygen 28.1 header.xml, with two Fi3ldMan additions:
-      1. The `wh_header_protection` bar above the navigation bar. It is emitted
-         conditionally by xslt/inc/customHeader.xsl, driven by the
-         `webhelp.show.protection` / `webhelp.protection.text` parameters.
-      2. The `c-nav-bar` / `c-full-width` / `c-no-wrap` hook classes used by
-         f13ldman.css to widen the navigation bar.
-
-    Everything else is stock. When upgrading Oxygen, diff this file against
-    <Oxygen>/frameworks/dita/DITA-OT/plugins/com.oxygenxml.webhelp.responsive/oxygen-webhelp/page-templates/header.xml
-    and re-apply the two additions above.
--->
+<!-- Fi3ldMan header - see README.md, "Page layouts". -->
 <div xmlns="http://www.w3.org/1999/xhtml" xmlns:whc="http://www.oxygenxml.com/webhelp/components">
     <header class="navbar navbar-default wh_header_protection"/>
 
@@ -35,13 +22,7 @@
                     </button>
                 </div>
 
-                <!--
-                    Fi3ldMan keeps the search box in the navigation bar. Stock
-                    Oxygen 28.1 moved it into the page body instead, so the
-                    matching block has been removed from wt_index.html,
-                    wt_topic.html and wt_search.html to avoid emitting two
-                    search forms with duplicate ids.
-                -->
+                <!-- Search box stays in the nav bar - see README.md. -->
                 <whc:webhelp_search_input class="navbar-form wh_main_page_search search" role="form"/>
 
                 <div class="wh_top_menu_and_indexterms_link collapse navbar-collapse" id="wh_top_menu_and_indexterms_link">

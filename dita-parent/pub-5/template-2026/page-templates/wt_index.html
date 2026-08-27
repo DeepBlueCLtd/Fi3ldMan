@@ -25,12 +25,7 @@
         <whc:include_html href="${webhelp.fragment.after.header}"/>
         <whc:include_html href="${webhelp.fragment.after.header.main.page}"/>        
         
-        <!--
-            FI3LDMAN DELTA: the stock <whc:webhelp_search_input> block was removed
-            from here. Fi3ldMan renders the search box inside the navigation bar
-            (see page-templates/header.xml). The surrounding fragment
-            placeholders are retained.
-        -->
+        <!-- FI3LDMAN DELTA: stock search-input block removed - see README.md. -->
         <whc:include_html href="${webhelp.fragment.before.main.page.search}"/>
         <div class="wh_welcome"><whc:include_html href="${webhelp.fragment.welcome}"/></div>
         <whc:include_html href="${webhelp.fragment.after.main.page.search}"/>

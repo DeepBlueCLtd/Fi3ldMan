@@ -1,5 +1,9 @@
 /* user-defined CSS */
 
+.container-fluid {
+  max-width: 100% !important;
+}
+
 /* styling for related links */
 .related-links a[href$='.xls'], a[href$='.xlsx'] {
   background: transparent url(resources/images/icon_excel.gif) center right no-repeat !important;
@@ -13,6 +17,21 @@
 .related-links a {
   background: transparent url(resources/images/external_link.svg) center right no-repeat;
   padding-right: 22px;
+}
+
+.related-links {
+  padding: 2px !important;
+}
+
+/** suppress link to current page in related-links.
+    The `current` class is applied at run time by resources/current-handler.js,
+    so this rule has no effect until that script has run. */
+.related_link .current {
+  pointer-events: none !important;
+  cursor: default !important;
+  text-decoration: none !important;
+  color: #999 !important;
+  background: none !important;
 }
 
 
@@ -241,33 +260,51 @@ padding: 0 10px;
   font-size: 1.5em;
 }
 
+/*
+ * Table cell colours.
+ *
+ * !important is load-bearing here, not habit. Oxygen 28.1's main.css added
+ *
+ *     .simpletable>:not(caption)>*>*, .table>:not(caption)>*>* {
+ *         background-color: var(--wh-primary-bg,#fff);
+ *         color: var(--wh-primary-color,#000);
+ *     }
+ *
+ * which scores (0,1,1) against these classes' (0,1,0). Every coloured cell in
+ * every table rendered white under 28.1 while the HTML stayed correct and the
+ * class was still on the element. No rule of this shape existed in Oxygen 26.
+ *
+ * Raising specificity instead (td.bkDarkGray and so on) would only tie, and
+ * would need revisiting the next time Oxygen adds a descendant to that
+ * selector. Verified by tests/publish/_cascade-audit.spec.js.
+ */
 .colorRed {
-  color: #F00;
+  color: #F00 !important;
   border-color: #000;
 }
 
 .colorPink {
-  color: #F0F;
+  color: #F0F !important;
   border-color: #000;
 }
 
 .colorBlue {
-  color: #00F;
+  color: #00F !important;
   border-color: #000;
 }
 
 .colorGray {
-  color: #777;
+  color: #777 !important;
   border-color: #000;
 }
 
 .colorOrange {
-  color: #FC0;
+  color: #FC0 !important;
   border-color: #000;
 }
 
 .colorLightBlue {
-  color: #0FF;
+  color: #0FF !important;
   border-color: #000;
 }
 
@@ -277,27 +314,27 @@ padding: 0 10px;
 }
 
 .bkLightGray {
-  background-color: #CCC;    
+  background-color: #CCC !important;    
 }
 
 .bkDarkGray {
-  background-color: #999;    
+  background-color: #999 !important;    
 }
 
 .bkYellow {
-  background-color: #ffff00;    
+  background-color: #ffff00 !important;    
 }
 
 .bkBlue {
-  background-color: #0000ff;    
+  background-color: #0000ff !important;    
 }
 
 .bkRed {
-  background-color: #ff0000;    
+  background-color: #ff0000 !important;    
 }
 
 .bkGreen {
-  background-color: #00ff00;    
+  background-color: #00ff00 !important;    
 }
 
 .bold {
@@ -435,6 +472,23 @@ padding: 0 10px;
   text-align: center;
 }
 
+
+/* Matches nothing in the pub-5 sample content, so the publish tests cannot
+   exercise it. It is live in the real publication on the target network. */
+.item-list {
+  display: flex;
+  flex-wrap: wrap;
+  white-space: nowrap;
+  gap: 0.5em; /* spacing between buttons */
+}
+
+.item-list a {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
 .enterBtn:visited {
   color: #333333;
 }
@@ -459,12 +513,17 @@ table.sortable  .sorttable_nosort {
   cursor: default;
 }
 
+/* !important for the same reason as the .bk* classes above, and one more:
+   these header cells also carry a bk* class from the content, and those are
+   now !important too. Without a matching !important here the cell's own
+   colour would win and the sortable headers would lose their lighter shade.
+   Specificity still decides between two !important declarations. */
 table.sortable thead td {
-    background-color: #BBB;
+    background-color: #BBB !important;
 }
 
 table.sortable thead td.sorttable_nosort {
-    background-color: #999;
+    background-color: #999 !important;
 }
 
 table.sortable thead td:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after, 

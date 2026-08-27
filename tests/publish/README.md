@@ -68,13 +68,53 @@ Two consequences worth understanding, because they look like gaps:
 | `assets.spec.js` | Every referenced asset resolves; the logo is not a broken image; no machine-absolute paths; the base CSS is still being requested |
 | `fi3ldman-styling.spec.js` | The `f13ldman.css` rules win the cascade |
 | `scripts.spec.js` | The three Fi3ldMan scripts ran, and sorting actually sorts |
+| `page-hygiene.spec.js` | What our page layouts put *into* the deliverable — see below |
 | `helpers.js` | Page list and the response recorder |
+
+### `cascade.spec.js` — the one that generalises
+
+The other specs check a **chosen handful** of declarations, and Oxygen 28.1
+proved that is not enough. Its `main.css` introduced
+
+```css
+.simpletable>:not(caption)>*>*, .table>:not(caption)>*>* {
+  background-color: var(--wh-primary-bg,#fff);
+  color: var(--wh-primary-color,#000);
+}
+```
+
+which scores **(0,1,1)** against our `.bkDarkGray` and friends at **(0,1,0)**.
+Six table-cell colour classes rendered white. The HTML was unchanged, the
+classes were still on the elements, `f13ldman.css` loaded and returned 200 —
+and every hand-written test in this suite stayed green.
+
+So `cascade.spec.js` picks nothing. It reads every rule out of `f13ldman.css`
+at run time and asks, per declaration per page: *if this definitely won the
+cascade, would the rendering change?* If yes, it is being overridden and the
+styling is not reaching the reader. The check is empirical rather than a
+specificity calculation — force the value inline with `!important` on the real
+element, in its real context, and see whether the computed value moves. That
+handles units, inheritance and custom properties for free.
+
+Overrides that are legitimate — nearly always one of our own rules beating
+another — live in the `ACCEPTED` map, **each with a reason**. An entry without
+one is a bug someone silenced. A second test fails when an `ACCEPTED` entry
+stops reproducing, so the list shrinks as things are fixed instead of hiding
+the next real regression.
+
+`page-hygiene.spec.js` is the one group not about appearance. Oxygen copies
+HTML comments from `page-templates/` verbatim into every published page, so a
+comment there is not a note to the next maintainer — it is content in a
+document that carries a COMMERCIALLY SENSITIVE banner and goes to an air-gapped
+network. It reached 193 KB across one build before anyone noticed, because
+nothing about it is visible from inside the template.
 
 ## Which output is tested
 
-In order: `PUBLISH_DIR` if set, else `dita-parent/pub-5/dita/out/oxygen-2025`,
-else `dita-parent/pub-5/baselines/oxygen-26`. The baseline fallback keeps the
-suite runnable on a fresh clone, where the output directory is gitignored.
+In order: `PUBLISH_DIR` if set, else `dita-parent/pub-5/dita/out/webhelp-responsive`
+(where the `Fieldman Webhelp 2026` scenario writes), else
+`dita-parent/pub-5/baselines/oxygen-28`. The baseline fallback keeps the suite
+runnable on a fresh clone, where the output directory is gitignored.
 
 The run prints the directory it chose. Check it — passing against last week's
 build is the one failure mode this suite cannot detect for you.
@@ -101,13 +141,32 @@ copying the output to a scratch directory, breaking one thing, and pointing
 | Logo deleted, `src` left as a tidy relative path | fail | Caught by `naturalWidth`, the only signal that separates it from working output |
 | Page layouts stop linking any Oxygen stylesheet (no 404 produced) | fail | Caught by the foreign-stylesheet count |
 | Stock `notes.css` **deleted** | fail | 11 failures, via the 404 sweep alone |
-| **Oxygen restyles its own sheets** — body font, navbar layout, and the `notes.css` note-box radius | **pass** | **35 passed.** Their design, not our regression |
+| **Oxygen restyles its own sheets** — body font, navbar layout, and the `notes.css` note-box radius | **pass** | **37 passed.** Their design, not our regression |
+| A build shipping 2 KB/page of template authoring notes | fail | Caught by the comment budget, which names the byte count and lists the offending comments |
 
-The last two rows are the pair that defines the scope, and they are the ones to
-re-check after any change to this suite. A stock sheet that has been *restyled*
-is Oxygen exercising its own judgement and must stay green; a stock sheet that
-is *missing* is a broken build and must not. Keeping both true is what makes a
-green run mean something.
+The **restyled** and **deleted** `notes.css` rows are the pair that defines the
+scope, and they are the ones to re-check after any change to this suite. A
+stock sheet that has been *restyled* is Oxygen exercising its own judgement and
+must stay green; a stock sheet that is *missing* is a broken build and must
+not. Keeping both true is what makes a green run mean something.
+
+## Confirmed against Oxygen 28.1
+
+Both baselines now pass all 37 — `oxygen-26/` (Oxygen 26, repo-root `template/`)
+and `oxygen-28/` (Oxygen 28.1, `template-2026/`).
+
+The suite also met the **genuine** 25.1 → 28.1 breakage along the way, not a
+simulated one: a build was accidentally produced with the 2025 template on
+Oxygen 28.1, and 8 tests failed naming the two 404s exactly. That is what it
+was written for.
+
+Two things it settled that had only been reasoned about before:
+
+- **The logo mechanism works on 28.1.** The Ant behaviour the fix depends on is
+  unchanged there.
+- **The `webhelp.fragment.head.topic.page` injection works.** The three
+  Fi3ldMan scripts load on 94/98 pages, the same as under 26. This was the
+  newest and least proven thing in the template.
 
 ## Known coverage gaps
 
@@ -118,8 +177,11 @@ green run mean something.
   passing at all — not by a head-to-head conflict. If a future override starts
   fighting a stock rule, test that specific pair.
 
-  (`notes.css` used to be listed here as an untested Fi3ldMan file. It is
-  stock Oxygen, so its absence from the suite is correct rather than a gap.)
+  (`notes.css` was twice listed here as a gap — first as an untested Fi3ldMan
+  file, then as sample content missing DITA notes. It is neither. The file is
+  stock Oxygen, and **Fi3ldMan does not use DITA notes**: there is no `<note>`
+  element in any DITA source in this repository, or in the real publications.
+  Nothing to test, and nothing to add to the sample content.)
 - **Dead rules are not flagged.** `.wh_tiles-container`, `.breadcrumb-sticky`,
   `.fullWidthTable`, `.table-separator` and `.permalink` match nothing in the
   current output. They are harmless, but they are also not what they look like.
@@ -127,8 +189,9 @@ green run mean something.
   neither Node nor npm, so the manual checklist in
   `context-docs/11-publishing-template-2026.md` remains the feedback loop
   there. These tests reduce what can reach it broken; they do not replace it.
-- **Oxygen 28.1 output has never been through this suite.** Everything here was
-  written against an Oxygen 26 publish. Narrowing the scope to our own CSS
-  makes a clean first run on 28.1 much more likely, but that is a prediction,
-  not a measurement. Read each failure before changing a test — some will be
-  real.
+- **`check-publish.py` is a survey tool, not an oracle.** It regexes `href` and
+  `src` over raw text, so example markup inside an HTML comment counts as a
+  reference. The 28.1 build reports 97 occurrences of
+  `${webhelp.fragment.footer}` for exactly that reason — a documentation
+  comment in `page-templates/footer.xml`. This suite uses real network
+  responses and is unaffected.
