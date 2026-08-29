@@ -1,0 +1,46 @@
+# Deploys the site/ folder to GitHub Pages.
+#
+# Fi3ldMan publishes committed HTML: Oxygen runs on an author's machine and the
+# verified output is committed under site/. There is nothing to build here, so
+# this workflow only uploads the folder.
+#
+# Requires the repository's Pages source to be set to "GitHub Actions"
+# (Settings -> Pages -> Build and deployment -> Source). Before the
+# reorganisation Pages served the whole repository from the branch root, which
+# is why DITA sources, baselines and lockfiles were all part of the deployed
+# site.
+name: Deploy site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a run in progress finish rather than cancelling it: a half-deployed site
+# is worse than a slightly stale one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
