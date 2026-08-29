@@ -2,7 +2,7 @@
 
 > **Note on scope.** This document describes the 2024 template generation, built
 > on the Oxygen 25.1 base. For Pub-5 that template has been superseded by
-> `dita-parent/pub-5/template-2026/`, which is built on the Oxygen 28.1 (2026)
+> `publications/pub-5/template-2026/`, which is built on the Oxygen 28.1 (2026)
 > base and is the one to use — see `11-publishing-template-2026.md`, and
 > `12-template-transfer-air-gapped-network.md` for deploying it to the target
 > network. The material below remains current for the Pub-10 and legacy
@@ -14,20 +14,25 @@
 Fi3ldMan uses the Oxygen WebHelp Responsive publishing engine with custom templates. The template system has a layered architecture:
 
 ```
-Root template (template/)
-├── Shared XSLT transformations
-├── Shared CSS and JavaScript resources
-├── Shared HTML page templates and fragments
-│
-├── Pub-5 template (dita-parent/pub-5/template/)
-│   └── f13ldMan.opt (references root resources)
-│
-└── Pub-10 template (dita-parent/pub-10/template/)
-    ├── f13ldMan-p10.opt (references own resources)
-    ├── page-templates/ (Pub-10 specific layouts)
-    ├── page-templates-fragments/ (Pub-10 specific fragments)
-    └── resources/gramframe.bundle.js (Pub-10 only)
+Pub-5 template (publications/pub-5/template-2024/)
+├── XSLT transformations
+├── CSS and JavaScript resources
+├── HTML page templates and fragments
+└── f13ldMan.opt
+
+Pub-10 template (publications/pub-10/template/)
+├── f13ldMan-p10.opt (references own resources)
+├── page-templates/ (Pub-10 specific layouts)
+├── page-templates-fragments/ (Pub-10 specific fragments)
+└── resources/gramframe.bundle.js (Pub-10 only)
 ```
+
+This used to be described as a layered architecture, with a "root" template at
+the repository root and a Pub-5 template beside the Pub-5 source. In practice
+the two were independent near-duplicates that had drifted apart, and Pub-5
+published from the root one. The reorganisation deleted the duplicate and moved
+the survivor to `publications/pub-5/template-2024/`; each publication now has
+exactly one template per generation, and shares nothing with the others.
 
 ## Template Configuration Files (.opt)
 
@@ -54,16 +59,16 @@ The `.opt` files are Oxygen publishing template descriptors. They define the pub
 
 | File | Template |
 |------|----------|
-| `template/f13ldMan.opt` | Root/default template |
-| `dita-parent/pub-5/template/f13ldMan.opt` | Pub-5 (identical to root) |
-| `dita-parent/pub-10/template/f13ldMan-p10.opt` | Pub-10 variant |
+| `publications/pub-5/template-2024/f13ldMan.opt` | Pub-5, 2024 generation |
+| `publications/pub-5/template-2026/f13ldMan.opt` | Pub-5, current — see doc 11 |
+| `publications/pub-10/template/f13ldMan-p10.opt` | Pub-10 variant |
 
 ### Legacy Templates
 | File | Format |
 |------|--------|
-| `dita-legacy/template/oxygen/oxygen-tiles.opt` | WebHelp tiles layout |
-| `dita-legacy/template/oxygen/oxygen-tree.opt` | WebHelp tree navigation |
-| `dita-legacy/template/oxygen/oxygen-with-colors.opt` | PDF with color support |
+| `publications/legacy-regions/template/oxygen/oxygen-tiles.opt` | WebHelp tiles layout |
+| `publications/legacy-regions/template/oxygen/oxygen-tree.opt` | WebHelp tree navigation |
+| `publications/legacy-regions/template/oxygen/oxygen-with-colors.opt` | PDF with color support |
 
 ## XSLT Transformations
 
@@ -156,7 +161,7 @@ Key style rules:
 
 **Stock Oxygen, not a Fi3ldMan file**, despite sitting alongside ones that are.
 Oxygen generates it from the note-styling options chosen when a publishing
-template is created. The copy in repo-root `template/` is byte-identical to the
+template is created. The copy in `template-2024/` is byte-identical to the
 one in every stock template shipped with Oxygen 26. Replace it from stock on
 upgrade; do not edit it, and put any note overrides in `f13ldman.css`.
 
@@ -192,7 +197,7 @@ Standard Oxygen framework styles (not customized).
 
 ### Output Structure
 ```
-out/{publication}/
+publications/{publication}/dita/out/{scenario}/
 ├── {topic-directories}/     # HTML topic files organized by source structure
 ├── Content/                 # Images and media
 ├── oxygen-webhelp/          # WebHelp framework resources
@@ -203,14 +208,24 @@ out/{publication}/
 └── sitemap.xml              # SEO sitemap
 ```
 
-### Serving Locally
+### Publishing It
+
+Oxygen's output directory is scratch (and gitignored). A publish becomes part
+of the site only once it has been verified and copied in:
+
 ```bash
-npm start    # Runs: serve dita/out
+python publications/pub-5/check-publish.py <output-dir>   # pages, refs, scripts
+npm test                                                  # styling suite
+cp -a <output-dir>/. site/pub-5/current/                  # then commit
+npm start                                                 # serves site/ locally
 ```
 
-## Template Inheritance Summary
+## Template Summary
 
-All publications inherit from the same base template infrastructure. Differences are:
-- **Pub-5**: Uses root template as-is
-- **Pub-10**: Adds `gramframe.bundle.js` for gram visualization; has its own page-templates with identical structure
-- **Pub-9**: Will use similar template when promoted from mockup to DITA source
+Each publication owns its template outright; they share concepts, not files.
+- **Pub-5**: `template-2026/` (current) and `template-2024/` (what the
+  `site/pub-5/oxygen-26/` publish was built with)
+- **Pub-10**: adds `gramframe.bundle.js` for gram visualization; has its own
+  page-templates with structure matching Pub-5's
+- **Pub-9**: will get a template of its own when promoted from mockup to DITA
+  source

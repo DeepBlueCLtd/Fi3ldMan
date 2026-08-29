@@ -111,10 +111,10 @@ nothing about it is visible from inside the template.
 
 ## Which output is tested
 
-In order: `PUBLISH_DIR` if set, else `dita-parent/pub-5/dita/out/webhelp-responsive`
+In order: `PUBLISH_DIR` if set, else `publications/pub-5/dita/out/webhelp-responsive`
 (where the `Fieldman Webhelp 2026` scenario writes), else
-`dita-parent/pub-5/baselines/oxygen-28`. The baseline fallback keeps the suite
-runnable on a fresh clone, where the output directory is gitignored.
+`site/pub-5/oxygen-28`. That last is the frozen 28.1 publish; the fallback keeps
+the suite runnable on a fresh clone, where the output directory is gitignored.
 
 The run prints the directory it chose. Check it — passing against last week's
 build is the one failure mode this suite cannot detect for you.

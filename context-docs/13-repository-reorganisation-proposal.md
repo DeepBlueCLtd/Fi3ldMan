@@ -1,6 +1,27 @@
-# Fi3ldMan — Repository Reorganisation Proposal
+# Fi3ldMan — Repository Reorganisation
 
-**Status: proposal — nothing has been moved yet.**
+**Status: implemented.** Everything below has been carried out. The document is
+kept as the record of *why* the tree has the shape it does, and of what the
+repository looked like before — the inventory in §1 is the state as of August
+2026, not the state today. For the current layout see
+`01-repository-architecture.md` and the root `README.md`.
+
+Two things were decided while implementing it, against the defaults in §6:
+
+- `archive/oxygen-webhelp-mockup/` was kept for one cycle, with a README
+  saying to delete it if nobody claims it.
+- The March 2025 pub-5 publish stays deleted; the `oxygen-26` frozen publish
+  represents that era.
+
+Two things remain outstanding:
+
+- **The repository's Pages source must be switched to "GitHub Actions"**
+  (Settings → Pages → Build and deployment → Source). Until that happens Pages
+  still serves the branch root, where `index.html` no longer exists.
+- **Pub-5 has not been republished from the moved project.** The move keeps
+  every `${pd}`-relative path valid and the machine-absolute `templateRoot` was
+  updated, but that needs Oxygen to confirm. `check-publish.py` and the styling
+  suite both pass against the committed output.
 
 This document proposes a new layout for the repository, including the content
 published to GitHub Pages. It exists because the repository has accreted
