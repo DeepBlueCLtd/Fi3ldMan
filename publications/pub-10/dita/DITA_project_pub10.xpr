@@ -16797,7 +16797,7 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                 <field name="publishingTemplateDataPO">
                                     <publishingTemplate>
                                         <field name="templateRoot">
-                                            <String>/Users/ian/git/Fi3ldMan/dita-parent/pub-10/template/</String>
+                                            <String>/Users/ian/git/Fi3ldMan/publications/pub-10/template/</String>
                                         </field>
                                         <field name="descriptorRelativePath">
                                             <String>f13ldMan-p10.opt</String>

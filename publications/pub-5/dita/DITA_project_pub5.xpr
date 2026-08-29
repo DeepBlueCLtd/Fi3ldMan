@@ -16847,7 +16847,7 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                 <field name="publishingTemplateDataPO">
                                     <publishingTemplate>
                                         <field name="templateRoot">
-                                            <String>C:/git/Fi3ldMan/template/</String>
+                                            <String>C:/git/Fi3ldMan/publications/pub-5/template-2024/</String>
                                         </field>
                                         <field name="descriptorRelativePath">
                                             <String>f13ldMan.opt</String>

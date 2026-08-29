@@ -247,7 +247,7 @@ To recreate it from scratch, or to set up a second scenario:
    Publishing Templates`, or the project's own settings. Point it at
    `${pd}/../template-2026`. Alternatively skip the gallery and browse straight
    to `f13ldMan.opt` in step 3.
-2. Open `dita-parent/pub-5/dita/index.ditamap`.
+2. Open `publications/pub-5/dita/index.ditamap`.
 3. `Configure Transformation Scenario` → duplicate the existing
    `webhelp-responsive` scenario. On the **Templates** tab pick
    **f13ldMan 2026** (or `Browse for publishing template file` → this folder's
@@ -259,9 +259,9 @@ To recreate it from scratch, or to set up a second scenario:
    machine-absolute path. Leave the rest alone.
 6. Apply and run.
 
-The reference build to compare against is `dita-parent/pub-5/baselines/oxygen-26/`
-— the last known-good output before this template, published on Oxygen 26. See
-`dita-parent/pub-5/baselines/README.md` for how to diff against it; note in
+The reference build to compare against is `site/pub-5/oxygen-26/` — the last
+known-good output before this template, published on Oxygen 26. See
+`site/pub-5/README.md` for how to diff against it; note in
 particular that Oxygen's per-run `buildId` cache-buster makes every page look
 changed until it is normalised.
 
@@ -318,7 +318,7 @@ These are the parts I could not verify without running Oxygen:
   Everything else — page layouts, XSLT, fragments, parameters — is
   content-independent. Anything else that looks content-specific is a bug.
 - **The project's `${pd}`-relative scenario paths are stale.** The `.xpr` was
-  originally a repo-root project; after the move to `dita-parent/pub-5/dita/`,
+  originally a repo-root project; after the move to `publications/pub-5/dita/`,
   `${pd}/template` points at a folder that no longer exists. The
   `${pd}/template/corp_logo.png` case is fixed — see "The logo" — but the
   scenario is still worth a tidy-up pass independently of this template.
