@@ -1,6 +1,6 @@
-# Publish baselines are byte-exact snapshots of Oxygen output, kept for
-# diffing against a publish from a different Oxygen version. core.autocrlf
-# is true on Windows checkouts, which would rewrite the line endings on
-# checkout and make every file differ from a fresh publish. Store and check
-# these out verbatim.
-dita-parent/pub-5/baselines/** -text
+# Frozen per-Oxygen-version publishes are byte-exact snapshots of Oxygen
+# output, kept for diffing against a publish from a different Oxygen version.
+# core.autocrlf is true on Windows checkouts, which would rewrite the line
+# endings on checkout and make every file differ from a fresh publish. Store
+# and check these out verbatim.
+site/pub-5/oxygen-*/** -text

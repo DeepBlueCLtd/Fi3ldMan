@@ -2,15 +2,15 @@
 
 ## Overview
 
-`dita-parent/pub-5/template-2026/` is the Fi3ldMan WebHelp Responsive publishing
+`publications/pub-5/template-2026/` is the Fi3ldMan WebHelp Responsive publishing
 template, rebuilt on the **Oxygen 28.1 (2026)** base. It replaces
-`dita-parent/pub-5/template/`, which was built in 2024 on the Oxygen 25.1 base
-and produces broken, unstyled output under Oxygen 2026.
+`publications/pub-5/template-2024/`, which was built in 2024 on the Oxygen 25.1
+base and produces broken, unstyled output under Oxygen 2026.
 
 This document explains how the template works as a system: what it is, how
 Oxygen consumes it, which parts are ours, and how to change it safely. For the
 change-by-change rationale and the archaeology of the 25.1 → 28.1 breakage, see
-`dita-parent/pub-5/template-2026/README.md`, which travels with the template
+`publications/pub-5/template-2026/README.md`, which travels with the template
 itself. For moving the template to the air-gapped network, see
 `12-template-transfer-air-gapped-network.md`.
 
@@ -142,7 +142,7 @@ after it, so overrides did not reliably win.
 `notes.css` reads as a Fi3ldMan file and is not one. Oxygen generates it from
 the note-styling options chosen when a publishing template is created, which is
 why it carries markers like `/*notes-colors-colorful*/`. Verified: the copy in
-repo-root `template/` is byte-identical to the `notes.css` in every stock
+`template-2024/` is byte-identical to the `notes.css` in every stock
 template shipped with Oxygen 26. The `template-2026/` copy differs from Oxygen
 26's by a single line — the `note_restriction` background — which is a change
 between Oxygen versions, not a Fi3ldMan edit.
@@ -242,7 +242,7 @@ Two related traps:
   `src="../corp_logo.png"` on every page with no file behind it. Check that the
   image loads, not just that the path looks right.
 
-The same arrangement is in repo-root `template/`, where it was verified on
+The same arrangement is in `template-2024/`, where it was verified on
 Oxygen 26. The Ant target has the same shape in 28.1, but confirm it on the
 first 28.1 build rather than assuming.
 
@@ -321,7 +321,7 @@ filename. Renaming that source file breaks the rule silently.
   under either Oxygen 2024 or 2026. Left in place and commented rather than
   deleted.
 - **Stale `${pd}`-relative scenario paths.** `DITA_project_pub5.xpr` was
-  originally a repo-root project; after the move to `dita-parent/pub-5/dita/`,
+  originally a repo-root project; after the move to `publications/pub-5/dita/`,
   `${pd}/template` points at a folder that no longer exists. The
   `${pd}/template/corp_logo.png` case is resolved — see "The logo" — but the
   scenario is still worth a tidy-up pass, independently of this template.
@@ -330,17 +330,17 @@ filename. Renaming that source file breaks the rule silently.
 
 ## Building it in this repo
 
-Already configured in `dita-parent/pub-5/dita/DITA_project_pub5.xpr`: the
+Already configured in `publications/pub-5/dita/DITA_project_pub5.xpr`: the
 project registers `${pd}/../template-2026` as a publishing template gallery
 directory, and the **`Fieldman Webhelp 2026`** scenario is associated with
 `index.ditamap`. Open the map and run that scenario.
 
 The older `FieldMan DITA Map WebHelp Responsive` scenario remains alongside it,
-pointing at repo-root `template/`, so the two can be built and compared. The
-reference build to compare against is `dita-parent/pub-5/baselines/oxygen-26/` —
-the last known-good output before this template, published on Oxygen 26 and
-verified at zero broken references. `dita-parent/pub-5/baselines/README.md`
-covers how to diff against it; in particular, Oxygen stamps a fresh
+pointing at `template-2024/`, so the two can be built and compared. The
+reference build to compare against is `site/pub-5/oxygen-26/` — the last
+known-good output before this template, published on Oxygen 26 and verified at
+zero broken references. `site/pub-5/README.md` covers how to diff against it;
+in particular, Oxygen stamps a fresh
 `buildId=<timestamp>` into every asset reference on every run, so an untreated
 diff reports all 98 pages changed and hides the real difference.
 
@@ -350,7 +350,7 @@ To set up a scenario from scratch:
    Templates`, or the project's own settings, pointing at
    `${pd}/../template-2026`. Alternatively skip the gallery and browse straight
    to `f13ldMan.opt` in step 3.
-2. Open `dita-parent/pub-5/dita/index.ditamap`.
+2. Open `publications/pub-5/dita/index.ditamap`.
 3. `Configure Transformation Scenario` → duplicate the existing
    `webhelp-responsive` scenario. On the **Templates** tab pick **f13ldMan
    2026**, or `Browse for publishing template file` → `f13ldMan.opt`.

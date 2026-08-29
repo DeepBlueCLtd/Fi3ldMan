@@ -6,7 +6,7 @@
     "serve": "^14.0.1"
   },
   "scripts": {
-    "start": "serve dita-parent/pub-5/dita/out",
+    "start": "serve site",
     "test": "playwright test",
     "test:styling": "playwright test",
     "test:report": "playwright show-report"

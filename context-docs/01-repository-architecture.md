@@ -9,38 +9,49 @@ The repository hosts three publications:
 - **Pub-9**: A companion publication to Pub-10 (currently at mockup stage)
 - **Pub-10**: A specialized publication focused on spectral analysis ("Grams")
 
-## Repository Root Structure
+plus an archived **legacy regions** publication, built on a custom DITA
+specialization that is no longer developed.
+
+## Four top-level concerns
+
+The tree separates four things, each with one home: **sources**
+(`publications/`), the **published site** (`site/`), **tests** (`tests/`), and
+**project docs** (`context-docs/`). Anything that does not belong to one of
+those four is either repo-level config or `archive/`.
 
 ```
 Fi3ldMan/
+├── README.md              # Map of the repository
+├── LICENSE
+├── package.json           # Node config; `npm start` serves site/
+├── playwright.config.js   # Publish styling test suite config
+├── .github/workflows/
+│   └── pages.yml          # Deploys site/ to GitHub Pages
 ├── context-docs/          # Claude Project enrichment documents (this folder)
-├── dita-parent/           # Active DITA source for Pub-5 and Pub-10
-│   ├── pub-5/             # Publication 5 source, template, and config
-│   └── pub-10/            # Publication 10 source, template, and config
-├── dita-legacy/           # Archived legacy DITA specialization and content
-│   ├── dtd/               # Custom DITA specialization DTDs
-│   ├── regions/           # Specialized DITA content (uses custom DTD)
-│   ├── regions_simple/    # Plain DITA content (no specialization)
-│   └── template/oxygen/   # Legacy Oxygen publishing templates
-├── mockup/                # HTML mockups and prototypes
-│   ├── britain-legacy/    # Dynamic table mockups
-│   ├── p9_10_mock/        # Pub-9 and Pub-10 HTML mockups
-│   └── oxygen-webhelp/    # Oxygen template mockups
-├── out/                   # Published output
-│   ├── oxygen/            # Pub-5 published HTML output
-│   └── pub-10/            # Pub-10 published HTML output
-├── template/              # Shared publishing template (root/default)
-│   ├── page-templates/    # HTML page layouts (topic, index, search, terms)
-│   ├── page-templates-fragments/ # Reusable HTML fragments (header, footer)
-│   ├── resources/         # CSS and JavaScript assets
-│   └── xslt/              # Custom XSLT transformations
-├── index.html             # Navigation hub linking to published outputs
-├── package.json           # Node.js config (serve static files)
-├── project.ditaval        # DITA conditional filtering (audience/country)
-├── tsconfig.json          # TypeScript configuration
-├── author_layout.layout   # Oxygen XML author layout
-└── README.md              # Brief project description
+│
+├── publications/          # All DITA source and publishing templates
+│   ├── pub-5/
+│   ├── pub-10/
+│   └── legacy-regions/
+│
+├── site/                  # Everything GitHub Pages serves - and nothing else
+│   ├── index.html         # The hub page
+│   ├── pub-5/
+│   ├── pub-10/
+│   ├── legacy-regions/
+│   └── mockups/
+│
+├── archive/               # Kept but unused; see archive/README.md
+└── tests/publish/         # Browser tests against a published output
 ```
+
+Two rules follow from this shape and are worth stating plainly:
+
+- **Nothing outside `site/` is published.** Before the reorganisation, Pages
+  served the whole repository from the branch root, so DITA sources, publish
+  baselines, lockfiles and tests were all part of the deployed surface.
+- **`publications/` holds no build output.** Oxygen writes to a gitignored
+  `out/` inside each publication; the verified result is copied into `site/`.
 
 ## Key Technology Stack
 
@@ -48,16 +59,17 @@ Fi3ldMan/
 |-------|-----------|---------|
 | Content authoring | DITA XML (v1.2) | Structured technical documentation source format |
 | Authoring tool | Oxygen XML Editor | DITA editing, profiling, and transformation |
-| Publishing engine | Oxygen WebHelp Responsive (v25.1) | DITA-to-HTML5 transformation |
+| Publishing engine | Oxygen WebHelp Responsive (v28.1; pub-10 still on 25.1) | DITA-to-HTML5 transformation |
 | Templating | XSLT + HTML page templates | Custom layout and branding |
 | Styling | CSS (f13ldman.css, notes.css, oxygen.css) | Visual presentation |
 | Interactivity | Vanilla JavaScript | Harmonic calculator, gram viewer, sortable tables |
-| Static hosting | Node.js 18.x + serve v14.0.1 | Serves published output |
+| Static hosting | GitHub Pages (`site/`), or `serve` locally | Serves published output |
+| Publish verification | Playwright + `check-publish.py` | Styling and reference checks on the output |
 | Version control | Git | Source management |
 
-## Publication-Specific Directory Layout
+## Publications
 
-### Pub-5 (`dita-parent/pub-5/`)
+### Pub-5 (`publications/pub-5/`)
 ```
 pub-5/
 ├── dita/                        # DITA source content
@@ -83,11 +95,20 @@ pub-5/
 │   ├── QuickLinksData/          # Abbreviations, contents, reference data
 │   ├── Introduction/            # Cover page, admin, what's new
 │   └── Content/                 # Shared images and resources
-└── template/
-    └── f13ldMan.opt             # Pub-5 publishing template config
+├── template-2026/               # Current template, on the Oxygen 28.1 base
+├── template-2024/               # Superseded template, on the 25.1 base
+├── check-publish.py             # Verifies a publish: pages, refs, scripts
+├── project.ditaval              # DITA conditional filtering (audience/country)
+├── author_layout.layout         # Oxygen XML author layout
+└── clear_yellow_icons.txt       # Icon audit regex
 ```
 
-### Pub-10 (`dita-parent/pub-10/`)
+`template-2024/` is kept because it is what `site/pub-5/oxygen-26/` was built
+with — the last known-good publish before the move to 28.1. See
+`publications/pub-5/template-2024/README.md` for why that copy, and not the
+near-duplicate that used to sit beside it, is the one that survived.
+
+### Pub-10 (`publications/pub-10/`)
 ```
 pub-10/
 ├── dita/                        # DITA source content
@@ -113,9 +134,25 @@ pub-10/
         └── gramframe.bundle.js  # Gram visualization JavaScript
 ```
 
+### Legacy regions (`publications/legacy-regions/`)
+```
+legacy-regions/
+├── FieldMan.ditamap             # Specialized map
+├── FieldMan_Simple.ditamap      # Plain-DITA map
+├── FieldMan.xpr                 # Oxygen project file
+├── dtd/                         # Custom DITA specialization DTDs
+├── regions/                     # Specialized DITA content (uses custom DTD)
+├── regions_simple/              # Plain DITA content (no specialization)
+├── template/oxygen/             # Legacy Oxygen publishing templates
+└── project.ditaval
+```
+
+Archived: kept for reference, not developed. Its published output is at
+`site/legacy-regions/`. See `08-legacy-migration-strategy.md`.
+
 ### Pub-9 (mockup stage only)
 ```
-mockup/p9_10_mock/
+site/mockups/p9-10/
 ├── index.html           # Navigation hub for P9 and P10 mockups
 ├── p9/                  # Pub-9 mockup HTML
 │   ├── Grams/
@@ -130,13 +167,49 @@ mockup/p9_10_mock/
 └── to_convert.html      # Sample HTML for DITA conversion testing
 ```
 
+Pub-9 has no DITA source; the mockup is the only place it exists.
+
+## The published site (`site/`)
+
+```
+site/
+├── index.html            # Hub: a section per publication
+├── pub-5/
+│   ├── current/          # The browsable publish - overwritten on republish
+│   ├── oxygen-28/        # Frozen: Oxygen 28.1, template-2026
+│   ├── oxygen-26/        # Frozen: Oxygen 26, template-2024
+│   ├── oxygen-25/        # Frozen: the 2023-era publish
+│   └── README.md         # What each folder is, and how to diff a new publish
+├── pub-10/current/
+├── legacy-regions/
+├── mockups/
+│   ├── dynamic-tables/   # Dynamic-table prototypes
+│   └── p9-10/            # Pub-9 / Pub-10 mockups
+└── oxygen/, out/, mockup/  # Refresh stubs for pre-reorganisation URLs
+```
+
+`current/` is the only pub-5 folder a publish overwrites. The `oxygen-NN/`
+folders are **frozen**: byte-exact snapshots of a verified publish, one per
+Oxygen version, kept so that a publish from a different Oxygen version can be
+diffed against a known-good reference. They double as browsable pages, so the
+per-version history of the publication has URLs rather than living only in
+git. `.gitattributes` marks them `-text` so `core.autocrlf` cannot rewrite
+their line endings on a Windows checkout and make every file look changed.
+
 ## Build and Deployment
 
 The publishing workflow is:
 1. Author DITA XML content in Oxygen XML Editor
-2. Run Oxygen WebHelp Responsive transformation using `.opt` template
+2. Run the Oxygen WebHelp Responsive transformation using the `.opt` template
 3. XSLT transformations apply custom header/footer, protection banner, and search
-4. Output generated to `out/` directories as static HTML5
-5. Serve via `npm start` (runs `serve dita/out` on Node.js 18.x)
+4. Output is generated to the gitignored `publications/<pub>/dita/out/`
+5. Verify it: `python publications/pub-5/check-publish.py <output>` and `npm test`
+6. Copy the verified output over `site/pub-5/current/` and commit
 
-The project can also be deployed as a static site (e.g., GitHub Pages).
+When Oxygen is upgraded, the first verified publish on the new version is
+committed twice: as a new frozen `site/pub-5/oxygen-NN/` and over `current/`.
+
+Deployment is GitHub Pages, from `site/` only, via
+`.github/workflows/pages.yml`. There is no build step in CI — Oxygen runs on an
+author's machine and the verified HTML is committed, so the workflow just
+uploads the folder. `npm start` serves the same folder locally.

@@ -15,20 +15,20 @@ const { resolve } = require('node:path')
  *
  * Which output is tested:
  *   PUBLISH_DIR=<path>   explicit, wins over everything
- *   otherwise            the live publish, dita-parent/pub-5/dita/out/oxygen-2025
- *   otherwise            dita-parent/pub-5/baselines/oxygen-26
+ *   otherwise            the live publish, publications/pub-5/dita/out/...
+ *   otherwise            site/pub-5/oxygen-28
  *
- * The baseline fallback keeps the suite runnable on a fresh clone, where the
- * output directory is gitignored and therefore absent.
+ * The frozen-snapshot fallback keeps the suite runnable on a fresh clone,
+ * where the output directory is gitignored and therefore absent.
  */
 
 const CANDIDATES = [
   process.env.PUBLISH_DIR,
   // Where the `Fieldman Webhelp 2026` scenario writes.
-  'dita-parent/pub-5/dita/out/webhelp-responsive',
+  'publications/pub-5/dita/out/webhelp-responsive',
   // Fresh clone: the output directory is gitignored, so fall back to the
-  // newest committed baseline.
-  'dita-parent/pub-5/baselines/oxygen-28',
+  // newest committed frozen publish under site/.
+  'site/pub-5/oxygen-28',
 ].filter(Boolean)
 
 const publishDir = CANDIDATES.map((c) => resolve(__dirname, c)).find((c) =>

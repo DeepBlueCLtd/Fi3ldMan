@@ -65,7 +65,7 @@ The published Fi3ldMan output includes several JavaScript components that add in
 
 ### 4. Gram Frame Viewer (`gramframe.bundle.js`)
 
-**Location**: `dita-parent/pub-10/template/resources/gramframe.bundle.js` (~217KB bundled)
+**Location**: `publications/pub-10/template/resources/gramframe.bundle.js` (~217KB bundled)
 
 **Purpose**: Specialized visualization component for spectral analysis "Grams" in Pub-10. This is a bundled JavaScript module (likely Webpack output) that provides interactive gram/spectrogram display capabilities.
 
@@ -77,7 +77,7 @@ The published Fi3ldMan output includes several JavaScript components that add in
 
 ### Dynamic Tables (Mockup Prototypes)
 
-Located in `mockup/britain-legacy/dynamic_tables/`:
+Located in `site/mockups/dynamic-tables/dynamic_tables/`:
 
 | Mockup | Description |
 |--------|-------------|

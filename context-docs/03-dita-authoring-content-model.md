@@ -8,7 +8,7 @@ Fi3ldMan uses DITA 1.2 with the Oxygen XML Editor as the authoring tool.
 
 ## DITA Maps (Publication Assembly)
 
-### Pub-5 Master Map (`dita-parent/pub-5/dita/index.ditamap`)
+### Pub-5 Master Map (`publications/pub-5/dita/index.ditamap`)
 
 ```xml
 <map title="Field Manual v5 Mar 2025">
@@ -24,7 +24,7 @@ Fi3ldMan uses DITA 1.2 with the Oxygen XML Editor as the authoring tool.
 
 The map references top-level topics that serve as tile entry points on the landing page. Each top-level topic typically contains nested `topicref` elements pointing to regional and equipment subtopics.
 
-### Pub-10 Master Map (`dita-parent/pub-10/dita/index.ditamap`)
+### Pub-10 Master Map (`publications/pub-10/dita/index.ditamap`)
 
 ```xml
 <map title="Field Manual Pub-10 Mar 2025">
@@ -57,7 +57,7 @@ This allows topics or elements to be tagged with `audience="deny-wales"` (for ex
 
 ## DITAVAL (Conditional Processing)
 
-The `project.ditaval` file controls what content is included/excluded:
+`publications/pub-5/project.ditaval` controls what content is included/excluded:
 
 ```xml
 <val>
@@ -124,24 +124,24 @@ Each equipment topic typically covers:
 
 ## Legacy DITA Content
 
-The `dita-legacy/` directory preserves earlier approaches:
+The `publications/legacy-regions/` directory preserves earlier approaches:
 
-### Custom DITA Specialization (`dita-legacy/dtd/`)
+### Custom DITA Specialization (`publications/legacy-regions/dtd/`)
 A custom DITA specialization was created specifically for Pub-5 content. This extended standard DITA elements with domain-specific structures.
 
 ### Two Content Versions
-1. **Specialized version** (`dita-legacy/regions/`): Uses the custom DTD specialization
-2. **Plain DITA version** (`dita-legacy/regions_simple/`): Same content using standard DITA elements only
+1. **Specialized version** (`publications/legacy-regions/regions/`): Uses the custom DTD specialization
+2. **Plain DITA version** (`publications/legacy-regions/regions_simple/`): Same content using standard DITA elements only
 
-The active publications in `dita-parent/` have moved to plain DITA (no specialization), making the content more portable and easier to maintain.
+The active publications in `publications/` have moved to plain DITA (no specialization), making the content more portable and easier to maintain.
 
 ## Oxygen XML Editor Integration
 
 ### Project Files (.xpr)
 Each publication has an Oxygen project file:
-- `dita-parent/pub-5/dita/DITA_project_pub5.xpr`
-- `dita-parent/pub-10/dita/DITA_project_pub10.xpr`
-- `dita-legacy/FieldMan.xpr` (legacy)
+- `publications/pub-5/dita/DITA_project_pub5.xpr`
+- `publications/pub-10/dita/DITA_project_pub10.xpr`
+- `publications/legacy-regions/FieldMan.xpr` (legacy)
 
 These configure:
 - Master files (which ditamap to use)
@@ -155,9 +155,9 @@ A typical Oxygen build scenario specifies:
 - **Output directory**: `${pd}/out/`
 - **Temp directory**: `${pd}/temp/webhelp-responsive`
 - **Template**: Path to `.opt` file
-- **DITAVAL**: Path to `project.ditaval`
+- **DITAVAL**: Path to `publications/pub-5/project.ditaval`
 - **Parameters**: figure/table link style, force-unique IDs, print link, TOC settings
 
 ## Author Layout
 
-The `author_layout.layout` file at the repository root provides a custom editing layout for the Oxygen XML Author mode, optimizing the editing experience for Fi3ldMan content.
+The `publications/pub-5/author_layout.layout` file provides a custom editing layout for the Oxygen XML Author mode, optimizing the editing experience for Fi3ldMan content.

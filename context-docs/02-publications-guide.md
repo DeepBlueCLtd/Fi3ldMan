@@ -6,9 +6,9 @@ The Fi3ldMan project produces three publications from a shared template infrastr
 
 | Publication | Title | Status | Scope | Source Location |
 |-------------|-------|--------|-------|-----------------|
-| Pub-5 | Field Manual v5 Mar 2025 | Active (published) | Regional field service documentation | `dita-parent/pub-5/dita/` |
-| Pub-9 | (Companion to Pub-10) | Mockup stage | Spectral analysis (Grams) | `mockup/p9_10_mock/p9/` |
-| Pub-10 | Field Manual Pub-10 Mar 2025 | Active (published) | Spectral analysis (Grams) | `dita-parent/pub-10/dita/` |
+| Pub-5 | Field Manual v5 Mar 2025 | Active (published) | Regional field service documentation | `publications/pub-5/dita/` |
+| Pub-9 | (Companion to Pub-10) | Mockup stage | Spectral analysis (Grams) | `site/mockups/p9-10/p9/` |
+| Pub-10 | Field Manual Pub-10 Mar 2025 | Active (published) | Spectral analysis (Grams) | `publications/pub-10/dita/` |
 
 ## Publication 5 (Pub-5) - Regional Field Service Manual
 
@@ -16,7 +16,7 @@ The Fi3ldMan project produces three publications from a shared template infrastr
 Pub-5 is the main and most extensive publication. It documents field service procedures, equipment specifications, diagnostic techniques, and maintenance guidance organized by geographic region. It was the original publication that the Fi3ldMan repository was created to support.
 
 ### Master Map
-- **File**: `dita-parent/pub-5/dita/index.ditamap`
+- **File**: `publications/pub-5/dita/index.ditamap`
 - **Title**: "Field Manual v5 Mar 2025"
 - **Top-level references**:
   - `PlatformData/PD_1.dita` (full-width tile on main page)
@@ -87,7 +87,7 @@ Tile-based layout with regional tiles at 50% width each, and the PlatformData ti
 Pub-10 is a specialized publication focused on "Grams" - spectral/acoustic analysis data used for signal identification and diagnostic analysis. It was developed after Pub-5 using the same template infrastructure.
 
 ### Master Map
-- **File**: `dita-parent/pub-10/dita/index.ditamap`
+- **File**: `publications/pub-10/dita/index.ditamap`
 - **Title**: "Field Manual Pub-10 Mar 2025"
 - **Top-level references**:
   - `gram-index.dita` (main gram navigation landing page)
@@ -128,13 +128,13 @@ The `gram-index.dita` page provides button-style navigation to individual grams.
 Pub-9 is a companion publication to Pub-10, both covering spectral analysis content. Pub-9 is currently at the mockup/prototype stage - HTML mockups exist but no DITA source directory has been created yet.
 
 ### Current State
-- **Mockup location**: `mockup/p9_10_mock/p9/`
-- **No DITA source**: There is no `dita-parent/pub-9/` directory yet
+- **Mockup location**: `site/mockups/p9-10/p9/`
+- **No DITA source**: There is no `publications/pub-9/` directory yet
 - **Structure**: Mirrors Pub-10's structure (Grams, Introduction, gram-index)
 - **Content differences**: Subtle content variations from Pub-10 (~50 byte differences in key files)
 
 ### Pub-9/10 Mockup Navigation
-The mockup hub at `mockup/p9_10_mock/index.html` links to both P9 and P10 previews. Both mockups include the full Oxygen WebHelp framework with search, sorting, and harmonic analysis JavaScript.
+The mockup hub at `site/mockups/p9-10/index.html` links to both P9 and P10 previews. Both mockups include the full Oxygen WebHelp framework with search, sorting, and harmonic analysis JavaScript.
 
 ---
 

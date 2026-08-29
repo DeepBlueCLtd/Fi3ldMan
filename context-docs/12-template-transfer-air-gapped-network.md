@@ -12,7 +12,7 @@ installation on that network.
 This document covers that transfer and the target-side setup. For how the
 template itself works, see `11-publishing-template-2026.md`.
 
-**What moves:** `dita-parent/pub-5/template-2026/` — 40 files, about 1.4 MB, or
+**What moves:** `publications/pub-5/template-2026/` — 40 files, about 1.4 MB, or
 39 files where `verify-integrity.ps1` is excluded because the target network
 does not permit PowerShell scripts. See Phase D.
 **What does not move:** DITA source, build output, `.git`, `node_modules`, the
@@ -62,7 +62,7 @@ Three consequences shape the whole procedure:
 Do not skip this because the change looks trivial. This is the last point at
 which a mistake is cheap.
 
-1. Open `dita-parent/pub-5/dita/index.ditamap` in Oxygen.
+1. Open `publications/pub-5/dita/index.ditamap` in Oxygen.
 2. Run the **`Fieldman Webhelp 2026`** transformation scenario.
 3. Verify the build, in this order:
 
@@ -113,7 +113,7 @@ Either way it must not be the placeholder in the published output.
 Run from the repository root, in git bash:
 
 ```bash
-cd dita-parent/pub-5/template-2026
+cd publications/pub-5/template-2026
 
 # Generate the integrity manifest (excludes itself)
 # The -b is required: verify-integrity.ps1 parses the binary-mode
@@ -132,7 +132,7 @@ is not committed, and is gitignored so packaging does not dirty the tree.
 Then package the folder, using whichever archive format the gateway accepts:
 
 ```bash
-# From dita-parent/pub-5/ - .zip
+# From publications/pub-5/ - .zip
 zip -r -X fi3ldman-template-2026.zip template-2026/
 
 # ...or .tar.gz
@@ -203,7 +203,7 @@ confirm they arrived and load.
 over the real file names, then rename:
 
 ```bash
-# From dita-parent/pub-5/template-2026/, after generating the manifest
+# From publications/pub-5/template-2026/, after generating the manifest
 cd resources
 for f in current-handler harmonics sorttable; do mv "$f.js" "$f.js.txt"; done
 ```
