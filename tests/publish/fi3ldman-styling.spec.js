@@ -205,10 +205,18 @@ test.describe('related links', () => {
   })
 
   /*
-   * Three rules decide a related link's icon, and they are order- and
+   * Four rules decide a related link's icon, and they are order- and
    * !important-sensitive. Checking only the first link in the list would test
    * whichever rule happens to win there — which is how the first draft of this
    * test ended up asserting the spreadsheet icon.
+   *
+   * The fourth is `.related_link .current`, which clears the icon along with
+   * the rest of the link's styling. It used to look like three: `.current` is
+   * added at run time by current-handler.js from a `href === document.URL`
+   * comparison, and the dev server's `cleanUrls` redirect meant that
+   * comparison never matched under test. With that turned off in
+   * `tests/publish/serve.json` the self link is marked, as it is on the
+   * deployed site, and it is no longer an ordinary link.
    */
   test('each related-link kind gets its own icon', async ({ page }) => {
     const assets = await visit(page, PAGES.relatedLinks)
@@ -217,19 +225,26 @@ test.describe('related links', () => {
       links.map((a) => ({
         href: a.getAttribute('href') || '',
         image: getComputedStyle(a).backgroundImage,
+        current: a.classList.contains('current'),
       })),
     )
     expect(icons.length, 'no related links on this page').toBeGreaterThan(0)
 
     const spreadsheet = icons.filter((i) => /\.xlsx?$/.test(i.href))
     const internal = icons.filter((i) => i.href.startsWith('#'))
+    const current = icons.filter((i) => i.current)
     const ordinary = icons.filter(
-      (i) => !/\.xlsx?$/.test(i.href) && !i.href.startsWith('#'),
+      (i) => !/\.xlsx?$/.test(i.href) && !i.href.startsWith('#') && !i.current,
     )
 
     expect(spreadsheet.length, 'no spreadsheet link to check').toBeGreaterThan(0)
     expect(internal.length, 'no same-page link to check').toBeGreaterThan(0)
     expect(ordinary.length, 'no ordinary link to check').toBeGreaterThan(0)
+    expect(
+      current.length,
+      'no link to the current page was marked — current-handler.js did not ' +
+        'run, or the server is rewriting the URL it compares against',
+    ).toBeGreaterThan(0)
 
     for (const link of spreadsheet) {
       expect(link.image, `${link.href} should show the Excel icon`).toContain(
@@ -246,6 +261,14 @@ test.describe('related links', () => {
       // Same-page links are explicitly stripped of the icon.
       expect(link.image, `${link.href} should have no icon`).toBe('none')
     }
+    for (const link of current) {
+      // The link to the page you are already on is greyed out and stripped of
+      // its background, icon included.
+      expect(
+        link.image,
+        `${link.href} is the current page and should have no icon`,
+      ).toBe('none')
+    }
 
     // A background-image that 404s computes exactly the same as one that
     // loads, so the network is the only place a missing icon shows up.
@@ -254,5 +277,307 @@ test.describe('related links', () => {
       expect(hits.length, `${file} was never requested`).toBeGreaterThan(0)
       expect(hits[0].status, `${file} 404d`).toBe(200)
     }
+  })
+})
+
+/*
+ * Linked images, in the two shapes the publication uses.
+ *
+ * These are measurements, not computed-value assertions, and the difference is
+ * the point. cascade.spec.js already proves that our declarations win here —
+ * that `.body td > a.xref > img.image` beats Oxygen's `.image { height: auto }`
+ * and that `.ImageLinksTable .xref .b` beats whatever would otherwise lay the
+ * label out. What it cannot see is the pair f13ldman.css warns about in a
+ * comment of its own: the custom property and the `width`/`height` attributes
+ * in the content drifting apart. Every declaration wins, nothing is overridden,
+ * and the grid is ragged all the same, because the CSS is forcing one size
+ * while the markup claims another.
+ *
+ * So each test below reads the property out of the live stylesheet, reads the
+ * attributes off the real elements, and compares the two against what the
+ * browser actually laid out.
+ *
+ * Publishes that predate the rules are skipped, and only those. The guard is
+ * the property itself rather than a version list: `template-2024` does not
+ * declare `--f13-image-link-height`, so `oxygen-26/` and `oxygen-25/` have no
+ * rule for these tests to check and are not evidence of anything when they
+ * pass. The cost is the same one OPTIONAL_PAGES carries: if a *current*
+ * template ever stopped declaring the property, these tests would go quiet
+ * instead of failing. The skip says so on stderr, and the property is one line
+ * in f13ldman.css.
+ */
+
+/** The value of a `:root` custom property, or '' when the sheet omits it. */
+async function customProperty(page, name) {
+  return (
+    await page.evaluate(
+      (prop) =>
+        getComputedStyle(document.documentElement).getPropertyValue(prop),
+      name,
+    )
+  ).trim()
+}
+
+test.describe('linked images', () => {
+  test('image-link tiles are all one size, and the size the markup claims', async ({
+    page,
+  }) => {
+    await visit(page, PAGES.topic)
+
+    const declared = await customProperty(page, '--f13-image-link-height')
+    test.skip(
+      !declared,
+      'this publish predates --f13-image-link-height; its template has no ' +
+        'tile-sizing rule to check',
+    )
+    const declaredWidth = await customProperty(page, '--f13-image-link-width')
+
+    const tiles = page.locator('.body td > a.xref > img.image')
+    expect(
+      await tiles.count(),
+      'no image-link tiles on this page — a grid of one proves nothing about ' +
+        'a rule whose job is to make several match',
+    ).toBeGreaterThan(1)
+
+    const measured = await tiles.evaluateAll((imgs) =>
+      imgs.map((img) => {
+        const box = img.getBoundingClientRect()
+        return {
+          src: img.getAttribute('src') || '',
+          width: box.width,
+          height: box.height,
+          attrWidth: img.getAttribute('width'),
+          attrHeight: img.getAttribute('height'),
+          // Aspect ratio of the file itself, before any CSS.
+          natural: img.naturalWidth / img.naturalHeight,
+        }
+      }),
+    )
+
+    // Same rendered size, every tile. This is the visible promise: a grid.
+    const sizes = [...new Set(measured.map((m) => `${m.width}x${m.height}`))]
+    expect(
+      sizes,
+      'the tiles are not all the same size, so the grid is ragged:\n' +
+        measured.map((m) => `  ${m.width}x${m.height}  ${m.src}`).join('\n'),
+    ).toHaveLength(1)
+
+    // The height is the dimension the rule fully controls, so it is asserted
+    // literally. The width deliberately is not: Oxygen sets `max-width: 100%`
+    // on images, and a tile in a cell narrower than the declared width is
+    // capped to the cell — 412.5px in a 422.5px cell against a declared 438px
+    // in the 28.1 publish. The grid still lines up, because every cell is the
+    // same width, which is why the sameness check above is the one that
+    // carries the visible promise.
+    for (const m of measured) {
+      expect(
+        `${m.height}px`,
+        `${m.src} renders ${m.height}px tall, but f13ldman.css declares ` +
+          `--f13-image-link-height: ${declared}`,
+      ).toBe(declared)
+    }
+
+    // The pair f13ldman.css's own comment warns about: the custom properties
+    // and the width/height attributes in the content have to stay in step, or
+    // the markup claims one size while the CSS forces another. Nothing in the
+    // rendering shows this — every declaration still wins the cascade — so it
+    // is checked as a source-consistency question, on the attributes DITA
+    // emitted rather than on the box.
+    for (const m of measured) {
+      expect(
+        `${m.attrWidth}px`,
+        `${m.src} is authored width="${m.attrWidth}" while f13ldman.css ` +
+          `forces ${declaredWidth}. The custom properties and the image ` +
+          `attributes are a matched pair — change one, change the other`,
+      ).toBe(declaredWidth)
+      expect(
+        `${m.attrHeight}px`,
+        `${m.src} is authored height="${m.attrHeight}" while f13ldman.css ` +
+          `forces ${declared}`,
+      ).toBe(declared)
+    }
+
+    // If every picture already had the same shape, the assertions above would
+    // pass with no rule applying at all.
+    const shapes = new Set(measured.map((m) => m.natural.toFixed(2)))
+    expect(
+      [...shapes],
+      'every tile image has the same aspect ratio, so this test would pass ' +
+        'even with the sizing rule removed. The content needs at least two ' +
+        'differently-shaped pictures for the check to mean anything',
+    ).not.toHaveLength(1)
+  })
+
+  test('tile labels sit on their own line, not beside the picture', async ({
+    page,
+  }) => {
+    await visit(page, PAGES.topic)
+
+    const labels = page.locator('.ImageLinksTable .xref .b')
+    expect(
+      await labels.count(),
+      'no image-link labels on this page',
+    ).toBeGreaterThan(0)
+
+    expect(await computed(page, '.ImageLinksTable .xref .b', 'display')).toBe(
+      'block',
+    )
+    expect(await computed(page, '.ImageLinksTable .xref .b', 'text-align')).toBe(
+      'center',
+    )
+
+    // `display: block` is the declaration; a label above or below its picture
+    // rather than alongside it is what the declaration is for. The page
+    // authors the label first in one row and second in the next, and both
+    // should come out the same way.
+    const overlapping = await page.$$eval(
+      '.ImageLinksTable a.xref',
+      (links) =>
+        links
+          .map((link) => {
+            const label = link.querySelector('.b')
+            const img = link.querySelector('img.image')
+            if (!label || !img) return null
+            const l = label.getBoundingClientRect()
+            const i = img.getBoundingClientRect()
+            const clear = l.bottom <= i.top + 1 || l.top >= i.bottom - 1
+            return clear ? null : (label.textContent || '').trim()
+          })
+          .filter(Boolean),
+    )
+    expect(
+      overlapping,
+      'these labels share a line with their picture — .ImageLinksTable .xref ' +
+        '.b is not making them block-level',
+    ).toEqual([])
+  })
+
+  test('images in a row share one height and keep their own widths', async ({
+    page,
+  }) => {
+    await visit(page, PAGES.imageRow)
+
+    const declared = await customProperty(page, '--f13-image-row-height')
+    test.skip(
+      !declared,
+      'this publish predates --f13-image-row-height; its template has no ' +
+        'image-row rule to check',
+    )
+
+    const images = page.locator(
+      '.body div.div:has(> a.xref + a.xref) > a.xref > img.image',
+    )
+    expect(
+      await images.count(),
+      'no rows of linked images on this page — the :has() guard needs two ' +
+        'adjacent linked images as direct children of the div, so anything ' +
+        'authored between them silently empties this test',
+    ).toBeGreaterThan(1)
+
+    const measured = await images.evaluateAll((imgs) =>
+      imgs.map((img) => {
+        const box = img.getBoundingClientRect()
+        return {
+          src: img.getAttribute('src') || '',
+          width: box.width,
+          height: box.height,
+          attrHeight: img.getAttribute('height'),
+        }
+      }),
+    )
+
+    for (const m of measured) {
+      expect(
+        `${m.height}px`,
+        `${m.src} renders ${m.height}px tall, but f13ldman.css declares ` +
+          `--f13-image-row-height: ${declared}`,
+      ).toBe(declared)
+      expect(
+        `${m.attrHeight}px`,
+        `${m.src} is authored height="${m.attrHeight}" while the CSS forces ` +
+          `${declared} — the markup claims a size the page does not render`,
+      ).toBe(declared)
+    }
+
+    // The other half of the rule is `width: auto`. Tiles are forced to one
+    // width; these are not, and a row of identical widths would mean the tile
+    // rule has reached them.
+    const widths = new Set(measured.map((m) => m.width.toFixed(1)))
+    expect(
+      [...widths],
+      'every image in the row rendered the same width, so they are being ' +
+        'sized as tiles rather than scaled to a shared height. (If the ' +
+        'content ever holds only same-shaped pictures, repoint this at a page ' +
+        'that does not.)',
+    ).not.toHaveLength(1)
+  })
+})
+
+test.describe('related-link sub-titles', () => {
+  /*
+   * DITA emits the target topic's <shortdesc> as a <div class="desc"> under
+   * every related link, and `li.linklist div.desc` hides it. In a 200px fixed
+   * panel a sub-title of any length wraps to several lines and pushes the list
+   * out of shape.
+   *
+   * Checked on the Style Samples page because that is the only page whose
+   * related links are chosen for this: three targets carry a sub-title, one
+   * deliberately does not, and one is the page itself. Anywhere else the mix
+   * is an accident of the content.
+   */
+  test('a sub-titled target contributes no visible text to the panel', async ({
+    page,
+  }) => {
+    const assets = await visit(page, PAGES.styleSamples, { optional: true })
+    test.skip(!assets, `${PAGES.styleSamples} is not in this publish`)
+
+    const descriptions = page.locator('li.linklist div.desc')
+    expect(
+      await descriptions.count(),
+      'no related link on this page targets a topic with a sub-title, so ' +
+        'this test would pass by finding nothing. Point a link in ' +
+        'StyleSamples.dita at a topic that has a <shortdesc>',
+    ).toBeGreaterThan(0)
+
+    const visible = await descriptions.evaluateAll((els) =>
+      els
+        .filter((el) => getComputedStyle(el).display !== 'none')
+        .map((el) => (el.textContent || '').trim()),
+    )
+    expect(
+      visible,
+      'these target sub-titles are rendering in the related-links panel',
+    ).toEqual([])
+
+    // The links themselves must still be there — hiding the panel would also
+    // satisfy the assertion above.
+    expect(
+      await page.locator('.related_link a').count(),
+      'the related-links panel has no links at all',
+    ).toBeGreaterThan(1)
+  })
+
+  test('the link to the current page is greyed and not clickable', async ({
+    page,
+  }) => {
+    const assets = await visit(page, PAGES.styleSamples, { optional: true })
+    test.skip(!assets, `${PAGES.styleSamples} is not in this publish`)
+
+    // .current is added at run time by current-handler.js. scripts.spec.js
+    // checks the script installed itself; this checks that what it marks is
+    // then styled, which is the part a reader sees.
+    const current = page.locator('.related_link .current')
+    expect(
+      await current.count(),
+      'no related link was marked as the current page — current-handler.js ' +
+        'did not run, or the panel has no link back to this page',
+    ).toBe(1)
+
+    expect(await computed(page, '.related_link .current', 'pointer-events')).toBe(
+      'none',
+    )
+    expect(await computed(page, '.related_link .current', 'color')).toBe(
+      'rgb(153, 153, 153)',
+    )
   })
 })

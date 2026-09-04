@@ -5,15 +5,17 @@ under `/pub-5/`.
 
 | Folder | Oxygen | Template | Published | Suite | Role |
 | --- | --- | --- | --- | --- | --- |
-| `current/` | 28.1 | `template-2026/` | 2026-09-04 | 40/40 | Browsable current publish |
-| `oxygen-28/` | 28.1 | `template-2026/` | 2026-09-04 | 40/40 | Frozen snapshot |
-| `oxygen-26/` | 26 | `template-2024/` | 2026-08-25 | 39/40, 1 skipped | Frozen snapshot |
+| `current/` | 28.1 | `template-2026/` | 2026-09-04 | 46/46 | Browsable current publish |
+| `oxygen-28/` | 28.1 | `template-2026/` | 2026-09-04 | 46/46 | Frozen snapshot |
+| `oxygen-26/` | 26 | `template-2024/` | 2026-08-25 | 41/46, 5 skipped | Frozen snapshot |
 | `oxygen-25/` | 25.x | 25.1-era template | 2023 (committed 2025-01) | — | Frozen snapshot |
 
-The table-cell `!important` fix is in all three. The suite grew from 39 tests
-to 40 when `StyleSamples.html` joined the page list in `helpers.js`;
-`oxygen-26/` predates that page, so the suite skips it there — one test fewer,
-not a discrepancy.
+The table-cell `!important` fix is in all three. `oxygen-26/`'s five skips are
+not a discrepancy: it predates `StyleSamples.html` joining the page list in
+`helpers.js` (three of them), and its `template-2024` stylesheet declares
+neither `--f13-image-link-height` nor `--f13-image-row-height`, so the
+image-sizing tests have no rule to check there (the other two). Each skip names its
+reason on stderr.
 
 That skip had to be built. A missing page does not quietly drop one test: it
 failed six, in four spec files, none of them about styling. See "A snapshot

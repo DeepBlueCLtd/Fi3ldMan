@@ -52,6 +52,15 @@ const PORT = Number(process.env.PUBLISH_PORT || 5099)
  *
  * `serve -s` must never be added here: it rewrites not-found requests to
  * index.html, turning every 404 into a 200 and disarming the headline test.
+ *
+ * `tests/publish/serve.json` turns `cleanUrls` off, and it has to stay off.
+ * It is on by default, and it 301s `/a/b.html` to `/a/b` — so every page in
+ * the suite would be visited at a URL the deployment never produces. GitHub
+ * Pages serves the `.html` path as authored. That is not cosmetic:
+ * current-handler.js marks the current page by comparing each link's `href`
+ * against `document.URL`, and under the rewritten URL nothing ever matches, so
+ * the related-links panel quietly loses its greyed-out self link and any test
+ * of it reports on the dev server rather than on the publish.
  */
 module.exports = defineConfig({
   testDir: './tests/publish',
@@ -79,7 +88,9 @@ module.exports = defineConfig({
   ],
 
   webServer: {
-    command: `npx serve "${publishDir}" -l ${PORT} --no-clipboard --no-port-switching`,
+    command:
+      `npx serve "${publishDir}" -l ${PORT} --no-clipboard ` +
+      `--no-port-switching -c "${resolve(__dirname, 'tests/publish/serve.json')}"`,
     url: `http://127.0.0.1:${PORT}/index.html`,
     // Never reuse. A `serve` left running from `npm start`, or from a previous
     // run against a different PUBLISH_DIR, would be silently reused and the
