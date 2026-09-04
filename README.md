@@ -23,7 +23,7 @@ from it.
 
 | | |
 | --- | --- |
-| `pub-5/` | The main publication. `dita/` source, `template-2026/` (current, Oxygen 28.1), `template-2024/` (what the oxygen-26 publish was built with), `check-publish.py`, and pub-5's ditaval / author layout / icon-audit config |
+| `pub-5/` | The main publication. `dita/` source, `template-2026/` (current, Oxygen 28.1), `template-2024/` (what the oxygen-26 publish was built with), `check-publish.py`, `audit-classes.py`, and pub-5's ditaval / author layout / icon-audit config |
 | `pub-10/` | Spectral analysis ("Grams"). `dita/` source and its template |
 | `legacy-regions/` | Archived DITA specialization with a custom DTD. Kept for reference, not developed |
 
@@ -65,6 +65,32 @@ build step in CI — the workflow just uploads the folder.
    `main` deploys it.
 
 `npm start` serves `site/` locally — the same folder Pages serves.
+
+## Deciding what a stylesheet still needs to carry
+
+`publications/pub-5/audit-classes.py` reads a set of DITA source materials and
+a publishing template and sorts every class into three:
+
+```bash
+python publications/pub-5/audit-classes.py publications/pub-5/dita \
+    --output site/pub-5/current
+```
+
+- **used, styled** — an `outputclass` with a rule behind it.
+- **used, no rule** — an `outputclass` no stylesheet defines, so it renders as
+  if it were not there. `colorDarkBlue` sat here for years, which is why
+  "This title is in blue" came out black.
+- **styled, unused** — a rule nothing asks for, with columns showing whether a
+  script, the page templates or a published build can still apply it. Only a
+  class with no evidence in any of them is offered as a deletion candidate,
+  because most of `f13ldman.css` exists to restyle Oxygen's own markup rather
+  than to serve an `outputclass`.
+
+Standard library only, so it runs anywhere Python does — including on a client
+machine with a source tree and nothing installed. Point it at every source
+tree that matters before deleting anything: both lists are relative to the
+material given, and a rule unused by one publication may be load-bearing in
+another.
 
 When Oxygen is upgraded, the first verified publish on the new version is
 committed twice: as a new frozen `site/pub-5/oxygen-NN/`, and over `current/`.
