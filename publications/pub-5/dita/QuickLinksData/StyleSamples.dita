@@ -271,17 +271,22 @@
 			-->
 			<p outputclass="h1">Related links panel</p>
 			<p>The related-links panel is not part of the body, so it has no sample table
-				here — it is the floating block at the right of this page, and the four
-				links in it are chosen to exercise one rule each. Check all four:</p>
+				here — it is the floating block at the right of this page, and the five
+				links in it are chosen to exercise one rule each. Check all five:</p>
 			<ul>
-				<li><b>Abbrevs</b> and <b>Vanes &amp; Cranes</b> — both target pages have a
-					sub-title, and neither sub-title must appear beneath its link. DITA
-					emits the target's short description as a block under every link, and
-					<ph outputclass="bold">li.linklist div.desc</ph> suppresses it. Vanes
-					&amp; Cranes is the one to watch: its sub-title runs to sixty-odd
-					characters, which in a 200px panel wraps to several lines and pushes
-					the rest of the list out of shape. If extra grey text appears under
-					either link, that rule has been lost.</li>
+				<li><b>Abbrevs</b>, <b>Vanes &amp; Cranes</b> and <b>Contents</b> — all
+					three target pages have a sub-title, and none of those sub-titles must
+					appear beneath its link. DITA emits the target's short description as a
+					block under every link, and <ph outputclass="bold">li.linklist
+					div.desc</ph> suppresses it. Vanes &amp; Cranes is the one to watch:
+					its sub-title runs to sixty-odd characters, which in a 200px panel
+					wraps to several lines and pushes the rest of the list out of shape. If
+					extra grey text appears under any of them, that rule has been lost.</li>
+				<li><b>Britain</b> — the target has no sub-title, so there is nothing for
+					that rule to hide and DITA emits no block at all. It is here to keep
+					the list a mixture: a panel that hides every sub-title and a panel
+					whose links happen to have none look exactly alike until both shapes
+					sit in the same list.</li>
 				<li><b>Style Samples</b> — this page. It should be grey and unclickable.
 					The class that does this is applied at run time by
 					<ph outputclass="bold">current-handler.js</ph>, so a live-looking link
@@ -374,6 +379,48 @@
 					</tbody>
 				</tgroup>
 			</table>
+
+			<!--
+				Rows of linked images: a plain DITA <div> holding sibling <xref>s that
+				each wrap an <image>. A different mechanism from the image link table
+				above, and it has to be shown separately because it behaves differently:
+				tiles in a table take a fixed width *and* height, while images in a row
+				share one height and keep their own widths.
+
+				The shape was already in the publication — the unit pages use it,
+				_100_unit_charlie.dita among them — but on no page the test suite
+				visits, so `.body div.div:has(> a.xref + a.xref) > a.xref > img.image`
+				matched nothing the audit could see and the rule went unchecked. That is
+				the same reason item-list, fullWidthTable and table-separator are on this
+				page.
+
+				The three pictures are deliberately three different shapes: equal heights
+				with ragged widths is the rule working, and three equal widths would mean
+				it is not. The `:has(> a.xref + a.xref)` guard needs two adjacent linked
+				images as direct children of the div — it is what keeps the rule off a
+				lone linked image such as the flag in a page title — so nothing may be
+				authored between them.
+
+				Height comes from the f13-image-row-height custom property in
+				f13ldman.css. Unlike the tile rule above the width here is `auto`, so
+				only the height attributes below need to keep step with that property.
+			-->
+			<p outputclass="h1">Image row</p>
+			<p>A row of linked images inside a plain div. All three should be exactly the
+				same height and each should keep its own width; three images at the same
+				width would mean the row rule is reaching them as tiles, and three
+				different heights would mean it is not reaching them at all.</p>
+			<div>
+				<xref format="dita" href="../Britain.Legacy/charlie_pics.dita">
+					<image height="177" href="../Britain.Legacy/Content/Images/daf_1.jpeg" width="266"/>
+				</xref>
+				<xref format="dita" href="../Britain.Legacy/charlie_pics.dita">
+					<image height="177" href="../Britain.Legacy/Content/Images/daf_3.jpeg" width="407"/>
+				</xref>
+				<xref format="dita" href="../Britain.Legacy/charlie_pics.dita">
+					<image height="177" href="../Britain.Legacy/Content/Images/leyland_2.jpg" width="133"/>
+				</xref>
+			</div>
 		</section>
 	</refbody>
 	<!--
@@ -395,6 +442,13 @@
 		</link>
 		<link href="./VanesandCranes.dita">
 			<linktext>Vanes &amp; Cranes</linktext>
+		</link>
+		<!-- Target has no <shortdesc>, so DITA emits no <div class="desc"> under it.
+		     The list needs both shapes: with every target sub-titled, a rule that
+		     hides them all and a rule that has stopped applying are the same
+		     picture. -->
+		<link href="../Britain1/Britain1.dita">
+			<linktext>Britain — target has no sub-title</linktext>
 		</link>
 		<link href="../Introduction/ContentsPage.dita">
 			<linktext>Contents</linktext>

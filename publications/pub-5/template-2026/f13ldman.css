@@ -506,7 +506,11 @@ padding: 0 10px;
    CSS, so a number has to be chosen here - these two variables are the only
    place to change it. */
 :root {
-  /* Rows of linked images inside a plain DITA <div>. */
+  /* Rows of linked images inside a plain DITA <div>. Demonstrated on
+     StyleSamples.dita, and used for real by the unit pages
+     (_100_unit_charlie.dita and its siblings). The height attributes in those
+     topics have to match this number, for the same reason as the tile
+     properties below; the width does not, because the rule leaves it `auto`. */
   --f13-image-row-height: 177px;
 
   /* Linked images used as navigation tiles inside a table cell. Both
@@ -537,7 +541,14 @@ padding: 0 10px;
 
 /* Image link tables, i.e. the country landing pages. Written against the
    generic "linked image in a table cell" shape rather than .ImageLinksTable,
-   so any image link table picks this up regardless of outputclass. */
+   so any image link table picks this up regardless of outputclass.
+
+   The width is a target, not a guarantee: Oxygen sets `max-width: 100%` on
+   images, so a tile in a cell narrower than the declared width is capped to
+   the cell — 412.5px in a 422.5px cell on the 28.1 publish. Every cell in the
+   grid is the same width, so the tiles still match each other, which is the
+   point of the rule. What the rule does guarantee is the height, and that is
+   what tests/publish/fi3ldman-styling.spec.js asserts literally. */
 .body td > a.xref > img.image {
   height: var(--f13-image-link-height);
   width: var(--f13-image-link-width);

@@ -93,6 +93,7 @@ Two consequences worth understanding, because they look like gaps:
 | `scripts.spec.js` | The three Fi3ldMan scripts ran, and sorting actually sorts |
 | `page-hygiene.spec.js` | What our page layouts put *into* the deliverable — see below |
 | `helpers.js` | Page list and the response recorder |
+| `serve.json` | Config for the dev server the suite starts — see below |
 
 ### `cascade.spec.js` — the one that generalises
 
@@ -132,6 +133,24 @@ document that carries a COMMERCIALLY SENSITIVE banner and goes to an air-gapped
 network. It reached 193 KB across one build before anyone noticed, because
 nothing about it is visible from inside the template.
 
+### `serve.json` — the dev server must not rewrite URLs
+
+`serve` turns `cleanUrls` on by default, which 301s `/a/b.html` to `/a/b`.
+GitHub Pages does not: it serves the `.html` path as authored. Left on, every
+page in this suite is visited at a URL the deployment never produces.
+
+That is not cosmetic. `current-handler.js` marks the link to the page you are
+already on by comparing each `link.href` against `document.URL`, and under the
+rewritten URL the comparison never matches. The handler loads, runs, and marks
+nothing — so `.related_link .current` (the greyed-out, unclickable self link)
+and the icon rule it overrides were both untestable, and the icon test read the
+self link as an ordinary one and asserted the wrong thing about it.
+
+`serve.json` turns it off, and `playwright.config.js` passes the file with
+`-c`. Two things follow from that and are worth not undoing: the icon test now
+classifies related links four ways rather than three, and the current-handler
+test asserts what it marks rather than only that it registered.
+
 ## Which output is tested
 
 In order: `PUBLISH_DIR` if set, else `publications/pub-5/dita/out/webhelp-responsive`
@@ -166,6 +185,10 @@ copying the output to a scratch directory, breaking one thing, and pointing
 | Stock `notes.css` **deleted** | fail | 11 failures, via the 404 sweep alone |
 | **Oxygen restyles its own sheets** — body font, navbar layout, and the `notes.css` note-box radius | **pass** | **All passed.** Their design, not our regression |
 | A build shipping 2 KB/page of template authoring notes | fail | Caught by the comment budget, which names the byte count and lists the offending comments |
+| The two image-sizing rules and `.ImageLinksTable .xref .b` deleted | fail | 3 failures: ragged tiles, labels sharing a line with their picture, a row of images at three heights |
+| `li.linklist div.desc` deleted | fail | Caught on the Style Samples page — the target sub-titles render in the panel |
+| `--f13-image-link-width` and `--f13-image-row-height` retuned without touching the content | fail | Caught as drift: the CSS and the `width`/`height` attributes DITA emits are a matched pair, and nothing about the rendering shows them disagreeing |
+| `.related_link .current` deleted | fail | 2 failures: the self link is neither greyed nor stripped of its icon |
 
 The **restyled** and **deleted** `notes.css` rows are the pair that defines the
 scope, and they are the ones to re-check after any change to this suite. A
@@ -175,9 +198,18 @@ not. Keeping both true is what makes a green run mean something.
 
 ## Confirmed against Oxygen 28.1
 
-The suite is 40 tests, and `current/` and `oxygen-28/` both pass all of them.
-`oxygen-26/` passes at 39 — it predates `StyleSamples.html` joining the page
-list, so it runs one test fewer. The two numbers are not a discrepancy.
+The suite is 46 tests, and `current/` and `oxygen-28/` both pass all of them.
+`oxygen-26/` passes 41 and skips 5. The two numbers are not a discrepancy: that
+snapshot predates `StyleSamples.html` joining the page list, and its
+`template-2024` stylesheet declares neither `--f13-image-link-height` nor
+`--f13-image-row-height`, so there is no image-sizing rule there for those
+tests to check. Each skip names its reason on stderr.
+
+The image-sizing tests guard on the custom property rather than on a list of
+Oxygen versions, so a template that declares it is always checked and one that
+does not is always skipped — no snapshot has to be remembered. The cost is the
+same one `OPTIONAL_PAGES` carries and is worth stating: if a *current* template
+stopped declaring the property, those tests would go quiet instead of failing.
 
 That is true because `OPTIONAL_PAGES` in `helpers.js` makes it true, and it was
 not true when the page was added. A page missing from a publish does not
@@ -256,9 +288,12 @@ Tracked in **issue #184**, along with the styling follow-ups they turned up.
   stock Oxygen, and **Fi3ldMan does not use DITA notes**: there is no `<note>`
   element in any DITA source in this repository, or in the real publications.
   Nothing to test, and nothing to add to the sample content.)
-- **Dead rules are not flagged.** `.wh_tiles-container`, `.breadcrumb-sticky`,
-  `.fullWidthTable`, `.table-separator` and `.permalink` match nothing in the
-  current output. They are harmless, but they are also not what they look like.
+- **Dead rules are not flagged.** `.wh_tiles-container`, `.breadcrumb-sticky`
+  and `.permalink` match nothing in the current output. They are harmless, but
+  they are also not what they look like. (`.fullWidthTable` and
+  `.table-separator` were on this list until `StyleSamples.dita` demonstrated
+  them, which is what the page is for: a rule with nothing to match cannot be
+  audited, so adding the sample is how a dead rule stops being dead.)
 - **The suite runs on the development side only.** The air-gapped target has
   neither Node nor npm, so the manual checklist in
   `context-docs/11-publishing-template-2026.md` remains the feedback loop

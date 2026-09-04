@@ -105,9 +105,7 @@ test.describe('fi3ldman scripts', () => {
     expect(state.hasOnload, 'harmonics.js did not register its init').toBe(true)
   })
 
-  test('current-handler marks the current page in the menu', async ({
-    page,
-  }) => {
+  test('current-handler marks the link to the current page', async ({ page }) => {
     await visit(page, PAGES.topic)
     // The script runs on readystatechange and adds .current to any link whose
     // href matches the current URL.
@@ -115,6 +113,26 @@ test.describe('fi3ldman scripts', () => {
       () => typeof document.onreadystatechange === 'function',
     )
     expect(installed, 'current-handler.js did not evaluate').toBe(true)
+
+    // ...and the marking is asserted, not just the registration. The two are
+    // not the same check: the comparison is `link.href === document.URL`, so
+    // anything that rewrites the URL — the dev server's `cleanUrls` default
+    // did exactly this until `tests/publish/serve.json` turned it off — leaves
+    // the handler installed, running, and marking nothing.
+    const marked = await page.$$eval('a.current', (links) =>
+      links.map((a) => /** @type {HTMLAnchorElement} */ (a).href),
+    )
+    expect(
+      marked,
+      'no link was marked as the current page. The handler ran, so either ' +
+        'this page has no link back to itself, or the URL it was served at ' +
+        'is not the URL its own links resolve to',
+    ).not.toEqual([])
+    for (const href of marked) {
+      expect(href, 'a link was marked .current without matching the URL').toBe(
+        page.url(),
+      )
+    }
   })
 
   test('no console errors on load', async ({ page }) => {

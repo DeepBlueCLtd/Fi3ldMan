@@ -22,6 +22,22 @@ const PAGES = {
   // Not every topic has a short description, and `.shortdesc { display: none }`
   // cannot be tested on one that does not.
   shortdesc: '/Britain.Legacy/Britain_Legacy.html',
+  /*
+   * A unit page, for the row-of-linked-images shape: a plain DITA <div> whose
+   * direct children are two or more <xref>s each wrapping an <image>.
+   *
+   * It is not here as a second topic page. Until it was added, the selector
+   * `.body div.div:has(> a.xref + a.xref) > a.xref > img.image` matched nothing
+   * on any page in this list — not the country pages, whose linked images are
+   * table cells, and not charlie_pics.html, whose divs hold one linked image
+   * each. cascade.spec.js skips a rule with no element to test, so the row
+   * height went unaudited while looking covered.
+   *
+   * StyleSamples.dita now carries the same shape, but a sample only reaches
+   * the output at the next publish from Oxygen; this page carries it today and
+   * in every frozen snapshot.
+   */
+  imageRow: '/Britain.Legacy/_100_unit_charlie.html',
   // The Style Samples page, which carries one example of every Fi3ldMan class.
   // It is here so cascade.spec.js can audit the rules that the publication's
   // real content happens not to use — item-list, fullWidthTable and
