@@ -276,7 +276,7 @@ padding: 0 10px;
  *
  * Raising specificity instead (td.bkDarkGray and so on) would only tie, and
  * would need revisiting the next time Oxygen adds a descendant to that
- * selector. Verified by tests/publish/_cascade-audit.spec.js.
+ * selector. Verified by tests/publish/cascade.spec.js.
  */
 .colorRed {
   color: #F00 !important;
@@ -305,6 +305,21 @@ padding: 0 10px;
 
 .colorLightBlue {
   color: #0FF !important;
+  border-color: #000;
+}
+
+/* Dark blue and dark brown. Both were in use in the content — Vanes & Cranes
+   has had "This title is in blue" and "This title is in brown" since before the
+   2026 template — but neither class was ever defined in any stylesheet, so both
+   lines rendered in ordinary black. Chosen dark enough to be unmistakable
+   against .colorBlue (#00F) rather than a second shade of the same colour. */
+.colorDarkBlue {
+  color: #008 !important;
+  border-color: #000;
+}
+
+.colorDarkBrown {
+  color: #630 !important;
   border-color: #000;
 }
 
