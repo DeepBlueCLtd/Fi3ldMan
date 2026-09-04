@@ -179,6 +179,20 @@ The suite is 40 tests, and `current/` and `oxygen-28/` both pass all of them.
 `oxygen-26/` passes at 39 — it predates `StyleSamples.html` joining the page
 list, so it runs one test fewer. The two numbers are not a discrepancy.
 
+That is true because `OPTIONAL_PAGES` in `helpers.js` makes it true, and it was
+not true when the page was added. A page missing from a publish does not
+quietly cost one test: `oxygen-26/` failed six, across four spec files, every
+one of them "this page 404s" rather than anything about styling. A frozen
+snapshot can never acquire a page added later, so it would have stayed red for
+good. `OPTIONAL_PAGES` names the pages a publish may legitimately lack, one
+line of reason each; such a page is skipped when absent and only when absent,
+announced on stderr, and named in the failure message of any sweep that did not
+cover it. Every other 404 still fails the run.
+
+The cost is worth stating plainly: if a *current* publish stops emitting one of
+those pages, the sweeps go quiet about it instead of failing. Keep the list
+short.
+
 It took a while to get there. `oxygen-28/` and the deployed `current/` spent a
 period failing `cascade.spec.js` on 22 declarations: both were published
 *before* the table-cell `!important` fix, so every coloured cell rendered white
@@ -217,12 +231,18 @@ Tracked in **issue #184**, along with the styling follow-ups they turned up.
   black. The test passed throughout; the bug was found by eye. `.bold` on a row
   fails the same way today and nothing reports it.
 
-- **A class used in content that no stylesheet defines is not detected.** The
-  audit reads rules *out of* `f13ldman.css` and checks they land, so the inverse
-  never comes up. `colorDarkBlue` and `colorDarkBrown` were used in
-  `VanesandCranes.dita` and defined nowhere, rendering black, for as long as
-  anyone had been looking. Around a dozen other content classes match no rule in
-  any stylesheet; some are semantic markers, some may be the same bug.
+- **A class used in content that no stylesheet defines is not detected _by this
+  suite_.** The audit reads rules *out of* `f13ldman.css` and checks they land,
+  so the inverse never comes up here. `colorDarkBlue` and `colorDarkBrown` were
+  used in `VanesandCranes.dita` and defined nowhere, rendering black, for as
+  long as anyone had been looking.
+
+  `publications/pub-5/audit-classes.py` answers it instead, from the source
+  rather than the browser: point it at one or more DITA trees and it reports
+  every `outputclass` no stylesheet defines — thirteen in pub-5 — alongside
+  every rule nothing asks for. It is not part of a test run, because the
+  decision it feeds is per class and per publication: add a rule, or strip the
+  attribute. Issue #184 tracks that decision.
 
 - **The CSS load order is only verified indirectly.** The 2026 change put
   `f13ldman.css` last so its overrides reliably win. Nothing in `f13ldman.css`

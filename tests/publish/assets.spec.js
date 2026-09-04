@@ -1,6 +1,6 @@
 // @ts-check
 const { test, expect } = require('@playwright/test')
-const { PAGES, ALL_PAGES, visit } = require('./helpers')
+const { PAGES, OPTIONAL_PAGES, visit, sweep, coverageNote } = require('./helpers')
 
 /*
  * The headline suite. Everything here would have caught the 25.1 -> 28.1
@@ -15,7 +15,10 @@ const { PAGES, ALL_PAGES, visit } = require('./helpers')
 test.describe('assets', () => {
   for (const [name, path] of Object.entries(PAGES)) {
     test(`${name}: every referenced asset resolves`, async ({ page }) => {
-      const assets = await visit(page, path)
+      const assets = await visit(page, path, {
+        optional: OPTIONAL_PAGES.has(path),
+      })
+      test.skip(!assets, `${path} is not in this publish`)
       expect(
         assets.problems(),
         'assets failed to load — the page will render unstyled or partly ' +
@@ -120,16 +123,18 @@ test.describe('assets', () => {
   })
 
   test('no page links to a stale absolute build path', async ({ page }) => {
-    for (const path of ALL_PAGES) {
-      await visit(page, path)
+    const found = []
+    const skipped = await sweep(page, async (_assets, path) => {
       const absolute = await page.$$eval('[src], [href]', (els) =>
         els
           .map((el) => el.getAttribute('src') || el.getAttribute('href') || '')
           .filter((v) => /^[a-zA-Z]:[\\/]/.test(v) || v.startsWith('file://')),
       )
-      expect(absolute, `${path} contains machine-absolute references`).toEqual(
-        [],
-      )
-    }
+      absolute.forEach((v) => found.push(`${path}  ${v}`))
+    })
+    expect(
+      found,
+      'pages contain machine-absolute references' + coverageNote(skipped),
+    ).toEqual([])
   })
 })

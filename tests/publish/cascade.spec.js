@@ -1,6 +1,6 @@
 // @ts-check
 const { test, expect } = require('@playwright/test')
-const { ALL_PAGES, visit } = require('./helpers')
+const { sweep, coverageNote } = require('./helpers')
 
 /*
  * Does every rule we wrote actually reach the page?
@@ -30,52 +30,36 @@ const { ALL_PAGES, visit } = require('./helpers')
  */
 
 /*
- * Declarations known to be overridden, and accepted.
+ * Declarations known to be overridden by a stylesheet we do not own, and
+ * accepted.
  *
- * Every entry needs a reason. An entry without one is a bug someone silenced.
- * Anything not listed here fails the test.
+ * Empty, and that is the finding rather than an omission.
+ *
+ * The list held ten entries. Seven said, in prose, that a declaration had been
+ * displaced by a more specific rule of our own — .c-full-width, the four
+ * .related-links icon properties, .bkDarkGray, the sortable header colour, and
+ * `.enterBtn { font-size }`, added by hand when the Style Samples page put the
+ * button beside its own .contents-index variant. That last one is why the
+ * prose approach had to go: the page demonstrates base rules next to their
+ * variants on purpose, so every sample added would have earned an entry. The
+ * audit now works this out for itself (see `lostToOurOwnSheet` below), and all
+ * seven went with the mechanism that needed them.
+ *
+ * The remaining three were recorded as genuine losses to Oxygen, "pre-existing
+ * on 26 and 28.1 — unresolved", and left for whoever next looked at the
+ * harmonics calculator. They were nothing of the kind. `.wh_harmonics td` sets
+ * `text-align: right` and `padding: 0`; `.wh_harmonics td.obs`, eleven lines
+ * below it, sets `text-align: left` and `padding-left: 10px`. `.wh_harmonics
+ * input` sets `width: 50px` and `input.working`, `input.absolute` and
+ * `input.clear` each set their own. Every one of them is our own variant rule
+ * winning on the cell it was written for, on the first element the audit
+ * happened to sample. There was never anything to fix.
+ *
+ * So nothing in f13ldman.css currently loses to a stylesheet we do not own.
+ * The map stays because the next Oxygen upgrade will put something in it, and
+ * every entry needs a reason — an entry without one is a bug someone silenced.
  */
-const ACCEPTED = new Map([
-  // Overridden by our own `.container-fluid { max-width: 100% !important }`,
-  // which lands on the same element. Same visual result, so `unset` never
-  // takes effect.
-  ['.c-full-width { max-width }', 'superseded by our own .container-fluid rule'],
-
-  // The generic related-link icon is deliberately displaced by our own more
-  // specific rules: the .xls/.xlsx variant (which is !important) and the
-  // same-page `a[href^="#"]` variant that clears the icon.
-  ['.related-links a { background-image }', 'superseded by our own href-specific rules'],
-  ['.related-links a { background-position-x }', 'superseded by our own href-specific rules'],
-  ['.related-links a { background-position-y }', 'superseded by our own href-specific rules'],
-  ['.related-links a { background-repeat }', 'superseded by our own href-specific rules'],
-
-  // Sortable table headers. Three of our own rules stack on the same cells —
-  // the content's .bkDarkGray, the generic header colour, and the nosort
-  // variant — and the most specific wins each time. This is the same outcome
-  // as Oxygen 26 produced, checked against that baseline.
-  ['.bkDarkGray { background-color }', 'superseded by our own table.sortable thead td rule'],
-  ['table.sortable thead td { background-color }', 'superseded by our own .sorttable_nosort rule'],
-
-  // The Style Samples page shows enterBtn in both of its forms — standalone,
-  // and inside a contents-index table — so our own `.contents-index .enterBtn`
-  // (0,2,0) beats the generic `.enterBtn` (0,1,0) there. That is the intended
-  // behaviour: the contents page carries many buttons and deliberately shrinks
-  // them from 28px to 20px. Only font-size is reported because the two rules
-  // agree on weight and family.
-  //
-  // Note this says nothing is wrong on the *contents* page itself, which is not
-  // in the page list — it surfaced only because one page now demonstrates both
-  // variants side by side.
-  ['.enterBtn { font-size }', 'superseded by our own .contents-index .enterBtn rule'],
-
-  // Pre-existing on Oxygen 26 as well as 28.1, so not an upgrade regression.
-  // Genuine losses, worth fixing on their own merits; until someone decides
-  // what the harmonics calculator should look like they are recorded rather
-  // than hidden.
-  ['.wh_harmonics td { text-align }', 'pre-existing on 26 and 28.1 — unresolved'],
-  ['.wh_harmonics td { padding-left }', 'pre-existing on 26 and 28.1 — unresolved'],
-  ['.wh_harmonics input { width }', 'pre-existing on 26 and 28.1 — unresolved'],
-])
+const ACCEPTED = new Map([])
 
 /** Reads f13ldman.css out of the live page and tests every declaration. */
 async function auditPage(page) {
@@ -100,6 +84,57 @@ async function auditPage(page) {
       walk(sheet.cssRules)
     } catch (e) {
       return { error: 'cannot read cssRules: ' + e.message }
+    }
+
+    const others = [...document.styleSheets].filter((s) => s !== sheet)
+
+    /*
+     * Force `declared` onto the element and report whether the rendering moves.
+     *
+     * Empirical rather than a specificity calculation, which is the whole
+     * approach of this file: it accounts for units, inheritance, custom
+     * properties and anything else the browser resolves.
+     */
+    const movesWhenForced = (el, prop, declared, read) => {
+      const before = read()
+      const savedValue = el.style.getPropertyValue(prop)
+      const savedPriority = el.style.getPropertyPriority(prop)
+      el.style.setProperty(prop, declared, 'important')
+      const forced = read()
+      el.style.setProperty(prop, savedValue, savedPriority)
+      if (!savedValue) el.style.removeProperty(prop)
+      return before !== forced
+    }
+
+    /*
+     * Did this declaration lose to another rule in f13ldman.css?
+     *
+     * A declaration displaced by a more specific rule of our own is not a
+     * fault — it is the cascade working. `.enterBtn` sets 28px and
+     * `.contents-index .enterBtn` sets 20px; on a page carrying a contents
+     * index the first loses and nothing is wrong. `.related-links a` sets the
+     * generic link icon and our own `a[href^="#"]` variant clears it. The
+     * Style Samples page demonstrates base rules beside their own variants on
+     * purpose, so this shape is now normal rather than exceptional, and
+     * hand-listing each instance in ACCEPTED does not survive the next sample
+     * someone adds.
+     *
+     * Asked by elimination: switch every other stylesheet off, so f13ldman.css
+     * is the only author sheet in play, and force the declaration again. If it
+     * still moves the rendering, one of our own rules was beating it and the
+     * loss is internal. If it now holds, we win among ourselves — so whatever
+     * beat it with the other sheets enabled belongs to somebody else, and that
+     * is the fault this spec exists to catch.
+     *
+     * Comparing against the value with our sheet merely disabled would not do:
+     * `a[href^="#"]` sets `background-image: none`, which is also the value
+     * with no stylesheet at all, and the loss would read as foreign.
+     */
+    const lostToOurOwnSheet = (el, prop, declared, read) => {
+      others.forEach((s) => (s.disabled = true))
+      const internal = movesWhenForced(el, prop, declared, read)
+      others.forEach((s) => (s.disabled = false))
+      return internal
     }
 
     const losing = []
@@ -128,35 +163,26 @@ async function auditPage(page) {
           // A url() resolves against the stylesheet from a sheet and against
           // the document when set inline, so comparing them directly is
           // meaningless. Compare the filename instead.
+          let lost
           if (declared.includes('url(')) {
             const file = (declared.match(/url\(['"]?([^'")]+)/) || [])[1]
             const name = file ? file.split('/').pop() : null
-            if (name && !read().includes(name)) {
-              losing.push({
-                key: `${rule.selectorText} { ${prop} }`,
-                was: read(),
-                declared,
-              })
-            }
-            continue
+            lost = !!name && !read().includes(name)
+          } else {
+            lost = movesWhenForced(el, prop, declared, read)
           }
 
-          const before = read()
-          const savedValue = el.style.getPropertyValue(prop)
-          const savedPriority = el.style.getPropertyPriority(prop)
-          el.style.setProperty(prop, declared, 'important')
-          const forced = read()
-          el.style.setProperty(prop, savedValue, savedPriority)
-          if (!savedValue) el.style.removeProperty(prop)
+          if (!lost) continue
+          // Beaten by a sibling rule of our own on this element — the cascade
+          // working. Say nothing, and keep looking at the other elements.
+          if (lostToOurOwnSheet(el, prop, declared, read)) continue
 
-          if (before !== forced) {
-            losing.push({
-              key: `${rule.selectorText} { ${prop} }`,
-              was: before,
-              declared,
-            })
-            break // one failing element is enough to report the declaration
-          }
+          losing.push({
+            key: `${rule.selectorText} { ${prop} }`,
+            was: read(),
+            declared,
+          })
+          break // one failing element is enough to report the declaration
         }
       }
     }
@@ -172,8 +198,7 @@ test.describe('cascade', () => {
     const overridden = new Map()
     let checked = 0
 
-    for (const path of ALL_PAGES) {
-      await visit(page, path)
+    const skipped = await sweep(page, async (_assets, path) => {
       const report = await auditPage(page)
       expect(report.error, report.error || '').toBeUndefined()
       checked = Math.max(checked, report.checked)
@@ -187,7 +212,7 @@ test.describe('cascade', () => {
         hit.pages.add(path)
         overridden.set(l.key, hit)
       }
-    }
+    })
 
     expect(checked, 'no declarations were checked — is f13ldman.css loading?')
       .toBeGreaterThan(100)
@@ -202,7 +227,8 @@ test.describe('cascade', () => {
         'The rule is in the file, the stylesheet loaded, the class is on the ' +
         'element — and the styling still does not reach the reader. Raise ' +
         'specificity or add !important, then say why in the CSS. If the ' +
-        'override is deliberate, add it to ACCEPTED with a reason.',
+        'override is deliberate, add it to ACCEPTED with a reason.' +
+        coverageNote(skipped),
     ).toEqual([])
   })
 
@@ -210,11 +236,10 @@ test.describe('cascade', () => {
     test.setTimeout(180_000)
 
     const seen = new Set()
-    for (const path of ALL_PAGES) {
-      await visit(page, path)
+    const skipped = await sweep(page, async () => {
       const report = await auditPage(page)
       report.losing?.forEach((l) => seen.add(l.key))
-    }
+    })
 
     // An entry that no longer reproduces has been fixed, or the selector it
     // names has gone. Either way the list should shrink, or the next real
@@ -222,7 +247,8 @@ test.describe('cascade', () => {
     const stale = [...ACCEPTED.keys()].filter((k) => !seen.has(k))
     expect(
       stale,
-      'these declarations are no longer overridden — remove them from ACCEPTED',
+      'these declarations are no longer overridden — remove them from ' +
+        'ACCEPTED' + coverageNote(skipped),
     ).toEqual([])
   })
 })

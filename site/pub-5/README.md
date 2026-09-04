@@ -7,12 +7,17 @@ under `/pub-5/`.
 | --- | --- | --- | --- | --- | --- |
 | `current/` | 28.1 | `template-2026/` | 2026-09-04 | 40/40 | Browsable current publish |
 | `oxygen-28/` | 28.1 | `template-2026/` | 2026-09-04 | 40/40 | Frozen snapshot |
-| `oxygen-26/` | 26 | `template-2024/` | 2026-08-25 | 39/39 | Frozen snapshot |
+| `oxygen-26/` | 26 | `template-2024/` | 2026-08-25 | 39/40, 1 skipped | Frozen snapshot |
 | `oxygen-25/` | 25.x | 25.1-era template | 2023 (committed 2025-01) | — | Frozen snapshot |
 
-The suite grew from 39 to 40 when `StyleSamples.html` joined the page list in
-`helpers.js`. `oxygen-26/` predates that page, so it is still measured at 39 —
-the two numbers are not a discrepancy.
+The table-cell `!important` fix is in all three. The suite grew from 39 tests
+to 40 when `StyleSamples.html` joined the page list in `helpers.js`;
+`oxygen-26/` predates that page, so the suite skips it there — one test fewer,
+not a discrepancy.
+
+That skip had to be built. A missing page does not quietly drop one test: it
+failed six, in four spec files, none of them about styling. See "A snapshot
+cannot gain a page" below.
 
 `current/` is the only folder a publish overwrites. The `oxygen-NN/` folders are
 **frozen**: byte-exact snapshots of a verified publish, kept so that a publish
@@ -40,8 +45,25 @@ snapshot taken before a fix stays broken for as long as it sits there:
 PUBLISH_DIR=site/pub-5/oxygen-28 npm test
 ```
 
-When `oxygen-28/` is replaced, the pre-fix snapshot remains in git history if
-the old rendering is ever needed.
+Each pre-fix snapshot remains in git history if the old rendering is ever
+needed.
+
+### A snapshot cannot gain a page that did not exist when it was frozen
+
+Adding `StyleSamples.dita` to the source, and its page to `helpers.js`, took
+`oxygen-26/` from a full pass to six failures — none of them about styling, all
+of them "this page 404s". A frozen snapshot can never acquire the page, so the
+suite would have stayed red on that folder for good.
+
+`OPTIONAL_PAGES` in `tests/publish/helpers.js` names the pages a publish may
+legitimately lack, one line of reason each. Such a page is skipped when absent
+and only when absent; every other 404 still fails the run, because a styling
+test with nothing to look at reports success. The skip prints to stderr and is
+repeated in the failure message of any sweep that did not cover it, so a run
+never quietly claims more coverage than it had.
+
+The cost is real and worth stating: if a *current* publish stops emitting one
+of those pages, the sweeps go quiet instead of failing. Keep the list short.
 
 Keep both. The pair is what makes an upgrade reviewable: the 26 snapshot says
 what the publication used to look like, the 28 snapshot is what a future 28.1
