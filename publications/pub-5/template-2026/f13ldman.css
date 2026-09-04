@@ -489,7 +489,8 @@ padding: 0 10px;
  *
  * That makes these two variables and the content a matched pair. If you change
  * the tile size here, change `<image width= height=>` in the ImageLinksTable
- * topics to match (currently Britain1.dita and Wales1.dita) — otherwise the
+ * topics to match (currently Britain1.dita, Wales1.dita and StyleSamples.dita)
+ * — otherwise the
  * markup claims one size and the page renders another, which is exactly the
  * confusion this comment exists to prevent.
  * ---------------------------------------------------------------------------

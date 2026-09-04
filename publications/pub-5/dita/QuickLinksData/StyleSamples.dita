@@ -316,6 +316,64 @@
 					</tbody>
 				</tgroup>
 			</table>
+
+			<!--
+				The image link table, as the country landing pages use it — Britain1.dita
+				is the one to compare against.
+
+				Two separate rules meet here, and only a rendering shows whether both
+				arrived. `.ImageLinksTable .xref .b` puts each label on its own centred
+				line, and `.body td > a.xref > img.image` forces every tile to one size.
+				The second matters because Oxygen's own `.image { height: auto }` outranks
+				the height attribute DITA emits, so without it each image scales to its own
+				aspect ratio and the grid goes ragged.
+
+				That rule reads its size from the f13-image-link-height and
+				f13-image-link-width custom properties, which must match the width and
+				height attributes below. Change one, change the other, or the markup
+				claims a size the page does not render. The two images here are deliberately different shapes for
+				that reason: if the tiles are not identical, the rule is not reaching them.
+			-->
+			<p outputclass="h1">Image link table</p>
+			<p>ImageLinksTable lays links out as a grid of picture tiles, each with its
+				label centred on its own line. All four tiles should be exactly the same
+				size, and the label should sit above or below its picture rather than
+				beside it — the two rows differ only in whether the label is authored
+				first or second, and both should look the same either way.</p>
+			<table outputclass="ImageLinksTable">
+				<tgroup cols="2">
+					<tbody>
+						<row>
+							<entry>
+								<xref format="dita" href="../Britain_Cmplx/Britain_Cmplx1.dita">
+									<b>Label authored first</b>
+									<image height="203px" href="../Britain_Cmplx/Content/Images/daf_1b.jpeg" width="438px"/>
+								</xref>
+							</entry>
+							<entry>
+								<xref format="dita" href="../Britain.Legacy/Britain_Legacy.dita">
+									<b>Label authored first</b>
+									<image height="203px" href="../Britain.Legacy/Content/Images/leyland_2.jpg" width="438px"/>
+								</xref>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<xref format="dita" href="../Britain.Legacy/Britain_Legacy.dita">
+									<image height="203px" href="../Britain.Legacy/Content/Images/leyland_2.jpg" width="438px"/>
+									<b>Label authored second</b>
+								</xref>
+							</entry>
+							<entry>
+								<xref format="dita" href="../Britain_Cmplx/Britain_Cmplx1.dita">
+									<image height="203px" href="../Britain_Cmplx/Content/Images/daf_1b.jpeg" width="438px"/>
+									<b>Label authored second</b>
+								</xref>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
 		</section>
 	</refbody>
 	<!--
