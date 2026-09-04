@@ -53,6 +53,11 @@ build step in CI — the workflow just uploads the folder.
    python publications/pub-5/check-publish.py <output-dir>   # pages, refs, scripts
    PUBLISH_DIR=<output-dir> npm test                         # styling suite
    ```
+   First time on a machine, install the suite — see
+   `tests/publish/README.md`. In short: `yarn install --frozen-lockfile`
+   (the lockfile is `yarn.lock`, so `npm ci` will not work) then
+   `npx playwright install chromium`. Behind TLS interception, prefix every
+   Node command with `NODE_OPTIONS=--use-system-ca`.
 3. Diff it against the frozen publish for the Oxygen version you built with —
    `site/pub-5/README.md` explains how, and why `buildId` must be normalised
    first or every page looks changed.
