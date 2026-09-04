@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference
   PUBLIC '-//OASIS//DTD DITA Reference//EN'
   'reference.dtd'>
@@ -269,6 +269,29 @@
 				them against. They are exercised here for that reason as much as for the
 				visual check.
 			-->
+			<p outputclass="h1">Related links panel</p>
+			<p>The related-links panel is not part of the body, so it has no sample table
+				here — it is the floating block at the right of this page, and the four
+				links in it are chosen to exercise one rule each. Check all four:</p>
+			<ul>
+				<li><b>Abbrevs</b> and <b>Vanes &amp; Cranes</b> — both target pages have a
+					sub-title, and neither sub-title must appear beneath its link. DITA
+					emits the target's short description as a block under every link, and
+					<ph outputclass="bold">li.linklist div.desc</ph> suppresses it. Vanes
+					&amp; Cranes is the one to watch: its sub-title runs to sixty-odd
+					characters, which in a 200px panel wraps to several lines and pushes
+					the rest of the list out of shape. If extra grey text appears under
+					either link, that rule has been lost.</li>
+				<li><b>Style Samples</b> — this page. It should be grey and unclickable.
+					The class that does this is applied at run time by
+					<ph outputclass="bold">current-handler.js</ph>, so a live-looking link
+					here means that script did not run.</li>
+				<li>Every link should carry the external-link icon at its right-hand
+					side.</li>
+				<li>The panel should sit against the right edge, not inline with the body
+					text.</li>
+			</ul>
+
 			<p outputclass="h1">Full width table and separator rows</p>
 			<p>fullWidthTable makes a table span the content area. table-separator
 				enlarges a row used to break a table into groups.</p>
@@ -295,9 +318,25 @@
 			</table>
 		</section>
 	</refbody>
+	<!--
+		The related-links panel is page-level and floats at the right, so it cannot
+		be demonstrated in the body like the other samples. These four links are
+		chosen to exercise a different rule each; what to look for is described in
+		the "Related links panel" section above.
+	-->
 	<related-links id="related-pages">
+		<!-- Target has a <shortdesc>. DITA emits it as <div class="desc"> under the
+		     link; li.linklist div.desc must hide it. -->
 		<link href="./Abbreviations.dita">
-			<linktext>Abbrevs</linktext>
+			<linktext>Abbrevs — target has a sub-title, which must not appear</linktext>
+		</link>
+		<!-- This page. current-handler.js adds .current at run time, and
+		     .related_link .current greys it out and disables the click. -->
+		<link href="./StyleSamples.dita">
+			<linktext>Style Samples — this page, so it should be greyed and dead</linktext>
+		</link>
+		<link href="./VanesandCranes.dita">
+			<linktext>Vanes &amp; Cranes</linktext>
 		</link>
 		<link href="../Introduction/ContentsPage.dita">
 			<linktext>Contents</linktext>

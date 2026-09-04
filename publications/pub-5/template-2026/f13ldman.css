@@ -23,6 +23,19 @@
   padding: 2px !important;
 }
 
+/* Suppress the target page's short description in the related-links panel.
+   DITA emits the target's <shortdesc> as a <div class="desc"> beneath each
+   link, so a link to a page that has a sub-title renders the sub-title
+   underneath it — which in a narrow floating panel pushes the list out of
+   shape and repeats text the link already carries in its `title` attribute.
+
+   Consistent with the `.shortdesc` rule further down, which hides short
+   descriptions on topic pages for the same reason: they are wanted on the home
+   page and nowhere else. */
+li.linklist div.desc {
+  display: none;
+}
+
 /** suppress link to current page in related-links.
     The `current` class is applied at run time by resources/current-handler.js,
     so this rule has no effect until that script has run. */
@@ -458,9 +471,27 @@ padding: 0 10px;
  * width at its own aspect ratio - which is why rows of images that are authored
  * as the same height render at different heights.
  *
- * These rules restore a uniform height and let the width follow the aspect
- * ratio, so nothing is cropped. Adjust the two variables below to retune;
- * there is no need to touch the content or the images.
+ * The two cases are treated differently on purpose:
+ *
+ *   Rows of images in a <div>  uniform height, width follows the aspect ratio.
+ *                              Nothing is cropped or distorted.
+ *
+ *   Image link tables          uniform height AND width, so the navigation
+ *                              tiles form an even grid. An image whose real
+ *                              aspect ratio differs is stretched to fit.
+ *
+ * The table case has to restate the authored size rather than defer to the
+ * `<image width= height=>` attributes, because it cannot defer to them: HTML
+ * presentational attributes lose to *any* author declaration, and Oxygen's
+ * `.image { height: auto }` is one. The attribute can never win on its own, so
+ * the only way to honour the authored size is for the CSS to carry the same
+ * numbers.
+ *
+ * That makes these two variables and the content a matched pair. If you change
+ * the tile size here, change `<image width= height=>` in the ImageLinksTable
+ * topics to match (currently Britain1.dita and Wales1.dita) — otherwise the
+ * markup claims one size and the page renders another, which is exactly the
+ * confusion this comment exists to prevent.
  * ---------------------------------------------------------------------------
  */
 /* Starting points, not measured values: read off the representative content in
@@ -472,8 +503,11 @@ padding: 0 10px;
   /* Rows of linked images inside a plain DITA <div>. */
   --f13-image-row-height: 177px;
 
-  /* Linked images used as navigation tiles inside a table cell. */
-  --f13-image-link-height: 150px;
+  /* Linked images used as navigation tiles inside a table cell. Both
+     dimensions are fixed here, and must match the `<image width= height=>`
+     attributes in the ImageLinksTable topics. */
+  --f13-image-link-height: 203px;
+  --f13-image-link-width: 438px;
 }
 
 /*
@@ -500,7 +534,7 @@ padding: 0 10px;
    so any image link table picks this up regardless of outputclass. */
 .body td > a.xref > img.image {
   height: var(--f13-image-link-height);
-  width: auto;
+  width: var(--f13-image-link-width);
 }
 
 /* style for large link buttons */

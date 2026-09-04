@@ -19,19 +19,19 @@
 						<entry>
 							<xref format="dita" href="../Wales_Cmplx/Wales_Cmplx1.dita">
 								<b>Complex</b>
-								<image href="../Wales_Cmplx/Content/Images/daf_1b.jpeg"/>
+								<image height="203px" href="../Wales_Cmplx/Content/Images/daf_1b.jpeg" width="438px"/>
 							</xref>
 						</entry>
 						<entry>
 							<xref format="dita" href="../Wales.Legacy/Wales_Legacy.dita">
 								<b>Legacy</b>
-								<image href="../Wales.Legacy/Content/Images/leyland_2.jpg"/>
+								<image height="203px" href="../Wales.Legacy/Content/Images/leyland_2.jpg" width="438px"/>
 							</xref>
 						</entry>
 						<entry>
 							<xref format="dita" href="../Wales_Composite/Wales_Composite.dita">
 								<b>Composite</b>
-								<image href="../Wales_Composite/Content/Images/unit_da.jpg"/>
+								<image height="203px" href="../Wales_Composite/Content/Images/unit_da.jpg" width="438px"/>
 							</xref>
 						</entry>
 					</row>

@@ -19,26 +19,26 @@
 						<entry>
 							<xref format="dita" href="../Britain_Cmplx/Britain_Cmplx1.dita">
 								<b>Complex</b>
-								<image height="150px" href="../Britain_Cmplx/Content/Images/daf_1b.jpeg" width="400px"/>
+								<image height="203px" href="../Britain_Cmplx/Content/Images/daf_1b.jpeg" width="438px"/>
 							</xref>
 						</entry>
 						<entry>
 							<xref format="dita" href="../Britain.Legacy/Britain_Legacy.dita">
 								<b>Legacy</b>
-								<image href="../Britain.Legacy/Content/Images/leyland_2.jpg"/>
+								<image height="203px" href="../Britain.Legacy/Content/Images/leyland_2.jpg" width="438px"/>
 							</xref>
 						</entry>
 					</row>
 					<row>
 						<entry>
 							<xref format="dita" href="../Britain.Legacy/Britain_Legacy.dita">
-								<image href="../Britain.Legacy/Content/Images/leyland_2.jpg"/>
+								<image height="203px" href="../Britain.Legacy/Content/Images/leyland_2.jpg" width="438px"/>
 								<b>Legacy</b>
 							</xref>
 						</entry>
 						<entry>
 							<xref format="dita" href="../Britain_Cmplx/Britain_Cmplx1.dita">
-								<image height="150px" href="../Britain_Cmplx/Content/Images/daf_1b.jpeg" width="400px"/>
+								<image height="203px" href="../Britain_Cmplx/Content/Images/daf_1b.jpeg" width="438px"/>
 								<b>Complex</b>
 							</xref>
 						</entry>
