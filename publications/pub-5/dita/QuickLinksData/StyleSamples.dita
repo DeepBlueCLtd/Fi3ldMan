@@ -77,6 +77,54 @@
 				</tgroup>
 			</table>
 
+			<!--
+				Row-level colour. Worth its own table because it is a different mechanism
+				from the cell-level samples above: the class lands on the <tr>, and the
+				colour has to reach the cells. Under Oxygen 26 that happened by
+				inheritance; 28.1's main.css sets colour on each <td> directly and broke
+				it, so f13ldman.css now names the cells explicitly. If any row below is
+				black, that fix has been lost — and note that cascade.spec.js cannot see
+				this failure, because the <tr> itself is coloured correctly.
+			-->
+			<p outputclass="h1">Row colours</p>
+			<p>Here the class is on the row, not the cell. Every cell in a coloured row
+				should take the colour, including empty ones and cells that carry a
+				background class of their own.</p>
+			<table colsep="1" frame="all" rowsep="1">
+				<tgroup cols="4">
+					<colspec colname="c1"/>
+					<colspec colname="c2"/>
+					<colspec colname="c3"/>
+					<colspec colname="c4"/>
+					<tbody>
+						<row>
+							<entry outputclass="bkDarkGray"><b>Row class</b></entry>
+							<entry outputclass="bkDarkGray"><b>First cell</b></entry>
+							<entry outputclass="bkDarkGray"><b>Second cell</b></entry>
+							<entry outputclass="bkDarkGray"><b>Cell with its own background</b></entry>
+						</row>
+						<row outputclass="colorRed">
+							<entry>colorRed</entry>
+							<entry>every cell in this row should be red</entry>
+							<entry>including this one</entry>
+							<entry outputclass="bkYellow">red text on yellow</entry>
+						</row>
+						<row outputclass="colorBlue">
+							<entry>colorBlue</entry>
+							<entry>every cell in this row should be blue</entry>
+							<entry>including this one</entry>
+							<entry outputclass="bkLightGray">blue text on light gray</entry>
+						</row>
+						<row outputclass="colorDarkBrown">
+							<entry>colorDarkBrown</entry>
+							<entry>every cell in this row should be dark brown</entry>
+							<entry>including this one</entry>
+							<entry outputclass="bkLightGray">brown text on light gray</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+
 			<p outputclass="h1">Cell background colours</p>
 			<p>These are the classes that Oxygen 28.1 silently overrode: its main.css
 				colours every table cell white at a higher specificity, so each of these

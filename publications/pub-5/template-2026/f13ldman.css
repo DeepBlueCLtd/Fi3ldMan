@@ -323,6 +323,37 @@ padding: 0 10px;
   border-color: #000;
 }
 
+/*
+ * The same colour classes, applied to a whole <row>.
+ *
+ * `outputclass="colorRed"` on a DITA <row> puts the class on the <tr>, and the
+ * colour used to reach the cells by inheritance. Oxygen 28.1's main.css ended
+ * that: its `.table>:not(caption)>*>*` rule sets `color` on every <td>
+ * *directly*, and a directly-declared value always beats an inherited one.
+ *
+ * This is not the specificity fight the .bk* classes above have, and the
+ * !important on the rules above does not help here — an important declaration
+ * on the parent is still only inherited, and inheritance never competes with a
+ * declaration that matches the element itself. The only fix is to name the
+ * cells, which is what these rules do.
+ *
+ * The selector does not exist in the Oxygen 26 output at all, so row-level
+ * colouring worked there and broke silently on the upgrade. Four rows in the
+ * sample content use it (Phase_G, unit_anchors ×3).
+ *
+ * cascade.spec.js cannot catch this class of fault: it audits the element
+ * carrying the class, and the <tr>'s own computed colour is correct — it is the
+ * descendants that lose. Verified by eye on the Style Samples page.
+ */
+.colorRed > td, .colorRed > th { color: #F00 !important; }
+.colorPink > td, .colorPink > th { color: #F0F !important; }
+.colorBlue > td, .colorBlue > th { color: #00F !important; }
+.colorGray > td, .colorGray > th { color: #777 !important; }
+.colorOrange > td, .colorOrange > th { color: #FC0 !important; }
+.colorLightBlue > td, .colorLightBlue > th { color: #0FF !important; }
+.colorDarkBlue > td, .colorDarkBlue > th { color: #008 !important; }
+.colorDarkBrown > td, .colorDarkBrown > th { color: #630 !important; }
+
 
 .placeholder {
   background-color: #FF0;
