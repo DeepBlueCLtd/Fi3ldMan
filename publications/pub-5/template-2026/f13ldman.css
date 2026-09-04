@@ -356,7 +356,8 @@ padding: 0 10px;
  *
  * cascade.spec.js cannot catch this class of fault: it audits the element
  * carrying the class, and the <tr>'s own computed colour is correct — it is the
- * descendants that lose. Verified by eye on the Style Samples page.
+ * descendants that lose. Verified by eye on the Style Samples page, and tracked
+ * as a coverage gap in issue #184.
  */
 .colorRed > td, .colorRed > th { color: #F00 !important; }
 .colorPink > td, .colorPink > th { color: #F0F !important; }
@@ -368,6 +369,10 @@ padding: 0 10px;
 .colorDarkBrown > td, .colorDarkBrown > th { color: #630 !important; }
 
 
+/* No !important, unlike every .bk* class below it, so in a table cell this
+   loses to Oxygen 28.1's main.css and renders white — the bug that was fixed
+   for the others. Nothing in pub-5 uses it, so nothing exercises it; the Style
+   Samples page demonstrates it in a paragraph for that reason. Issue #184. */
 .placeholder {
   background-color: #FF0;
 }

@@ -175,22 +175,21 @@ not. Keeping both true is what makes a green run mean something.
 
 ## Confirmed against Oxygen 28.1
 
-The suite is 39 tests. `oxygen-26/` (Oxygen 26, repo-root `template/`) passes
-all of them.
+The suite is 40 tests, and `current/` and `oxygen-28/` both pass all of them.
+`oxygen-26/` passes at 39 — it predates `StyleSamples.html` joining the page
+list, so it runs one test fewer. The two numbers are not a discrepancy.
 
-`oxygen-28/` (Oxygen 28.1, `template-2026/`) does **not**, and neither does the
-deployed `current/`. Both fail `cascade.spec.js` on 22 declarations: they were
-published *before* the table-cell `!important` fix, so every coloured cell
-renders white while the HTML, the classes and the stylesheet are all correct.
-A publish that fixes it has been verified at 39/39; both folders are refreshed
-at the next publish. See `site/pub-5/README.md`.
+It took a while to get there. `oxygen-28/` and the deployed `current/` spent a
+period failing `cascade.spec.js` on 22 declarations: both were published
+*before* the table-cell `!important` fix, so every coloured cell rendered white
+while the HTML, the classes and the stylesheet were all correct.
 
-That is worth reading against the deliberate-breakage table above. The suite
-was written to catch exactly this failure and does catch it — but nobody had
-pointed it at the frozen folders, so a snapshot taken before the fix sat in the
-repo as the reference a new publish would be diffed against. A frozen folder is
-only as good as the build it was frozen from, and only as trusted as the last
-time someone ran the suite over it.
+That is worth reading against the deliberate-breakage table above. The suite was
+written to catch exactly this failure and does catch it — but nobody had pointed
+it at the frozen folders, so a snapshot taken before the fix sat in the repo as
+the reference a new publish would be diffed against. A frozen folder is only as
+good as the build it was frozen from, and only as trusted as the last time
+someone ran the suite over it.
 
 The suite also met the **genuine** 25.1 → 28.1 breakage along the way, not a
 simulated one: a build was accidentally produced with the 2025 template on
@@ -206,6 +205,24 @@ Two things it settled that had only been reasoned about before:
   newest and least proven thing in the template.
 
 ## Known coverage gaps
+
+Tracked in **issue #184**, along with the styling follow-ups they turned up.
+
+- **A class whose *descendants* lose is invisible to `cascade.spec.js`.** The
+  audit force-applies each declaration on the element carrying the class and
+  watches the computed value. That catches a specificity fight on the same
+  element, and misses inheritance. `outputclass="colorRed"` on a `<row>` puts
+  the class on the `<tr>`, whose own computed colour is correct — while Oxygen
+  28.1's `main.css` sets `color` on each `<td>` directly and the cells render
+  black. The test passed throughout; the bug was found by eye. `.bold` on a row
+  fails the same way today and nothing reports it.
+
+- **A class used in content that no stylesheet defines is not detected.** The
+  audit reads rules *out of* `f13ldman.css` and checks they land, so the inverse
+  never comes up. `colorDarkBlue` and `colorDarkBrown` were used in
+  `VanesandCranes.dita` and defined nowhere, rendering black, for as long as
+  anyone had been looking. Around a dozen other content classes match no rule in
+  any stylesheet; some are semantic markers, some may be the same bug.
 
 - **The CSS load order is only verified indirectly.** The 2026 change put
   `f13ldman.css` last so its overrides reliably win. Nothing in `f13ldman.css`

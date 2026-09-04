@@ -56,6 +56,18 @@ const ACCEPTED = new Map([
   ['.bkDarkGray { background-color }', 'superseded by our own table.sortable thead td rule'],
   ['table.sortable thead td { background-color }', 'superseded by our own .sorttable_nosort rule'],
 
+  // The Style Samples page shows enterBtn in both of its forms — standalone,
+  // and inside a contents-index table — so our own `.contents-index .enterBtn`
+  // (0,2,0) beats the generic `.enterBtn` (0,1,0) there. That is the intended
+  // behaviour: the contents page carries many buttons and deliberately shrinks
+  // them from 28px to 20px. Only font-size is reported because the two rules
+  // agree on weight and family.
+  //
+  // Note this says nothing is wrong on the *contents* page itself, which is not
+  // in the page list — it surfaced only because one page now demonstrates both
+  // variants side by side.
+  ['.enterBtn { font-size }', 'superseded by our own .contents-index .enterBtn rule'],
+
   // Pre-existing on Oxygen 26 as well as 28.1, so not an upgrade regression.
   // Genuine losses, worth fixing on their own merits; until someone decides
   // what the harmonics calculator should look like they are recorded rather
