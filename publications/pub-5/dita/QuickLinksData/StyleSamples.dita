@@ -64,6 +64,15 @@
 							<entry>colorLightBlue</entry>
 							<entry><ph outputclass="colorLightBlue">This text should be light blue</ph></entry>
 						</row>
+						<row>
+							<entry>colorDarkBlue</entry>
+							<entry><ph outputclass="colorDarkBlue">This text should be dark blue, clearly
+									darker than colorBlue above</ph></entry>
+						</row>
+						<row>
+							<entry>colorDarkBrown</entry>
+							<entry><ph outputclass="colorDarkBrown">This text should be dark brown</ph></entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>
