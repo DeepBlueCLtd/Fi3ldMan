@@ -384,7 +384,7 @@ scripts, and that every referenced asset resolves. No assertion pins a value
 that a stock Oxygen stylesheet produces, so Oxygen restyling its own output
 does not turn the suite red. A failure should always mean we broke something.
 That is verified too: a build with Oxygen's fonts, colours and navbar layout
-deliberately altered still passes all 37.
+deliberately altered still passes the whole suite.
 
 See `tests/publish/README.md`, including its coverage gaps. It does not replace
 the manual checks below, which cover appearance the suite deliberately leaves
