@@ -1,6 +1,6 @@
 // @ts-check
 const { test, expect } = require('@playwright/test')
-const { ALL_PAGES, visit } = require('./helpers')
+const { sweep, coverageNote } = require('./helpers')
 
 /*
  * What our page layouts put into the deliverable, as opposed to how it looks.
@@ -47,35 +47,44 @@ async function commentSizes(page) {
 
 test.describe('page hygiene', () => {
   test('pages do not ship template authoring notes', async ({ page }) => {
-    for (const path of ALL_PAGES) {
-      await visit(page, path)
+    const over = []
+    const skipped = await sweep(page, async (_assets, path) => {
       const comments = await commentSizes(page)
       const total = comments.reduce((n, c) => n + c.bytes, 0)
+      if (total > MAX_COMMENT_BYTES_PER_PAGE) {
+        over.push(
+          `${path} carries ${total} B\n` +
+            comments.map((c) => `  ${c.bytes} B  ${c.head}`).join('\n'),
+        )
+      }
+    })
 
-      expect(
-        total,
-        `${path} carries ${total} B of HTML comments. Comments in ` +
-          'page-templates/ are copied into every published page — put the ' +
-          'prose in template-2026/README.md and leave a one-line pointer.\n' +
-          comments.map((c) => `  ${c.bytes} B  ${c.head}`).join('\n'),
-      ).toBeLessThanOrEqual(MAX_COMMENT_BYTES_PER_PAGE)
-    }
+    expect(
+      over,
+      'pages carry more than ' +
+        `${MAX_COMMENT_BYTES_PER_PAGE} B of HTML comments. Comments in ` +
+        'page-templates/ are copied into every published page — put the ' +
+        'prose in template-2026/README.md and leave a one-line pointer.' +
+        coverageNote(skipped),
+    ).toEqual([])
   })
 
   test('no single comment is long enough to be prose', async ({ page }) => {
     // Caught separately from the page total: one 600 B block would slip under
     // the budget above while being exactly the thing that budget exists for.
-    for (const path of ALL_PAGES) {
-      await visit(page, path)
-      const oversized = (await commentSizes(page)).filter(
+    const oversized = []
+    const skipped = await sweep(page, async (_assets, path) => {
+      const big = (await commentSizes(page)).filter(
         (c) => c.bytes > MAX_SINGLE_COMMENT_BYTES,
       )
-      expect(
-        oversized,
-        `${path} has a comment long enough to be documentation. It will be ` +
-          'read by whoever opens the published page, not by the next person ' +
-          'to edit the template.',
-      ).toEqual([])
-    }
+      big.forEach((c) => oversized.push(`${path}  ${c.bytes} B  ${c.head}`))
+    })
+
+    expect(
+      oversized,
+      'a comment is long enough to be documentation. It will be read by ' +
+        'whoever opens the published page, not by the next person to edit ' +
+        'the template.' + coverageNote(skipped),
+    ).toEqual([])
   })
 })

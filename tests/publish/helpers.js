@@ -35,6 +35,33 @@ const PAGES = {
 /** Every page above, for the sweeps that should cover all page types. */
 const ALL_PAGES = Object.values(PAGES)
 
+/*
+ * Pages a publish may legitimately not contain, and why.
+ *
+ * The default above is deliberate and stays: a page that 404s fails the run,
+ * because a styling test with nothing to look at reports success. But the
+ * `oxygen-NN/` folders are *frozen* snapshots, and the suite is meant to be
+ * re-run against them whenever the template changes. A snapshot taken before
+ * a page existed can never gain it, so a page added to the source today turns
+ * every older snapshot red — which is what adding StyleSamples.dita did:
+ * `PUBLISH_DIR=site/pub-5/oxygen-26` went from a full pass to six failures,
+ * none of them about styling.
+ *
+ * So an entry here is skipped when absent, and only when absent. The trade is
+ * explicit: if a *current* publish silently stops emitting one of these, the
+ * sweeps go quiet about it instead of failing. That is why the skip is
+ * announced on stderr and repeated in the sweep's own reporting, and why this
+ * map should stay short — one entry per page that predates a frozen snapshot,
+ * with the reason written down.
+ */
+const OPTIONAL_PAGES = new Map([
+  [
+    PAGES.styleSamples,
+    'added to the source in 2026-09 — the oxygen-25 and oxygen-26 snapshots ' +
+      'were frozen before StyleSamples.dita existed',
+  ],
+])
+
 /**
  * Records every response the page makes, plus outright request failures.
  *
@@ -79,15 +106,53 @@ function recordResponses(page) {
  * Loads a page with response recording already armed, and waits for the point
  * at which stylesheets and deferred scripts have been applied.
  */
-async function visit(page, path) {
+async function visit(page, path, { optional = false } = {}) {
   const assets = recordResponses(page)
   const response = await page.goto(path, { waitUntil: 'load' })
+
+  // An OPTIONAL_PAGES entry this publish does not have: report and stand down.
+  if (optional && response?.status() === 404) {
+    console.warn(
+      `SKIPPED ${path} — not in this publish. ${OPTIONAL_PAGES.get(path)}`,
+    )
+    return null
+  }
+
   expect(
     response?.status(),
     `${path} should itself be served; a 404 here means the page list in ` +
       `helpers.js does not match this publication`,
   ).toBe(200)
   return assets
+}
+
+/**
+ * Runs `fn(assets, path)` for every page in ALL_PAGES.
+ *
+ * Pages listed in OPTIONAL_PAGES are skipped when this publish does not have
+ * them; every other 404 still fails. Returns the paths that were skipped, so
+ * the caller can say which pages its result does *not* cover — a sweep that
+ * quietly covered fewer pages than it claims is the failure mode this whole
+ * suite exists to avoid.
+ */
+async function sweep(page, fn) {
+  const skipped = []
+  for (const path of ALL_PAGES) {
+    const assets = await visit(page, path, { optional: OPTIONAL_PAGES.has(path) })
+    if (!assets) {
+      skipped.push(path)
+      continue
+    }
+    await fn(assets, path)
+  }
+  return skipped
+}
+
+/** A sentence naming the pages a sweep did not cover, for a failure message. */
+function coverageNote(skipped) {
+  return skipped.length
+    ? `\n(not covered by this run: ${skipped.join(', ')})`
+    : ''
 }
 
 /**
@@ -109,4 +174,13 @@ async function computed(page, selector, property) {
   )
 }
 
-module.exports = { PAGES, ALL_PAGES, recordResponses, visit, computed }
+module.exports = {
+  PAGES,
+  ALL_PAGES,
+  OPTIONAL_PAGES,
+  recordResponses,
+  visit,
+  sweep,
+  coverageNote,
+  computed,
+}
