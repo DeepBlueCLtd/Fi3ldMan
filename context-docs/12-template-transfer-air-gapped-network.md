@@ -12,8 +12,8 @@ installation on that network.
 This document covers that transfer and the target-side setup. For how the
 template itself works, see `11-publishing-template-2026.md`.
 
-**What moves:** `publications/pub-5/template-2026/` — 40 files, about 1.4 MB, or
-39 files where `verify-integrity.ps1` is excluded because the target network
+**What moves:** `publications/pub-5/template-2026/` — 41 files, about 1.4 MB, or
+40 files where `verify-integrity.ps1` is excluded because the target network
 does not permit PowerShell scripts. See Phase D.
 **What does not move:** DITA source, build output, `.git`, `node_modules`, the
 `.xpr` project file. The real source and its project already exist on the target.
@@ -166,7 +166,8 @@ The package must contain, at minimum:
 | --- | --- |
 | The complete `template-2026/` folder | The payload |
 | `MANIFEST.sha256` | Integrity verification on arrival |
-| `verify-integrity.ps1` | Ships inside the template folder; runs on stock Windows. **Omit where the target forbids PowerShell scripts** — it is then dead weight that also blocks email delivery. Payload becomes 39 files |
+| `resources/template-version.txt` | Ships inside the template folder; names the version, tag and source commit. Oxygen copies it into every published output, so a publication can be traced back to the template that built it without asking anyone |
+| `verify-integrity.ps1` | Ships inside the template folder; runs on stock Windows. **Omit where the target forbids PowerShell scripts** — it is then dead weight that also blocks email delivery. Payload becomes 40 files |
 | `README.md` | Ships inside the template folder; change rationale |
 | This document + `11-publishing-template-2026.md` | The target-side operator needs both |
 
@@ -186,7 +187,7 @@ Gateways commonly filter on extension or content type. The payload contains:
 | `.xml` | 3 | Fragments |
 | `.js` | 3 | **Scripts — commonly restricted** |
 | `.opt` | 1 | **Unusual extension; it is plain XML.** May need renaming to `.xml` in transit and renaming back on arrival |
-| `.md`, `.txt`, `.ps1` | 3 | Docs, font licence, verify script. 2 where the `.ps1` is omitted |
+| `.md`, `.txt`, `.ps1` | 4 | Docs, font licence, version stamp, verify script. 3 where the `.ps1` is omitted |
 
 Largest single file is `resources/images/WorldMap.jpg` at ~280 KB; the whole
 payload is ~1.4 MB, so size limits are unlikely to bite.
@@ -281,7 +282,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File verify-integrity.ps1
 Expected output:
 
 ```
-Files checked: 40   Problems: 0
+Files checked: 41   Problems: 0
 Integrity OK
 ```
 
@@ -331,7 +332,7 @@ back to per-file hashes against `MANIFEST.sha256`:
 certutil -hashfile resources\harmonics.js SHA256
 ```
 
-Checking all 39-40 files by hand is not realistic. Prioritise the items most
+Checking all 40-41 files by hand is not realistic. Prioritise the items most
 likely to be stripped or rewritten in transit:
 
 | Check first | Why |
@@ -492,13 +493,13 @@ minimum:
 | Field | Example |
 | --- | --- |
 | Date | |
-| Template version | `pub-5-template-2026-v1.0.0`, or "hand-built" |
+| Template version | `pub-5-template-2026-v1.0.0`, or "hand-built". Also readable from `resources/template-version.txt` in the payload, and from any publish built with it |
 | Source commit hash | |
 | Package name and SHA-256 of the archive | |
-| Files in payload | 40, or 39 without `verify-integrity.ps1` |
+| Files in payload | 41, or 40 without `verify-integrity.ps1` |
 | Oxygen version, both sides | 28.1 / 28.1 |
 | Phase D path used | Path 1 (script) or Path 2 (certutil) |
-| Verification result on arrival | `Files checked: 40   Problems: 0`, or the archive hash compared |
+| Verification result on arrival | `Files checked: 41   Problems: 0`, or the archive hash compared |
 | `.js` files renamed for transit | Yes / no — and confirm they were renamed back |
 | Five-point checklist result | |
 | Image-height values in use | `177px` / `150px` |

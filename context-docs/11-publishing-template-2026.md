@@ -61,7 +61,7 @@ The template uses five extension points:
 | `<html-fragments>` | Injects our scripts into the topic-page `<head>` |
 | `<parameters>` | Sets WebHelp transformation parameters |
 | `<xslt>` | Registers three XSLT extensions against Oxygen extension-point IDs |
-| `<resources>` | Declares CSS load order and copies `resources/**/*` into the output |
+| `<resources>` | Declares CSS load order and copies `resources/**/*` into the output. That copy is what puts `resources/template-version.txt` into every publish, at `oxygen-webhelp/template/resources/` — see `14-template-releases.md` |
 
 ### Page layouts
 

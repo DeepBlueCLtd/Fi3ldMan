@@ -35,12 +35,6 @@ Semantic versioning, in tags of the form:
 pub-5-template-2026-v1.4.0
 ```
 
-**The tag is the only place the version lives.** Nothing is written into the
-template folder. That is deliberate: a `VERSION` file would take the payload
-from 40 files to 41 and invalidate every file-count figure quoted in
-`12-template-transfer-air-gapped-network.md`, including the ones a receiving
-operator checks against.
-
 The prefix names the publication and the template generation, so when the year
 rolls over to `template-2028` it starts its own `v1.0.0` series and the two
 coexist. Changing generation means editing the three constants at the top of
@@ -82,11 +76,48 @@ behind the marker:
 Without that discipline `v1.0.14` tells the receiving operator nothing about
 whether they need to act, which is most of the point of having a number.
 
+## Reading the version off a published output
+
+The tag is where the version is *decided*, but a tag is no use to someone
+holding a published publication. So the release also **stamps the version into
+the template**, at:
+
+```
+resources/template-version.txt
+```
+
+`resources/` is the only part of the template Oxygen copies into the output (the
+`<fileset>` in `f13ldMan.opt`), so every publish carries the stamp at:
+
+```
+<publish>/oxygen-webhelp/template/resources/template-version.txt
+```
+
+Open it and it names the version, the tag, the source commit and the packaging
+time. That answers "which template built this?" from the published output
+alone — no repository access, no asking whoever ran the publish.
+
+The file is **committed with an `(unreleased)` placeholder**, and the release
+script overwrites it in a staging copy at packaging time — the working tree is
+never dirtied by a build. Two consequences worth knowing:
+
+- A publish built straight from a working-tree checkout says
+  `Version: (unreleased)` rather than saying nothing. That is the honest
+  answer, and it is distinguishable at a glance from a real version.
+- The payload is **41 files**, not 40, and it is 41 whether the package came
+  from a release or was built by hand. There is no divergence between the two
+  routes to keep track of.
+
+The file is plain text and small, and it is covered by `MANIFEST.sha256` like
+everything else, so a stamp corrupted in transit is caught by the Phase D check.
+
 ## What is in a release
 
 One asset: `fi3ldman-pub5-template-2026-v<version>.zip`. The archive root is
 `template-2026/`, byte-for-byte the same shape as the hand-built Phase B
-package, so the documented transfer procedure applies to it unchanged.
+package, so the documented transfer procedure applies to it unchanged. The only
+difference from a hand-built package is that `resources/template-version.txt`
+carries a real version rather than the placeholder.
 
 The release notes record the source commit, the file count and the template
 commits since the previous release — the values the transfer record wants.
