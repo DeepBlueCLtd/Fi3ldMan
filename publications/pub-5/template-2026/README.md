@@ -4,6 +4,12 @@ This is the Fi3ldMan publishing template rebuilt on the Oxygen 28.1 WebHelp
 Responsive base. It replaces `../template`, which was built in 2024 on the
 Oxygen 25.1 base and produces broken output under Oxygen 2026.
 
+> **Releases.** Every push to `main` that changes this folder publishes a
+> versioned zip, tagged `pub-5-template-2026-v<major>.<minor>.<patch>`. Patch is
+> automatic; put `[minor]` or `[major]` in a commit message to bump further. The
+> version lives only in the tag — nothing in this folder records it, so the
+> payload stays at 40 files. See `context-docs/14-template-releases.md`.
+
 > This file records **why** the template is built the way it is. For the
 > system-level description — how Oxygen consumes it, the parameter reference and
 > the upgrade procedure — see `context-docs/11-publishing-template-2026.md`. For

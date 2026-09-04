@@ -44,6 +44,13 @@ Nothing under `publications/` is served.
 `.github/workflows/pages.yml` deploys `site/` and nothing else. There is no
 build step in CI — the workflow just uploads the folder.
 
+### Workflows
+
+| | |
+| --- | --- |
+| `pages.yml` | Uploads `site/` to GitHub Pages on a push to `main` |
+| `template-release.yml` | Versions and publishes `publications/pub-5/template-2026/` as a release zip when a push to `main` changes it. See `context-docs/14-template-releases.md` |
+
 ## Publishing a change
 
 1. Author DITA in Oxygen and run the publication's WebHelp scenario. Output

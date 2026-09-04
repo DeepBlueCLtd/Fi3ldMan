@@ -140,6 +140,11 @@ publications/pub-5/dita/out/
 # context-docs/12-template-transfer-air-gapped-network.md, Phase B)
 publications/pub-5/template-2026/MANIFEST.sha256
 
+# Release packages built by .github/scripts/template-release.sh
+# (see context-docs/14-template-releases.md)
+/dist/
+publications/pub-5/*.zip
+
 # Playwright
 /test-results/
 /playwright-report/

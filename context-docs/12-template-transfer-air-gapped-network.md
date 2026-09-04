@@ -110,6 +110,18 @@ Either way it must not be the placeholder in the published output.
 
 ## Phase B — Build the transfer package
 
+> **If the source machine has network access, take the package from a release
+> instead of building it.** Every push to `main` that touches the template
+> publishes `fi3ldman-pub5-template-2026-v<version>.zip` on the repository's
+> releases page. Its archive root is `template-2026/`, identical to what the
+> commands below produce, and it carries a version number worth recording in
+> the transfer record. Download it, extract it, and pick this phase up at the
+> manifest step — the release does not contain `MANIFEST.sha256`, because an
+> integrity manifest has to be generated on the trusted side immediately before
+> the payload crosses. See `14-template-releases.md`.
+>
+> The rest of this phase is the offline route, and stays authoritative.
+
 Run from the repository root, in git bash:
 
 ```bash
@@ -480,6 +492,7 @@ minimum:
 | Field | Example |
 | --- | --- |
 | Date | |
+| Template version | `pub-5-template-2026-v1.0.0`, or "hand-built" |
 | Source commit hash | |
 | Package name and SHA-256 of the archive | |
 | Files in payload | 40, or 39 without `verify-integrity.ps1` |
@@ -492,4 +505,7 @@ minimum:
 | Any target-side edits made | |
 
 The source commit hash is the important one: it is what makes the template on
-the target traceable to a known state of this repository.
+the target traceable to a known state of this repository. The template version
+is the human-readable handle on the same thing — quotable in a phone call, and
+comparable at a glance against what the target already has — but it only exists
+for a package taken from a release, so record the hash either way.

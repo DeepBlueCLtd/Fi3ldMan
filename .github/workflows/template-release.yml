@@ -1,0 +1,88 @@
+name: Publish template release
+
+# Versions the pub-5 publishing template and publishes it as a release zip.
+# See context-docs/14-template-releases.md.
+#
+# The workflow and its script are deliberately absent from the path filter:
+# editing CI is not a template change and must not mint a version. Use the
+# workflow_dispatch dry run to exercise changes to them.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'publications/pub-5/template-2026/**'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Build the zip and upload it as an artifact, but create no tag or release'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+# Serialised so two quick pushes cannot race to claim the same tag.
+concurrency:
+  group: template-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Tags are the source of truth for the current version, and the bump
+          # markers are read from the commit range since the last one.
+          fetch-depth: 0
+
+      # push events are already filtered to main; this only bites a manual run
+      # started from a branch with the dry-run box unticked.
+      - name: Refuse to publish from anywhere but main
+        if: github.event_name == 'workflow_dispatch' && !inputs.dry_run && github.ref != 'refs/heads/main'
+        run: |
+          echo "::error::A real release can only be cut from main (this ran on ${{ github.ref }})."
+          exit 1
+
+      - name: Build the release package
+        id: package
+        run: |
+          ARGS=()
+          if [ "${{ github.event_name }}" = 'workflow_dispatch' ] && [ "${{ inputs.dry_run }}" = 'true' ]; then
+            ARGS+=(--dry-run)
+          fi
+          .github/scripts/template-release.sh "${ARGS[@]}" | tee -a "$GITHUB_OUTPUT"
+
+      - name: Publish the release
+        if: steps.package.outputs.DRY_RUN == '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ steps.package.outputs.TAG }}" \
+            --title "Publishing template ${{ steps.package.outputs.TAG }}" \
+            --notes-file "${{ steps.package.outputs.NOTES }}" \
+            --target "${{ github.sha }}" \
+            "${{ steps.package.outputs.ZIP }}"
+
+      - name: Upload the package as an artifact
+        if: steps.package.outputs.DRY_RUN == '1'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.package.outputs.TAG }}
+          path: |
+            ${{ steps.package.outputs.ZIP }}
+            ${{ steps.package.outputs.NOTES }}
+          if-no-files-found: error
+
+      - name: Summary
+        run: |
+          {
+            echo "### ${{ steps.package.outputs.TAG }}"
+            echo
+            if [ "${{ steps.package.outputs.DRY_RUN }}" = '1' ]; then
+              echo "Dry run — no tag, no release. Package uploaded as an artifact."
+              echo
+            fi
+            cat "${{ steps.package.outputs.NOTES }}"
+          } >> "$GITHUB_STEP_SUMMARY"
