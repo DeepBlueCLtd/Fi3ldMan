@@ -22,6 +22,14 @@ const PAGES = {
   // Not every topic has a short description, and `.shortdesc { display: none }`
   // cannot be tested on one that does not.
   shortdesc: '/Britain.Legacy/Britain_Legacy.html',
+  // The Style Samples page, which carries one example of every Fi3ldMan class.
+  // It is here so cascade.spec.js can audit the rules that the publication's
+  // real content happens not to use — item-list, fullWidthTable and
+  // table-separator matched no element at all until this page existed, and a
+  // rule that matches nothing cannot be checked. Adding a class to
+  // StyleSamples.dita only puts it in front of the suite because this entry
+  // exists; without it the page is published but never visited.
+  styleSamples: '/QuickLinksData/StyleSamples.html',
 }
 
 /** Every page above, for the sweeps that should cover all page types. */
