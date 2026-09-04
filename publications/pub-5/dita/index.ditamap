@@ -15,6 +15,11 @@
     <topicref href="./QuickLinksData/Contents_Index.dita" format="dita">
         <topicmeta/>
     </topicref>
+    <!-- Every Fi3ldMan-specific style on one page, for visual verification.
+         Sample content, not publication content. -->
+    <topicref href="./QuickLinksData/StyleSamples.dita" format="dita">
+        <topicmeta/>
+    </topicref>
     <topicref href="countryFilters.ditamap" format="ditamap" type="subjectScheme"
         navtitle="Country Filters"/>
 </map>

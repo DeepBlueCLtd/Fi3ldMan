@@ -1,0 +1,249 @@
+<?xml version="1.0" ?>
+<!DOCTYPE reference
+  PUBLIC '-//OASIS//DTD DITA Reference//EN'
+  'reference.dtd'>
+<!--
+	Style Samples.
+
+	One example of every Fi3ldMan-specific class, on one page, so the custom
+	formatting can be verified by eye in a single scroll instead of being hunted
+	across the publication.
+
+	Every class demonstrated here is defined in template-2026/f13ldman.css and
+	nowhere else. Stock Oxygen styling is deliberately absent: this page is for
+	checking what *we* contribute, matching the scope of tests/publish/.
+
+	Each sample names its own class, so a reader needs no key. If the label says
+	colorRed and the sample beside it is not red, that class is not reaching the
+	reader.
+
+	Adding a class here also puts it in front of tests/publish/cascade.spec.js,
+	which can only audit declarations that match something in the output. Several
+	of these rules matched nothing before this page existed.
+-->
+<reference id="StyleSamples">
+	<title>Style Samples</title>
+	<shortdesc>Every Fi3ldMan-specific style, in one place, for visual verification</shortdesc>
+	<refbody>
+		<section>
+			<title/>
+			<p>Each row names a class and shows it applied. A sample that looks like
+				ordinary body text is a styling failure, not a design choice.</p>
+
+			<p outputclass="h1">Text colours</p>
+			<table colsep="1" frame="all" rowsep="1">
+				<tgroup cols="2">
+					<colspec colname="c1"/>
+					<colspec colname="c2"/>
+					<tbody>
+						<row>
+							<entry outputclass="bkDarkGray"><b>Class</b></entry>
+							<entry outputclass="bkDarkGray"><b>Sample</b></entry>
+						</row>
+						<row>
+							<entry>colorRed</entry>
+							<entry><ph outputclass="colorRed">This text should be red</ph></entry>
+						</row>
+						<row>
+							<entry>colorPink</entry>
+							<entry><ph outputclass="colorPink">This text should be pink</ph></entry>
+						</row>
+						<row>
+							<entry>colorBlue</entry>
+							<entry><ph outputclass="colorBlue">This text should be blue</ph></entry>
+						</row>
+						<row>
+							<entry>colorGray</entry>
+							<entry><ph outputclass="colorGray">This text should be gray</ph></entry>
+						</row>
+						<row>
+							<entry>colorOrange</entry>
+							<entry><ph outputclass="colorOrange">This text should be orange</ph></entry>
+						</row>
+						<row>
+							<entry>colorLightBlue</entry>
+							<entry><ph outputclass="colorLightBlue">This text should be light blue</ph></entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+
+			<p outputclass="h1">Cell background colours</p>
+			<p>These are the classes that Oxygen 28.1 silently overrode: its main.css
+				colours every table cell white at a higher specificity, so each of these
+				rules carries !important. If any cell below is white, that fix has been
+				lost.</p>
+			<table colsep="1" frame="all" rowsep="1">
+				<tgroup cols="2">
+					<colspec colname="c1"/>
+					<colspec colname="c2"/>
+					<tbody>
+						<row>
+							<entry outputclass="bkDarkGray"><b>Class</b></entry>
+							<entry outputclass="bkDarkGray"><b>Sample cell</b></entry>
+						</row>
+						<row>
+							<entry>bkLightGray</entry>
+							<entry outputclass="bkLightGray">Light gray background</entry>
+						</row>
+						<row>
+							<entry>bkDarkGray</entry>
+							<entry outputclass="bkDarkGray">Dark gray background</entry>
+						</row>
+						<row>
+							<entry>bkYellow</entry>
+							<entry outputclass="bkYellow">Yellow background</entry>
+						</row>
+						<row>
+							<entry>bkBlue</entry>
+							<entry outputclass="bkBlue">Blue background</entry>
+						</row>
+						<row>
+							<entry>bkRed</entry>
+							<entry outputclass="bkRed">Red background</entry>
+						</row>
+						<row>
+							<entry>bkGreen</entry>
+							<entry outputclass="bkGreen">Green background</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+
+			<p outputclass="h1">Text emphasis</p>
+			<p>bold: <ph outputclass="bold">this text should be heavier than the
+					surrounding body text</ph></p>
+			<!--
+				placeholder is shown in a paragraph, not a table cell, on purpose. Unlike
+				the bk* classes above it has no !important, so inside a table it loses to
+				Oxygen 28.1's main.css and renders white. Demonstrating it here shows the
+				rule working; putting it in a cell would show it failing.
+			-->
+			<p>placeholder: <ph outputclass="placeholder">this text should sit on a
+					yellow highlight</ph></p>
+
+			<p outputclass="h1">Heading classes</p>
+			<p>DITA has no inline heading, so headings are paragraphs carrying h1 or h2.
+				Both render at 2em; the two classes are interchangeable in appearance and
+				differ only in authoring intent.</p>
+			<p outputclass="h1">h1 — this line should be large</p>
+			<p outputclass="h2">h2 — this line should be the same size as the h1 above</p>
+
+			<p outputclass="h1">Link buttons</p>
+			<p>enterBtn turns a link into a full-width grey button in 28px bold Arial.</p>
+			<p>
+				<xref format="dita" href="./Abbreviations.dita" outputclass="enterBtn">enterBtn — a large button link</xref>
+			</p>
+			<p>Inside a contents-index table the same class is reduced to 20px, because
+				that page carries many of them.</p>
+			<table outputclass="contents-index">
+				<tgroup cols="3">
+					<colspec colname="c1"/>
+					<colspec colname="c2"/>
+					<colspec colname="c3"/>
+					<tbody>
+						<row>
+							<entry>
+								<xref format="dita" href="./Abbreviations.dita" outputclass="enterBtn">Abbreviations</xref>
+							</entry>
+							<entry>
+								<xref format="dita" href="./VanesandCranes.dita" outputclass="enterBtn">Vanes &amp; Cranes</xref>
+							</entry>
+							<entry>
+								<xref format="dita" href="../Welcome.dita" outputclass="enterBtn">Welcome</xref>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+
+			<!--
+				item-list was previously used only in the real publication on the target
+				network, so nothing in this repository exercised it and the publish tests
+				could not see it. It lays links out as a wrapping row of rounded buttons.
+			-->
+			<p outputclass="h1">Item list</p>
+			<p>item-list wraps its links into a row of rounded buttons rather than
+				stacking them.</p>
+			<p outputclass="item-list">
+				<xref format="dita" href="./Abbreviations.dita">First item</xref>
+				<xref format="dita" href="./VanesandCranes.dita">Second item</xref>
+				<xref format="dita" href="../Welcome.dita">Third item</xref>
+			</p>
+
+			<p outputclass="h1">Sortable table</p>
+			<p>Click a header cell to sort. The header row is lighter than a plain
+				bkDarkGray cell, and sortable columns show a ▴▾ marker; the column marked
+				sorttable_nosort is darker, shows no marker, and does not respond to a
+				click.</p>
+			<table colsep="1" frame="all" outputclass="sortable" rowsep="1">
+				<tgroup cols="3">
+					<colspec colname="c1"/>
+					<colspec colname="c2"/>
+					<colspec colname="c3"/>
+					<tbody>
+						<row>
+							<entry outputclass="bkDarkGray"><b>Sortable</b></entry>
+							<entry outputclass="bkDarkGray"><b>Also sortable</b></entry>
+							<entry outputclass="bkDarkGray sorttable_nosort"><b>Not sortable</b></entry>
+						</row>
+						<row>
+							<entry>Charlie</entry>
+							<entry>30</entry>
+							<entry>no sort marker</entry>
+						</row>
+						<row>
+							<entry>Alpha</entry>
+							<entry>10</entry>
+							<entry>no sort marker</entry>
+						</row>
+						<row>
+							<entry>Bravo</entry>
+							<entry>20</entry>
+							<entry>no sort marker</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+
+			<!--
+				fullWidthTable and table-separator matched nothing in the published output
+				before this page, so tests/publish/cascade.spec.js had no element to audit
+				them against. They are exercised here for that reason as much as for the
+				visual check.
+			-->
+			<p outputclass="h1">Full width table and separator rows</p>
+			<p>fullWidthTable makes a table span the content area. table-separator
+				enlarges a row used to break a table into groups.</p>
+			<table colsep="1" frame="all" outputclass="fullWidthTable" rowsep="1">
+				<tgroup cols="2">
+					<colspec colname="c1"/>
+					<colspec colname="c2"/>
+					<tbody>
+						<row>
+							<entry nameend="c2" namest="c1" outputclass="table-separator bkLightGray">
+								<b>table-separator — this row should be larger than the rows below</b>
+							</entry>
+						</row>
+						<row>
+							<entry>Ordinary row</entry>
+							<entry>Ordinary row</entry>
+						</row>
+						<row>
+							<entry>Ordinary row</entry>
+							<entry>Ordinary row</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</section>
+	</refbody>
+	<related-links id="related-pages">
+		<link href="./Abbreviations.dita">
+			<linktext>Abbrevs</linktext>
+		</link>
+		<link href="../Introduction/ContentsPage.dita">
+			<linktext>Contents</linktext>
+		</link>
+	</related-links>
+</reference>
