@@ -15,6 +15,29 @@ PUBLISH_DIR=path/to/output npm test       # a specific build
 npm run test:report                       # last run's HTML report
 ```
 
+## Installing
+
+The project lockfile is `yarn.lock` (yarn classic), so `npm ci` cannot be used —
+it needs a `package-lock.json`. Either runner works:
+
+```
+yarn install --frozen-lockfile     # matches the lockfile exactly
+npm install                        # also fine; package-lock.json is gitignored
+npx playwright install chromium    # the browser the suite pins
+```
+
+**Behind TLS interception**, every registry request fails with
+`UNABLE_TO_GET_ISSUER_CERT_LOCALLY`. Node ships its own CA bundle and ignores
+the Windows certificate store, so a corporate root trusted by Windows is
+invisible to it. Point Node at the system store:
+
+```
+NODE_OPTIONS=--use-system-ca npm install
+```
+
+The same applies to `npx playwright install` and to `npm test` itself. Set it as
+a user environment variable to stop it recurring.
+
 ## Why these are browser tests and not HTML assertions
 
 The 25.1 → 28.1 breakage changed **no HTML**. Oxygen renamed its own CSS and JS
@@ -141,7 +164,7 @@ copying the output to a scratch directory, breaking one thing, and pointing
 | Logo deleted, `src` left as a tidy relative path | fail | Caught by `naturalWidth`, the only signal that separates it from working output |
 | Page layouts stop linking any Oxygen stylesheet (no 404 produced) | fail | Caught by the foreign-stylesheet count |
 | Stock `notes.css` **deleted** | fail | 11 failures, via the 404 sweep alone |
-| **Oxygen restyles its own sheets** — body font, navbar layout, and the `notes.css` note-box radius | **pass** | **37 passed.** Their design, not our regression |
+| **Oxygen restyles its own sheets** — body font, navbar layout, and the `notes.css` note-box radius | **pass** | **All passed.** Their design, not our regression |
 | A build shipping 2 KB/page of template authoring notes | fail | Caught by the comment budget, which names the byte count and lists the offending comments |
 
 The **restyled** and **deleted** `notes.css` rows are the pair that defines the
@@ -152,8 +175,15 @@ not. Keeping both true is what makes a green run mean something.
 
 ## Confirmed against Oxygen 28.1
 
-Both baselines now pass all 37 — `oxygen-26/` (Oxygen 26, repo-root `template/`)
-and `oxygen-28/` (Oxygen 28.1, `template-2026/`).
+The suite is 39 tests. Both baselines pass all of them — `oxygen-26/` (Oxygen
+26, repo-root `template/`) and `oxygen-28/` (Oxygen 28.1, `template-2026/`).
+
+`oxygen-28/` only reached that on 2026-09-04. The snapshot committed before then
+failed `cascade.spec.js` on 22 declarations: it was taken *before* the
+table-cell `!important` fix, so every coloured cell rendered white. It was
+re-snapshotted from the first publish that passes the whole suite. Worth
+remembering when reading the deliberate-breakage table above — a frozen folder
+is only as good as the build it was frozen from.
 
 The suite also met the **genuine** 25.1 → 28.1 breakage along the way, not a
 simulated one: a build was accidentally produced with the 2025 template on
