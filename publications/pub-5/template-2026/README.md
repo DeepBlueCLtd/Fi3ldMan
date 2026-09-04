@@ -4,6 +4,16 @@ This is the Fi3ldMan publishing template rebuilt on the Oxygen 28.1 WebHelp
 Responsive base. It replaces `../template`, which was built in 2024 on the
 Oxygen 25.1 base and produces broken output under Oxygen 2026.
 
+> **Releases.** Every push to `main` that changes this folder publishes a
+> versioned zip, tagged `pub-5-template-2026-v<major>.<minor>.<patch>`. Patch is
+> automatic; put `[minor]` or `[major]` in a commit message to bump further.
+> The release stamps the version into `resources/template-version.txt`, which
+> Oxygen copies into every published output at
+> `oxygen-webhelp/template/resources/template-version.txt` — so a publication
+> can be traced back to the template that built it. That file is committed with
+> an `(unreleased)` placeholder; do not delete it. See
+> `context-docs/14-template-releases.md`.
+
 > This file records **why** the template is built the way it is. For the
 > system-level description — how Oxygen consumes it, the parameter reference and
 > the upgrade procedure — see `context-docs/11-publishing-template-2026.md`. For
@@ -82,6 +92,7 @@ Everything else in this folder is stock. These are the only customisations:
 | `page-templates/wt_search.html` | Removes the stock body-level search input (marked `FI3LDMAN DELTA`) |
 | `page-templates/wt_terms.html` | None — byte-identical to stock |
 | `xslt/`, `page-templates-fragments/`, `f13ldman.css`, `resources/corp_logo.png`, `resources/*.js`, `resources/images/*` | Fi3ldMan-owned |
+| `resources/template-version.txt` | Fi3ldMan-owned. Version stamp — committed as a placeholder, rewritten by the release script. Rides into the published output on the `resources/**/*` fileset |
 | `oxygen.css`, `oxygen-theme.css`, `oxygen-print.css`, `notes.css` | Stock — replaced wholesale on upgrade, never edited. `notes.css` looks like ours and is not: Oxygen generates it from the note-styling options picked when a template is created |
 
 Stock 28.1 sources live in:
