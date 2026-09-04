@@ -35,11 +35,15 @@ const { sweep, coverageNote } = require('./helpers')
  *
  * Empty, and that is the finding rather than an omission.
  *
- * The list held nine entries. Six said, in prose, that a declaration had been
+ * The list held ten entries. Seven said, in prose, that a declaration had been
  * displaced by a more specific rule of our own — .c-full-width, the four
- * .related-links icon properties, .bkDarkGray and the sortable header colour.
- * The audit now works that out for itself (see `lostToOurOwnSheet` below), so
- * they went with the mechanism that needed them.
+ * .related-links icon properties, .bkDarkGray, the sortable header colour, and
+ * `.enterBtn { font-size }`, added by hand when the Style Samples page put the
+ * button beside its own .contents-index variant. That last one is why the
+ * prose approach had to go: the page demonstrates base rules next to their
+ * variants on purpose, so every sample added would have earned an entry. The
+ * audit now works this out for itself (see `lostToOurOwnSheet` below), and all
+ * seven went with the mechanism that needed them.
  *
  * The remaining three were recorded as genuine losses to Oxygen, "pre-existing
  * on 26 and 28.1 — unresolved", and left for whoever next looked at the

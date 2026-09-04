@@ -175,22 +175,35 @@ not. Keeping both true is what makes a green run mean something.
 
 ## Confirmed against Oxygen 28.1
 
-The suite is 39 tests. `oxygen-26/` (Oxygen 26, repo-root `template/`) passes
-all of them.
+The suite is 40 tests, and `current/` and `oxygen-28/` both pass all of them.
+`oxygen-26/` passes at 39 — it predates `StyleSamples.html` joining the page
+list, so it runs one test fewer. The two numbers are not a discrepancy.
 
-`oxygen-28/` (Oxygen 28.1, `template-2026/`) does **not**, and neither does the
-deployed `current/`. Both fail `cascade.spec.js` on 22 declarations: they were
-published *before* the table-cell `!important` fix, so every coloured cell
-renders white while the HTML, the classes and the stylesheet are all correct.
-A publish that fixes it has been verified at 39/39; both folders are refreshed
-at the next publish. See `site/pub-5/README.md`.
+That is true because `OPTIONAL_PAGES` in `helpers.js` makes it true, and it was
+not true when the page was added. A page missing from a publish does not
+quietly cost one test: `oxygen-26/` failed six, across four spec files, every
+one of them "this page 404s" rather than anything about styling. A frozen
+snapshot can never acquire a page added later, so it would have stayed red for
+good. `OPTIONAL_PAGES` names the pages a publish may legitimately lack, one
+line of reason each; such a page is skipped when absent and only when absent,
+announced on stderr, and named in the failure message of any sweep that did not
+cover it. Every other 404 still fails the run.
 
-That is worth reading against the deliberate-breakage table above. The suite
-was written to catch exactly this failure and does catch it — but nobody had
-pointed it at the frozen folders, so a snapshot taken before the fix sat in the
-repo as the reference a new publish would be diffed against. A frozen folder is
-only as good as the build it was frozen from, and only as trusted as the last
-time someone ran the suite over it.
+The cost is worth stating plainly: if a *current* publish stops emitting one of
+those pages, the sweeps go quiet about it instead of failing. Keep the list
+short.
+
+It took a while to get there. `oxygen-28/` and the deployed `current/` spent a
+period failing `cascade.spec.js` on 22 declarations: both were published
+*before* the table-cell `!important` fix, so every coloured cell rendered white
+while the HTML, the classes and the stylesheet were all correct.
+
+That is worth reading against the deliberate-breakage table above. The suite was
+written to catch exactly this failure and does catch it — but nobody had pointed
+it at the frozen folders, so a snapshot taken before the fix sat in the repo as
+the reference a new publish would be diffed against. A frozen folder is only as
+good as the build it was frozen from, and only as trusted as the last time
+someone ran the suite over it.
 
 The suite also met the **genuine** 25.1 → 28.1 breakage along the way, not a
 simulated one: a build was accidentally produced with the 2025 template on
@@ -206,6 +219,30 @@ Two things it settled that had only been reasoned about before:
   newest and least proven thing in the template.
 
 ## Known coverage gaps
+
+Tracked in **issue #184**, along with the styling follow-ups they turned up.
+
+- **A class whose *descendants* lose is invisible to `cascade.spec.js`.** The
+  audit force-applies each declaration on the element carrying the class and
+  watches the computed value. That catches a specificity fight on the same
+  element, and misses inheritance. `outputclass="colorRed"` on a `<row>` puts
+  the class on the `<tr>`, whose own computed colour is correct — while Oxygen
+  28.1's `main.css` sets `color` on each `<td>` directly and the cells render
+  black. The test passed throughout; the bug was found by eye. `.bold` on a row
+  fails the same way today and nothing reports it.
+
+- **A class used in content that no stylesheet defines is not detected _by this
+  suite_.** The audit reads rules *out of* `f13ldman.css` and checks they land,
+  so the inverse never comes up here. `colorDarkBlue` and `colorDarkBrown` were
+  used in `VanesandCranes.dita` and defined nowhere, rendering black, for as
+  long as anyone had been looking.
+
+  `publications/pub-5/audit-classes.py` answers it instead, from the source
+  rather than the browser: point it at one or more DITA trees and it reports
+  every `outputclass` no stylesheet defines — thirteen in pub-5 — alongside
+  every rule nothing asks for. It is not part of a test run, because the
+  decision it feeds is per class and per publication: add a rule, or strip the
+  attribute. Issue #184 tracks that decision.
 
 - **The CSS load order is only verified indirectly.** The 2026 change put
   `f13ldman.css` last so its overrides reliably win. Nothing in `f13ldman.css`
