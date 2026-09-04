@@ -2,18 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
       <loc>PlatformData/PD_1.html</loc>
-      <lastmod>2026-08-25T09:34:22Z</lastmod>
+      <lastmod>2026-09-04T10:29:45Z</lastmod>
    </url>
    <url>
       <loc>QuickLinksData/Abbreviations.html</loc>
-      <lastmod>2026-08-25T09:34:22Z</lastmod>
+      <lastmod>2026-09-04T10:29:45Z</lastmod>
    </url>
    <url>
       <loc>Introduction/Warning.html</loc>
-      <lastmod>2026-08-25T09:34:22Z</lastmod>
+      <lastmod>2026-09-04T10:29:45Z</lastmod>
    </url>
    <url>
       <loc>QuickLinksData/Contents_Index.html</loc>
-      <lastmod>2026-08-25T09:34:22Z</lastmod>
+      <lastmod>2026-09-04T10:29:45Z</lastmod>
+   </url>
+   <url>
+      <loc>QuickLinksData/StyleSamples.html</loc>
+      <lastmod>2026-09-04T10:29:45Z</lastmod>
    </url>
 </urlset>

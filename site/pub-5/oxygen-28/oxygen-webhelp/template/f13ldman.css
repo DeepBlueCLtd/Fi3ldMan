@@ -23,6 +23,19 @@
   padding: 2px !important;
 }
 
+/* Suppress the target page's short description in the related-links panel.
+   DITA emits the target's <shortdesc> as a <div class="desc"> beneath each
+   link, so a link to a page that has a sub-title renders the sub-title
+   underneath it — which in a narrow floating panel pushes the list out of
+   shape and repeats text the link already carries in its `title` attribute.
+
+   Consistent with the `.shortdesc` rule further down, which hides short
+   descriptions on topic pages for the same reason: they are wanted on the home
+   page and nowhere else. */
+li.linklist div.desc {
+  display: none;
+}
+
 /** suppress link to current page in related-links.
     The `current` class is applied at run time by resources/current-handler.js,
     so this rule has no effect until that script has run. */
@@ -260,35 +273,99 @@ padding: 0 10px;
   font-size: 1.5em;
 }
 
+/*
+ * Table cell colours.
+ *
+ * !important is load-bearing here, not habit. Oxygen 28.1's main.css added
+ *
+ *     .simpletable>:not(caption)>*>*, .table>:not(caption)>*>* {
+ *         background-color: var(--wh-primary-bg,#fff);
+ *         color: var(--wh-primary-color,#000);
+ *     }
+ *
+ * which scores (0,1,1) against these classes' (0,1,0). Every coloured cell in
+ * every table rendered white under 28.1 while the HTML stayed correct and the
+ * class was still on the element. No rule of this shape existed in Oxygen 26.
+ *
+ * Raising specificity instead (td.bkDarkGray and so on) would only tie, and
+ * would need revisiting the next time Oxygen adds a descendant to that
+ * selector. Verified by tests/publish/cascade.spec.js.
+ */
 .colorRed {
-  color: #F00;
+  color: #F00 !important;
   border-color: #000;
 }
 
 .colorPink {
-  color: #F0F;
+  color: #F0F !important;
   border-color: #000;
 }
 
 .colorBlue {
-  color: #00F;
+  color: #00F !important;
   border-color: #000;
 }
 
 .colorGray {
-  color: #777;
+  color: #777 !important;
   border-color: #000;
 }
 
 .colorOrange {
-  color: #FC0;
+  color: #FC0 !important;
   border-color: #000;
 }
 
 .colorLightBlue {
-  color: #0FF;
+  color: #0FF !important;
   border-color: #000;
 }
+
+/* Dark blue and dark brown. Both were in use in the content — Vanes & Cranes
+   has had "This title is in blue" and "This title is in brown" since before the
+   2026 template — but neither class was ever defined in any stylesheet, so both
+   lines rendered in ordinary black. Chosen dark enough to be unmistakable
+   against .colorBlue (#00F) rather than a second shade of the same colour. */
+.colorDarkBlue {
+  color: #008 !important;
+  border-color: #000;
+}
+
+.colorDarkBrown {
+  color: #630 !important;
+  border-color: #000;
+}
+
+/*
+ * The same colour classes, applied to a whole <row>.
+ *
+ * `outputclass="colorRed"` on a DITA <row> puts the class on the <tr>, and the
+ * colour used to reach the cells by inheritance. Oxygen 28.1's main.css ended
+ * that: its `.table>:not(caption)>*>*` rule sets `color` on every <td>
+ * *directly*, and a directly-declared value always beats an inherited one.
+ *
+ * This is not the specificity fight the .bk* classes above have, and the
+ * !important on the rules above does not help here — an important declaration
+ * on the parent is still only inherited, and inheritance never competes with a
+ * declaration that matches the element itself. The only fix is to name the
+ * cells, which is what these rules do.
+ *
+ * The selector does not exist in the Oxygen 26 output at all, so row-level
+ * colouring worked there and broke silently on the upgrade. Four rows in the
+ * sample content use it (Phase_G, unit_anchors ×3).
+ *
+ * cascade.spec.js cannot catch this class of fault: it audits the element
+ * carrying the class, and the <tr>'s own computed colour is correct — it is the
+ * descendants that lose. Verified by eye on the Style Samples page.
+ */
+.colorRed > td, .colorRed > th { color: #F00 !important; }
+.colorPink > td, .colorPink > th { color: #F0F !important; }
+.colorBlue > td, .colorBlue > th { color: #00F !important; }
+.colorGray > td, .colorGray > th { color: #777 !important; }
+.colorOrange > td, .colorOrange > th { color: #FC0 !important; }
+.colorLightBlue > td, .colorLightBlue > th { color: #0FF !important; }
+.colorDarkBlue > td, .colorDarkBlue > th { color: #008 !important; }
+.colorDarkBrown > td, .colorDarkBrown > th { color: #630 !important; }
 
 
 .placeholder {
@@ -296,27 +373,27 @@ padding: 0 10px;
 }
 
 .bkLightGray {
-  background-color: #CCC;    
+  background-color: #CCC !important;    
 }
 
 .bkDarkGray {
-  background-color: #999;    
+  background-color: #999 !important;    
 }
 
 .bkYellow {
-  background-color: #ffff00;    
+  background-color: #ffff00 !important;    
 }
 
 .bkBlue {
-  background-color: #0000ff;    
+  background-color: #0000ff !important;    
 }
 
 .bkRed {
-  background-color: #ff0000;    
+  background-color: #ff0000 !important;    
 }
 
 .bkGreen {
-  background-color: #00ff00;    
+  background-color: #00ff00 !important;    
 }
 
 .bold {
@@ -394,9 +471,27 @@ padding: 0 10px;
  * width at its own aspect ratio - which is why rows of images that are authored
  * as the same height render at different heights.
  *
- * These rules restore a uniform height and let the width follow the aspect
- * ratio, so nothing is cropped. Adjust the two variables below to retune;
- * there is no need to touch the content or the images.
+ * The two cases are treated differently on purpose:
+ *
+ *   Rows of images in a <div>  uniform height, width follows the aspect ratio.
+ *                              Nothing is cropped or distorted.
+ *
+ *   Image link tables          uniform height AND width, so the navigation
+ *                              tiles form an even grid. An image whose real
+ *                              aspect ratio differs is stretched to fit.
+ *
+ * The table case has to restate the authored size rather than defer to the
+ * `<image width= height=>` attributes, because it cannot defer to them: HTML
+ * presentational attributes lose to *any* author declaration, and Oxygen's
+ * `.image { height: auto }` is one. The attribute can never win on its own, so
+ * the only way to honour the authored size is for the CSS to carry the same
+ * numbers.
+ *
+ * That makes these two variables and the content a matched pair. If you change
+ * the tile size here, change `<image width= height=>` in the ImageLinksTable
+ * topics to match (currently Britain1.dita and Wales1.dita) — otherwise the
+ * markup claims one size and the page renders another, which is exactly the
+ * confusion this comment exists to prevent.
  * ---------------------------------------------------------------------------
  */
 /* Starting points, not measured values: read off the representative content in
@@ -408,8 +503,11 @@ padding: 0 10px;
   /* Rows of linked images inside a plain DITA <div>. */
   --f13-image-row-height: 177px;
 
-  /* Linked images used as navigation tiles inside a table cell. */
-  --f13-image-link-height: 150px;
+  /* Linked images used as navigation tiles inside a table cell. Both
+     dimensions are fixed here, and must match the `<image width= height=>`
+     attributes in the ImageLinksTable topics. */
+  --f13-image-link-height: 203px;
+  --f13-image-link-width: 438px;
 }
 
 /*
@@ -436,7 +534,7 @@ padding: 0 10px;
    so any image link table picks this up regardless of outputclass. */
 .body td > a.xref > img.image {
   height: var(--f13-image-link-height);
-  width: auto;
+  width: var(--f13-image-link-width);
 }
 
 /* style for large link buttons */
@@ -495,12 +593,17 @@ table.sortable  .sorttable_nosort {
   cursor: default;
 }
 
+/* !important for the same reason as the .bk* classes above, and one more:
+   these header cells also carry a bk* class from the content, and those are
+   now !important too. Without a matching !important here the cell's own
+   colour would win and the sortable headers would lose their lighter shade.
+   Specificity still decides between two !important declarations. */
 table.sortable thead td {
-    background-color: #BBB;
+    background-color: #BBB !important;
 }
 
 table.sortable thead td.sorttable_nosort {
-    background-color: #999;
+    background-color: #999 !important;
 }
 
 table.sortable thead td:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after, 
