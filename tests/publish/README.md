@@ -175,15 +175,22 @@ not. Keeping both true is what makes a green run mean something.
 
 ## Confirmed against Oxygen 28.1
 
-The suite is 39 tests. Both baselines pass all of them — `oxygen-26/` (Oxygen
-26, repo-root `template/`) and `oxygen-28/` (Oxygen 28.1, `template-2026/`).
+The suite is 39 tests. `oxygen-26/` (Oxygen 26, repo-root `template/`) passes
+all of them.
 
-`oxygen-28/` only reached that on 2026-09-04. The snapshot committed before then
-failed `cascade.spec.js` on 22 declarations: it was taken *before* the
-table-cell `!important` fix, so every coloured cell rendered white. It was
-re-snapshotted from the first publish that passes the whole suite. Worth
-remembering when reading the deliberate-breakage table above — a frozen folder
-is only as good as the build it was frozen from.
+`oxygen-28/` (Oxygen 28.1, `template-2026/`) does **not**, and neither does the
+deployed `current/`. Both fail `cascade.spec.js` on 22 declarations: they were
+published *before* the table-cell `!important` fix, so every coloured cell
+renders white while the HTML, the classes and the stylesheet are all correct.
+A publish that fixes it has been verified at 39/39; both folders are refreshed
+at the next publish. See `site/pub-5/README.md`.
+
+That is worth reading against the deliberate-breakage table above. The suite
+was written to catch exactly this failure and does catch it — but nobody had
+pointed it at the frozen folders, so a snapshot taken before the fix sat in the
+repo as the reference a new publish would be diffed against. A frozen folder is
+only as good as the build it was frozen from, and only as trusted as the last
+time someone ran the suite over it.
 
 The suite also met the **genuine** 25.1 → 28.1 breakage along the way, not a
 simulated one: a build was accidentally produced with the 2025 template on
