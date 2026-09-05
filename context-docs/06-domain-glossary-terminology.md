@@ -6,7 +6,7 @@
 |------|-----------|
 | **Fi3ldMan** | The project name for this Field Service Manual system with advanced data exploitation. The "3" in the name is a leetspeak substitution for "e" (FieldMan). |
 | **Pub-5** | Publication 5 - The main regional field service manual, the original publication this repo was created for. |
-| **Pub-9** | Publication 9 - Companion publication to Pub-10, currently at mockup stage. |
+| **Pub-9** | Publication 9 - the redacted edition of Pub-10: the same DITA source published through an `audience` filter that removes the answers. |
 | **Pub-10** | Publication 10 - Specialized publication focused on spectral analysis (Grams). |
 | **Grams** | Spectral/acoustic analysis data plots used in Pub-9 and Pub-10 for signal identification and diagnostic training. |
 | **LOFAR** | Low Frequency Analysis and Recording - acoustic analysis technique referenced in gram content. |

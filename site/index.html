@@ -61,7 +61,9 @@
 <h1>Fi3ldMan</h1>
 <p class="lede">Field Service Manual with advanced data exploitation.
 Published WebHelp output for each Fi3ldMan publication, plus the prototypes
-behind its interactive features.</p>
+behind its interactive features. Every publication below is built from DITA
+source by Oxygen, and since September 2026 they all share one publishing
+template.</p>
 <p class="note">Source, publishing templates and project documentation live in
 the <a href="https://github.com/DeepBlueCLtd/Fi3ldMan">repository</a>.</p>
 
@@ -73,7 +75,9 @@ a known-good reference.</p>
 <ul class="publishes">
   <li class="current">
     <a href="pub-5/current/index.html">Pub-5 — current publish</a><span class="tag">current</span>
-    <span class="meta">Oxygen 28.1, built with <code>template-2026</code>. Same output as the oxygen-28 snapshot below.</span>
+    <span class="meta">Published 2026-09-05, Oxygen 28.1, with <code>template-2026</code> — now the
+    template shared with Pub-9 and Pub-10. Differs from the oxygen-28 snapshot below only by the
+    spectrogram script that shared template carries.</span>
   </li>
   <li>
     <a href="pub-5/oxygen-28/index.html">Pub-5 on Oxygen 28.1</a><span class="tag frozen">frozen</span>
@@ -89,11 +93,23 @@ a known-good reference.</p>
   </li>
 </ul>
 
-<h2>Pub-10</h2>
+<h2>Pub-9 and Pub-10</h2>
+<p class="note">Spectral analysis (&ldquo;Grams&rdquo;). One DITA source, published twice: the
+<strong>Pub-10</strong> edition carries the full content, and the <strong>Pub-9</strong> edition is the
+same material with the answers filtered out — no vessel identifications in the gram titles, and no
+links to the worked analysis. Both are built from the same
+<code>template-2026</code> that publishes Pub-5.</p>
 <ul class="publishes">
   <li class="current">
-    <a href="pub-10/current/index.html">Pub-10 — current publish</a><span class="tag">current</span>
-    <span class="meta">Committed September 2025.</span>
+    <a href="pub-10/current/index.html">Pub-10 — full edition</a><span class="tag">current</span>
+    <span class="meta">Published 2026-09-05, Oxygen 28.1. Twelve pages, including the two worked
+    analysis topics. Grams are interactive: drag across a spectrogram to read off values.</span>
+  </li>
+  <li class="current">
+    <a href="pub-9/current/index.html">Pub-9 — redacted edition</a><span class="tag">current</span>
+    <span class="meta">Published 2026-09-05, Oxygen 28.1. The same ten pages minus the analysis
+    topics, produced by one filter (<code>audience</code> excluding <code>-trainee</code>) rather
+    than a separate source.</span>
   </li>
 </ul>
 
@@ -119,7 +135,8 @@ a known-good reference.</p>
   </li>
   <li>
     <a href="mockups/p9-10/index.html">Pub-9 / Pub-10 mockups</a>
-    <span class="meta">The only place the pub-9 layout exists.</span>
+    <span class="meta">The original hand-built previews, kept for reference. Both publications now
+    publish from DITA source — see above.</span>
   </li>
 </ul>
 

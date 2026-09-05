@@ -6,7 +6,7 @@ Fi3ldMan is a Field Service Manual system with advanced data exploitation capabi
 
 The repository hosts three publications:
 - **Pub-5**: The original and largest publication - regional field service documentation
-- **Pub-9**: A companion publication to Pub-10 (currently at mockup stage)
+- **Pub-9**: The redacted edition of Pub-10 — same DITA source, one `audience` filter, published to `site/pub-9/current/`
 - **Pub-10**: A specialized publication focused on spectral analysis ("Grams")
 
 plus an archived **legacy regions** publication, built on a custom DITA
@@ -150,7 +150,7 @@ legacy-regions/
 Archived: kept for reference, not developed. Its published output is at
 `site/legacy-regions/`. See `08-legacy-migration-strategy.md`.
 
-### Pub-9 (mockup stage only)
+### Pub-9 (an edition of Pub-10, not a separate source)
 ```
 site/mockups/p9-10/
 ├── index.html           # Navigation hub for P9 and P10 mockups
@@ -167,7 +167,11 @@ site/mockups/p9-10/
 └── to_convert.html      # Sample HTML for DITA conversion testing
 ```
 
-Pub-9 has no DITA source; the mockup is the only place it exists.
+Pub-9 has no DITA source of its own and needs none: it is `publications/pub-10/dita/`
+published through a scenario filter that excludes `audience="-trainee"`, which
+removes the vessel identifications and the worked-analysis links. Published to
+`site/pub-9/current/`; the mockups here are the original hand-built previews.
+See `15-shared-publishing-template.md`.
 
 ## The published site (`site/`)
 

@@ -24,7 +24,7 @@ from it.
 | | |
 | --- | --- |
 | `pub-5/` | The main publication. `dita/` source, `template-2026/` (current, Oxygen 28.1, and now **shared with pub-10**), `template-2024/` (what the oxygen-26 publish was built with), `check-publish.py`, `audit-classes.py`, and pub-5's ditaval / author layout / icon-audit config |
-| `pub-10/` | Spectral analysis ("Grams"). `dita/` source. Publishes from `pub-5/template-2026/` — the same template and the same scenario as pub-5; `pub-10/template/` is the retired fork, kept until both publishes are verified |
+| `pub-10/` | Spectral analysis ("Grams"). `dita/` source, published twice from `pub-5/template-2026/` — the full edition to `site/pub-10/current/`, and the redacted one to `site/pub-9/current/` via a single `audience` filter. `pub-10/template/` is the retired fork |
 | `legacy-regions/` | Archived DITA specialization with a custom DTD. Kept for reference, not developed |
 
 Oxygen writes each publish to a gitignored `out/` inside the publication.
@@ -37,9 +37,10 @@ Nothing under `publications/` is served.
 | `index.html` | The hub page — a section per publication |
 | `pub-5/current/` | The browsable pub-5 publish. The only pub-5 folder a publish overwrites |
 | `pub-5/oxygen-28/`, `oxygen-26/`, `oxygen-25/` | **Frozen** publishes, one per Oxygen version — byte-exact snapshots to diff a new publish against, and browsable pages in their own right. See `site/pub-5/README.md` |
-| `pub-10/current/` | The pub-10 publish |
+| `pub-10/current/` | The pub-10 publish — the full "Grams" edition |
+| `pub-9/current/` | The pub-9 publish — the same source with the answers filtered out |
 | `legacy-regions/` | The legacy publication's output |
-| `mockups/` | Dynamic-table prototypes, and the pub-9 / pub-10 mockups |
+| `mockups/` | Dynamic-table prototypes, and the original hand-built pub-9 / pub-10 previews |
 
 `.github/workflows/pages.yml` deploys `site/` and nothing else. There is no
 build step in CI — the workflow just uploads the folder.
@@ -68,8 +69,9 @@ build step in CI — the workflow just uploads the folder.
 3. Diff it against the frozen publish for the Oxygen version you built with —
    `site/pub-5/README.md` explains how, and why `buildId` must be normalised
    first or every page looks changed.
-4. Copy the verified output over `site/pub-5/current/` and commit. Merging to
-   `main` deploys it.
+4. Copy the verified output over the publication's `site/` folder and commit —
+   `site/pub-5/current/`, `site/pub-10/current/` for the full Grams edition, or
+   `site/pub-9/current/` for the redacted one. Merging to `main` deploys it.
 
 `npm start` serves `site/` locally — the same folder Pages serves.
 

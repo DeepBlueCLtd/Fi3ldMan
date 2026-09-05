@@ -77,16 +77,22 @@ that should be styled, today, with no rules ported.
 
 ## 3. Pub-9
 
-Pub-9 has no DITA source; it exists only as published mockups under
-`site/mockups/p9-10/p9/`. Those mockups and pub-10's use an **identical set of
-165 HTML classes** — pub-9 introduces nothing. The dozen classes present there
-but not in pub-10's published output (`col-lg-*`, `wh_topic_toc`,
-`close-toc-button`, `section-title`, …) are all Oxygen's own WebHelp chrome,
-and `template-2026` already carries rules for the ones we restyle.
+Pub-9 has no DITA source of its own, and does not need one. It is pub-10's
+source published through one filter — `audience` excluding `-trainee` — which
+strips the vessel identifications from the gram titles and the links to the
+worked analysis. `context-docs/07` describes it as the "redacted companion to
+Pub-10"; the two are one publication with two editions, not two publications.
 
-This is weaker evidence than source would be — when pub-9 gains a DITA source,
-re-run `compare-classes.py` with it before relying on the conclusion. But
-nothing in the mockups argues against a shared template.
+That filter lives on the transformation scenario in `DITA_project_pub10.xpr`,
+**not** in a `.ditaval` — there is no ditaval for pub-10. Both editions are now
+published and deployed: `site/pub-10/current/` (full, 12 pages) and
+`site/pub-9/current/` (redacted, 10 pages).
+
+The original hand-built mockups under `site/mockups/p9-10/` corroborated this
+before either edition was published: the p9 and p10 mockups use an **identical
+set of 165 HTML classes**, and the p9 mockup already lacked the ship names and
+ANALYSIS links. Pub-9 introduces no class of its own, so nothing about it
+argues against the shared template.
 
 ## 4. The "unused pub-5 rules were for pubs 9/10" belief, tested
 
