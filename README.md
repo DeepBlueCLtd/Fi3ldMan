@@ -13,7 +13,7 @@ from it.
 
 | Folder | What it holds |
 | --- | --- |
-| `publications/` | All DITA source and publishing templates — one self-contained folder per publication |
+| `publications/` | All DITA source and publishing templates — one self-contained folder per publication, plus `compare-classes.py` |
 | `site/` | Everything GitHub Pages serves, and nothing else |
 | `tests/publish/` | Browser tests that assert a published output is correctly styled |
 | `context-docs/` | Project knowledge: architecture, content model, templates, workflows |
@@ -98,6 +98,24 @@ machine with a source tree and nothing installed. Point it at every source
 tree that matters before deleting anything: both lists are relative to the
 material given, and a rule unused by one publication may be load-bearing in
 another.
+
+### Can one template serve several publications?
+
+`publications/compare-classes.py` asks the question the other way round: across
+every publication at once, against a single candidate template.
+
+```bash
+python publications/compare-classes.py pub-5 pub-10
+```
+
+It prints each `outputclass` with a per-publication count and a SHARED /
+`<pub>`-ONLY tag, then the classes the candidate fails to style — the migration
+blockers — and the rules it styles for nobody. Run it before adopting a shared
+template, and re-run it whenever a publication gains source.
+
+`context-docs/15-shared-publishing-template.md` records what it found for pub-5
+and pub-10: the 2026 template already styles every pub-10 class, and pub-10's
+own template is `template-2024` plus one script tag.
 
 When Oxygen is upgraded, the first verified publish on the new version is
 committed twice: as a new frozen `site/pub-5/oxygen-NN/`, and over `current/`.
