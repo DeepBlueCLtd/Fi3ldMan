@@ -65,7 +65,7 @@ The published Fi3ldMan output includes several JavaScript components that add in
 
 ### 4. Gram Frame Viewer (`gramframe.bundle.js`)
 
-**Location**: `publications/pub-10/template/resources/gramframe.bundle.js` (~217KB bundled)
+**Location**: `publications/pub-5/template-2026/resources/gramframe.bundle.js` — the shared template, loaded by every publication and a no-op where there is no `gram-config` table. (`publications/pub-10/template/` holds the retired fork's copy.)
 
 **Purpose**: Specialized visualization component for spectral analysis "Grams" in Pub-10. This is a bundled JavaScript module (likely Webpack output) that provides interactive gram/spectrogram display capabilities.
 

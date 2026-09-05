@@ -4,9 +4,10 @@ root = os.path.abspath(sys.argv[1])
 pat = re.compile(r'(?:href|src)="([^"]*)"')
 pages, missing, script_hits = [], collections.Counter(), collections.Counter()
 logo_forms, build_ids = set(), set()
-# The three every publication loads, then gramframe.bundle.js, which only
-# the pub-10 scenario's head fragment adds. Expect 0/N for pub-5 and N/N
-# for pub-10 - a 0 there means the -grams fragment did not take effect.
+# Every publication loads all four - one template, one head fragment. Expect
+# N/N on both pub-5 and pub-10; anything less means the fragment did not reach
+# those pages. gramframe.bundle.js is a no-op on pages with no gram-config
+# table, so pub-5 loading it is expected, not a fault.
 SCRIPTS = ("current-handler.js", "sorttable.js", "harmonics.js",
            "gramframe.bundle.js")
 

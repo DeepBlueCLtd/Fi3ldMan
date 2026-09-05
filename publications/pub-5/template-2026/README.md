@@ -98,8 +98,7 @@ Everything else in this folder is stock. These are the only customisations:
 | `page-templates/wt_search.html` | Removes the stock body-level search input (marked `FI3LDMAN DELTA`) |
 | `page-templates/wt_terms.html` | None — byte-identical to stock |
 | `xslt/`, `page-templates-fragments/`, `f13ldman.css`, `resources/corp_logo.png`, `resources/*.js`, `resources/images/*` | Fi3ldMan-owned |
-| `f13ldMan-p10.opt`, `page-templates-fragments/topic-page-head-grams.xml` | Fi3ldMan-owned. The pub-10 scenario — see "Two publications, one template" |
-| `resources/gramframe.bundle.js` | Fi3ldMan-owned. Loaded by the pub-10 fragment only |
+| `resources/gramframe.bundle.js` | Fi3ldMan-owned. Pub-10's spectrogram viewer; loaded by every publication, a no-op where there is no `gram-config` table |
 | `resources/template-version.txt` | Fi3ldMan-owned. Version stamp — committed as a placeholder, rewritten by the release script. Rides into the published output on the `resources/**/*` fileset |
 | `oxygen.css`, `oxygen-theme.css`, `oxygen-print.css`, `notes.css` | Stock — replaced wholesale on upgrade, never edited. `notes.css` looks like ours and is not: Oxygen generates it from the note-styling options picked when a template is created |
 
@@ -111,29 +110,21 @@ C:\Program Files\Oxygen XML Editor 28\frameworks\dita\DITA-OT\plugins\com.oxygen
 
 ## Two publications, one template
 
-Pub-5 and pub-10 publish from this one folder, through two scenario
-descriptors:
+Pub-5 and pub-10 publish from this folder through **one** `f13ldMan.opt` and
+one head fragment. There is no pub-10 variant of either, and there should not
+be: everything the two publications need is identical.
 
-| `.opt` | Publication | Head fragment |
-| --- | --- | --- |
-| `f13ldMan.opt` | pub-5 | `topic-page-head.xml` |
-| `f13ldMan-p10.opt` | pub-10 | `topic-page-head-grams.xml` |
+`resources/gramframe.bundle.js` is the only asset that is genuinely pub-10's.
+It replaces every table carrying `outputclass="gram-config"` with an interactive
+spectrogram, and pub-5 has no such table — but it loads on pub-5's pages anyway,
+where it is a no-op: its entry point runs
+`querySelectorAll("table.gram-config")`, finds nothing, and stops.
 
-The two `.opt` files are identical but for three things, all marked
-`PUB-10 DELTA` in `f13ldMan-p10.opt`: the name, the fragment, and the
-`resources/gramframe.bundle.js` exclude that only `f13ldMan.opt` carries — the
-`resources/**/*` fileset would otherwise copy the 217 KB bundle into pub-5's
-output, where nothing references it. Layouts, parameters, XSLT and all four
-stylesheets are shared, so an Oxygen upgrade or a styling fix is made once and
-both publications get it. **If you change a parameter in one `.opt`, change it
-in the other** — nothing enforces that, and the failure is silent.
-
-The fragments differ by one line: the pub-10 one also loads
-`resources/gramframe.bundle.js`, which turns every table carrying
-`outputclass="gram-config"` into an interactive spectrogram. That bundle is
-217 KB and pub-5 has no such table, which is why it is not in the shared
-fragment. The first three `<script>` lines are the same in both files and must
-stay that way — there is no include mechanism for HTML fragments.
+That is a deliberate trade. A second `.opt` and a second fragment did briefly
+exist to keep the bundle off pub-5, and cost **63 lines of hand-synchronised
+duplication** — with a silent failure mode if the two drifted — to save a script
+tag that does nothing. One template, one scenario, no drift is worth more than
+a spare HTTP request against a local file.
 
 Nothing else in pub-10 needs anything this template does not already have.
 Pub-10 uses seven `outputclass` values in total; five are pub-5's too, `current`
@@ -144,13 +135,12 @@ JavaScript hook that wants no CSS rule. Re-check that with:
 python publications/compare-classes.py pub-5 pub-10
 ```
 
-`check-publish.py` reports coverage for all four scripts: expect
-`gramframe.bundle.js=0/99` on a pub-5 build and `12/12` on a pub-10 one. A `0`
-on pub-10 means the `-grams` fragment did not take effect.
+`check-publish.py` reports coverage for all four scripts. Expect **N/N on both
+publications** — anything less means the head fragment did not reach those pages.
 
-To publish pub-10, point its transformation scenario at `f13ldMan-p10.opt`.
-Oxygen's template gallery may list only one template per folder; if pub-10's
-scenario does not offer it, browse to the `.opt` file directly.
+To publish pub-10, point its transformation scenario at the same
+**f13ldMan 2026** template pub-5 uses. Nothing about the scenario is
+publication-specific beyond the map and the output directory.
 
 ## Page layouts
 
@@ -328,7 +318,7 @@ particular that Oxygen's per-run `buildId` cache-buster makes every page look
 changed until it is normalised.
 
 For **pub-10**, the same steps against `publications/pub-10/dita/index.ditamap`,
-picking **f13ldMan 2026 (pub-10)** / `f13ldMan-p10.opt` at step 3. Its reference
+picking the same **f13ldMan 2026** template at step 3. Its reference
 build is `site/pub-10/current/`, published from the old forked template — so
 expect real differences there, not a clean diff: pub-10 gains the corporate logo
 (its fork had dropped the `webhelp.logo.image` parameter) and every Oxygen 28

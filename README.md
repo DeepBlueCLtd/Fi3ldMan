@@ -24,7 +24,7 @@ from it.
 | | |
 | --- | --- |
 | `pub-5/` | The main publication. `dita/` source, `template-2026/` (current, Oxygen 28.1, and now **shared with pub-10**), `template-2024/` (what the oxygen-26 publish was built with), `check-publish.py`, `audit-classes.py`, and pub-5's ditaval / author layout / icon-audit config |
-| `pub-10/` | Spectral analysis ("Grams"). `dita/` source. Publishes from `pub-5/template-2026/` via its `f13ldMan-p10.opt` scenario; `pub-10/template/` is the retired fork, kept until both publishes are verified |
+| `pub-10/` | Spectral analysis ("Grams"). `dita/` source. Publishes from `pub-5/template-2026/` — the same template and the same scenario as pub-5; `pub-10/template/` is the retired fork, kept until both publishes are verified |
 | `legacy-regions/` | Archived DITA specialization with a custom DTD. Kept for reference, not developed |
 
 Oxygen writes each publish to a gitignored `out/` inside the publication.
@@ -116,8 +116,7 @@ template, and re-run it whenever a publication gains source.
 `context-docs/15-shared-publishing-template.md` records what it found for pub-5
 and pub-10 — the 2026 template already styled every pub-10 class, and pub-10's
 own template was `template-2024` plus one script tag — and the change that
-followed: `template-2026` now carries a second scenario, `f13ldMan-p10.opt`, so
-one template serves both.
+followed: one template, one scenario, both publications.
 
 When Oxygen is upgraded, the first verified publish on the new version is
 committed twice: as a new frozen `site/pub-5/oxygen-NN/`, and over `current/`.

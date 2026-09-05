@@ -2,10 +2,13 @@
 <!--
     Fi3ldMan WebHelp Responsive publishing template, rebuilt on the Oxygen 28.1
     (2026) base. See README.md in this folder for what changed and why.
+
+    One template, one scenario, two publications: pub-5 and pub-10 both publish
+    from this file. See "Two publications, one template" in README.md.
 -->
 <publishing-template>
     <name>f13ldMan 2026</name>
-    <description>Fi3ldMan Field Service Manual - WebHelp Responsive, Oxygen 2026 base</description>
+    <description>Fi3ldMan Field Service Manual (pub-5 and pub-10) - WebHelp Responsive, Oxygen 2026 base</description>
     <webhelp>
         <preview-image file="oxygen-tiles.png"/>
 
@@ -105,14 +108,6 @@
                 <include name="resources/**/*"/>
                 <exclude name="resources/**/*.svn"/>
                 <exclude name="resources/**/*.git"/>
-                <!--
-                    gramframe.bundle.js belongs to the pub-10 scenario
-                    (f13ldMan-p10.opt), which does not carry this exclude. No
-                    pub-5 page references it, and copying 217 KB of dead weight
-                    into the output would also break the byte-for-byte diff
-                    against site/pub-5/oxygen-28/.
-                -->
-                <exclude name="resources/gramframe.bundle.js"/>
             </fileset>
         </resources>
 

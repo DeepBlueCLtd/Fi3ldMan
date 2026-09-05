@@ -10,8 +10,8 @@ repairs. Rather than repair it twice, can `template-2026` serve both?
 That turns on one thing: **does `template-2026` have a rule for every custom
 style pub-10 asks for?** This document answers that from the source, not from
 recollection, and reaches a firm conclusion. Section 6 records the change that
-followed — `template-2026` now carries a pub-10 scenario, pending a verifying
-publish of both documents.
+followed — both publications now publish from one `template-2026` scenario,
+pending a verifying publish of each.
 
 A second, related belief motivated the same investigation — that some of the
 "styled, unused" rules in pub-5's stylesheets were really written for pubs
@@ -127,7 +127,7 @@ File by file against `publications/pub-5/template-2024/`:
 | --- | --- |
 | **Byte-identical** | `notes.css`, `oxygen.css`, `oxygen-tiles.png`, all four `page-templates/*`, all six `xslt/*`, every font, every image, `current-handler.js`, `sorttable.js`, `harmonics.js` |
 | **Differs** | `f13ldman.css` (15 lines), `f13ldman_author_mode.css` (25 lines), `topic-page-libraries.xml` (1 line) |
-| **Added** | `resources/gramframe.bundle.js`, its own `f13ldMan-p10.opt` (not the one now in `template-2026`), `corp_logo.png` at the template root |
+| **Added** | `resources/gramframe.bundle.js`, its own `f13ldMan-p10.opt`, `corp_logo.png` at the template root |
 | **Missing** | `README.md`, `resources/corp_logo.png` |
 
 The differences are cosmetic or regressive:
@@ -143,8 +143,8 @@ The differences are cosmetic or regressive:
 - its `f13ldMan-p10.opt`: identical to pub-5's 2024 scenario but for the name
   and a **dropped** `webhelp.logo.image` parameter, so pub-10 publishes with no
   corporate logo. `template-2026`'s `.opt` documents why that parameter is
-  subtle and how to set it correctly, and the new pub-10 scenario inherits it —
-  which is why pub-10's next publish gains a logo it has not had.
+  subtle and how to set it correctly, and pub-10 inherits it by publishing from
+  that template — which is why pub-10's next publish gains a logo it has not had.
 
 Pub-10 also still carries `xslt/inc/customSearch.xsl`, the fork of an Oxygen
 template that existed solely to add a `c-menu` class to the top menu.
@@ -173,8 +173,8 @@ broken refs   : 2 distinct, 11 occurrences
 
 Eleven references on the live pub-10 site point at an author's home directory.
 That is the machine-absolute path the `template-2026` `.opt` comment exists to
-prevent, and the pub-10 scenario inherits the fix for free. The era markers on
-the same output confirm it is a 25.1-era build.
+prevent, and pub-10 inherits the fix simply by publishing from that template.
+The era markers on the same output confirm it is a 25.1-era build.
 
 ## 6. Conclusion, and the change made
 
@@ -182,45 +182,63 @@ the same output confirm it is a 25.1-era build.
 content of its own worth preserving.** It is `template-2024` plus one script
 tag, minus a logo and two author-mode rules.
 
-`template-2026` has been changed to serve both. Four edits, none of which
-alters pub-5's published output:
+`template-2026` has been changed to serve both, through **one** `.opt` and one
+head fragment:
 
 1. `gramframe.bundle.js` copied into `template-2026/resources/`, byte-identical
    to pub-10's.
-2. `page-templates-fragments/topic-page-head-grams.xml` — the shared fragment
-   plus one `<script>` line for that bundle. It is deliberately **not** added to
-   the shared fragment: 217 KB, and pub-5 has no `gram-config` table.
-3. `f13ldMan-p10.opt` — generated from `f13ldMan.opt` so the two cannot drift.
-   They differ in exactly two places, both marked `PUB-10 DELTA`: the scenario
-   name, and the fragment named above. Layouts, parameters, XSLT and all four
-   stylesheets are shared.
-4. `f13ldMan.opt`'s fileset excludes `resources/gramframe.bundle.js`, so the
-   bundle reaches pub-10's output and not pub-5's — without it the shared
-   `resources/**/*` fileset would copy 217 KB of dead weight into every pub-5
-   build and break the byte-for-byte diff against `site/pub-5/oxygen-28/`.
-   `check-publish.py` now reports the bundle's coverage too: expect `0/99` for
-   pub-5 and `12/12` for pub-10.
-5. The `enterBtn` author-mode rule restored to `f13ldman_author_mode.css`, with
+2. `page-templates-fragments/topic-page-head.xml` gains one `<script>` line for
+   it, so every publication loads it.
+3. The `enterBtn` author-mode rule restored to `f13ldman_author_mode.css`, with
    `display: block` to match what actually publishes. Both the 2026 template and
    pub-10's fork had dropped it, so Author mode showed neither publication its
    commonest style.
+4. `check-publish.py` reports the bundle's coverage alongside the other three
+   scripts. Expect N/N on both publications.
 
-The first three are purely additive, and the fourth only keeps pub-5's output as
-it was: its fragment, stylesheets, layouts and XSLT are untouched, so a pub-5
-publish should be byte-identical but for the `buildId`. The fifth changes Oxygen
-Author only, never the published HTML.
+Pub-5 therefore loads a script it has no use for. That is deliberate, and it is
+the second answer to this question rather than the first.
+
+### Why not a second `.opt` for pub-10
+
+The first attempt gave pub-10 its own `f13ldMan-p10.opt` and its own
+`topic-page-head-grams.xml`, so the bundle stayed out of pub-5's pages and out
+of its output. It worked, and it was wrong: two `.opt` files share **63
+non-comment lines** — every parameter, every layout reference, every XSLT
+extension — that nothing keeps in sync. Change `webhelp.top.menu.depth` in one
+and pub-10 quietly publishes with the old value. That is the exact class of
+silent divergence this whole exercise exists to end.
+
+What the split bought turned out to be very little. GramFrame's entry point is:
+
+```js
+const configTables = container.querySelectorAll("table.gram-config");
+configTables.forEach(...)
+```
+
+On a pub-5 page that matches nothing and the bundle does nothing — no error, no
+DOM change, no console noise. So the cost of dropping the split is one `<script>`
+tag per pub-5 page and one file in pub-5's output, for a publication served from
+local disk or an air-gapped network. The cost of keeping it was a maintenance
+hazard with a silent failure mode.
+
+**Expect that as a real delta** when diffing a pub-5 publish against the frozen
+`site/pub-5/oxygen-28/`: one added `<script>` line per page, and
+`oxygen-webhelp/template/resources/gramframe.bundle.js` present where it was
+not. Everything else should be byte-identical once the `buildId` is normalised.
+Nothing else pub-5 publishes with — stylesheets, layouts, XSLT, parameters — is
+touched, and the author-mode rule changes Oxygen Author only.
 
 ### What still needs Oxygen to confirm
 
-- **Two `.opt` files in one folder.** Oxygen documents a publishing template as
-  a folder with *a* descriptor. If the gallery lists only one, the scenario can
-  browse straight to `f13ldMan-p10.opt` — the `.opt` carries the resource paths,
-  so it works either way. Confirm which, and record it in the template README.
-- **Pub-5 unchanged.** Publish, run `check-publish.py` and the Playwright suite,
-  and diff against the frozen `site/pub-5/oxygen-28/` with the `buildId`
-  normalised, as `site/pub-5/README.md` prescribes.
-- **Pub-10's spectrograms.** The one thing the pub-10 fragment exists to do:
-  a Grams page must still render an interactive gramframe.
+- **Pub-5 unchanged but for the bundle.** Publish, run `check-publish.py` and
+  the Playwright suite, and diff against the frozen `site/pub-5/oxygen-28/` with
+  the `buildId` normalised, as `site/pub-5/README.md` prescribes. The only
+  expected differences are the added `<script>` line and the added file.
+- **GramFrame is harmless on pub-5.** Read from its source, not observed: a
+  pub-5 page should show no console error and no visual change.
+- **Pub-10's spectrograms.** A Grams page must still render an interactive
+  gramframe — the one thing the bundle is there for.
 - **Pub-10's other differences are expected.** Its reference build,
   `site/pub-10/current/`, came from the forked template, so it will differ — it
   gains the corporate logo and every Oxygen 28 fix. That is the point.
@@ -236,6 +254,14 @@ that has to be publish-verified.
 - Both scripts read `outputclass` only. A class can also reach a page from a
   script, the page templates, or Oxygen itself — `audit-classes.py`'s evidence
   columns exist for exactly that reason, and this analysis leaned on them.
+- **Neither script can see GramFrame's styles at all.** The bundle carries about
+  25 KB of CSS as a string and injects it into a `<style>` element at run time —
+  roughly a hundred `gram-frame-*` classes that are in no stylesheet and on no
+  `outputclass`. So "the template styles everything pub-10 uses" is true of the
+  template's own CSS, and silent about pub-10's most important visual component,
+  whose styling travels inside the bundle. That is fine for sharing a template —
+  those styles move with the file — but it means the class counts in section 2
+  describe less of pub-10's rendered page than they do of pub-5's.
 - Neither script applies the ditaval. `pub-5/project.ditaval` currently excludes
   nothing (its one `prop` is commented out), so no pub-5 content is filtered
   today; pub-10 has no ditaval at all. If either gains real filtering, usage

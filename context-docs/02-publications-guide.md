@@ -115,7 +115,7 @@ Each gram topic contains:
 - Signal ratios: S12, S5 frequencies, CSR multipliers
 
 ### Specialized JavaScript
-Pub-10 includes `gramframe.bundle.js` (217KB bundled JavaScript) for gram visualization, in addition to the shared JavaScript components.
+Pub-10's gram visualization comes from `gramframe.bundle.js`, which now ships in the shared `pub-5/template-2026/` alongside the other Fi3ldMan scripts. See `15-shared-publishing-template.md`.
 
 ### Landing Page
 The `gram-index.dita` page provides button-style navigation to individual grams. The `Welcome.dita` page serves as a cover/entry point with a "Next Page" link.
