@@ -139,7 +139,7 @@ python publications/compare-classes.py pub-5 pub-10
 every publication**: the fragment fills `webhelp.fragment.head.topic.page`, so
 it reaches topic pages only, and `index.html`, `search.html`, `indexTerms.html`
 and `cshelp.html` never carry these scripts — they do not need them. Measured:
-95/99 for pub-5, 8/12 for pub-10 instructor, 6/10 for pub-10 student. Below that
+95/99 for pub-5, 8/12 for the pub-10 build, 6/10 for the pub-9 build. Below that
 means the fragment missed a topic page.
 
 To publish pub-10, point its transformation scenario at the same
@@ -321,8 +321,13 @@ known-good output before this template, published on Oxygen 26. See
 particular that Oxygen's per-run `buildId` cache-buster makes every page look
 changed until it is normalised.
 
-For **pub-10**, the same steps against `publications/pub-10/dita/index.ditamap`,
-picking the same **f13ldMan 2026** template at step 3. Its reference
+For **pub-9 and pub-10**, the same steps against
+`publications/pub-10/dita/index.ditamap`, picking the same **f13ldMan 2026**
+template at step 3. `DITA_project_pub10.xpr` already carries both scenarios —
+**Pub-10 WebHelp Responsive (full)** writing to `out/pub-10`, and **Pub-9
+WebHelp Responsive (redacted)** writing to `out/pub-9`. They are identical but
+for one filter on the Filters tab, `audience` excluding `-trainee`, which drops
+the vessel identifications and the worked-analysis links. Its reference
 build is `site/pub-10/current/`, published from the old forked template — so
 expect real differences there, not a clean diff: pub-10 gains the corporate logo
 (its fork had dropped the `webhelp.logo.image` parameter) and every Oxygen 28

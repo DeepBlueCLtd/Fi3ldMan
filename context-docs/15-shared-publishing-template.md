@@ -239,8 +239,10 @@ touched, and the author-mode rule changes Oxygen Author only.
 
 ### Verified in Oxygen 28.1 — pub-10, both editions
 
-Published 2026-09-05 from this template to `publications/pub-10/out/student`
-and `.../instructor`. `check-publish.py` on both:
+Published 2026-09-05 from this template to `publications/pub-10/out/pub-9` and
+`.../pub-10`, by two scenarios in `DITA_project_pub10.xpr` that differ only in
+their filter: **Pub-10 WebHelp Responsive (full)** and **Pub-9 WebHelp
+Responsive (redacted)**. `check-publish.py` on both:
 
 | | before (`site/pub-10/current/`) | after |
 | --- | --- | --- |
@@ -254,11 +256,12 @@ So the fork's two headline defects — the machine-absolute logo path and the
 25.1-era asset bundles that would 404 under Oxygen 28 — are both fixed by
 publishing from this template, with no pub-10-specific configuration.
 
-The `audience = -trainee` filter behaves exactly as intended. The student build
-is the instructor build minus `Grams/gram1 analysis.html` and
+The `audience = -trainee` filter behaves exactly as intended. The pub-9 build
+is the pub-10 build minus `Grams/gram1 analysis.html` and
 `Grams/gram2 analysis.html`, with zero occurrences of the ship identities
 ("Pride of Le Havre", "Spirit of Whale Island") and zero ANALYSIS links. The
-instructor build carries all of them.
+pub-10 build carries all of them. Both are now deployed, to
+`site/pub-9/current/` and `site/pub-10/current/`.
 
 ### Verified in Oxygen 28.1 — pub-5
 
