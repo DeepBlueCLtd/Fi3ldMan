@@ -13,7 +13,7 @@ pub-5's `template-2026` — the template the Oxygen 28 upgrade produced, and the
 proposed common one. Name publications explicitly to narrow it:
 
     python publications/compare-classes.py pub-5 pub-10
-    python publications/compare-classes.py --template publications/pub-10/template
+    python publications/compare-classes.py --template publications/pub-5/template-2024
 
 Three sections come out:
 

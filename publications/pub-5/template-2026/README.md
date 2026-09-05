@@ -335,8 +335,8 @@ fix this template carries. What must **not** differ is the spectrograms: check
 that a Grams page still renders an interactive gramframe, which is the one thing
 the pub-10 fragment exists to do.
 
-`publications/pub-10/template/` is retained until both publishes are verified.
-Delete it once they are.
+Pub-10 has no template of its own. Its fork of the 2024 template was deleted
+once both editions had been published and verified from this one.
 
 ## What to check first, and why
 

@@ -302,8 +302,10 @@ failure that test was written to catch.
   and the bundle, but that a Grams page actually draws an interactive gramframe
   is still an on-screen check.
 
-`publications/pub-10/template/` is retained until both publishes are verified,
-then should be deleted. The template folder itself stays under `pub-5/` for now;
+`publications/pub-10/template/` was deleted once both editions had been
+published and verified from the shared template; nothing in it was unique but
+its own `.opt` and a duplicate `corp_logo.png`. The template folder itself
+stays under `pub-5/` for now;
 renaming it would break the release tag prefix, the `template-release.yml` path
 filter and `DITA_project_pub5.xpr`, and is not worth doing in the same change
 that has to be publish-verified.

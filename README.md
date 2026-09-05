@@ -24,7 +24,7 @@ from it.
 | | |
 | --- | --- |
 | `pub-5/` | The main publication. `dita/` source, `template-2026/` (current, Oxygen 28.1, and now **shared with pub-10**), `template-2024/` (what the oxygen-26 publish was built with), `check-publish.py`, `audit-classes.py`, and pub-5's ditaval / author layout / icon-audit config |
-| `pub-10/` | Spectral analysis ("Grams"). `dita/` source, published twice from `pub-5/template-2026/` — the full edition to `site/pub-10/current/`, and the redacted one to `site/pub-9/current/` via a single `audience` filter. `pub-10/template/` is the retired fork |
+| `pub-10/` | Spectral analysis ("Grams"). `dita/` source only — it has no template of its own. Published twice from `pub-5/template-2026/`: the full edition to `site/pub-10/current/`, and the redacted one to `site/pub-9/current/` via a single `audience` filter |
 | `legacy-regions/` | Archived DITA specialization with a custom DTD. Kept for reference, not developed |
 
 Oxygen writes each publish to a gitignored `out/` inside the publication.

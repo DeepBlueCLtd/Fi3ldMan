@@ -111,28 +111,28 @@ near-duplicate that used to sit beside it, is the one that survived.
 ### Pub-10 (`publications/pub-10/`)
 ```
 pub-10/
-├── dita/                        # DITA source content
-│   ├── index.ditamap            # Master map: "Field Manual Pub-10 Mar 2025"
-│   ├── DITA_project_pub10.xpr   # Oxygen project file
-│   ├── gram-index.dita          # Gram navigation landing page
-│   ├── Welcome.dita             # Cover/entry page
-│   ├── Grams/                   # Gram analysis content
-│   │   ├── gram1.dita           # Gram 1 data
-│   │   ├── gram2.dita           # Gram 2 data
-│   │   ├── gram1-2.dita         # Gram 1 variant 2
-│   │   ├── gram2-2.dita         # Gram 2 variant 2
-│   │   ├── gram1 analysis.dita  # Gram 1 analysis questions
-│   │   └── gram2 analysis.dita  # Gram 2 analysis questions
-│   ├── Introduction/
-│   │   └── Security.dita        # Security classification page
-│   └── Content/                 # Shared images
-└── template/
-    ├── f13ldMan-p10.opt         # Pub-10 publishing template config
-    ├── page-templates/          # Pub-10 specific page layouts
-    ├── page-templates-fragments/
-    └── resources/
-        └── gramframe.bundle.js  # Gram visualization JavaScript
+└── dita/                        # DITA source content
+    ├── index.ditamap            # Master map: "Field Manual Pub-10 Mar 2025"
+    ├── DITA_project_pub10.xpr   # Oxygen project file
+    ├── gram-index.dita          # Gram navigation landing page
+    ├── Welcome.dita             # Cover/entry page
+    ├── Grams/                   # Gram analysis content
+    │   ├── gram1.dita           # Gram 1 data
+    │   ├── gram2.dita           # Gram 2 data
+    │   ├── gram1-2.dita         # Gram 1 variant 2
+    │   ├── gram2-2.dita         # Gram 2 variant 2
+    │   ├── gram1 analysis.dita  # Gram 1 analysis questions
+    │   └── gram2 analysis.dita  # Gram 2 analysis questions
+    ├── Introduction/
+    │   └── Security.dita        # Security classification page
+    └── Content/                 # Shared images
 ```
+
+No `template/` here: pub-10 publishes from `publications/pub-5/template-2026/`,
+through two scenarios in `DITA_project_pub10.xpr` that differ only by the
+`audience` filter — the full edition and the redacted Pub-9 one. Its fork of the
+2024 template was deleted once both had been published and verified. See
+`15-shared-publishing-template.md`.
 
 ### Legacy regions (`publications/legacy-regions/`)
 ```
