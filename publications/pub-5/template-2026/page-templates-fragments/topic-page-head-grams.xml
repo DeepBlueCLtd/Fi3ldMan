@@ -1,0 +1,24 @@
+<!--
+    Fi3ldMan custom scripts for topic pages, for publications that contain
+    spectrograms (pub-10, and pub-9 when it has a source).
+
+    This is `topic-page-head.xml` plus one script: gramframe.bundle.js, which
+    finds every table carrying outputclass="gram-config" and replaces it with an
+    interactive spectrogram. Pub-5 has no such table, and the bundle is 217 KB,
+    so it is not in the shared fragment.
+
+    KEEP THE FIRST THREE SCRIPTS IN STEP WITH topic-page-head.xml. They are the
+    scripts every Fi3ldMan publication needs; only the fourth line differs.
+    There is no include mechanism for HTML fragments, so this is a copy.
+
+    Selected per publication by f13ldMan-p10.opt, which is identical to
+    f13ldMan.opt but for its name and the fragment named here. The <head>
+    wrapper is ignored - only its children are copied into the output.
+-->
+<head xmlns="http://www.w3.org/1999/xhtml" xmlns:whc="http://www.oxygenxml.com/webhelp/components" whc:version="28.1">
+
+    <script defer="defer" src="${oxygen-webhelp-assets-dir}/template/resources/current-handler.js?buildId=${oxygen-webhelp-build-number}"></script>
+    <script defer="defer" src="${oxygen-webhelp-assets-dir}/template/resources/sorttable.js?buildId=${oxygen-webhelp-build-number}"></script>
+    <script defer="defer" src="${oxygen-webhelp-assets-dir}/template/resources/harmonics.js?buildId=${oxygen-webhelp-build-number}"></script>
+    <script defer="defer" src="${oxygen-webhelp-assets-dir}/template/resources/gramframe.bundle.js?buildId=${oxygen-webhelp-build-number}"></script>
+</head>

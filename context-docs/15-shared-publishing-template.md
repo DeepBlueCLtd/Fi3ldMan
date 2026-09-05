@@ -3,13 +3,15 @@
 ## The question
 
 The Oxygen 25.1 → 28.1 upgrade forced a rebuild of pub-5's publishing template
-(`template-2026`, see `11-publishing-template-2026.md`). Pub-10 still ships its
-own template, which was forked from pub-5's, and which will need the same
-Oxygen 28 repairs. Rather than repair it twice, can `template-2026` serve both?
+(`template-2026`, see `11-publishing-template-2026.md`). Pub-10 shipped its own
+template, forked from pub-5's, which would have needed the same Oxygen 28
+repairs. Rather than repair it twice, can `template-2026` serve both?
 
 That turns on one thing: **does `template-2026` have a rule for every custom
 style pub-10 asks for?** This document answers that from the source, not from
-recollection, and reaches a firm conclusion.
+recollection, and reaches a firm conclusion. Section 6 records the change that
+followed — `template-2026` now carries a pub-10 scenario, pending a verifying
+publish of both documents.
 
 A second, related belief motivated the same investigation — that some of the
 "styled, unused" rules in pub-5's stylesheets were really written for pubs
@@ -125,7 +127,7 @@ File by file against `publications/pub-5/template-2024/`:
 | --- | --- |
 | **Byte-identical** | `notes.css`, `oxygen.css`, `oxygen-tiles.png`, all four `page-templates/*`, all six `xslt/*`, every font, every image, `current-handler.js`, `sorttable.js`, `harmonics.js` |
 | **Differs** | `f13ldman.css` (15 lines), `f13ldman_author_mode.css` (25 lines), `topic-page-libraries.xml` (1 line) |
-| **Added** | `resources/gramframe.bundle.js`, `f13ldMan-p10.opt`, `corp_logo.png` at the template root |
+| **Added** | `resources/gramframe.bundle.js`, its own `f13ldMan-p10.opt` (not the one now in `template-2026`), `corp_logo.png` at the template root |
 | **Missing** | `README.md`, `resources/corp_logo.png` |
 
 The differences are cosmetic or regressive:
@@ -138,10 +140,11 @@ The differences are cosmetic or regressive:
   of their commonest style.
 - `topic-page-libraries.xml`: one added `<script>` for `gramframe.bundle.js`.
   This is the only load-bearing difference in the whole template.
-- `f13ldMan-p10.opt`: identical to pub-5's 2024 scenario but for the name and a
-  **dropped** `webhelp.logo.image` parameter, so pub-10 publishes with no
+- its `f13ldMan-p10.opt`: identical to pub-5's 2024 scenario but for the name
+  and a **dropped** `webhelp.logo.image` parameter, so pub-10 publishes with no
   corporate logo. `template-2026`'s `.opt` documents why that parameter is
-  subtle and how to set it correctly.
+  subtle and how to set it correctly, and the new pub-10 scenario inherits it —
+  which is why pub-10's next publish gains a logo it has not had.
 
 Pub-10 also still carries `xslt/inc/customSearch.xsl`, the fork of an Oxygen
 template that existed solely to add a `c-menu` class to the top menu.
@@ -153,30 +156,80 @@ Pub-10 has therefore inherited every 2024-era bug that `template-2026` fixed,
 and will 404 on its base CSS and JavaScript under Oxygen 28 in exactly the way
 pub-5 did.
 
-## 6. Conclusion and the change required
+### Its current publish is already broken
+
+Running `check-publish.py` over `site/pub-10/current/` — which this change
+extends to know about `gramframe.bundle.js` — shows the dropped
+`webhelp.logo.image` parameter has done exactly the damage the 2026 `.opt`
+warns about:
+
+```
+era markers   : commons.css=yes commons.js=yes | bootstrap.css=NO jquery.js=NO
+logo src forms: /Users/ian/git/Fi3ldMan/dita-parent/pub-10/dita/template/corp_logo.png
+broken refs   : 2 distinct, 11 occurrences
+       7  ..//Users/ian/git/Fi3ldMan/dita-parent/pub-10/dita/template/corp_logo.png
+       4  /Users/ian/git/Fi3ldMan/dita-parent/pub-10/dita/template/corp_logo.png
+```
+
+Eleven references on the live pub-10 site point at an author's home directory.
+That is the machine-absolute path the `template-2026` `.opt` comment exists to
+prevent, and the pub-10 scenario inherits the fix for free. The era markers on
+the same output confirm it is a 25.1-era build.
+
+## 6. Conclusion, and the change made
 
 **A single template is not merely convenient here; pub-10's template has no
 content of its own worth preserving.** It is `template-2024` plus one script
 tag, minus a logo and two author-mode rules.
 
-To make `template-2026` serve both, three additive changes — none of which
-alters pub-5's output:
+`template-2026` has been changed to serve both. Four edits, none of which
+alters pub-5's published output:
 
-1. Copy `gramframe.bundle.js` into `template-2026/resources/`.
-2. Add a second head fragment beside `topic-page-head.xml` that loads the three
-   shared scripts **and** `gramframe.bundle.js`. Do not add gramframe to the
-   shared fragment: it is 217 KB and pub-5 has no use for it.
-3. Add a pub-10 `.opt` to the template that names that fragment in its
-   `<html-fragments>` section. Oxygen selects a publishing template by `.opt`,
-   so two scenarios can live in one template folder and differ only here.
+1. `gramframe.bundle.js` copied into `template-2026/resources/`, byte-identical
+   to pub-10's.
+2. `page-templates-fragments/topic-page-head-grams.xml` — the shared fragment
+   plus one `<script>` line for that bundle. It is deliberately **not** added to
+   the shared fragment: 217 KB, and pub-5 has no `gram-config` table.
+3. `f13ldMan-p10.opt` — generated from `f13ldMan.opt` so the two cannot drift.
+   They differ in exactly two places, both marked `PUB-10 DELTA`: the scenario
+   name, and the fragment named above. Layouts, parameters, XSLT and all four
+   stylesheets are shared.
+4. `f13ldMan.opt`'s fileset excludes `resources/gramframe.bundle.js`, so the
+   bundle reaches pub-10's output and not pub-5's — without it the shared
+   `resources/**/*` fileset would copy 217 KB of dead weight into every pub-5
+   build and break the byte-for-byte diff against `site/pub-5/oxygen-28/`.
+   `check-publish.py` now reports the bundle's coverage too: expect `0/99` for
+   pub-5 and `12/12` for pub-10.
+5. The `enterBtn` author-mode rule restored to `f13ldman_author_mode.css`, with
+   `display: block` to match what actually publishes. Both the 2026 template and
+   pub-10's fork had dropped it, so Author mode showed neither publication its
+   commonest style.
 
-Then restore the `enterBtn` author-mode rule, which `template-2026` dropped as
-well — pub-5 uses it 13 times and pub-10 22, so it is worth having back in both.
+The first three are purely additive, and the fourth only keeps pub-5's output as
+it was: its fragment, stylesheets, layouts and XSLT are untouched, so a pub-5
+publish should be byte-identical but for the `buildId`. The fifth changes Oxygen
+Author only, never the published HTML.
 
-Verify the result the way `README.md` prescribes: publish, run
-`check-publish.py` and the Playwright suite, and diff against the frozen
-`site/pub-5/oxygen-28/` to prove pub-5's output is unchanged before looking at
-pub-10's at all.
+### What still needs Oxygen to confirm
+
+- **Two `.opt` files in one folder.** Oxygen documents a publishing template as
+  a folder with *a* descriptor. If the gallery lists only one, the scenario can
+  browse straight to `f13ldMan-p10.opt` — the `.opt` carries the resource paths,
+  so it works either way. Confirm which, and record it in the template README.
+- **Pub-5 unchanged.** Publish, run `check-publish.py` and the Playwright suite,
+  and diff against the frozen `site/pub-5/oxygen-28/` with the `buildId`
+  normalised, as `site/pub-5/README.md` prescribes.
+- **Pub-10's spectrograms.** The one thing the pub-10 fragment exists to do:
+  a Grams page must still render an interactive gramframe.
+- **Pub-10's other differences are expected.** Its reference build,
+  `site/pub-10/current/`, came from the forked template, so it will differ — it
+  gains the corporate logo and every Oxygen 28 fix. That is the point.
+
+`publications/pub-10/template/` is retained until both publishes are verified,
+then should be deleted. The template folder itself stays under `pub-5/` for now;
+renaming it would break the release tag prefix, the `template-release.yml` path
+filter and `DITA_project_pub5.xpr`, and is not worth doing in the same change
+that has to be publish-verified.
 
 ## 7. Caveats worth carrying forward
 

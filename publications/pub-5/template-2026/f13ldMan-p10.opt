@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
     Fi3ldMan WebHelp Responsive publishing template, rebuilt on the Oxygen 28.1
-    (2026) base. See README.md in this folder for what changed and why.
+    (2026) base - the pub-10 scenario. See README.md in this folder.
+
+    This file and f13ldMan.opt are the same template. They differ in exactly two
+    places, both marked "PUB-10 DELTA" below: the name, and the head fragment,
+    which for pub-10 also loads gramframe.bundle.js. Everything else - layouts,
+    parameters, XSLT, stylesheets - is shared, so a change to the template is
+    made once and both publications get it.
+
+    Keep this file in step with f13ldMan.opt. If you change a parameter there,
+    change it here too, or pub-10 quietly publishes with the old value.
 -->
 <publishing-template>
-    <name>f13ldMan 2026</name>
-    <description>Fi3ldMan Field Service Manual - WebHelp Responsive, Oxygen 2026 base</description>
+    <!-- PUB-10 DELTA 1 of 2: the name Oxygen lists this scenario under. -->
+    <name>f13ldMan 2026 (pub-10)</name>
+    <description>Fi3ldMan Pub-10 "Grams" - WebHelp Responsive, Oxygen 2026 base</description>
     <webhelp>
         <preview-image file="oxygen-tiles.png"/>
 
@@ -30,10 +40,16 @@
         <!--
             Fi3ldMan's own scripts, added on top of whatever Oxygen emits.
             Replaces the old whc:page_libraries XSLT override.
+
+            PUB-10 DELTA 2 of 2: the -grams fragment, which is the shared one
+            plus gramframe.bundle.js. That bundle turns every table carrying
+            outputclass="gram-config" into an interactive spectrogram; it is
+            217 KB and pub-5 has no such table, which is why the two
+            publications name different fragments rather than sharing one.
         -->
         <html-fragments>
             <fragment
-                file="page-templates-fragments/topic-page-head.xml"
+                file="page-templates-fragments/topic-page-head-grams.xml"
                 placeholder="webhelp.fragment.head.topic.page"/>
         </html-fragments>
 
@@ -105,14 +121,6 @@
                 <include name="resources/**/*"/>
                 <exclude name="resources/**/*.svn"/>
                 <exclude name="resources/**/*.git"/>
-                <!--
-                    gramframe.bundle.js belongs to the pub-10 scenario
-                    (f13ldMan-p10.opt), which does not carry this exclude. No
-                    pub-5 page references it, and copying 217 KB of dead weight
-                    into the output would also break the byte-for-byte diff
-                    against site/pub-5/oxygen-28/.
-                -->
-                <exclude name="resources/gramframe.bundle.js"/>
             </fileset>
         </resources>
 

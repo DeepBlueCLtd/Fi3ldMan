@@ -4,7 +4,11 @@ root = os.path.abspath(sys.argv[1])
 pat = re.compile(r'(?:href|src)="([^"]*)"')
 pages, missing, script_hits = [], collections.Counter(), collections.Counter()
 logo_forms, build_ids = set(), set()
-SCRIPTS = ("current-handler.js", "sorttable.js", "harmonics.js")
+# The three every publication loads, then gramframe.bundle.js, which only
+# the pub-10 scenario's head fragment adds. Expect 0/N for pub-5 and N/N
+# for pub-10 - a 0 there means the -grams fragment did not take effect.
+SCRIPTS = ("current-handler.js", "sorttable.js", "harmonics.js",
+           "gramframe.bundle.js")
 
 for dp, _, fn in os.walk(root):
     for f in fn:
