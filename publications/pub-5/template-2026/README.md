@@ -135,8 +135,12 @@ JavaScript hook that wants no CSS rule. Re-check that with:
 python publications/compare-classes.py pub-5 pub-10
 ```
 
-`check-publish.py` reports coverage for all four scripts. Expect **N/N on both
-publications** — anything less means the head fragment did not reach those pages.
+`check-publish.py` reports coverage for all four scripts. Expect **(N-4)/N on
+every publication**: the fragment fills `webhelp.fragment.head.topic.page`, so
+it reaches topic pages only, and `index.html`, `search.html`, `indexTerms.html`
+and `cshelp.html` never carry these scripts — they do not need them. Measured:
+95/99 for pub-5, 8/12 for pub-10 instructor, 6/10 for pub-10 student. Below that
+means the fragment missed a topic page.
 
 To publish pub-10, point its transformation scenario at the same
 **f13ldMan 2026** template pub-5 uses. Nothing about the scenario is

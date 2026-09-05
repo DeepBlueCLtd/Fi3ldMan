@@ -194,7 +194,9 @@ head fragment:
    pub-10's fork had dropped it, so Author mode showed neither publication its
    commonest style.
 4. `check-publish.py` reports the bundle's coverage alongside the other three
-   scripts. Expect N/N on both publications.
+   scripts. Expect (N-4)/N on every publication - the head fragment fills
+   `webhelp.fragment.head.topic.page`, so `index.html`, `search.html`,
+   `indexTerms.html` and `cshelp.html` never carry them and do not need them.
 
 Pub-5 therefore loads a script it has no use for. That is deliberate, and it is
 the second answer to this question rather than the first.
@@ -229,6 +231,29 @@ not. Everything else should be byte-identical once the `buildId` is normalised.
 Nothing else pub-5 publishes with — stylesheets, layouts, XSLT, parameters — is
 touched, and the author-mode rule changes Oxygen Author only.
 
+### Verified in Oxygen 28.1 — pub-10, both editions
+
+Published 2026-09-05 from this template to `publications/pub-10/out/student`
+and `.../instructor`. `check-publish.py` on both:
+
+| | before (`site/pub-10/current/`) | after |
+| --- | --- | --- |
+| broken refs | **2 distinct, 11 occurrences** | **0** |
+| logo `src` | `/Users/ian/git/Fi3ldMan/...` absolute | relative, correct |
+| era markers | `commons.css`/`commons.js` = yes (25.1) | `bootstrap.css`/`main.css`/`jquery.js` = yes (28.1) |
+| gramframe | present | present, `gram-config` tables intact |
+| search index | built | built |
+
+So the fork's two headline defects — the machine-absolute logo path and the
+25.1-era asset bundles that would 404 under Oxygen 28 — are both fixed by
+publishing from this template, with no pub-10-specific configuration.
+
+The `audience = -trainee` filter behaves exactly as intended. The student build
+is the instructor build minus `Grams/gram1 analysis.html` and
+`Grams/gram2 analysis.html`, with zero occurrences of the ship identities
+("Pride of Le Havre", "Spirit of Whale Island") and zero ANALYSIS links. The
+instructor build carries all of them.
+
 ### What still needs Oxygen to confirm
 
 - **Pub-5 unchanged but for the bundle.** Publish, run `check-publish.py` and
@@ -237,11 +262,9 @@ touched, and the author-mode rule changes Oxygen Author only.
   expected differences are the added `<script>` line and the added file.
 - **GramFrame is harmless on pub-5.** Read from its source, not observed: a
   pub-5 page should show no console error and no visual change.
-- **Pub-10's spectrograms.** A Grams page must still render an interactive
-  gramframe — the one thing the bundle is there for.
-- **Pub-10's other differences are expected.** Its reference build,
-  `site/pub-10/current/`, came from the forked template, so it will differ — it
-  gains the corporate logo and every Oxygen 28 fix. That is the point.
+- **Pub-10's spectrograms render.** The output carries the `gram-config` tables
+  and the bundle, but that a Grams page actually draws an interactive gramframe
+  is still an on-screen check.
 
 `publications/pub-10/template/` is retained until both publishes are verified,
 then should be deleted. The template folder itself stays under `pub-5/` for now;
