@@ -254,14 +254,41 @@ is the instructor build minus `Grams/gram1 analysis.html` and
 ("Pride of Le Havre", "Spirit of Whale Island") and zero ANALYSIS links. The
 instructor build carries all of them.
 
+### Verified in Oxygen 28.1 — pub-5
+
+Published the same day. `check-publish.py`: 99 pages, 0 broken refs, 28.1 era
+markers, search index built, script coverage 95/99. The Playwright styling
+suite: **46 passed**, including `no console errors on load` — so GramFrame
+being inert on a pub-5 page is now observed, not inferred.
+
+Diffed against the frozen `site/pub-5/oxygen-28/` with `buildId` normalised.
+One trap: that frozen build was published on Windows and carries CRLF line
+endings, so a naive diff reports every text asset as changed. `.gitattributes`
+protects the frozen tree from git rewriting it on checkout, but nothing
+normalises across publishing machines — strip CR from both sides before
+reading the diff. With that done:
+
+| Difference | Cause |
+| --- | --- |
+| +`<script>` line on 94 topic pages | **this change** |
+| +`resources/gramframe.bundle.js` | **this change** |
+| `QuickLinksData/StyleSamples.html` content | main, commits `63f048e` / `e695e63` |
+| +`Britain.Legacy/Content/Images/daf_3.jpeg` | main |
+| +`resources/template-version.txt` | main, added after the freeze |
+| `f13ldman.css` | main — comment-only edits; the new build matches main's source byte-for-byte |
+| `sitemap.xml` | `lastmod` timestamps |
+| `app/search/index/index-{1,2,3}.js` | regenerated over the changed content above |
+
+Nothing else differs, and this branch touches no file under
+`publications/pub-5/dita/`. So the change accounts for exactly two things: one
+script line per topic page, and one file.
+
+`tests/publish/scripts.spec.js` now asserts all **four** scripts load, not
+three. The bundle ships in the shared template, so a 404 on it is the same
+failure that test was written to catch.
+
 ### What still needs Oxygen to confirm
 
-- **Pub-5 unchanged but for the bundle.** Publish, run `check-publish.py` and
-  the Playwright suite, and diff against the frozen `site/pub-5/oxygen-28/` with
-  the `buildId` normalised, as `site/pub-5/README.md` prescribes. The only
-  expected differences are the added `<script>` line and the added file.
-- **GramFrame is harmless on pub-5.** Read from its source, not observed: a
-  pub-5 page should show no console error and no visual change.
 - **Pub-10's spectrograms render.** The output carries the `gram-config` tables
   and the bundle, but that a Grams page actually draws an interactive gramframe
   is still an on-screen check.
