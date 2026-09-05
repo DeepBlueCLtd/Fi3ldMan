@@ -2,10 +2,13 @@
 <!--
     Fi3ldMan WebHelp Responsive publishing template, rebuilt on the Oxygen 28.1
     (2026) base. See README.md in this folder for what changed and why.
+
+    One template, one scenario, two publications: pub-5 and pub-10 both publish
+    from this file. See "Two publications, one template" in README.md.
 -->
 <publishing-template>
     <name>f13ldMan 2026</name>
-    <description>Fi3ldMan Field Service Manual - WebHelp Responsive, Oxygen 2026 base</description>
+    <description>Fi3ldMan Field Service Manual (pub-5 and pub-10) - WebHelp Responsive, Oxygen 2026 base</description>
     <webhelp>
         <preview-image file="oxygen-tiles.png"/>
 

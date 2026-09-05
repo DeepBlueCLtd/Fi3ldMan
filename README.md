@@ -13,7 +13,7 @@ from it.
 
 | Folder | What it holds |
 | --- | --- |
-| `publications/` | All DITA source and publishing templates — one self-contained folder per publication |
+| `publications/` | All DITA source and publishing templates — one self-contained folder per publication, plus `compare-classes.py` |
 | `site/` | Everything GitHub Pages serves, and nothing else |
 | `tests/publish/` | Browser tests that assert a published output is correctly styled |
 | `context-docs/` | Project knowledge: architecture, content model, templates, workflows |
@@ -23,8 +23,8 @@ from it.
 
 | | |
 | --- | --- |
-| `pub-5/` | The main publication. `dita/` source, `template-2026/` (current, Oxygen 28.1), `template-2024/` (what the oxygen-26 publish was built with), `check-publish.py`, `audit-classes.py`, and pub-5's ditaval / author layout / icon-audit config |
-| `pub-10/` | Spectral analysis ("Grams"). `dita/` source and its template |
+| `pub-5/` | The main publication. `dita/` source, `template-2026/` (current, Oxygen 28.1, and now **shared with pub-10**), `template-2024/` (what the oxygen-26 publish was built with), `check-publish.py`, `audit-classes.py`, and pub-5's ditaval / author layout / icon-audit config |
+| `pub-10/` | Spectral analysis ("Grams"). `dita/` source only — it has no template of its own. Published twice from `pub-5/template-2026/`: the full edition to `site/pub-10/current/`, and the redacted one to `site/pub-9/current/` via a single `audience` filter |
 | `legacy-regions/` | Archived DITA specialization with a custom DTD. Kept for reference, not developed |
 
 Oxygen writes each publish to a gitignored `out/` inside the publication.
@@ -37,9 +37,10 @@ Nothing under `publications/` is served.
 | `index.html` | The hub page — a section per publication |
 | `pub-5/current/` | The browsable pub-5 publish. The only pub-5 folder a publish overwrites |
 | `pub-5/oxygen-28/`, `oxygen-26/`, `oxygen-25/` | **Frozen** publishes, one per Oxygen version — byte-exact snapshots to diff a new publish against, and browsable pages in their own right. See `site/pub-5/README.md` |
-| `pub-10/current/` | The pub-10 publish |
+| `pub-10/current/` | The pub-10 publish — the full "Grams" edition |
+| `pub-9/current/` | The pub-9 publish — the same source with the answers filtered out |
 | `legacy-regions/` | The legacy publication's output |
-| `mockups/` | Dynamic-table prototypes, and the pub-9 / pub-10 mockups |
+| `mockups/` | Dynamic-table prototypes, and the original hand-built pub-9 / pub-10 previews |
 
 `.github/workflows/pages.yml` deploys `site/` and nothing else. There is no
 build step in CI — the workflow just uploads the folder.
@@ -68,8 +69,9 @@ build step in CI — the workflow just uploads the folder.
 3. Diff it against the frozen publish for the Oxygen version you built with —
    `site/pub-5/README.md` explains how, and why `buildId` must be normalised
    first or every page looks changed.
-4. Copy the verified output over `site/pub-5/current/` and commit. Merging to
-   `main` deploys it.
+4. Copy the verified output over the publication's `site/` folder and commit —
+   `site/pub-5/current/`, `site/pub-10/current/` for the full Grams edition, or
+   `site/pub-9/current/` for the redacted one. Merging to `main` deploys it.
 
 `npm start` serves `site/` locally — the same folder Pages serves.
 
@@ -98,6 +100,25 @@ machine with a source tree and nothing installed. Point it at every source
 tree that matters before deleting anything: both lists are relative to the
 material given, and a rule unused by one publication may be load-bearing in
 another.
+
+### Can one template serve several publications?
+
+`publications/compare-classes.py` asks the question the other way round: across
+every publication at once, against a single candidate template.
+
+```bash
+python publications/compare-classes.py pub-5 pub-10
+```
+
+It prints each `outputclass` with a per-publication count and a SHARED /
+`<pub>`-ONLY tag, then the classes the candidate fails to style — the migration
+blockers — and the rules it styles for nobody. Run it before adopting a shared
+template, and re-run it whenever a publication gains source.
+
+`context-docs/15-shared-publishing-template.md` records what it found for pub-5
+and pub-10 — the 2026 template already styled every pub-10 class, and pub-10's
+own template was `template-2024` plus one script tag — and the change that
+followed: one template, one scenario, both publications.
 
 When Oxygen is upgraded, the first verified publish on the new version is
 committed twice: as a new frozen `site/pub-5/oxygen-NN/`, and over `current/`.

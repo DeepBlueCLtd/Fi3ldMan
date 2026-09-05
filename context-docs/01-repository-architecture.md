@@ -6,7 +6,7 @@ Fi3ldMan is a Field Service Manual system with advanced data exploitation capabi
 
 The repository hosts three publications:
 - **Pub-5**: The original and largest publication - regional field service documentation
-- **Pub-9**: A companion publication to Pub-10 (currently at mockup stage)
+- **Pub-9**: The redacted edition of Pub-10 — same DITA source, one `audience` filter, published to `site/pub-9/current/`
 - **Pub-10**: A specialized publication focused on spectral analysis ("Grams")
 
 plus an archived **legacy regions** publication, built on a custom DITA
@@ -111,28 +111,28 @@ near-duplicate that used to sit beside it, is the one that survived.
 ### Pub-10 (`publications/pub-10/`)
 ```
 pub-10/
-├── dita/                        # DITA source content
-│   ├── index.ditamap            # Master map: "Field Manual Pub-10 Mar 2025"
-│   ├── DITA_project_pub10.xpr   # Oxygen project file
-│   ├── gram-index.dita          # Gram navigation landing page
-│   ├── Welcome.dita             # Cover/entry page
-│   ├── Grams/                   # Gram analysis content
-│   │   ├── gram1.dita           # Gram 1 data
-│   │   ├── gram2.dita           # Gram 2 data
-│   │   ├── gram1-2.dita         # Gram 1 variant 2
-│   │   ├── gram2-2.dita         # Gram 2 variant 2
-│   │   ├── gram1 analysis.dita  # Gram 1 analysis questions
-│   │   └── gram2 analysis.dita  # Gram 2 analysis questions
-│   ├── Introduction/
-│   │   └── Security.dita        # Security classification page
-│   └── Content/                 # Shared images
-└── template/
-    ├── f13ldMan-p10.opt         # Pub-10 publishing template config
-    ├── page-templates/          # Pub-10 specific page layouts
-    ├── page-templates-fragments/
-    └── resources/
-        └── gramframe.bundle.js  # Gram visualization JavaScript
+└── dita/                        # DITA source content
+    ├── index.ditamap            # Master map: "Field Manual Pub-10 Mar 2025"
+    ├── DITA_project_pub10.xpr   # Oxygen project file
+    ├── gram-index.dita          # Gram navigation landing page
+    ├── Welcome.dita             # Cover/entry page
+    ├── Grams/                   # Gram analysis content
+    │   ├── gram1.dita           # Gram 1 data
+    │   ├── gram2.dita           # Gram 2 data
+    │   ├── gram1-2.dita         # Gram 1 variant 2
+    │   ├── gram2-2.dita         # Gram 2 variant 2
+    │   ├── gram1 analysis.dita  # Gram 1 analysis questions
+    │   └── gram2 analysis.dita  # Gram 2 analysis questions
+    ├── Introduction/
+    │   └── Security.dita        # Security classification page
+    └── Content/                 # Shared images
 ```
+
+No `template/` here: pub-10 publishes from `publications/pub-5/template-2026/`,
+through two scenarios in `DITA_project_pub10.xpr` that differ only by the
+`audience` filter — the full edition and the redacted Pub-9 one. Its fork of the
+2024 template was deleted once both had been published and verified. See
+`15-shared-publishing-template.md`.
 
 ### Legacy regions (`publications/legacy-regions/`)
 ```
@@ -150,7 +150,7 @@ legacy-regions/
 Archived: kept for reference, not developed. Its published output is at
 `site/legacy-regions/`. See `08-legacy-migration-strategy.md`.
 
-### Pub-9 (mockup stage only)
+### Pub-9 (an edition of Pub-10, not a separate source)
 ```
 site/mockups/p9-10/
 ├── index.html           # Navigation hub for P9 and P10 mockups
@@ -167,7 +167,11 @@ site/mockups/p9-10/
 └── to_convert.html      # Sample HTML for DITA conversion testing
 ```
 
-Pub-9 has no DITA source; the mockup is the only place it exists.
+Pub-9 has no DITA source of its own and needs none: it is `publications/pub-10/dita/`
+published through a scenario filter that excludes `audience="-trainee"`, which
+removes the vessel identifications and the worked-analysis links. Published to
+`site/pub-9/current/`; the mockups here are the original hand-built previews.
+See `15-shared-publishing-template.md`.
 
 ## The published site (`site/`)
 

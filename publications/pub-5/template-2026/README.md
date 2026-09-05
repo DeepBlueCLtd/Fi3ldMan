@@ -4,6 +4,12 @@ This is the Fi3ldMan publishing template rebuilt on the Oxygen 28.1 WebHelp
 Responsive base. It replaces `../template`, which was built in 2024 on the
 Oxygen 25.1 base and produces broken output under Oxygen 2026.
 
+**It serves both pub-5 and pub-10.** It lives under `pub-5/` for historical
+reasons only; pub-10's own template was a fork of the 2024 one and has been
+retired in its favour. See "Two publications, one template" below, and
+`context-docs/15-shared-publishing-template.md` for the evidence that this
+template already styled every class pub-10 uses.
+
 > **Releases.** Every push to `main` that changes this folder publishes a
 > versioned zip, tagged `pub-5-template-2026-v<major>.<minor>.<patch>`. Patch is
 > automatic; put `[minor]` or `[major]` in a commit message to bump further.
@@ -92,6 +98,7 @@ Everything else in this folder is stock. These are the only customisations:
 | `page-templates/wt_search.html` | Removes the stock body-level search input (marked `FI3LDMAN DELTA`) |
 | `page-templates/wt_terms.html` | None — byte-identical to stock |
 | `xslt/`, `page-templates-fragments/`, `f13ldman.css`, `resources/corp_logo.png`, `resources/*.js`, `resources/images/*` | Fi3ldMan-owned |
+| `resources/gramframe.bundle.js` | Fi3ldMan-owned. Pub-10's spectrogram viewer; loaded by every publication, a no-op where there is no `gram-config` table |
 | `resources/template-version.txt` | Fi3ldMan-owned. Version stamp — committed as a placeholder, rewritten by the release script. Rides into the published output on the `resources/**/*` fileset |
 | `oxygen.css`, `oxygen-theme.css`, `oxygen-print.css`, `notes.css` | Stock — replaced wholesale on upgrade, never edited. `notes.css` looks like ours and is not: Oxygen generates it from the note-styling options picked when a template is created |
 
@@ -100,6 +107,44 @@ Stock 28.1 sources live in:
 ```
 C:\Program Files\Oxygen XML Editor 28\frameworks\dita\DITA-OT\plugins\com.oxygenxml.webhelp.responsive\oxygen-webhelp\page-templates\
 ```
+
+## Two publications, one template
+
+Pub-5 and pub-10 publish from this folder through **one** `f13ldMan.opt` and
+one head fragment. There is no pub-10 variant of either, and there should not
+be: everything the two publications need is identical.
+
+`resources/gramframe.bundle.js` is the only asset that is genuinely pub-10's.
+It replaces every table carrying `outputclass="gram-config"` with an interactive
+spectrogram, and pub-5 has no such table — but it loads on pub-5's pages anyway,
+where it is a no-op: its entry point runs
+`querySelectorAll("table.gram-config")`, finds nothing, and stops.
+
+That is a deliberate trade. A second `.opt` and a second fragment did briefly
+exist to keep the bundle off pub-5, and cost **63 lines of hand-synchronised
+duplication** — with a silent failure mode if the two drifted — to save a script
+tag that does nothing. One template, one scenario, no drift is worth more than
+a spare HTTP request against a local file.
+
+Nothing else in pub-10 needs anything this template does not already have.
+Pub-10 uses seven `outputclass` values in total; five are pub-5's too, `current`
+is applied at run time by `current-handler.js`, and `gram-config` is a
+JavaScript hook that wants no CSS rule. Re-check that with:
+
+```bash
+python publications/compare-classes.py pub-5 pub-10
+```
+
+`check-publish.py` reports coverage for all four scripts. Expect **(N-4)/N on
+every publication**: the fragment fills `webhelp.fragment.head.topic.page`, so
+it reaches topic pages only, and `index.html`, `search.html`, `indexTerms.html`
+and `cshelp.html` never carry these scripts — they do not need them. Measured:
+95/99 for pub-5, 8/12 for the pub-10 build, 6/10 for the pub-9 build. Below that
+means the fragment missed a topic page.
+
+To publish pub-10, point its transformation scenario at the same
+**f13ldMan 2026** template pub-5 uses. Nothing about the scenario is
+publication-specific beyond the map and the output directory.
 
 ## Page layouts
 
@@ -275,6 +320,23 @@ known-good output before this template, published on Oxygen 26. See
 `site/pub-5/README.md` for how to diff against it; note in
 particular that Oxygen's per-run `buildId` cache-buster makes every page look
 changed until it is normalised.
+
+For **pub-9 and pub-10**, the same steps against
+`publications/pub-10/dita/index.ditamap`, picking the same **f13ldMan 2026**
+template at step 3. `DITA_project_pub10.xpr` already carries both scenarios —
+**Pub-10 WebHelp Responsive (full)** writing to `out/pub-10`, and **Pub-9
+WebHelp Responsive (redacted)** writing to `out/pub-9`. They are identical but
+for one filter on the Filters tab, `audience` excluding `-trainee`, which drops
+the vessel identifications and the worked-analysis links. Its reference
+build is `site/pub-10/current/`, published from the old forked template — so
+expect real differences there, not a clean diff: pub-10 gains the corporate logo
+(its fork had dropped the `webhelp.logo.image` parameter) and every Oxygen 28
+fix this template carries. What must **not** differ is the spectrograms: check
+that a Grams page still renders an interactive gramframe, which is the one thing
+the pub-10 fragment exists to do.
+
+Pub-10 has no template of its own. Its fork of the 2024 template was deleted
+once both editions had been published and verified from this one.
 
 ## What to check first, and why
 

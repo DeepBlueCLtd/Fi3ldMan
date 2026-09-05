@@ -20,11 +20,7 @@ Pub-5 template (publications/pub-5/template-2024/)
 ├── HTML page templates and fragments
 └── f13ldMan.opt
 
-Pub-10 template (publications/pub-10/template/)
-├── f13ldMan-p10.opt (references own resources)
-├── page-templates/ (Pub-10 specific layouts)
-├── page-templates-fragments/ (Pub-10 specific fragments)
-└── resources/gramframe.bundle.js (Pub-10 only)
+Pub-10: no template of its own — it publishes from pub-5/template-2026/
 ```
 
 This used to be described as a layered architecture, with a "root" template at
@@ -60,8 +56,7 @@ The `.opt` files are Oxygen publishing template descriptors. They define the pub
 | File | Template |
 |------|----------|
 | `publications/pub-5/template-2024/f13ldMan.opt` | Pub-5, 2024 generation |
-| `publications/pub-5/template-2026/f13ldMan.opt` | Pub-5, current — see doc 11 |
-| `publications/pub-10/template/f13ldMan-p10.opt` | Pub-10 variant |
+| `publications/pub-5/template-2026/f13ldMan.opt` | Pub-5, Pub-9 and Pub-10 — the shared template. See docs 11 and 15 |
 
 ### Legacy Templates
 | File | Format |

@@ -135,6 +135,9 @@ publications/pub-5/dita/temp/
 # copied into site/pub-5/current/, and the frozen per-version snapshots it is
 # diffed against live in site/pub-5/oxygen-NN/.
 publications/pub-5/dita/out/
+# ...and here, since the scenario's output directory was moved alongside
+# pub-10's. Same status: scratch, never committed.
+/publications/pub-5/out/
 
 # Per-transfer integrity manifest for the publishing template (see
 # context-docs/12-template-transfer-air-gapped-network.md, Phase B)

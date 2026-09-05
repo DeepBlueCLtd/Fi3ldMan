@@ -87,3 +87,23 @@ related-links {
   color: #999 !important;
   background: none !important;
 }
+
+/* Style for large link buttons. Mirrors `.enterBtn` in f13ldman.css, including
+   its `display: block` — the 2024 author-mode copy said `inline`, which no
+   longer matched what published. This rule was dropped from both the 2026 and
+   the pub-10 templates; pub-5 uses enterBtn 13 times and pub-10 22, more than
+   any other class it has, so Author mode showed neither publication its
+   commonest style. */
+[outputclass='enterBtn'] {
+  font: bold 28px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  display: block;
+  text-align: center;
+}

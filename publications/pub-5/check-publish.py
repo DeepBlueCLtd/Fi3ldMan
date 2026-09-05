@@ -4,7 +4,16 @@ root = os.path.abspath(sys.argv[1])
 pat = re.compile(r'(?:href|src)="([^"]*)"')
 pages, missing, script_hits = [], collections.Counter(), collections.Counter()
 logo_forms, build_ids = set(), set()
-SCRIPTS = ("current-handler.js", "sorttable.js", "harmonics.js")
+# Every topic page loads all four - one template, one head fragment. The
+# fragment fills webhelp.fragment.head.topic.page, so it reaches topic pages
+# only: index.html, search.html, indexTerms.html and cshelp.html never carry
+# these scripts and do not need them. Expect (N-4)/N on every publication -
+# 95/99 for pub-5, 8/12 for pub-10's instructor build, 6/10 for its student
+# build. A count below that means the fragment did not reach some topic page.
+# gramframe.bundle.js is a no-op where there is no gram-config table, so pub-5
+# loading it is expected, not a fault.
+SCRIPTS = ("current-handler.js", "sorttable.js", "harmonics.js",
+           "gramframe.bundle.js")
 
 for dp, _, fn in os.walk(root):
     for f in fn:

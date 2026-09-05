@@ -7,7 +7,7 @@ The Fi3ldMan project produces three publications from a shared template infrastr
 | Publication | Title | Status | Scope | Source Location |
 |-------------|-------|--------|-------|-----------------|
 | Pub-5 | Field Manual v5 Mar 2025 | Active (published) | Regional field service documentation | `publications/pub-5/dita/` |
-| Pub-9 | (Companion to Pub-10) | Mockup stage | Spectral analysis (Grams) | `site/mockups/p9-10/p9/` |
+| Pub-9 | (Redacted edition of Pub-10) | Active (published) | Spectral analysis (Grams) | `publications/pub-10/dita/`, filtered |
 | Pub-10 | Field Manual Pub-10 Mar 2025 | Active (published) | Spectral analysis (Grams) | `publications/pub-10/dita/` |
 
 ## Publication 5 (Pub-5) - Regional Field Service Manual
@@ -115,7 +115,7 @@ Each gram topic contains:
 - Signal ratios: S12, S5 frequencies, CSR multipliers
 
 ### Specialized JavaScript
-Pub-10 includes `gramframe.bundle.js` (217KB bundled JavaScript) for gram visualization, in addition to the shared JavaScript components.
+Pub-10's gram visualization comes from `gramframe.bundle.js`, which now ships in the shared `pub-5/template-2026/` alongside the other Fi3ldMan scripts. See `15-shared-publishing-template.md`.
 
 ### Landing Page
 The `gram-index.dita` page provides button-style navigation to individual grams. The `Welcome.dita` page serves as a cover/entry point with a "Next Page" link.
@@ -125,7 +125,7 @@ The `gram-index.dita` page provides button-style navigation to individual grams.
 ## Publication 9 (Pub-9) - Companion to Pub-10
 
 ### Purpose
-Pub-9 is a companion publication to Pub-10, both covering spectral analysis content. Pub-9 is currently at the mockup/prototype stage - HTML mockups exist but no DITA source directory has been created yet.
+Pub-9 is the redacted edition of Pub-10, not a separate publication. It is built from the same `publications/pub-10/dita/` source and the same publishing template, through one transformation-scenario filter that excludes `audience="-trainee"` — stripping the vessel identifications from the gram titles and the links to the worked analysis. Published to `site/pub-9/current/` (10 pages, against Pub-10's 12). See `15-shared-publishing-template.md`.
 
 ### Current State
 - **Mockup location**: `site/mockups/p9-10/p9/`

@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test')
 const { PAGES, visit } = require('./helpers')
 
 /*
- * The three Fi3ldMan scripts, checked by effect rather than by <script> tag.
+ * The four Fi3ldMan scripts, checked by effect rather than by <script> tag.
  *
  * Under 28.1 the old injection mechanism (a whc:page_libraries override naming
  * app/commons.js) stopped working, and the 2026 template replaced it with a
@@ -14,13 +14,17 @@ const { PAGES, visit } = require('./helpers')
  */
 
 test.describe('fi3ldman scripts', () => {
-  test('all three are requested and load', async ({ page }) => {
+  test('all four are requested and load', async ({ page }) => {
     const assets = await visit(page, PAGES.topic)
 
     for (const script of [
       'current-handler.js',
       'sorttable.js',
       'harmonics.js',
+      // Pub-10's spectrogram viewer. Nothing on a pub-5 page uses it - it
+      // looks for table.gram-config and finds none - but it ships in the
+      // shared template and so must load rather than 404 here too.
+      'gramframe.bundle.js',
     ]) {
       const hits = assets.matching(script)
       expect(
@@ -32,7 +36,7 @@ test.describe('fi3ldman scripts', () => {
     }
   })
 
-  // No jQuery check here: none of the three Fi3ldMan scripts reference it, so
+  // No jQuery check here: none of the four Fi3ldMan scripts reference it, so
   // whether Oxygen ships jQuery is Oxygen's business, not a dependency of ours.
 
   test('sorttable installed itself', async ({ page }) => {

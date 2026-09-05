@@ -17250,10 +17250,10 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                     <String>${cfd}</String>
                                 </field>
                                 <field name="outputDir">
-                                    <String>${cfd}/out/webhelp-responsive</String>
+                                    <String>${pd}/../out/</String>
                                 </field>
                                 <field name="tempDir">
-                                    <String>${cfd}/temp/webhelp-responsive</String>
+                                    <String>${pd}/../temp/webhelp-responsive</String>
                                 </field>
                                 <field name="transtype">
                                     <String>webhelp-responsive</String>
