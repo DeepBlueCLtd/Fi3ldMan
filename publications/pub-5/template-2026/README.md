@@ -98,7 +98,7 @@ Everything else in this folder is stock. These are the only customisations:
 | `page-templates/wt_search.html` | Removes the stock body-level search input (marked `FI3LDMAN DELTA`) |
 | `page-templates/wt_terms.html` | None — byte-identical to stock |
 | `xslt/`, `page-templates-fragments/`, `f13ldman.css`, `resources/corp_logo.png`, `resources/*.js`, `resources/images/*` | Fi3ldMan-owned |
-| `resources/gramframe.bundle.js` | Fi3ldMan-owned. Pub-10's spectrogram viewer; loaded by every publication, a no-op where there is no `gram-config` table |
+| `resources/gramframe.bundle.js` | **Vendored, not Fi3ldMan-owned** — GramFrame **v0.2.0**. Pub-10's spectrogram viewer; loaded by every publication, a no-op where there is no `gram-config` table. Never edit in place; refresh from a release, see "Refreshing GramFrame" |
 | `resources/template-version.txt` | Fi3ldMan-owned. Version stamp — committed as a placeholder, rewritten by the release script. Rides into the published output on the `resources/**/*` fileset |
 | `oxygen.css`, `oxygen-theme.css`, `oxygen-print.css`, `notes.css` | Stock — replaced wholesale on upgrade, never edited. `notes.css` looks like ours and is not: Oxygen generates it from the note-styling options picked when a template is created |
 
@@ -145,6 +145,45 @@ means the fragment missed a topic page.
 To publish pub-10, point its transformation scenario at the same
 **f13ldMan 2026** template pub-5 uses. Nothing about the scenario is
 publication-specific beyond the map and the output directory.
+
+### Refreshing GramFrame
+
+`resources/gramframe.bundle.js` is the one file here that is **not ours**. It is
+built from [DeepBlueCLtd/GramFrame](https://github.com/DeepBlueCLtd/GramFrame)
+and vendored in, so it is refreshed by replacing it wholesale — never by editing
+it. Take it from a release, not from a local build: the release workflow is what
+stamps the version into the artifact, and a `yarn build:standalone` on a working
+tree produces an unstamped bundle nobody can later identify.
+
+```bash
+gh release download vX.Y.Z --repo DeepBlueCLtd/GramFrame --pattern 'gramframe-*.zip'
+unzip -o gramframe-X.Y.Z.zip -d gf && cp gf/gramframe.bundle.js \
+  publications/pub-5/template-2026/resources/gramframe.bundle.js
+```
+
+Three things to check before committing, because nothing in CI checks them:
+
+1. **The version stamp landed.** `grep -o 'const VERSION = "[^"]*"'` on the
+   bundle must report the version you downloaded. That string is the only
+   record of which GramFrame a published output carries — the template's own
+   `template-version.txt` says nothing about it.
+2. **It is the standalone build.** No `import`/`export` survives in it, and its
+   CSS is inlined as a string. The air-gapped targets serve pages over
+   `file://`, where a module build fails outright.
+3. **The entry point still matches.** `querySelectorAll("table.gram-config")` is
+   the whole contract between GramFrame and pub-10's DITA. If a release changes
+   it, pub-10's `<table outputclass="gram-config">` markup has to change with
+   it, and this stops being a drop-in swap.
+
+Then **update the version in the asset table above** and use `[minor]` in the
+commit subject: a new GramFrame changes what a Grams page renders, which is
+the definition of "worth re-transferring" in
+`context-docs/14-template-releases.md`.
+
+A refresh is not verified until a Grams page has been published from this
+template and looked at. `check-publish.py` and `tests/publish/scripts.spec.js`
+know the bundle only by filename — they confirm it loads, and can say nothing
+about whether it still draws a spectrogram.
 
 ## Page layouts
 
