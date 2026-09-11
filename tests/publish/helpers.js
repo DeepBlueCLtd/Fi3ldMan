@@ -18,6 +18,17 @@ const PAGES = {
   topic: '/Britain1/Britain1.html',
   figures: '/Britain.Legacy/charlie_pics.html',
   relatedLinks: '/Britain.Legacy/Phase_G.html',
+  /*
+   * A topic whose related-links panel holds *two* in-page links, plus a link
+   * to the topic itself.
+   *
+   * Two is the point. The panel greys out the link to wherever the reader
+   * currently is, and with one anchor there is nothing to move that marking
+   * to — the handler could mark once at load and never update, which is
+   * exactly the bug in issue #192, and Phase_G.html (one anchor) cannot show
+   * it. This page can.
+   */
+  anchoredRelatedLinks: '/Britain_Cmplx/unit_banjo.html',
   table: '/QuickLinksData/VanesandCranes.html',
   // Not every topic has a short description, and `.shortdesc { display: none }`
   // cannot be tested on one that does not.
