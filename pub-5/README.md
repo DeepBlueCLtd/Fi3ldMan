@@ -5,7 +5,7 @@ under `/pub-5/`.
 
 | Folder | Oxygen | Template | Published | Suite | Role |
 | --- | --- | --- | --- | --- | --- |
-| `current/` | 28.1 | `template-2026/` | 2026-09-04 | 46/46 | Browsable current publish |
+| `current/` | 28.1 | `template-2026/` | 2026-09-11 | 48/48 | Browsable current publish |
 | `oxygen-28/` | 28.1 | `template-2026/` | 2026-09-04 | 46/46 | Frozen snapshot |
 | `oxygen-26/` | 26 | `template-2024/` | 2026-08-25 | 41/46, 5 skipped | Frozen snapshot |
 | `oxygen-25/` | 25.x | 25.1-era template | 2023 (committed 2025-01) | — | Frozen snapshot |
