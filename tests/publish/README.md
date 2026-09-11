@@ -192,6 +192,7 @@ copying the output to a scratch directory, breaking one thing, and pointing
 | `current-handler.js` left marking the current link once at load, with the `pushState` wrapper still in place | fail | Caught by the in-page marking test: the reader clicks a second in-page related link, the address bar follows and the greyed-out entry does not |
 | The panel's link to this topic marked `current` at an anchor, greying out the reader's way back to the top | fail | Caught by the in-page marking test on the first assertion: the current list is no longer just the anchor |
 | The `same-page` mark dropped, so a link to this page is badged as leading off it | fail | Caught by the same test, which asserts which links are marked as not leaving the page |
+| `main`'s pre-#192 handler put in front of the suite, i.e. the whole re-marking mechanism gone | fail | Caught by the in-page marking test — and it is a **failure, not a skip**, which is the point of guarding on `template-version.txt` rather than on the handler |
 
 The **restyled** and **deleted** `notes.css` rows are the pair that defines the
 scope, and they are the ones to re-check after any change to this suite. A
@@ -300,16 +301,22 @@ Tracked in **issue #184**, along with the styling follow-ups they turned up.
   stock Oxygen, and **Fi3ldMan does not use DITA notes**: there is no `<note>`
   element in any DITA source in this repository, or in the real publications.
   Nothing to test, and nothing to add to the sample content.)
-- **The in-page marking test skips on a publish older than the fix.** The
-  related-links panel greys out the link to wherever the reader is, and that
-  marking has to move when they click a second in-page link. A publish built
-  before the fix for that (issue #192) cannot have the behaviour, and a frozen
-  `oxygen-NN/` snapshot never will, so the test reads the `current-handler.js`
-  the publish actually serves and skips — loudly, on stderr — when it carries
-  no `pushState` hook. The cost is the one the image-sizing guard carries: a
-  *current* template that dropped the fix entirely would go quiet rather than
-  fail. A half-reverted one would not, which is the likelier regression and is
-  in the breakage table above.
+- **The in-page marking test skips on a publish that predates the template
+  being versioned.** The frozen `oxygen-NN/` snapshots cannot acquire this
+  behaviour, so something has to excuse them. *What the guard asks* is the
+  part worth getting right, and the first version got it wrong: it read
+  `current-handler.js` and skipped when the fix was absent, which is the same
+  question the test asks — so a publish that had *lost* the behaviour went
+  quiet instead of failing, a hole exactly where a regression appears.
+
+  It now asks whether `template-version.txt` is in the output. Oxygen began
+  stamping that file in well after the snapshots were frozen, so they lack it
+  and skip, while every current and future publish carries it and is always
+  checked — a publish that dropped the fix fails. Verified by putting `main`'s
+  pre-#192 handler in front of the suite: one failure, no skip.
+
+  This is worth copying wherever a guard is needed. Ask "is this publish new
+  enough to be expected to have it", never "does this publish have it".
 
 - **Dead rules are not flagged.** `.wh_tiles-container`, `.breadcrumb-sticky`
   and `.permalink` match nothing in the current output. They are harmless, but
