@@ -1,15 +1,18 @@
-# Deploys the site/ folder to GitHub Pages.
+# Deploys site/ to GitHub Pages, and gives every pull request that changes it a
+# preview at /pr/<number>/.
 #
 # Fi3ldMan publishes committed HTML: Oxygen runs on an author's machine and the
-# verified output is committed under site/. There is nothing to build here, so
-# this workflow only uploads the folder.
+# verified output is committed under site/. There is nothing to build here —
+# the work is entirely in deciding what to copy where, which
+# .github/scripts/gh-pages-publish.sh does.
 #
-# Requires the repository's Pages source to be set to "GitHub Actions"
-# (Settings -> Pages -> Build and deployment -> Source). Before the
-# reorganisation Pages served the whole repository from the branch root, which
-# is why DITA sources, baselines and lockfiles were all part of the deployed
-# site.
-name: Deploy site to GitHub Pages
+# Requires the repository's Pages source to be set to "Deploy from a branch",
+# branch gh-pages, folder / (root)  —  Settings -> Pages. It used to be
+# "GitHub Actions", and the switch is what makes per-PR previews possible at
+# all: the Actions source serves exactly one deployment per repository, so
+# there is nowhere for a second copy of the site to live. See
+# context-docs/16-pr-previews.md.
+name: GitHub Pages & PR preview
 
 on:
   push:
@@ -17,30 +20,165 @@ on:
     paths:
       - 'site/**'
       - '.github/workflows/pages.yml'
+      - '.github/scripts/gh-pages-publish.sh'
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
+  pull-requests: write
 
-# Let a run in progress finish rather than cancelling it: a half-deployed site
-# is worse than a slightly stale one.
+# Per PR (and one for main) rather than a single group for the whole branch.
+# A repository-wide group would look right and be wrong: GitHub keeps only the
+# most recent pending run in a group and cancels the others, so one busy PR
+# could cancel another PR's preview outright. Racing pushes to gh-pages are
+# handled where they actually happen instead — the publish script refetches and
+# retries.
 concurrency:
-  group: pages
+  group: gh-pages-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  # The live site: https://deepbluecltd.github.io/Fi3ldMan/
+  deploy-main:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: Publish site/ to gh-pages
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: .github/scripts/gh-pages-publish.sh site
+
+  preview:
+    # Forks cannot have a preview: `pull_request` gives a fork's run a
+    # read-only token, so the push to gh-pages would fail. Every PR in this
+    # repository is from a branch in this repository.
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.action != 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
         with:
-          path: site
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          # Both ends of the comparison below have to be present locally.
+          fetch-depth: 0
+
+      # Most pull requests here change publications/ and not site/ — a template
+      # or DITA edit reaches the published output only when someone republishes
+      # from Oxygen. Deploying a preview for one of those would put a page in
+      # front of a reviewer that is byte-identical to the live site while
+      # appearing to show the change in context, which is worse than no
+      # preview at all. So say so instead.
+      - id: scope
+        name: Did this PR change the published output?
+        run: |
+          base=${{ github.event.pull_request.base.sha }}
+          head=${{ github.event.pull_request.head.sha }}
+          # Three dots: what this branch did, not what main did meanwhile.
+          if git diff --quiet "$base...$head" -- site/; then
+            echo 'site=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'site=true' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish the preview
+        if: steps.scope.outputs.site == 'true'
+        env:
+          PREVIEW_SHA: ${{ github.event.pull_request.head.sha }}
+        run: .github/scripts/gh-pages-publish.sh preview ${{ github.event.pull_request.number }}
+
+      - name: Comment on the PR
+        uses: actions/github-script@v7
+        env:
+          HAS_PREVIEW: ${{ steps.scope.outputs.site }}
+        with:
+          script: |
+            const previewUrl =
+              `https://deepbluecltd.github.io/${context.repo.repo}/pr/${context.payload.pull_request.number}/`
+            const sha = context.payload.pull_request.head.sha.slice(0, 7)
+
+            const body = process.env.HAS_PREVIEW === 'true'
+              ? [
+                  '### Preview',
+                  '',
+                  `**[Browse this PR's published output](${previewUrl})** — built from \`${sha}\`.`,
+                  '',
+                  'Frozen `oxygen-NN` snapshots and `legacy-regions` are not copied into a',
+                  'preview: they are 72MB of the 113MB site and neither can change in a PR.',
+                  'Links to them on the hub page lead to the live site.',
+                  '',
+                  'The preview is deleted when this PR is closed.',
+                ].join('\n')
+              : [
+                  '### No preview for this PR',
+                  '',
+                  `Nothing under \`site/\` changed as of \`${sha}\`, so a preview would be`,
+                  'byte-identical to the live site.',
+                  '',
+                  'A change to `publications/` — template, stylesheet, script or DITA source —',
+                  'reaches the published output only when someone republishes from Oxygen and',
+                  'commits the result. Until that lands in this PR there is nothing to look at',
+                  'that this PR has changed.',
+                ].join('\n')
+
+            const marker = '<!-- pr-preview-comment -->'
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              per_page: 100,
+            })
+            const existing = comments.find((c) => c.body.includes(marker))
+            const payload = `${marker}\n${body}\n\n_Updated ${new Date().toISOString()}_`
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body: payload,
+              })
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                body: payload,
+              })
+            }
+
+  cleanup:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Delete the preview
+        run: .github/scripts/gh-pages-publish.sh remove ${{ github.event.pull_request.number }}
+
+      - name: Retire the comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const marker = '<!-- pr-preview-comment -->'
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              per_page: 100,
+            })
+            const existing = comments.find((c) => c.body.includes(marker))
+            if (!existing) return
+            await github.rest.issues.updateComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: existing.id,
+              body: [
+                marker,
+                '### Preview removed',
+                '',
+                'This PR is closed, so its preview has been deleted from `gh-pages`.',
+              ].join('\n'),
+            })

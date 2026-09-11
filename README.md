@@ -43,13 +43,16 @@ Nothing under `publications/` is served.
 | `mockups/` | Dynamic-table prototypes, and the original hand-built pub-9 / pub-10 previews |
 
 `.github/workflows/pages.yml` deploys `site/` and nothing else. There is no
-build step in CI — the workflow just uploads the folder.
+build step in CI — the workflow copies the folder onto the `gh-pages` branch,
+which is what Pages serves. It also gives every pull request that changes
+`site/` a browsable preview at `/pr/<number>/`; see
+`context-docs/16-pr-previews.md`.
 
 ### Workflows
 
 | | |
 | --- | --- |
-| `pages.yml` | Uploads `site/` to GitHub Pages on a push to `main` |
+| `pages.yml` | Publishes `site/` to GitHub Pages on a push to `main`, and a per-PR preview at `/pr/<number>/` for any PR that changes `site/`. Deletes the preview when the PR closes. See `context-docs/16-pr-previews.md` |
 | `template-release.yml` | Versions and publishes `publications/pub-5/template-2026/` as a release zip when a push to `main` changes it. See `context-docs/14-template-releases.md` |
 
 ## Publishing a change
