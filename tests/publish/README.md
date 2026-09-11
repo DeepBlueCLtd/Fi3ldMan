@@ -190,6 +190,8 @@ copying the output to a scratch directory, breaking one thing, and pointing
 | `--f13-image-link-width` and `--f13-image-row-height` retuned without touching the content | fail | Caught as drift: the CSS and the `width`/`height` attributes DITA emits are a matched pair, and nothing about the rendering shows them disagreeing |
 | `.related_link .current` deleted | fail | 2 failures: the self link is neither greyed nor stripped of its icon |
 | `current-handler.js` left marking the current link once at load, with the `pushState` wrapper still in place | fail | Caught by the in-page marking test: the reader clicks a second in-page related link, the address bar follows and the greyed-out entry does not |
+| The panel's link to this topic marked `current` at an anchor, greying out the reader's way back to the top | fail | Caught by the in-page marking test on the first assertion: the current list is no longer just the anchor |
+| The `same-page` mark dropped, so a link to this page is badged as leading off it | fail | Caught by the same test, which asserts which links are marked as not leaving the page |
 
 The **restyled** and **deleted** `notes.css` rows are the pair that defines the
 scope, and they are the ones to re-check after any change to this suite. A

@@ -180,6 +180,24 @@ test.describe('fi3ldman scripts', () => {
         links.map((a) => a.getAttribute('href')),
       )
 
+    // Three states, and the panel needs all three kept apart. `current` is
+    // the link pointing at exactly where the reader is: greyed out and inert,
+    // because there is nowhere for it to take them. `same-page` is the wider
+    // set that would not leave this page — it decides the badge, not the
+    // greying. Everything else leaves the page and is badged.
+    //
+    // Conflating the first two is a mistake with a failure mode at each end,
+    // and both were shipped on the way here: marking the panel's link to this
+    // topic `current` at an anchor greys out the reader's way back to the top
+    // of the page, and not marking it at all badges a link to this page as
+    // though it led away from it.
+    const SELF = 'unit_banjo.html'
+    const marked = (name) =>
+      page.$$eval(`.related_link a.${name}`, (links) =>
+        links.map((a) => a.getAttribute('href')),
+      )
+    const selfLink = page.locator(`.related_link a[href="${SELF}"]`)
+
     // Arrive at an anchor, exactly as the panel's own links leave the reader.
     await visit(page, `${path}#unit_banjo__number3`)
     expect(
@@ -207,6 +225,37 @@ test.describe('fi3ldman scripts', () => {
       await current(),
       'Back left the marking on the anchor the reader has just left',
     ).toEqual(['#unit_banjo__number3'])
+
+    // And throughout all of that, the reader is somewhere on this topic, so
+    // the panel's link to it is same-page — no badge — while staying live.
+    expect(
+      await marked('same-page'),
+      'the in-page anchors and the link to this topic should all be marked ' +
+        'as not leaving the page',
+    ).toEqual(['#unit_banjo__number4', '#unit_banjo__number3', SELF])
+    await expect(
+      selfLink,
+      'the link back to the top of this page was greyed out while the reader ' +
+        'is partway down it',
+    ).not.toHaveClass(/\bcurrent\b/)
+    await expect(
+      selfLink,
+      'the link to this page is unclickable while the reader is elsewhere on it',
+    ).toHaveCSS('pointer-events', 'auto')
+    await expect(
+      selfLink,
+      'the link to this page is badged as though following it left the page',
+    ).toHaveCSS('background-image', 'none')
+
+    // At the top of the page the reader *is* where that link points, so now
+    // it is current: greyed and inert, like any other current link.
+    await visit(page, path)
+    expect(
+      await current(),
+      'at the top of the page, the only current link should be the one ' +
+        'pointing at the page itself',
+    ).toEqual([SELF])
+    await expect(selfLink).toHaveCSS('pointer-events', 'none')
   })
 
   test('no console errors on load', async ({ page }) => {
