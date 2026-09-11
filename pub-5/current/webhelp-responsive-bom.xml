@@ -1,0 +1,1201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bom:bom xmlns:bom="http://cyclonedx.org/schema/bom/1.6"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         version="1"
+         xsi:schemaLocation="http://cyclonedx.org/schema/bom/1.6 https://raw.githubusercontent.com/CycloneDX/specification/refs/tags/1.6.1/schema/bom-1.6.xsd">
+   <bom:metadata>
+      <bom:timestamp>2026-06-12T14:39:14.963945821</bom:timestamp>
+      <bom:tools>
+         <bom:components>
+            <bom:component type="library">
+               <bom:author>Syncro Soft</bom:author>
+               <bom:group>com.oxygenxml</bom:group>
+               <bom:name>oxygen-com.oxygenxml.webhelp.responsive</bom:name>
+               <bom:version>28.1-SNAPSHOT</bom:version>
+               <bom:description><![CDATA[Generates a report providing details on any published vulnerabilities within project dependencies. This report is a best effort and may contain false positives and false negatives.]]></bom:description>
+            </bom:component>
+         </bom:components>
+      </bom:tools>
+      <bom:authors>
+         <bom:author>
+            <bom:name>Syncro Soft SRL</bom:name>
+            <bom:email>contact@sync.ro</bom:email>
+            <bom:phone>+40-251-461480</bom:phone>
+         </bom:author>
+      </bom:authors>
+      <bom:component bom-ref="d1e8" type="library">
+         <bom:name>oxygen-com.oxygenxml.webhelp.responsive</bom:name>
+         <bom:version>28.1-SNAPSHOT</bom:version>
+         <bom:description/>
+         <bom:purl>pkg:maven/com.oxygenxml/oxygen-com.oxygenxml.webhelp.responsive@28.1-SNAPSHOT</bom:purl>
+      </bom:component>
+   </bom:metadata>
+   <bom:components>
+      <bom:component bom-ref="d1e26" type="library">
+         <bom:group>popperjs</bom:group>
+         <bom:name>core</bom:name>
+         <bom:version>2.11.8</bom:version>
+         <bom:description><![CDATA[Tooltip and Popover Positioning Engine]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>MIT</bom:id>
+               <bom:url>https://opensource.org/license/mit/</bom:url>
+               <bom:properties>
+                  <bom:property name="license-path">oxygen-webhelp/app/popperjs-core.js.LICENSE.txt</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/@popperjs/core@2.11.8</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">@popperjs/core:2.11.8</bom:property>
+            <bom:property name="o-1-file-path">oxygen-webhelp/app/popperjs-core.js</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e143" type="library">
+         <bom:group>types</bom:group>
+         <bom:name>trusted-types</bom:name>
+         <bom:version>2.0.7</bom:version>
+         <bom:description><![CDATA[TypeScript definitions for trusted-types]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>MIT</bom:id>
+               <bom:text>
+The MIT License
+
+Copyright (c) __YEARS__, __NAMES__
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+      </bom:text>
+               <bom:url>https://opensource.org/license/mit/</bom:url>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/@types/trusted-types@2.0.7</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">@types/trusted-types:2.0.7</bom:property>
+            <bom:property name="o-1-file-path">/com.oxygenxml.webhelp.responsive/src/main/package-lock.json?/@types/trusted-types:2.0.7</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e242" type="library">
+         <bom:group>ant-contrib</bom:group>
+         <bom:name>ant-contrib</bom:name>
+         <bom:version>1.0b3</bom:version>
+         <bom:description><![CDATA[A collection of tasks (and at one point maybe types and other tools) for Apache Ant]]></bom:description>
+         <bom:hashes>
+            <bom:hash alg="MD5">a6495d687a143cbaefa2ab812c69b42e</bom:hash>
+            <bom:hash alg="SHA-1">943cd5c8802b2a3a64a010efb86ec19bac142e40</bom:hash>
+            <bom:hash alg="SHA-256">be33a69818310b5c55e41dc11d48cd895f5f129da4b0d28c2f4c6c3e1cbcf3fc</bom:hash>
+         </bom:hashes>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>Apache-2.0</bom:id>
+               <bom:url>https://www.apache.org/licenses/LICENSE-2.0</bom:url>
+               <bom:properties>
+                  <bom:property name="license-path">../com.oxygenxml.common/licenses/ant.LICENSE.txt</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:maven/ant-contrib/ant-contrib@1.0b3</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">ant-contrib-1.0b3.jar</bom:property>
+            <bom:property name="o-1-file-path">../com.oxygenxml.common/lib</bom:property>
+            <bom:property name="usage">distribution</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e418" type="library">
+         <bom:name>async</bom:name>
+         <bom:version>3.2.6</bom:version>
+         <bom:description><![CDATA[Higher-order functions and common patterns for asynchronous code]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>MIT</bom:id>
+               <bom:text>
+The MIT License
+
+Copyright (c) __YEARS__, __NAMES__
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+      </bom:text>
+               <bom:url>https://opensource.org/license/mit/</bom:url>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/async@3.2.6</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">async:3.2.6</bom:property>
+            <bom:property name="o-1-file-path">/com.oxygenxml.webhelp.responsive/src/main/package-lock.json?kuromoji:0.1.2/async:3.2.6</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e526" type="library">
+         <bom:name>bootpag</bom:name>
+         <bom:version>1.0.7</bom:version>
+         <bom:description><![CDATA[bootpag - dynamic pagination jQuery plugin. Works well with bootstrap or standalone.]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>MIT</bom:id>
+               <bom:properties>
+                  <bom:property name="license-path">oxygen-webhelp/app/jquery-bootpag.js.LICENSE.txt</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/bootpag@1.0.7</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">bootpag:1.0.7</bom:property>
+            <bom:property name="o-1-file-path">oxygen-webhelp/app/jquery-bootpag.js</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e669" type="library">
+         <bom:name>bootstrap</bom:name>
+         <bom:version>5.3.8</bom:version>
+         <bom:description><![CDATA[The most popular front-end framework for developing responsive, mobile first projects on the web.]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>MIT</bom:id>
+               <bom:url>https://opensource.org/license/mit/</bom:url>
+               <bom:properties>
+                  <bom:property name="license-path">oxygen-webhelp/app/bootstrap.js.LICENSE.txt</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/bootstrap@5.3.8</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">bootstrap:5.3.8</bom:property>
+            <bom:property name="o-1-file-path">oxygen-webhelp/app/bootstrap.js</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e786" type="library">
+         <bom:name>dompurify</bom:name>
+         <bom:version>3.4.7</bom:version>
+         <bom:description><![CDATA[DOMPurify is a DOM-only, super-fast, uber-tolerant XSS sanitizer for HTML, MathML and SVG. It's written in JavaScript and works in all modern browsers (Safari, Opera (15+), Internet Explorer (10+), Firefox and Chrome - as well as almost anything else using Blink or WebKit). DOMPurify is written by security people who have vast background in web attacks and XSS. Fear not.]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>Apache-2.0</bom:id>
+               <bom:url>https://www.apache.org/licenses/LICENSE-2.0</bom:url>
+               <bom:properties>
+                  <bom:property name="license-path">oxygen-webhelp/app/dompurify.js.LICENSE.txt</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/dompurify@3.4.7</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">dompurify:3.4.7</bom:property>
+            <bom:property name="o-1-file-path">oxygen-webhelp/app/dompurify.js</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e911" type="library">
+         <bom:name>doublearray</bom:name>
+         <bom:version>0.0.2</bom:version>
+         <bom:description><![CDATA[JavaScript implementation of Double-Array trie]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>MIT</bom:id>
+               <bom:text>
+The MIT License
+
+Copyright (c) __YEARS__, __NAMES__
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+      </bom:text>
+               <bom:url>https://opensource.org/license/mit/</bom:url>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/doublearray@0.0.2</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">doublearray:0.0.2</bom:property>
+            <bom:property name="o-1-file-path">/com.oxygenxml.webhelp.responsive/src/main/package-lock.json?/doublearray:0.0.2</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e1019" type="library">
+         <bom:group>net.sourceforge.htmlcleaner</bom:group>
+         <bom:name>htmlcleaner</bom:name>
+         <bom:version>2.29</bom:version>
+         <bom:description><![CDATA[
+        HtmlCleaner is an HTML parser written in Java. It transforms dirty HTML to well-formed XML following
+        the same rules that most web-browsers use.
+    ]]></bom:description>
+         <bom:hashes>
+            <bom:hash alg="MD5">ece733fa0697d2d25d8dfcbd7f257a66</bom:hash>
+            <bom:hash alg="SHA-1">7b42d564b7d2a4674612ef0ec3696985cbd38343</bom:hash>
+            <bom:hash alg="SHA-256">4a55def81fee6dc322e601b012d728f6b4f47f3fe4506b7408b6b20bbd07d99b</bom:hash>
+         </bom:hashes>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>BSD-3-Clause</bom:id>
+               <bom:text>
+Copyright (c) &lt;YEAR&gt;, &lt;OWNER&gt;
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this 
+list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this 
+list of conditions and the following disclaimer in the documentation and/or other
+materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may
+be used to endorse or promote products derived from this software without specific 
+prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+      </bom:text>
+               <bom:url>http://www.opensource.org/licenses/BSD-3-Clause</bom:url>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:maven/net.sourceforge.htmlcleaner/htmlcleaner@2.29</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">htmlcleaner-2.29.jar</bom:property>
+            <bom:property name="o-1-file-path">../com.oxygenxml.common/lib</bom:property>
+            <bom:property name="usage">distribution</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e1407" type="library">
+         <bom:name>image-map</bom:name>
+         <bom:version>2.0.1</bom:version>
+         <bom:description><![CDATA[Response, dynamic image maps]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>Apache-2.0</bom:id>
+               <bom:url>https://www.apache.org/licenses/LICENSE-2.0</bom:url>
+               <bom:properties>
+                  <bom:property name="license-path">oxygen-webhelp/app/image-map.js.LICENSE.txt</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/image-map@2.0.1</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">image-map:2.0.1</bom:property>
+            <bom:property name="o-1-file-path">oxygen-webhelp/app/image-map.js</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e1533" type="library">
+         <bom:name>jquery-highlight</bom:name>
+         <bom:version>3.5.0</bom:version>
+         <bom:description><![CDATA[Text highlighting plugin for jQuery]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>MIT</bom:id>
+               <bom:text>
+The MIT License
+
+Copyright (c) __YEARS__, __NAMES__
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+      </bom:text>
+               <bom:url>https://opensource.org/license/mit/</bom:url>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/jquery-highlight@3.5.0</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">jquery-highlight:3.5.0</bom:property>
+            <bom:property name="o-1-file-path">oxygen-webhelp/app/jquery-highlight.js</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e1642" type="library">
+         <bom:name>jquery-ui</bom:name>
+         <bom:version>1.14.1</bom:version>
+         <bom:description><![CDATA[A curated set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library.]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>MIT</bom:id>
+               <bom:url>https://opensource.org/license/mit/</bom:url>
+               <bom:properties>
+                  <bom:property name="license-path">oxygen-webhelp/app/jquery-ui.js.LICENSE.txt</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/jquery-ui@1.14.1</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">jquery-ui:1.14.1</bom:property>
+            <bom:property name="o-1-file-path">oxygen-webhelp/app/jquery-ui.js</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e1897" type="library">
+         <bom:name>jquery</bom:name>
+         <bom:version>3.7.1</bom:version>
+         <bom:description><![CDATA[JavaScript library for DOM operations]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>MIT</bom:id>
+               <bom:url>https://opensource.org/license/mit/</bom:url>
+               <bom:properties>
+                  <bom:property name="license-path">oxygen-webhelp/app/jquery.js.LICENSE.txt</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/jquery@3.7.1</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">jquery:3.7.1</bom:property>
+            <bom:property name="o-1-file-path">oxygen-webhelp/app/jquery.js</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e2014" type="library">
+         <bom:name>kuromoji</bom:name>
+         <bom:version>0.1.2</bom:version>
+         <bom:description><![CDATA[JavaScript implementation of Japanese morphological analyzer]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>Apache-2.0</bom:id>
+               <bom:url>https://www.apache.org/licenses/LICENSE-2.0</bom:url>
+               <bom:properties>
+                  <bom:property name="license-path">oxygen-webhelp/app/search/kuromoji/kuromoji.js.LICENSE.txt</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/kuromoji@0.1.2</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">kuromoji:0.1.2</bom:property>
+            <bom:property name="o-1-file-path">oxygen-webhelp/app/search/kuromoji/kuromoji.js</bom:property>
+            <bom:property name="o-1-dictionary">oxygen-webhelp/app/search/kuromoji/dict/base.dat.gz</bom:property>
+            <bom:property name="o-2-dictionary">oxygen-webhelp/app/search/kuromoji/dict/cc.dat.gz</bom:property>
+            <bom:property name="o-3-dictionary">oxygen-webhelp/app/search/kuromoji/dict/check.dat.gz</bom:property>
+            <bom:property name="o-4-dictionary">oxygen-webhelp/app/search/kuromoji/dict/tid_map.dat.gz</bom:property>
+            <bom:property name="o-5-dictionary">oxygen-webhelp/app/search/kuromoji/dict/tid_pos.dat.gz</bom:property>
+            <bom:property name="o-6-dictionary">oxygen-webhelp/app/search/kuromoji/dict/tid.dat.gz</bom:property>
+            <bom:property name="o-7-dictionary">oxygen-webhelp/app/search/kuromoji/dict/unk_char.dat.gz</bom:property>
+            <bom:property name="o-8-dictionary">oxygen-webhelp/app/search/kuromoji/dict/unk_compat.dat.gz</bom:property>
+            <bom:property name="o-9-dictionary">oxygen-webhelp/app/search/kuromoji/dict/unk_invoke.dat.gz</bom:property>
+            <bom:property name="o-10-dictionary">oxygen-webhelp/app/search/kuromoji/dict/unk_map.dat.gz</bom:property>
+            <bom:property name="o-11-dictionary">oxygen-webhelp/app/search/kuromoji/dict/unk_pos.dat.gz</bom:property>
+            <bom:property name="o-12-dictionary">oxygen-webhelp/app/search/kuromoji/dict/unk.dat.gz</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e2131" type="library">
+         <bom:publisher>The Apache Software Foundation</bom:publisher>
+         <bom:group>org.apache.lucene</bom:group>
+         <bom:name>lucene-analysis-common</bom:name>
+         <bom:version>9.12.3</bom:version>
+         <bom:description><![CDATA[Apache Lucene (module: common)]]></bom:description>
+         <bom:hashes>
+            <bom:hash alg="MD5">4e965a28f0ce7fb8cd9351d023747599</bom:hash>
+            <bom:hash alg="SHA-1">1c25766443c63d4b75c4acb5d2ae162a67d6f937</bom:hash>
+            <bom:hash alg="SHA-256">fa571bd7caf0f0b4faf46a72ca004a7836f348c31d92bd522dddcc3d128d287e</bom:hash>
+         </bom:hashes>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>Apache-2.0</bom:id>
+               <bom:url>https://www.apache.org/licenses/LICENSE-2.0</bom:url>
+               <bom:properties>
+                  <bom:property name="license-path">../com.oxygenxml.common/licenses/lucene.LICENSE.txt</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:maven/org.apache.lucene/lucene-analysis-common@9.12.3</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">lucene-analysis-common-9.12.3.jar</bom:property>
+            <bom:property name="o-1-file-path">../com.oxygenxml.common/lib</bom:property>
+            <bom:property name="usage">distribution</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e2418" type="library">
+         <bom:publisher>The Apache Software Foundation</bom:publisher>
+         <bom:group>org.apache.lucene</bom:group>
+         <bom:name>lucene-analysis-kuromoji</bom:name>
+         <bom:version>9.12.3</bom:version>
+         <bom:description><![CDATA[Apache Lucene (module: kuromoji)]]></bom:description>
+         <bom:hashes>
+            <bom:hash alg="MD5">79840f44abe7b7960d15e27ed8fe85e0</bom:hash>
+            <bom:hash alg="SHA-1">2bccb5ff38ed05b141f415ca8e451b8c10bfd182</bom:hash>
+            <bom:hash alg="SHA-256">fb4999a9b9eb136e31774013ab24c8a32848bd943d0352aa180425f686963142</bom:hash>
+         </bom:hashes>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>Apache-2.0</bom:id>
+               <bom:url>https://www.apache.org/licenses/LICENSE-2.0</bom:url>
+               <bom:properties>
+                  <bom:property name="license-path">../com.oxygenxml.common/licenses/lucene.LICENSE.txt</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:maven/org.apache.lucene/lucene-analysis-kuromoji@9.12.3</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">lucene-analysis-kuromoji-9.12.3.jar</bom:property>
+            <bom:property name="o-1-file-path">../com.oxygenxml.common/lib</bom:property>
+            <bom:property name="usage">distribution</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e2705" type="library">
+         <bom:publisher>The Apache Software Foundation</bom:publisher>
+         <bom:group>org.apache.lucene</bom:group>
+         <bom:name>lucene-core</bom:name>
+         <bom:version>9.12.3</bom:version>
+         <bom:description><![CDATA[Apache Lucene (module: core)]]></bom:description>
+         <bom:hashes>
+            <bom:hash alg="MD5">47481642ad6c80af767bc73618a0eb43</bom:hash>
+            <bom:hash alg="SHA-1">b4b3fbe8608b438d0a810d15187498e6de974d0e</bom:hash>
+            <bom:hash alg="SHA-256">b64a3f8098a7572034fb30085cdee01b34ec81fb0e5a31b471536af58dc6c01b</bom:hash>
+         </bom:hashes>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>Apache-2.0</bom:id>
+               <bom:url>https://www.apache.org/licenses/LICENSE-2.0</bom:url>
+               <bom:properties>
+                  <bom:property name="license-path">../com.oxygenxml.common/licenses/lucene.LICENSE.txt</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:maven/org.apache.lucene/lucene-core@9.12.3</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">lucene-core-9.12.3.jar</bom:property>
+            <bom:property name="o-1-file-path">../com.oxygenxml.common/lib</bom:property>
+            <bom:property name="usage">distribution</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e3021" type="library">
+         <bom:name>maphilight</bom:name>
+         <bom:version>1.4.2</bom:version>
+         <bom:description><![CDATA[a plugin that adds visual hilights to image maps]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>MIT</bom:id>
+               <bom:properties>
+                  <bom:property name="license-path">oxygen-webhelp/app/maphilight.js.LICENSE.txt</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/maphilight@1.4.2</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">maphilight:1.4.2</bom:property>
+            <bom:property name="o-1-file-path">oxygen-webhelp/app/maphilight.js</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e3144" type="library">
+         <bom:publisher>Syncro Soft SRL</bom:publisher>
+         <bom:group>com.oxygenxml</bom:group>
+         <bom:name>oxygen-annotations</bom:name>
+         <bom:version>28.1-SNAPSHOT</bom:version>
+         <bom:description><![CDATA[Java annotations used in Oxygen]]></bom:description>
+         <bom:hashes>
+            <bom:hash alg="MD5">503b2ba3fd21ded4e0c7d0b50ed32643</bom:hash>
+            <bom:hash alg="SHA-1">87949e6853c66048d498c457cc5b0e908fe14a12</bom:hash>
+            <bom:hash alg="SHA-256">9ad329f9fa7af1006eb35faa471177b79c599fae4ae7bc40e34c4f27a776313d</bom:hash>
+         </bom:hashes>
+         <bom:purl>pkg:maven/com.oxygenxml/oxygen-annotations@28.1-SNAPSHOT</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">oxygen-annotations-28.1-SNAPSHOT.jar</bom:property>
+            <bom:property name="o-1-internal-origin">true</bom:property>
+            <bom:property name="o-1-file-path">/home/jenkins/.m2/repository/com/oxygenxml/oxygen-annotations/28.1-SNAPSHOT/oxygen-annotations-28.1-SNAPSHOT.jar</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e3435" type="library">
+         <bom:publisher>Syncro Soft SRL</bom:publisher>
+         <bom:group>com.oxygenxml</bom:group>
+         <bom:name>oxygen-basic-utilities</bom:name>
+         <bom:version>28.1-SNAPSHOT</bom:version>
+         <bom:description><![CDATA[A basic utility package.]]></bom:description>
+         <bom:hashes>
+            <bom:hash alg="MD5">c5fc56d8d0c2e3880f315221c191f170</bom:hash>
+            <bom:hash alg="SHA-1">63604b187283d2637337f671abf26074446fa29d</bom:hash>
+            <bom:hash alg="SHA-256">d0ef49cefb7ba1721417c54a791e591559dc0cc1e7f5722fe0f3d34257c79da9</bom:hash>
+         </bom:hashes>
+         <bom:purl>pkg:maven/com.oxygenxml/oxygen-basic-utilities@28.1-SNAPSHOT</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">oxygen-basic-utilities-28.1-SNAPSHOT.jar</bom:property>
+            <bom:property name="o-1-internal-origin">true</bom:property>
+            <bom:property name="o-1-file-path">/home/jenkins/.m2/repository/com/oxygenxml/oxygen-basic-utilities/28.1-SNAPSHOT/oxygen-basic-utilities-28.1-SNAPSHOT.jar</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e3708" type="library">
+         <bom:publisher>Syncro Soft SRL</bom:publisher>
+         <bom:group>com.oxygenxml</bom:group>
+         <bom:name>oxygen-publishing-template</bom:name>
+         <bom:version>28.1-SNAPSHOT</bom:version>
+         <bom:description><![CDATA[Reads the descriptor associated with the oXygen Publishing Template]]></bom:description>
+         <bom:hashes>
+            <bom:hash alg="MD5">f6b44edfae6076c4772327581b13f9fb</bom:hash>
+            <bom:hash alg="SHA-1">e5cd97121b45213c10ca933d921e593c09280001</bom:hash>
+            <bom:hash alg="SHA-256">c421feae8772e3cd85bdd4eb44e98a638b83b1621d3602491f3e7959d1ad045f</bom:hash>
+         </bom:hashes>
+         <bom:purl>pkg:maven/com.oxygenxml/oxygen-publishing-template@28.1-SNAPSHOT</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">oxygen-publishing-template-28.1-SNAPSHOT.jar</bom:property>
+            <bom:property name="o-1-internal-origin">true</bom:property>
+            <bom:property name="o-1-file-path">/home/jenkins/.m2/repository/com/oxygenxml/oxygen-publishing-template/28.1-SNAPSHOT/oxygen-publishing-template-28.1-SNAPSHOT.jar</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e4063" type="library">
+         <bom:publisher>Syncro Soft SRL</bom:publisher>
+         <bom:group>com.oxygenxml</bom:group>
+         <bom:name>oxygen-webhelp-indexer</bom:name>
+         <bom:version>28.1-SNAPSHOT</bom:version>
+         <bom:description><![CDATA[
+		WebHelp Indexer parse a set of HTML files and generates an index database. 
+		The index is used by the WH Classic and WH Responsive search engines.]]></bom:description>
+         <bom:hashes>
+            <bom:hash alg="MD5">402002d356750a1da0d425231366e9da</bom:hash>
+            <bom:hash alg="SHA-1">be7927b055f593eeacf947e1d737b54c3884e657</bom:hash>
+            <bom:hash alg="SHA-256">44a25ebcfe6c057b69956b9acca799be4d3a31c8efdb2e453cbddd15962900a9</bom:hash>
+         </bom:hashes>
+         <bom:purl>pkg:maven/com.oxygenxml/oxygen-webhelp-indexer@28.1-SNAPSHOT</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">oxygen-webhelp-indexer-28.1-SNAPSHOT.jar</bom:property>
+            <bom:property name="o-1-internal-origin">true</bom:property>
+            <bom:property name="o-1-file-path">/home/jenkins/.m2/repository/com/oxygenxml/oxygen-webhelp-indexer/28.1-SNAPSHOT/oxygen-webhelp-indexer-28.1-SNAPSHOT.jar</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e4382" type="library">
+         <bom:publisher>Syncro Soft SRL</bom:publisher>
+         <bom:group>com.oxygenxml</bom:group>
+         <bom:name>oxygen-license</bom:name>
+         <bom:version>28.1-SNAPSHOT</bom:version>
+         <bom:description/>
+         <bom:hashes>
+            <bom:hash alg="MD5">e8f25bd431909fdd223ced35048ca0e1</bom:hash>
+            <bom:hash alg="SHA-1">fd7921f573d19ee4dc80adc76ed34606dd3b6278</bom:hash>
+            <bom:hash alg="SHA-256">cc6cfe18908aeb1fc83aad39c7d0f670092355fe43530b88c1b3a9cfdb9bae02</bom:hash>
+         </bom:hashes>
+         <bom:purl>pkg:maven/com.oxygenxml/oxygen-license@28.1-SNAPSHOT</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">oxygen-webhelp-license-28.1-SNAPSHOT.jar (shaded: com.oxygenxml:oxygen-license:28.1-SNAPSHOT)</bom:property>
+            <bom:property name="o-1-internal-origin">true</bom:property>
+            <bom:property name="o-1-file-path">/home/jenkins/.m2/repository/com/oxygenxml/oxygen-webhelp-license/28.1-SNAPSHOT/oxygen-webhelp-license-28.1-SNAPSHOT.jar/META-INF/maven/com.oxygenxml/oxygen-license/pom.xml</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e4460" type="library">
+         <bom:publisher>Syncro Soft SRL</bom:publisher>
+         <bom:group>com.oxygenxml</bom:group>
+         <bom:name>oxygen-webhelp-license</bom:name>
+         <bom:version>28.1-SNAPSHOT</bom:version>
+         <bom:description><![CDATA[A basic package that let you verify licenses for the WebHelp.]]></bom:description>
+         <bom:hashes>
+            <bom:hash alg="MD5">cef9037a08b01c19231bfe4fec81a17f</bom:hash>
+            <bom:hash alg="SHA-1">5b5d206229d2d4e6387f07cdda2b60fdbc97d63e</bom:hash>
+            <bom:hash alg="SHA-256">362d807eef8cb320d419770f343e13a8dfb02b9339b97c993afaaaa6a2befc83</bom:hash>
+         </bom:hashes>
+         <bom:purl>pkg:maven/com.oxygenxml/oxygen-webhelp-license@28.1-SNAPSHOT</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">oxygen-webhelp-license-28.1-SNAPSHOT.jar</bom:property>
+            <bom:property name="o-1-internal-origin">true</bom:property>
+            <bom:property name="o-1-file-path">/home/jenkins/.m2/repository/com/oxygenxml/oxygen-webhelp-license/28.1-SNAPSHOT/oxygen-webhelp-license-28.1-SNAPSHOT.jar</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e4769" type="library">
+         <bom:publisher>Syncro Soft SRL</bom:publisher>
+         <bom:group>com.oxygenxml</bom:group>
+         <bom:name>oxygen-webhelp-xerces-patches</bom:name>
+         <bom:version>28.1-SNAPSHOT</bom:version>
+         <bom:description><![CDATA[Some patches for Xerces distributed with WebHelp Responsive and Classic plugins.]]></bom:description>
+         <bom:hashes>
+            <bom:hash alg="MD5">ad87a9e9287d36c60c1dbc31686d726a</bom:hash>
+            <bom:hash alg="SHA-1">5b785c1d5202489c4df009b8667664f6c6fcc22f</bom:hash>
+            <bom:hash alg="SHA-256">5e98e75350230175a65baa580f037693b673935bf8a5cdd7217ad8d34b8db1ea</bom:hash>
+         </bom:hashes>
+         <bom:purl>pkg:maven/com.oxygenxml/oxygen-webhelp-xerces-patches@28.1-SNAPSHOT</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">oxygen-webhelp-xerces-patches-28.1-SNAPSHOT.jar</bom:property>
+            <bom:property name="o-1-internal-origin">true</bom:property>
+            <bom:property name="o-1-file-path">/home/jenkins/.m2/repository/com/oxygenxml/oxygen-webhelp-xerces-patches/28.1-SNAPSHOT/oxygen-webhelp-xerces-patches-28.1-SNAPSHOT.jar</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e5118" type="library">
+         <bom:name>path-browserify</bom:name>
+         <bom:version>1.0.1</bom:version>
+         <bom:description><![CDATA[the path module from node core for browsers]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>MIT</bom:id>
+               <bom:text>
+The MIT License
+
+Copyright (c) __YEARS__, __NAMES__
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+      </bom:text>
+               <bom:url>https://opensource.org/license/mit/</bom:url>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/path-browserify@1.0.1</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">path-browserify:1.0.1</bom:property>
+            <bom:property name="o-1-file-path">/com.oxygenxml.webhelp.responsive/src/main/package-lock.json?/path-browserify:1.0.1</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e5244" type="library">
+         <bom:name>regenerator-runtime</bom:name>
+         <bom:version>0.14.1</bom:version>
+         <bom:description><![CDATA[Runtime for Regenerator-compiled generator and async functions.]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>MIT</bom:id>
+               <bom:text>
+The MIT License
+
+Copyright (c) __YEARS__, __NAMES__
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+      </bom:text>
+               <bom:url>https://opensource.org/license/mit/</bom:url>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/regenerator-runtime@0.14.1</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">regenerator-runtime:0.14.1</bom:property>
+            <bom:property name="o-1-file-path">/com.oxygenxml.webhelp.responsive/src/main/package-lock.json?/regenerator-runtime:0.14.1</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e5343" type="library">
+         <bom:group>org.slf4j</bom:group>
+         <bom:name>slf4j-api</bom:name>
+         <bom:version>2.0.17</bom:version>
+         <bom:description><![CDATA[The slf4j API]]></bom:description>
+         <bom:hashes>
+            <bom:hash alg="MD5">b6480d114a23683498ac3f746f959d2f</bom:hash>
+            <bom:hash alg="SHA-1">d9e58ac9c7779ba3bf8142aff6c830617a7fe60f</bom:hash>
+            <bom:hash alg="SHA-256">7b751d952061954d5abfed7181c1f645d336091b679891591d63329c622eb832</bom:hash>
+         </bom:hashes>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>MIT</bom:id>
+               <bom:text>
+The MIT License
+
+Copyright (c) __YEARS__, __NAMES__
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+      </bom:text>
+               <bom:url>https://opensource.org/license/mit/</bom:url>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:maven/org.slf4j/slf4j-api@2.0.17</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">slf4j-api-2.0.17.jar</bom:property>
+            <bom:property name="o-1-file-path">../com.oxygenxml.common/lib</bom:property>
+            <bom:property name="usage">distribution</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component bom-ref="d1e5648" type="library">
+         <bom:name>zlibjs</bom:name>
+         <bom:version>0.3.1</bom:version>
+         <bom:description><![CDATA[zlib, gzip and zip implementation in JavaScript]]></bom:description>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>MIT</bom:id>
+               <bom:text>
+The MIT License
+
+Copyright (c) __YEARS__, __NAMES__
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+      </bom:text>
+               <bom:url>https://opensource.org/license/mit/</bom:url>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>pkg:npm/zlibjs@0.3.1</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-name">zlibjs:0.3.1</bom:property>
+            <bom:property name="o-1-file-path">/com.oxygenxml.webhelp.responsive/src/main/package-lock.json?/zlibjs:0.3.1</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component type="file">
+         <bom:name>nwSearchFnt</bom:name>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>BSD-3-Clause</bom:id>
+               <bom:url>http://www.opensource.org/licenses/BSD-3-Clause</bom:url>
+               <bom:properties>
+                  <bom:property name="license-path">oxygen-webhelp/app/search/nwSearchFnt.LICENSE.txt</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:properties>
+            <bom:property name="o-1-file-path">oxygen-webhelp/app/search/nwSearchFnt.js</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component type="file">
+         <bom:name>de_stemmer</bom:name>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>BSD-2-Clause</bom:id>
+               <bom:text>
+Copyright (c) &lt;YEAR&gt;, &lt;OWNER&gt;
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this 
+list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this 
+list of conditions and the following disclaimer in the documentation and/or other 
+materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
+SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT 
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
+TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+      </bom:text>
+               <bom:url>https://opensource.org/licenses/BSD-2-Clause</bom:url>
+            </bom:license>
+         </bom:licenses>
+         <bom:properties>
+            <bom:property name="o-1-file-path">oxygen-webhelp/app/search/stemmers/de_stemmer.js</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component type="file">
+         <bom:name>fr_stemmer</bom:name>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>BSD-2-Clause</bom:id>
+               <bom:text>
+Copyright (c) &lt;YEAR&gt;, &lt;OWNER&gt;
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this 
+list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this 
+list of conditions and the following disclaimer in the documentation and/or other 
+materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
+SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT 
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
+TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+      </bom:text>
+               <bom:url>https://opensource.org/licenses/BSD-2-Clause</bom:url>
+            </bom:license>
+         </bom:licenses>
+         <bom:properties>
+            <bom:property name="o-1-file-path">oxygen-webhelp/app/search/stemmers/fr_stemmer.js</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component type="file">
+         <bom:name>en_stemmer</bom:name>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>BSD-2-Clause</bom:id>
+               <bom:text>
+Copyright (c) &lt;YEAR&gt;, &lt;OWNER&gt;
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this 
+list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this 
+list of conditions and the following disclaimer in the documentation and/or other 
+materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
+SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT 
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
+TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+      </bom:text>
+               <bom:url>https://opensource.org/licenses/BSD-2-Clause</bom:url>
+            </bom:license>
+         </bom:licenses>
+         <bom:properties>
+            <bom:property name="o-1-file-path">oxygen-webhelp/app/search/stemmers/en_stemmer.js</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component type="file">
+         <bom:name>Roboto</bom:name>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>Apache-2.0</bom:id>
+               <bom:url>https://www.apache.org/licenses/LICENSE-2.0</bom:url>
+               <bom:properties>
+                  <bom:property name="license-path">templates/oxygen/resources/fonts/LICENSE.txt"</bom:property>
+               </bom:properties>
+            </bom:license>
+         </bom:licenses>
+         <bom:purl>https://github.com/google/roboto</bom:purl>
+         <bom:properties>
+            <bom:property name="o-1-file-path">templates/oxygen/resources/fonts/Roboto-Bold.ttf</bom:property>
+            <bom:property name="o-2-file-path">templates/oxygen/resources/fonts/Roboto-Light.ttf</bom:property>
+            <bom:property name="o-3-file-path">templates/oxygen/resources/fonts/Roboto-Regular.ttf</bom:property>
+            <bom:property name="o-4-file-path">templates/oxygen/resources/fonts/Roboto-Thin.ttf</bom:property>
+            <bom:property name="usage">output</bom:property>
+         </bom:properties>
+      </bom:component>
+      <bom:component type="file">
+         <bom:name>relpath_util</bom:name>
+         <bom:licenses>
+            <bom:license>
+               <bom:id>Apache-2.0</bom:id>
+               <bom:text>
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      "control" means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      "You" (or "Your") shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      "Object" form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      "Work" shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      "Derivative Works" shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      "Contribution" shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, "submitted"
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as "Not a Contribution."
+
+      "Contributor" shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a "NOTICE" text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "[]"
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same "printed page" as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright [yyyy] [name of copyright owner]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+      </bom:text>
+               <bom:url>http://www.dita4publishers.org</bom:url>
+            </bom:license>
+         </bom:licenses>
+         <bom:properties>
+            <bom:property name="o-1-file-path">xsl/util/relpath_util.xsl</bom:property>
+            <bom:property name="usage">distribution</bom:property>
+         </bom:properties>
+      </bom:component>
+   </bom:components>
+</bom:bom>

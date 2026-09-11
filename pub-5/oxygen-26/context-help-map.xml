@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map>
+   <appContext helpID="PD_1" path="PlatformData/PD_1.html"/>
+   <appContext helpID="Abbreviations" path="QuickLinksData/Abbreviations.html"/>
+   <appContext helpID="Warning" path="Introduction/Warning.html"/>
+   <appContext helpID="Contents_Index" path="QuickLinksData/Contents_Index.html"/>
+</map>
