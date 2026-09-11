@@ -59,7 +59,12 @@ The published Fi3ldMan output includes several JavaScript components that add in
 
 **Purpose**: Highlights the currently active navigation link by comparing `document.URL` against every anchor's resolved `href` and toggling a `"current"` CSS class on the ones that match. `f13ldman.css` uses it to grey out and disable the related-links entry pointing at wherever the reader is.
 
-**Behavior**: The comparison is on the *full* URL, fragment included, so a link is current only when it points at exactly where the reader is — a link to the topic itself greys out at the top of the page, not at an anchor within it.
+**Behavior**: Two kinds of link count as current, and both mean "this is where the reader already is":
+
+- an **exact** match on the full URL, fragment included — this is what marks an in-page link to the anchor the reader has scrolled to;
+- a link to **this page carrying no fragment of its own**, whatever anchor the reader is at within it. A related-links panel usually holds one of these ("Overview"), and an exact-match-only rule left it looking like an ordinary link to somewhere else as soon as the reader followed any in-page link — the opposite of what `.related_link .current` exists to do.
+
+`link.hash` is empty only when the link carries no fragment at all, so the second rule never claims another topic's anchor link.
 
 The marking is redone on every navigation, not computed once at load. That is not as simple as it sounds, because a related-links panel can hold in-page links (`href="#topic__number3"`) and no single event covers following one:
 
@@ -113,6 +118,12 @@ The JavaScript components interact with the published HTML through specific conv
 - **harmonics.js**: Targets `.wh_content_area` container (standard Oxygen WebHelp class)
 - **current-handler.js**: Scans all `<a>` elements in the page
 - **gramframe.bundle.js**: Targets gram-specific containers in Pub-10 topics
+
+### Related-link icons
+
+Not a script, but the other half of what a reader sees in that panel. `f13ldman.css` badges a related link in two cases only: `rel="external"`, which DITA emits for a link the author marked `scope="external"`, and a `.xls`/`.xlsx` target, which downloads rather than opens. Everything else — an in-page anchor, an ordinary topic in the same publication, the link back to this page — carries no icon.
+
+It used to be "every link that is not an in-page anchor gets the external-link icon", which badged every ordinary topic as though it were outside the publication and left the one genuinely external link with no way to stand out.
 
 ### CSS Dependencies
 The JavaScript components rely on CSS classes defined in `f13ldman.css`:

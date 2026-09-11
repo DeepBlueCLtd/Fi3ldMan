@@ -4,18 +4,42 @@
   max-width: 100% !important;
 }
 
-/* styling for related links */
-.related-links a[href$='.xls'], a[href$='.xlsx'] {
-  background: transparent url(resources/images/icon_excel.gif) center right no-repeat !important;
-  padding-right: 22px;
-}
+/* Icons in the related-links panel.
 
-.related-links a[href^="#"] {
+   A badge is worth carrying only where it tells the reader something they
+   could not already see. These rules used to say `every link that is not an
+   in-page anchor gets the external-link icon`, which meant every ordinary
+   topic in the same publication wore it — including the panel's link back to
+   the page being read — while the one link DITA actually marks as external
+   wore exactly the same icon. The badge distinguished nothing.
+
+   So: no icon by default, and one only where there is something to say. */
+.related-links a {
   background: transparent;
 }
 
-.related-links a {
+/* DITA emits `rel="external"` (with `target="_blank"`) for a link the author
+   marked `scope="external"`: the publication's own statement that the target
+   is outside it. That, rather than the file extension or the presence of a
+   fragment, is what this badge now means. */
+.related-links a[rel~='external'] {
   background: transparent url(resources/images/external_link.svg) center right no-repeat;
+  padding-right: 22px;
+}
+
+/* A spreadsheet is flagged whether or not it is scoped external, because the
+   thing worth warning about is that it downloads rather than opens. Last of
+   the three, so it beats the rule above on a link that is both — which is
+   what the `!important` here used to be for.
+
+   Both halves are scoped to `.related-links`. The selector was previously
+   `.related-links a[href$='.xls'], a[href$='.xlsx']`, whose second half is not
+   scoped to anything: with `!important`, it put the Excel icon on every .xlsx
+   link anywhere in the publication. Nothing rendered differently, because
+   every .xlsx link in the content happens to be in a related-links panel. */
+.related-links a[href$='.xls'],
+.related-links a[href$='.xlsx'] {
+  background: transparent url(resources/images/icon_excel.gif) center right no-repeat;
   padding-right: 22px;
 }
 

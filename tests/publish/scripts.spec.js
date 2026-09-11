@@ -180,13 +180,22 @@ test.describe('fi3ldman scripts', () => {
         links.map((a) => a.getAttribute('href')),
       )
 
+    // Two links are expected current throughout, not one. The panel's own
+    // link back to this topic ("Signature", the bare page URL) is a link to
+    // where the reader is whatever anchor they are at, so it stays marked
+    // while the anchor marking moves beneath it. Asserting the whole list
+    // rather than just the anchor is deliberate: it is what catches that one
+    // going missing, which is how it read as an ordinary link to somewhere
+    // else the moment a reader followed any in-page link.
+    const SELF = 'unit_banjo.html'
+
     // Arrive at an anchor, exactly as the panel's own links leave the reader.
     await visit(page, `${path}#unit_banjo__number3`)
     expect(
       await current(),
       'the link to the anchor in the URL was not greyed out on arrival — this ' +
         'is the load-time marking, and it worked before the fix too',
-    ).toEqual(['#unit_banjo__number3'])
+    ).toEqual(['#unit_banjo__number3', SELF])
 
     // ...then follow a second in-page link out of the panel.
     await page.locator('.related_link a[href="#unit_banjo__number4"]').click()
@@ -197,7 +206,7 @@ test.describe('fi3ldman scripts', () => {
         'updated, so the click worked: what failed is that the marking is ' +
         'not being redone. Note that pushState raises no event — see ' +
         'current-handler.js',
-    ).toEqual(['#unit_banjo__number4'])
+    ).toEqual(['#unit_banjo__number4', SELF])
 
     // Back is a real navigation here — pushState made a history entry — and
     // it is the one route that goes through popstate rather than the wrapper.
@@ -206,7 +215,18 @@ test.describe('fi3ldman scripts', () => {
     expect(
       await current(),
       'Back left the marking on the anchor the reader has just left',
-    ).toEqual(['#unit_banjo__number3'])
+    ).toEqual(['#unit_banjo__number3', SELF])
+
+    // And at the top of the page the anchor links are no longer where the
+    // reader is, while the page's own link still is. Loaded afresh rather than
+    // reached with a third goBack: the visit above is this page's first
+    // history entry, so one more step back leaves the document entirely.
+    await visit(page, path)
+    expect(
+      await current(),
+      'at the top of the page, the only current link should be the one ' +
+        'pointing at the page itself',
+    ).toEqual([SELF])
   })
 
   test('no console errors on load', async ({ page }) => {
