@@ -4,18 +4,47 @@
   max-width: 100% !important;
 }
 
-/* styling for related links */
-.related-links a[href$='.xls'], a[href$='.xlsx'] {
-  background: transparent url(resources/images/icon_excel.gif) center right no-repeat !important;
+/* Icons in the related-links panel.
+
+   The badge means "this link takes you off the page you are reading". A topic
+   in the same publication and a target outside it are the same thing to a
+   reader in that respect, so both carry it; only a link that moves the reader
+   within this page does not. The file is called external_link.svg, which is
+   narrower than what it marks — a misleading name is not a reason to change
+   what a reader sees. */
+.related-links a {
+  background: transparent url(resources/images/external_link.svg) center right no-repeat;
   padding-right: 22px;
 }
 
-.related-links a[href^="#"] {
+/* ...so a link that keeps the reader on this page does not get one. Two kinds
+   do: an in-page anchor, which the stylesheet can see for itself, and the
+   panel's link to this topic, which it cannot — only the browser knows what
+   page it is on, so `current-handler.js` marks that one `same-page` at run
+   time and this rule is inert for it until the script has run.
+
+   Note this is deliberately wider than `.related_link .current` below. A link
+   to this topic is on this page wherever the reader has scrolled to, so it
+   never wears the badge; but while they are partway down it stays live and
+   clickable, because it takes them back to the top. Only `current` — pointing
+   at exactly where they already are — is greyed out. */
+.related-links a[href^="#"],
+.related-links a.same-page {
   background: transparent;
 }
 
-.related-links a {
-  background: transparent url(resources/images/external_link.svg) center right no-repeat;
+/* A spreadsheet earns its own badge: it downloads rather than opens.
+
+   Both halves are scoped to `.related-links`. The selector was previously
+   `.related-links a[href$='.xls'], a[href$='.xlsx']`, whose second half is not
+   scoped to anything: with `!important`, it put the Excel icon on every .xlsx
+   link anywhere in the publication. Nothing rendered differently, because
+   every .xlsx link in the content happens to be in a related-links panel, and
+   the `!important` is no longer needed now the rule sits after the catch-all
+   rather than before it. */
+.related-links a[href$='.xls'],
+.related-links a[href$='.xlsx'] {
+  background: transparent url(resources/images/icon_excel.gif) center right no-repeat;
   padding-right: 22px;
 }
 
