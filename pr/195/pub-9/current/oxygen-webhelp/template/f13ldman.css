@@ -17,12 +17,19 @@
   padding-right: 22px;
 }
 
-/* An in-page link keeps the reader here. The panel's link to the page itself
-   is the other kind that keeps them here, and it is `.related_link .current`
-   further down that clears its background, along with the rest of its
-   styling — which is why that rule only does its job when current-handler.js
-   has marked the link. */
-.related-links a[href^="#"] {
+/* ...so a link that keeps the reader on this page does not get one. Two kinds
+   do: an in-page anchor, which the stylesheet can see for itself, and the
+   panel's link to this topic, which it cannot — only the browser knows what
+   page it is on, so `current-handler.js` marks that one `same-page` at run
+   time and this rule is inert for it until the script has run.
+
+   Note this is deliberately wider than `.related_link .current` below. A link
+   to this topic is on this page wherever the reader has scrolled to, so it
+   never wears the badge; but while they are partway down it stays live and
+   clickable, because it takes them back to the top. Only `current` — pointing
+   at exactly where they already are — is greyed out. */
+.related-links a[href^="#"],
+.related-links a.same-page {
   background: transparent;
 }
 
