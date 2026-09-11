@@ -1,24 +1,33 @@
-/* this function appends a `current` class to a link in the
-   header menu if it is for the current page.
+/* Marks the links in the header menu and the related-links panel according to
+   where the reader is. Two marks, because the panel needs two different facts
+   and one class cannot carry both:
+
+     `current`    this link points at exactly where the reader is — the page
+                  top when there is no fragment, or the anchor they are at.
+                  `.related_link .current` greys it out and makes it
+                  unclickable: there is nowhere for it to take them.
+
+     `same-page`  following this link would not leave the page being read.
+                  The badge in the panel means "this takes you off this page",
+                  so a link marked `same-page` does not get one. It is a
+                  *wider* set than `current`: the panel's link to this topic
+                  ("Signature", "Overview") is on this page wherever the
+                  reader has scrolled to, so it never wears the badge — but it
+                  stays live while they are partway down, because clicking it
+                  takes them back to the top, which is somewhere to go.
+
+   Only the browser knows which page it is on, so both marks have to be made
+   at run time; `.related-links a[href^="#"]` is the one same-page case the
+   stylesheet can see for itself.
 
    `link.href` is the resolved absolute URL, so it carries any fragment and is
-   directly comparable with `document.URL`. Two links count as current, and
-   both are the same idea — "this is where the reader already is":
+   directly comparable with `document.URL`.
 
-     - an exact match, which is how an in-page link to the anchor the reader
-       has scrolled to is marked;
-     - a link to this page carrying no fragment of its own, whatever anchor
-       the reader is at within it. A related-links panel usually holds one of
-       these ("Overview"), and matching only exactly left it looking like an
-       ordinary link to somewhere else the moment the reader followed any
-       in-page link — which is what `.related_link .current` exists to
-       prevent.
-
-   Related-links panels also carry in-page links (`href="#topic__number3"`),
-   and following one moves the reader without reloading the page — so the
-   marking has to be redone rather than computed once at load. Done once, the
-   link the reader arrived at stayed greyed out for the rest of the visit
-   however many in-page links they clicked afterwards (issue #192).
+   Related-links panels carry in-page links (`href="#topic__number3"`), and
+   following one moves the reader without reloading the page — so the marking
+   has to be redone rather than computed once at load. Done once, the link the
+   reader arrived at stayed greyed out for the rest of the visit however many
+   in-page links they clicked afterwards (issue #192).
 
    There is no single event to hang that off. Oxygen's own `app/topic.js`
    intercepts a click on an in-page link, calls `preventDefault()`, scrolls
@@ -27,24 +36,20 @@
    change with no event raised anywhere, which is why the panel looked frozen
    while the URL was in fact keeping up. Hence the four hooks below; they
    cover different routes to the same place, and re-marking is idempotent. */
-function isCurrentLink(link, curPage, curPageNoFragment) {
-    if (link.href == curPage) {
-        return true;
-    }
-    /* `link.hash` is empty only when the link carries no fragment at all, so
-       this never claims another topic's anchor link. */
-    return link.hash === "" && link.href == curPageNoFragment;
+function withoutFragment(url) {
+    return url.split("#")[0];
 }
 
 function markCurrentLinks() {
     const curPage = document.URL;
-    const curPageNoFragment = curPage.split("#")[0];
+    const curPageTop = withoutFragment(curPage);
     const links = document.getElementsByTagName('a');
     for (let link of links) {
         /* toggle, not add: the link marked a moment ago is no longer the
            current one once the reader has moved on from it. */
+        link.classList.toggle("current", link.href == curPage);
         link.classList.toggle(
-            "current", isCurrentLink(link, curPage, curPageNoFragment));
+            "same-page", withoutFragment(link.href) == curPageTop);
     }
 }
 

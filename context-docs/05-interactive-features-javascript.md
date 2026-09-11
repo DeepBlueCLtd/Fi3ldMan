@@ -59,12 +59,18 @@ The published Fi3ldMan output includes several JavaScript components that add in
 
 **Purpose**: Highlights the currently active navigation link by comparing `document.URL` against every anchor's resolved `href` and toggling a `"current"` CSS class on the ones that match. `f13ldman.css` uses it to grey out and disable the related-links entry pointing at wherever the reader is.
 
-**Behavior**: Two kinds of link count as current, and both mean "this is where the reader already is":
+**Behavior**: The script makes **two** marks, because the related-links panel needs two different facts and one class cannot carry both.
 
-- an **exact** match on the full URL, fragment included — this is what marks an in-page link to the anchor the reader has scrolled to;
-- a link to **this page carrying no fragment of its own**, whatever anchor the reader is at within it. A related-links panel usually holds one of these ("Overview"), and an exact-match-only rule left it looking like an ordinary link to somewhere else as soon as the reader followed any in-page link — the opposite of what `.related_link .current` exists to do.
+| Class | Means | Effect |
+| --- | --- | --- |
+| `current` | this link points at exactly where the reader is — the page top when the URL has no fragment, or the anchor they are at | `.related_link .current` greys it out and makes it unclickable: there is nowhere for it to take them |
+| `same-page` | following this link would not leave the page being read | no badge — the panel's icon means "this takes you off this page" |
 
-`link.hash` is empty only when the link carries no fragment at all, so the second rule never claims another topic's anchor link.
+`same-page` is deliberately the wider set. The panel's link to the topic itself ("Signature", "Overview") is on this page wherever the reader has scrolled to, so it never wears the badge — but while they are partway down it stays live, because clicking it takes them back to the top, which is somewhere to go. Only an exact match is greyed.
+
+Conflating the two has a failure mode at each end, and both were shipped on the way to this: marking the self link `current` at an anchor greys out the reader's way back to the top, and not marking it at all badges a link to this page as though it led away from it.
+
+Only the browser knows which page it is on, so both marks are made at run time; `.related-links a[href^="#"]` is the one same-page case the stylesheet can see for itself.
 
 The marking is redone on every navigation, not computed once at load. That is not as simple as it sounds, because a related-links panel can hold in-page links (`href="#topic__number3"`) and no single event covers following one:
 
@@ -123,9 +129,7 @@ The JavaScript components interact with the published HTML through specific conv
 
 Not a script, but the other half of what a reader sees in that panel, and the half `current-handler.js` reaches into.
 
-`f13ldman.css` badges a related link when following it **takes the reader off the page they are reading**. Another topic in the same publication and a target outside it both qualify: the distinction a reader needs here is "do I stay on this page or not", not "whose server is it". A `.xls`/`.xlsx` target gets its own badge instead, because it downloads rather than opens.
-
-Two kinds carry no badge, and they are the same two kinds for the same reason — following them keeps you here: an in-page anchor, and the panel's link to this page itself. The second is not a CSS selector but the `.current` class `current-handler.js` applies, which is why that link only loses its badge once the script has run.
+`f13ldman.css` badges a related link when following it **takes the reader off the page they are reading**. Another topic in the same publication and a target outside it both qualify: the distinction a reader needs here is "do I stay on this page or not", not "whose server is it". A `.xls`/`.xlsx` target gets its own badge instead, because it downloads rather than opens. Everything marked `same-page` carries none.
 
 The asset is named `external_link.svg`, which is narrower than what it marks. The name is worth knowing about and not worth acting on: narrowing the rule to `rel="external"` to match it was tried and reverted, because it took the "you are leaving this page" signal away from every ordinary topic link in the panel.
 
@@ -133,6 +137,7 @@ The asset is named `external_link.svg`, which is narrower than what it marks. Th
 The JavaScript components rely on CSS classes defined in `f13ldman.css`:
 - `match_row` / `match_harmonic`: Highlighting for harmonic matches
 - `current`: Active navigation link styling
+- `same-page`: Suppresses the off-page badge on links that do not leave the page
 - `sortable`: Table header cursor and sort indicator styling
 
 ## Resource Loading
