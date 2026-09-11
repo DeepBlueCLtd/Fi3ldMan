@@ -55,11 +55,24 @@ The published Fi3ldMan output includes several JavaScript components that add in
 
 ### 3. Current Page Handler (`current-handler.js`)
 
-**Location**: `template/resources/current-handler.js` (~13 lines)
+**Location**: `template/resources/current-handler.js`
 
-**Purpose**: Highlights the currently active navigation link by comparing `window.location.href` against all anchor `href` attributes and adding a `"current"` CSS class to matching links.
+**Purpose**: Highlights the currently active navigation link by comparing `document.URL` against every anchor's resolved `href` and toggling a `"current"` CSS class on the ones that match. `f13ldman.css` uses it to grey out and disable the related-links entry pointing at wherever the reader is.
 
-**Behavior**: Runs on `DOMContentLoaded` event. Enables CSS-based styling of the active navigation item.
+**Behavior**: The comparison is on the *full* URL, fragment included, so a link is current only when it points at exactly where the reader is — a link to the topic itself greys out at the top of the page, not at an anchor within it.
+
+The marking is redone on every navigation, not computed once at load. That is not as simple as it sounds, because a related-links panel can hold in-page links (`href="#topic__number3"`) and no single event covers following one:
+
+| Route | Hook |
+| --- | --- |
+| Page load | `document.onreadystatechange`, at `complete` |
+| A hash typed into the address bar, or a link Oxygen did not intercept | `hashchange` |
+| Back / Forward | `popstate` |
+| Clicking an in-page link | a wrapper around `history.pushState` / `replaceState` |
+
+The last one is the awkward one. Oxygen's own `app/topic.js` intercepts a click on an in-page link, calls `preventDefault()`, scrolls the page itself and rewrites the address with `history.pushState` — and `pushState` fires neither `hashchange` nor `popstate`. So the address can change with no event raised anywhere, which is why the panel appeared frozen on a page whose URL was in fact keeping up (issue #192). The wrapper calls the original method first and preserves its return value; it is invisible to Oxygen and only supplies the notification the History API declines to send.
+
+`tests/publish/scripts.spec.js` covers both the load-time marking and the in-page case, the latter on `Britain_Cmplx/unit_banjo.html` — a topic with two in-page related links, which is the smallest content that can show the marking failing to move.
 
 ## Pub-10 Specific Components
 

@@ -139,6 +139,76 @@ test.describe('fi3ldman scripts', () => {
     }
   })
 
+  /*
+   * The same marking, after the reader has moved within the page.
+   *
+   * A related-links panel can hold links to anchors in the topic itself, and
+   * the greyed-out "you are here" marking has to follow the reader between
+   * them. It did not: the handler ran once and the link the reader arrived at
+   * stayed greyed for the rest of the visit (issue #192).
+   *
+   * Nothing about that is visible to a test of the handler in isolation,
+   * because the event it needs does not exist. Oxygen's own app/topic.js
+   * intercepts the click on an in-page link, calls preventDefault(), scrolls
+   * the page itself and rewrites the address with history.pushState — which
+   * fires neither hashchange nor popstate. So this is a test of the two
+   * scripts together, in a browser, and it is the only place that interaction
+   * shows up at all.
+   */
+  test('the marking follows in-page related links', async ({ page }) => {
+    const path = PAGES.anchoredRelatedLinks
+
+    // A publish built from a template older than the fix cannot have the
+    // behaviour, and the frozen oxygen-NN snapshots never will. Skip on those
+    // and say so, rather than reporting a template-2026 defect against a 2024
+    // build. Guarded on the handler itself, so any publish carrying the fix is
+    // always checked and no snapshot has to be remembered.
+    const handler = await (
+      await page.request.get('/oxygen-webhelp/template/resources/current-handler.js')
+    ).text()
+    if (!handler.includes('pushState')) {
+      console.warn(
+        `SKIPPED ${path} in-page marking — this publish carries a ` +
+          'current-handler.js from before the issue-192 fix, which marks the ' +
+          'current link once at load and never again',
+      )
+      test.skip()
+    }
+
+    const current = () =>
+      page.$$eval('.related_link a.current', (links) =>
+        links.map((a) => a.getAttribute('href')),
+      )
+
+    // Arrive at an anchor, exactly as the panel's own links leave the reader.
+    await visit(page, `${path}#unit_banjo__number3`)
+    expect(
+      await current(),
+      'the link to the anchor in the URL was not greyed out on arrival — this ' +
+        'is the load-time marking, and it worked before the fix too',
+    ).toEqual(['#unit_banjo__number3'])
+
+    // ...then follow a second in-page link out of the panel.
+    await page.locator('.related_link a[href="#unit_banjo__number4"]').click()
+    await expect(page).toHaveURL(/#unit_banjo__number4$/)
+    expect(
+      await current(),
+      'the greyed-out link did not move with the reader. The address bar ' +
+        'updated, so the click worked: what failed is that the marking is ' +
+        'not being redone. Note that pushState raises no event — see ' +
+        'current-handler.js',
+    ).toEqual(['#unit_banjo__number4'])
+
+    // Back is a real navigation here — pushState made a history entry — and
+    // it is the one route that goes through popstate rather than the wrapper.
+    await page.goBack()
+    await expect(page).toHaveURL(/#unit_banjo__number3$/)
+    expect(
+      await current(),
+      'Back left the marking on the anchor the reader has just left',
+    ).toEqual(['#unit_banjo__number3'])
+  })
+
   test('no console errors on load', async ({ page }) => {
     const errors = []
     page.on('console', (m) => {

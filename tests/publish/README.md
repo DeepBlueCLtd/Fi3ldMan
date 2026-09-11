@@ -189,6 +189,7 @@ copying the output to a scratch directory, breaking one thing, and pointing
 | `li.linklist div.desc` deleted | fail | Caught on the Style Samples page — the target sub-titles render in the panel |
 | `--f13-image-link-width` and `--f13-image-row-height` retuned without touching the content | fail | Caught as drift: the CSS and the `width`/`height` attributes DITA emits are a matched pair, and nothing about the rendering shows them disagreeing |
 | `.related_link .current` deleted | fail | 2 failures: the self link is neither greyed nor stripped of its icon |
+| `current-handler.js` left marking the current link once at load, with the `pushState` wrapper still in place | fail | Caught by the in-page marking test: the reader clicks a second in-page related link, the address bar follows and the greyed-out entry does not |
 
 The **restyled** and **deleted** `notes.css` rows are the pair that defines the
 scope, and they are the ones to re-check after any change to this suite. A
@@ -198,8 +199,17 @@ not. Keeping both true is what makes a green run mean something.
 
 ## Confirmed against Oxygen 28.1
 
-The suite is 46 tests, and `current/` and `oxygen-28/` both pass all of them.
-`oxygen-26/` passes 41 and skips 5. The two numbers are not a discrepancy: that
+The suite is 48 tests, and `current/` passes all of them.
+
+The frozen snapshots no longer do, and neither shortfall is about styling.
+Both skip the in-page related-links marking, which needs a `current-handler.js`
+newer than they carry, and `oxygen-26/` skips five more for the pages it
+predates — 41 passed, 6 skipped. Both also *fail* `all four are requested and
+load`: `gramframe.bundle.js` joined the shared template after they were frozen,
+so it is not in their `template/resources/` at all. That failure is older than
+this note and is a fact about the snapshots, not a regression — but it does
+mean a frozen folder is no longer a clean baseline to diff a new publish
+against without reading past it. The two numbers are not a discrepancy: that
 snapshot predates `StyleSamples.html` joining the page list, and its
 `template-2024` stylesheet declares neither `--f13-image-link-height` nor
 `--f13-image-row-height`, so there is no image-sizing rule there for those
@@ -288,6 +298,17 @@ Tracked in **issue #184**, along with the styling follow-ups they turned up.
   stock Oxygen, and **Fi3ldMan does not use DITA notes**: there is no `<note>`
   element in any DITA source in this repository, or in the real publications.
   Nothing to test, and nothing to add to the sample content.)
+- **The in-page marking test skips on a publish older than the fix.** The
+  related-links panel greys out the link to wherever the reader is, and that
+  marking has to move when they click a second in-page link. A publish built
+  before the fix for that (issue #192) cannot have the behaviour, and a frozen
+  `oxygen-NN/` snapshot never will, so the test reads the `current-handler.js`
+  the publish actually serves and skips — loudly, on stderr — when it carries
+  no `pushState` hook. The cost is the one the image-sizing guard carries: a
+  *current* template that dropped the fix entirely would go quiet rather than
+  fail. A half-reverted one would not, which is the likelier regression and is
+  in the breakage table above.
+
 - **Dead rules are not flagged.** `.wh_tiles-container`, `.breadcrumb-sticky`
   and `.permalink` match nothing in the current output. They are harmless, but
   they are also not what they look like. (`.fullWidthTable` and
