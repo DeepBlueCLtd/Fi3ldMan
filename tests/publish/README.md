@@ -191,7 +191,6 @@ copying the output to a scratch directory, breaking one thing, and pointing
 | `.related_link .current` deleted | fail | 2 failures: the self link is neither greyed nor stripped of its icon |
 | `current-handler.js` left marking the current link once at load, with the `pushState` wrapper still in place | fail | Caught by the in-page marking test: the reader clicks a second in-page related link, the address bar follows and the greyed-out entry does not |
 | The current-page rule narrowed back to an exact URL match, so the panel's link to the topic itself stops being current at an anchor | fail | Caught by the in-page marking test, which asserts the whole list of current links rather than just the anchor |
-| The external-link icon restored to its old catch-all (`.related-links a`) | fail | Caught by the icon test: an ordinary topic in the same publication is badged as though it were outside it |
 
 The **restyled** and **deleted** `notes.css` rows are the pair that defines the
 scope, and they are the ones to re-check after any change to this suite. A
@@ -201,12 +200,12 @@ not. Keeping both true is what makes a green run mean something.
 
 ## Confirmed against Oxygen 28.1
 
-The suite is 49 tests, and `current/` passes all of them.
+The suite is 48 tests, and `current/` passes all of them.
 
 The frozen snapshots no longer do, and neither shortfall is about styling.
 Both skip the in-page related-links marking, which needs a `current-handler.js`
 newer than they carry, and `oxygen-26/` skips five more for the pages it
-predates — 42 passed, 6 skipped. Both also *fail* `all four are requested and
+predates — 41 passed, 6 skipped. Both also *fail* `all four are requested and
 load`: `gramframe.bundle.js` joined the shared template after they were frozen,
 so it is not in their `template/resources/` at all. That failure is older than
 this note and is a fact about the snapshots, not a regression — but it does
@@ -300,19 +299,6 @@ Tracked in **issue #184**, along with the styling follow-ups they turned up.
   stock Oxygen, and **Fi3ldMan does not use DITA notes**: there is no `<note>`
   element in any DITA source in this repository, or in the real publications.
   Nothing to test, and nothing to add to the sample content.)
-- **The ordinary-link icon check stands down on a publish older than the
-  rule.** The external-link icon used to go on every related link that was not
-  an in-page anchor, so a topic in the same publication was badged exactly like
-  a genuinely external target. Narrowing it to `rel="external"` is a stylesheet
-  change a frozen snapshot can never receive, and "an ordinary link has no
-  icon" is the one assertion those publishes cannot satisfy. The icon test
-  reads the `f13ldman.css` the publish serves and skips *that expectation
-  only* — announced on stderr — when the rule is absent; the spreadsheet,
-  anchor and current-page assertions still run everywhere. Same cost as the
-  guard below and as the image-sizing one: a current template that dropped the
-  rule would go quiet rather than fail, which is why restoring the catch-all is
-  in the breakage table above.
-
 - **The in-page marking test skips on a publish older than the fix.** The
   related-links panel greys out the link to wherever the reader is, and that
   marking has to move when they click a second in-page link. A publish built

@@ -121,9 +121,13 @@ The JavaScript components interact with the published HTML through specific conv
 
 ### Related-link icons
 
-Not a script, but the other half of what a reader sees in that panel. `f13ldman.css` badges a related link in two cases only: `rel="external"`, which DITA emits for a link the author marked `scope="external"`, and a `.xls`/`.xlsx` target, which downloads rather than opens. Everything else — an in-page anchor, an ordinary topic in the same publication, the link back to this page — carries no icon.
+Not a script, but the other half of what a reader sees in that panel, and the half `current-handler.js` reaches into.
 
-It used to be "every link that is not an in-page anchor gets the external-link icon", which badged every ordinary topic as though it were outside the publication and left the one genuinely external link with no way to stand out.
+`f13ldman.css` badges a related link when following it **takes the reader off the page they are reading**. Another topic in the same publication and a target outside it both qualify: the distinction a reader needs here is "do I stay on this page or not", not "whose server is it". A `.xls`/`.xlsx` target gets its own badge instead, because it downloads rather than opens.
+
+Two kinds carry no badge, and they are the same two kinds for the same reason — following them keeps you here: an in-page anchor, and the panel's link to this page itself. The second is not a CSS selector but the `.current` class `current-handler.js` applies, which is why that link only loses its badge once the script has run.
+
+The asset is named `external_link.svg`, which is narrower than what it marks. The name is worth knowing about and not worth acting on: narrowing the rule to `rel="external"` to match it was tried and reverted, because it took the "you are leaving this page" signal away from every ordinary topic link in the panel.
 
 ### CSS Dependencies
 The JavaScript components rely on CSS classes defined in `f13ldman.css`:

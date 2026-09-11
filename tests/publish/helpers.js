@@ -19,19 +19,6 @@ const PAGES = {
   figures: '/Britain.Legacy/charlie_pics.html',
   relatedLinks: '/Britain.Legacy/Phase_G.html',
   /*
-   * The one page whose related-links panel carries every kind of link the
-   * icon rules distinguish: an in-page anchor, ordinary topics in this
-   * publication, a spreadsheet, a link back to the page itself, and — the
-   * only two in the whole publication, the other being its Wales twin — a
-   * link DITA marks `rel="external"`.
-   *
-   * Phase_G.html has no external link at all, so once the external-link icon
-   * became something only `rel="external"` earns, the icon test there had
-   * nothing left to prove it on. A kind with no example is a kind that is not
-   * being checked.
-   */
-  relatedLinkKinds: '/Spain_Cmplx/unit_anchors.html',
-  /*
    * A topic whose related-links panel holds *two* in-page links, plus a link
    * to the topic itself.
    *

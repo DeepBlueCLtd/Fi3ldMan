@@ -6,37 +6,35 @@
 
 /* Icons in the related-links panel.
 
-   A badge is worth carrying only where it tells the reader something they
-   could not already see. These rules used to say `every link that is not an
-   in-page anchor gets the external-link icon`, which meant every ordinary
-   topic in the same publication wore it — including the panel's link back to
-   the page being read — while the one link DITA actually marks as external
-   wore exactly the same icon. The badge distinguished nothing.
-
-   So: no icon by default, and one only where there is something to say. */
+   The badge means "this link takes you off the page you are reading". A topic
+   in the same publication and a target outside it are the same thing to a
+   reader in that respect, so both carry it; only a link that moves the reader
+   within this page does not. The file is called external_link.svg, which is
+   narrower than what it marks — a misleading name is not a reason to change
+   what a reader sees. */
 .related-links a {
-  background: transparent;
-}
-
-/* DITA emits `rel="external"` (with `target="_blank"`) for a link the author
-   marked `scope="external"`: the publication's own statement that the target
-   is outside it. That, rather than the file extension or the presence of a
-   fragment, is what this badge now means. */
-.related-links a[rel~='external'] {
   background: transparent url(resources/images/external_link.svg) center right no-repeat;
   padding-right: 22px;
 }
 
-/* A spreadsheet is flagged whether or not it is scoped external, because the
-   thing worth warning about is that it downloads rather than opens. Last of
-   the three, so it beats the rule above on a link that is both — which is
-   what the `!important` here used to be for.
+/* An in-page link keeps the reader here. The panel's link to the page itself
+   is the other kind that keeps them here, and it is `.related_link .current`
+   further down that clears its background, along with the rest of its
+   styling — which is why that rule only does its job when current-handler.js
+   has marked the link. */
+.related-links a[href^="#"] {
+  background: transparent;
+}
+
+/* A spreadsheet earns its own badge: it downloads rather than opens.
 
    Both halves are scoped to `.related-links`. The selector was previously
    `.related-links a[href$='.xls'], a[href$='.xlsx']`, whose second half is not
    scoped to anything: with `!important`, it put the Excel icon on every .xlsx
    link anywhere in the publication. Nothing rendered differently, because
-   every .xlsx link in the content happens to be in a related-links panel. */
+   every .xlsx link in the content happens to be in a related-links panel, and
+   the `!important` is no longer needed now the rule sits after the catch-all
+   rather than before it. */
 .related-links a[href$='.xls'],
 .related-links a[href$='.xlsx'] {
   background: transparent url(resources/images/icon_excel.gif) center right no-repeat;

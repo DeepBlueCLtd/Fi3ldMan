@@ -205,61 +205,27 @@ test.describe('related links', () => {
   })
 
   /*
-   * Four rules decide a related link's icon, and they are order-sensitive.
-   * Checking only the first link in the list would test whichever rule
-   * happens to win there — which is how the first draft of this test ended up
-   * asserting the spreadsheet icon.
+   * Four rules decide a related link's icon, and they are order- and
+   * !important-sensitive. Checking only the first link in the list would test
+   * whichever rule happens to win there — which is how the first draft of this
+   * test ended up asserting the spreadsheet icon.
    *
    * The fourth is `.related_link .current`, which clears the icon along with
    * the rest of the link's styling. It used to look like three: `.current` is
-   * added at run time by current-handler.js from a comparison against
-   * `document.URL`, and the dev server's `cleanUrls` redirect meant that
+   * added at run time by current-handler.js from a `href === document.URL`
+   * comparison, and the dev server's `cleanUrls` redirect meant that
    * comparison never matched under test. With that turned off in
    * `tests/publish/serve.json` the self link is marked, as it is on the
    * deployed site, and it is no longer an ordinary link.
-   *
-   * The icon means "outside this publication", which is narrower than it
-   * used to be: every link that was not an in-page anchor wore it, so an
-   * ordinary topic in the same publication was badged identically to a
-   * genuinely external target. An ordinary link now carries no icon, and that
-   * is the assertion below most worth keeping honest — it is the one that
-   * fails if the old catch-all rule comes back.
    */
   test('each related-link kind gets its own icon', async ({ page }) => {
-    const assets = await visit(page, PAGES.relatedLinkKinds)
-
-    /*
-     * One assertion below depends on a stylesheet newer than the frozen
-     * oxygen-NN snapshots carry: until the icon came to mean `rel="external"`,
-     * every link that was not an in-page anchor wore it, and an ordinary topic
-     * having no icon is precisely what those publishes cannot satisfy. Guarded
-     * on the rule itself, so any publish carrying it is always checked.
-     *
-     * Only that one expectation stands down — the spreadsheet, anchor and
-     * current-page assertions still run against every publish, which is why
-     * this is not a `test.skip`. The cost is the one the image-sizing guard
-     * carries and is written up in this directory's README: a *current*
-     * template that dropped the rule would go quiet here rather than fail.
-     */
-    const stylesheet = await (
-      await page.request.get('/oxygen-webhelp/template/f13ldman.css')
-    ).text()
-    const badgesOnlyExternalLinks = stylesheet.includes("a[rel~='external']")
-    if (!badgesOnlyExternalLinks) {
-      console.warn(
-        `SKIPPED the ordinary-link icon check on ${PAGES.relatedLinkKinds} — ` +
-          'this publish carries an f13ldman.css from before the external-link ' +
-          'icon was narrowed to rel="external", so every non-anchor link is ' +
-          'badged by design there',
-      )
-    }
+    const assets = await visit(page, PAGES.relatedLinks)
 
     const icons = await page.$$eval('.related-links a', (links) =>
       links.map((a) => ({
         href: a.getAttribute('href') || '',
         image: getComputedStyle(a).backgroundImage,
         current: a.classList.contains('current'),
-        external: (a.getAttribute('rel') || '').split(/\s+/).includes('external'),
       })),
     )
     expect(icons.length, 'no related links on this page').toBeGreaterThan(0)
@@ -267,25 +233,13 @@ test.describe('related links', () => {
     const spreadsheet = icons.filter((i) => /\.xlsx?$/.test(i.href))
     const internal = icons.filter((i) => i.href.startsWith('#'))
     const current = icons.filter((i) => i.current)
-    const external = icons.filter(
-      (i) => i.external && !/\.xlsx?$/.test(i.href) && !i.current,
-    )
     const ordinary = icons.filter(
-      (i) =>
-        !/\.xlsx?$/.test(i.href) &&
-        !i.href.startsWith('#') &&
-        !i.current &&
-        !i.external,
+      (i) => !/\.xlsx?$/.test(i.href) && !i.href.startsWith('#') && !i.current,
     )
 
     expect(spreadsheet.length, 'no spreadsheet link to check').toBeGreaterThan(0)
     expect(internal.length, 'no same-page link to check').toBeGreaterThan(0)
     expect(ordinary.length, 'no ordinary link to check').toBeGreaterThan(0)
-    expect(
-      external.length,
-      'no rel="external" link on this page, so the external-link icon would ' +
-        'be asserted on nothing. Repoint PAGES.relatedLinkKinds',
-    ).toBeGreaterThan(0)
     expect(
       current.length,
       'no link to the current page was marked — current-handler.js did not ' +
@@ -297,22 +251,11 @@ test.describe('related links', () => {
         'icon_excel.gif',
       )
     }
-    for (const link of external) {
-      expect(
-        link.image,
-        `${link.href} is marked rel="external" and should show the ` +
-          'external-link icon',
-      ).toContain('external_link.svg')
-    }
     for (const link of ordinary) {
-      if (!badgesOnlyExternalLinks) break
-      // A topic in this publication is not external and must not be badged as
-      // though it were. This is the assertion the old catch-all rule failed.
       expect(
         link.image,
-        `${link.href} is an ordinary topic in this publication and should ` +
-          'have no icon',
-      ).toBe('none')
+        `${link.href} should show the external-link icon`,
+      ).toContain('external_link.svg')
     }
     for (const link of internal) {
       // Same-page links are explicitly stripped of the icon.
