@@ -158,19 +158,32 @@ test.describe('fi3ldman scripts', () => {
   test('the marking follows in-page related links', async ({ page }) => {
     const path = PAGES.anchoredRelatedLinks
 
-    // A publish built from a template older than the fix cannot have the
-    // behaviour, and the frozen oxygen-NN snapshots never will. Skip on those
-    // and say so, rather than reporting a template-2026 defect against a 2024
-    // build. Guarded on the handler itself, so any publish carrying the fix is
-    // always checked and no snapshot has to be remembered.
-    const handler = await (
-      await page.request.get('/oxygen-webhelp/template/resources/current-handler.js')
-    ).text()
-    if (!handler.includes('pushState')) {
+    /*
+     * The frozen oxygen-NN snapshots predate this behaviour and can never
+     * acquire it, so they have to be skipped. *What* is asked, though, decides
+     * whether this test is worth anything.
+     *
+     * The first version of this guard read current-handler.js and skipped when
+     * it lacked the fix — which is the same question as the test itself, so a
+     * publish that lost the behaviour went quiet instead of failing. That is a
+     * hole exactly where a regression would appear.
+     *
+     * template-version.txt is a different question: is this publish new enough
+     * that the behaviour is *expected* of it. Oxygen started stamping the file
+     * into the output well after the snapshots were frozen, so they lack it
+     * and are skipped, while every current and future publish carries it and
+     * is therefore always checked — including one that has lost the fix, which
+     * now fails as it should. Confirmed by putting main's pre-#192 handler in
+     * front of the suite: failure, not a skip.
+     */
+    const stamped = await page.request.get(
+      '/oxygen-webhelp/template/resources/template-version.txt',
+    )
+    if (!stamped.ok()) {
       console.warn(
-        `SKIPPED ${path} in-page marking — this publish carries a ` +
-          'current-handler.js from before the issue-192 fix, which marks the ' +
-          'current link once at load and never again',
+        `SKIPPED ${path} in-page marking — this publish carries no ` +
+          'template-version.txt, so it was built before the template was ' +
+          'versioned and long before this behaviour existed',
       )
       test.skip()
     }
@@ -246,6 +259,16 @@ test.describe('fi3ldman scripts', () => {
       selfLink,
       'the link to this page is badged as though following it left the page',
     ).toHaveCSS('background-image', 'none')
+
+    // ...and the converse, on the same page and at the same anchor: a link
+    // that does leave the page still says so. Asserted here and not only in
+    // the icon test, which visits a page top: "the badge went missing" is a
+    // thing that happened, and it happened to a reader looking at an anchor.
+    await expect(
+      page.locator('.related_link a[href="BR_transducers.html"]'),
+      'a link to another topic lost the badge that says following it leaves ' +
+        'this page',
+    ).toHaveCSS('background-image', /external_link\.svg/)
 
     // At the top of the page the reader *is* where that link points, so now
     // it is current: greyed and inert, like any other current link.
