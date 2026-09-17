@@ -169,7 +169,9 @@ site/mockups/p9-10/
 
 Pub-9 has no DITA source of its own and needs none: it is `publications/pub-10/dita/`
 published through a scenario filter that excludes `audience="-trainee"`, which
-removes the vessel identifications and the worked-analysis links. Published to
+removes the vessel identifications and the worked-analysis links, and the
+"Pub-10" in the map title with them; the Pub-10 scenario excludes
+`audience="trainee"`, which is only the "Pub-9" in the title. Published to
 `site/pub-9/current/`; the mockups here are the original hand-built previews.
 See `15-shared-publishing-template.md`.
 

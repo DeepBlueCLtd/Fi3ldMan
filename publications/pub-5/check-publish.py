@@ -39,7 +39,21 @@ for dp, _, fn in os.walk(root):
 app = os.path.join(root, "oxygen-webhelp", "app")
 have = lambda n: "yes" if os.path.exists(os.path.join(app, n)) else "NO"
 
+# The publication title is the map title after filtering. Pub-9 and pub-10
+# publish from one map whose title carries both names behind audience="-trainee"
+# (Pub-10) / audience="trainee" (Pub-9) <ph> elements, and each scenario
+# excludes the other's - so this line is the quick check that a publish is the
+# edition it claims to be.
+def pub_title():
+    try:
+        t = open(os.path.join(root, "index.html"), encoding="utf-8", errors="ignore").read()
+    except OSError:
+        return "(no index.html)"
+    m = re.search(r"<title>(.*?)</title>", t, re.S)
+    return html.unescape(m.group(1)).strip() if m else "(no <title>)"
+
 print(f"root            : {root}")
+print(f"publication     : {pub_title()}")
 print(f"html pages      : {len(pages)}   files: {sum(len(f) for _,_,f in os.walk(root))}")
 print(f"oxygen buildIds : {sorted(build_ids)}")
 print("era markers     : commons.css=%s commons.js=%s | bootstrap.css=%s main.css=%s jquery.js=%s"

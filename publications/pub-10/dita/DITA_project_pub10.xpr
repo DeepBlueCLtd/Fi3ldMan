@@ -7176,7 +7176,7 @@ ${caret}</String>
                                             <cssFile-array>
                                                 <cssFile>
                                                     <field name="href">
-                                                        <String>file:/Users/ian/git/Fi3ldMan/template/f13ldman_author_mode.css</String>
+                                                        <String>${pdu}/../../pub-5/template-2026/f13ldman_author_mode.css</String>
                                                     </field>
                                                     <field name="title">
                                                         <String></String>
@@ -16542,6 +16542,68 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                         <Boolean>true</Boolean>
                     </entry>
                     <entry>
+                        <String>profiling.conditions</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
+                        <String>profiling.conditions.list</String>
+                        <profileConditionInfo-array>
+                                        <profileConditionInfo>
+                                            <field name="attributeName">
+                                                <String>audience</String>
+                                            </field>
+                                            <field name="allowsMultipleValues">
+                                                <Boolean>true</Boolean>
+                                            </field>
+                                            <field name="allowedValues">
+                                                <profileConditionValue-array>
+                                                    <profileConditionValue>
+                                                        <field name="value">
+                                                            <String>-trainee</String>
+                                                        </field>
+                                                        <field name="description">
+                                                            <String>Withheld from trainees: Pub-10 (instructor) edition only, excluded by the Pub-9 scenario</String>
+                                                        </field>
+                                                        <field name="level">
+                                                            <Integer>0</Integer>
+                                                        </field>
+                                                        <field name="renderName">
+                                                            <null/>
+                                                        </field>
+                                                    </profileConditionValue>
+                                                    <profileConditionValue>
+                                                        <field name="value">
+                                                            <String>trainee</String>
+                                                        </field>
+                                                        <field name="description">
+                                                            <String>For trainees only: Pub-9 (trainee) edition only, excluded by the Pub-10 scenario</String>
+                                                        </field>
+                                                        <field name="level">
+                                                            <Integer>0</Integer>
+                                                        </field>
+                                                        <field name="renderName">
+                                                            <null/>
+                                                        </field>
+                                                    </profileConditionValue>
+                                                </profileConditionValue-array>
+                                            </field>
+                                            <field name="documentTypePattern">
+                                                <String>*DITA*</String>
+                                            </field>
+                                            <field name="valuesSeparator">
+                                                <String> </String>
+                                            </field>
+                                            <field name="attributeRenderName">
+                                                <null/>
+                                            </field>
+                                        </profileConditionInfo>
+                        </profileConditionInfo-array>
+                    </entry>
+                    <entry>
+                        <String>profiling.pane</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
                         <String>publishing.templates.gallery.directories</String>
                         <String-array>
                             <String>${pd}/../../pub-5/template-2026</String>
@@ -16612,7 +16674,7 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                             <Boolean>false</Boolean>
                                         </field>
                                         <field name="useAppliedConditionSet">
-                                            <Boolean>true</Boolean>
+                                            <Boolean>false</Boolean>
                                         </field>
                                         <field name="appliedConditionSet">
                                             <null/>
@@ -16621,7 +16683,16 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                             <null/>
                                         </field>
                                         <field name="simpleFiltersList">
-                                            <list/>
+                                            <list>
+                                                <ditavalSimpleFilter>
+                                                    <field name="attrName">
+                                                        <String>audience</String>
+                                                    </field>
+                                                    <field name="attrValue">
+                                                        <String>trainee</String>
+                                                    </field>
+                                                </ditavalSimpleFilter>
+                                            </list>
                                         </field>
                                     </ditavalFilters>
                                 </field>

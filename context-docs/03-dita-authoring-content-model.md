@@ -27,13 +27,19 @@ The map references top-level topics that serve as tile entry points on the landi
 ### Pub-10 Master Map (`publications/pub-10/dita/index.ditamap`)
 
 ```xml
-<map title="Field Manual Pub-10 Mar 2025">
+<map>
+  <title>Field Manual <ph audience="-trainee">Pub-10</ph><ph audience="trainee">Pub-9</ph> Mar 2025</title>
   <topicref href="gram-index.dita"/>
   <topicref href="Introduction/Security.dita"/>
 </map>
 ```
 
-A much simpler map with just two top-level references.
+A much simpler map with just two top-level references. The two `<ph>` elements
+in the title are how one map publishes as Pub-10 or Pub-9. They sit on the same
+`audience` axis as the trainee content: `-trainee` is withheld from trainees
+(Pub-10 only), `trainee` is for trainees only (Pub-9), and each scenario excludes
+one value. The author never edits the title to switch editions (see
+`15-shared-publishing-template.md`, section 3).
 
 ## Subject Scheme (Country Filtering)
 

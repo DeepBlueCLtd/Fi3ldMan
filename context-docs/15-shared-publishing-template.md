@@ -88,6 +88,94 @@ That filter lives on the transformation scenario in `DITA_project_pub10.xpr`,
 published and deployed: `site/pub-10/current/` (full, 12 pages) and
 `site/pub-9/current/` (redacted, 10 pages).
 
+### The two editions carry their own titles (issue #198)
+
+The map title is the publication title: it becomes the `<title>` of
+`index.html` and `search.html`, the `wh_publication_title` in every page
+header, the logo's `alt`, and the root entry of `nav-links.js`. One map, one
+title — so until this change the author renamed the map by hand before every
+pub-9 publish, and back again for pub-10.
+
+The ask was a title parameter on the scenario. There is none to reuse: the
+WebHelp Responsive parameter set has nothing that overrides the publication
+title (`webhelp.logo.image.alt` covers the logo's `alt` only), and DITA-OT has
+no such argument either. Rather than add a Fi3ldMan parameter and an XSLT
+override of `whc:webhelp_publication_title` to the template — a customisation
+to re-verify on every Oxygen upgrade — the edition name is chosen by the
+mechanism that already tells the two scenarios apart: profiling.
+
+```xml
+<title>Field Manual <ph audience="-trainee">Pub-10</ph><ph audience="trainee">Pub-9</ph> Mar 2025</title>
+```
+
+The two names sit on the **same axis as the content**. `audience="-trainee"`
+already marks what is withheld from trainees — the vessel identities and the
+worked analysis — and that is exactly the content Pub-10 has and Pub-9 lacks,
+so the "Pub-10" in the title carries the same marker. `audience="trainee"` is
+its mirror, content for trainees only, and today the "Pub-9" in the title is
+the only thing that carries it. Each scenario's **Filters** tab ("Exclude from
+output all elements with any of the following attributes") then needs one row:
+
+| Scenario | Excludes |
+| --- | --- |
+| Pub-10 WebHelp Responsive (full) | `audience` = `trainee` |
+| Pub-9 WebHelp Responsive (redacted) | `audience` = `-trainee` (unchanged) |
+
+Filtering runs before the WebHelp stage reads the map, so every place the title
+lands gets the right name.
+
+A first cut used a second attribute, `product="pub-9"` / `product="pub-10"`,
+with each scenario excluding the other's value. It worked, and it was wrong:
+the edition and the trainee marker are one distinction, not two, and the
+overlap showed up as soon as an author wanted to preview an edition — a
+profiling condition set on `product` could switch the title but could not hide
+the trainee content, because a set works by ticking values to keep and
+`-trainee` was the only `audience` value there was. One axis has no such gap.
+
+Three things to know:
+
+- Oxygen validates profiling attributes against its Profiling/Conditional Text
+  preferences, and warns `[CND_PREF] Profiling attribute "…" is not defined`
+  for any attribute or value that page does not list. `DITA_project_pub10.xpr`
+  carries its own project-level definition (`profiling.conditions.list`, the
+  same serialization the legacy-regions project uses): `audience` with the
+  values `-trainee` and `trainee`, each with a description. Project options
+  replace the global list for that project, and authors get value completion.
+- In the DITA Maps Manager and Author view the title shows **both** names
+  (`Field Manual Pub-10Pub-9 Mar 2025`) unless a profiling condition set is
+  applied, because the editor does not run the scenario's filter. That is
+  cosmetic; the published output is what the filter decides. Two condition
+  sets on the same preferences page give a true per-edition preview — Pub-10
+  ticks `-trainee`, Pub-9 ticks `trainee` — each hiding the other edition's
+  name **and** its content, applied from the Profiling toolbar. None is
+  committed: the project file has no populated condition set to copy the
+  serialization from, so they are created in the UI.
+  One thing the preview cannot show: the gram-index buttons are empty
+  `<xref>`s whose text Author mode pulls from the target topic's title as
+  plain text, ignoring the applied set, so under Pub-9 they still read
+  "Gram 2 : Spirit of Whale Island" while the topic's own heading hides the
+  name. The publish is right — DITA-OT filters every topic before it pulls
+  link text, and `site/pub-9/current/gram-index.html` reads "Gram 2" —
+  and the only way to make the editor agree would be literal text in every
+  xref, which duplicates the titles and defeats the filter.
+- The full scenario previously had "Use profiling condition set" ticked with
+  no set chosen. It is now unticked, like the redacted scenario, so the two
+  differ only in the exclusion table and neither depends on whatever condition
+  set an author happens to have applied in the editor — which matters now that
+  applying one is the recommended way to preview an edition.
+- DITA-OT reports `DOTJ031I No rule for 'audience=…' was found in the DITAVAL
+  file` for each profiled value a build keeps: `-trainee` on the Pub-10 build,
+  `trainee` on the Pub-9 build. The exclusion table writes exclude rules only,
+  so a kept value has none. It is information, not an error, and it confirms
+  the filter ran; silencing it would take a real `.ditaval` with explicit
+  include rules per scenario, which was considered and not worth it.
+
+`check-publish.py` now prints the publication title it finds in `index.html`,
+so the first line of the check confirms which edition a publish is before it
+is copied into `site/`. Not yet publish-verified: the change went in without
+an Oxygen run, so the next pub-9 and pub-10 publishes should be checked for
+the title in the page header and in `<title>`.
+
 The original hand-built mockups under `site/mockups/p9-10/` corroborated this
 before either edition was published: the p9 and p10 mockups use an **identical
 set of 165 HTML classes**, and the p9 mockup already lacked the ship names and
@@ -256,7 +344,9 @@ So the fork's two headline defects — the machine-absolute logo path and the
 25.1-era asset bundles that would 404 under Oxygen 28 — are both fixed by
 publishing from this template, with no pub-10-specific configuration.
 
-The `audience = -trainee` filter behaves exactly as intended. The pub-9 build
+The `audience = -trainee` filter behaves exactly as intended (the profiled
+map title and the Pub-10 scenario's `trainee` exclusion, section 3, came later
+and are not covered by this verification). The pub-9 build
 is the pub-10 build minus `Grams/gram1 analysis.html` and
 `Grams/gram2 analysis.html`, with zero occurrences of the ship identities
 ("Pride of Le Havre", "Spirit of Whale Island") and zero ANALYSIS links. The

@@ -7222,7 +7222,7 @@ The current selection is kept unchanged if this parameter is not set.&lt;/li>&lt
                                             <cssFile-array>
                                                 <cssFile>
                                                     <field name="href">
-                                                        <String>file:/Users/ian/git/Fi3ldMan/template/f13ldman_author_mode.css</String>
+                                                        <String>${pdu}/../template-2026/f13ldman_author_mode.css</String>
                                                     </field>
                                                     <field name="title">
                                                         <String></String>
