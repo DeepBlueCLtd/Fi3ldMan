@@ -96,7 +96,15 @@ figure {
 }
 
 /** formatting for the header block which will introduce a flag and country name */
-.title {
+
+/* Only a heading that carries the flag block is laid out as a flex row. The
+   rule used to apply to every .title, and on a heading with no flag that did
+   nothing useful and one thing harmful: flex turns each inline child into its
+   own item, and an item's leading white space is dropped, so pub-10's
+   "Gram 1<ph> - Pride of Le Havre</ph>" rendered as "Gram 1- Pride of Le Havre"
+   (and a title whose ph starts with a space ran the two together). A heading
+   without a flag is ordinary inline text again, where that space survives. */
+.title:has(> .title-country) {
   display: flex;
   align-items: center;
 }
@@ -613,6 +621,25 @@ padding: 0 10px;
   padding: 0.5em 1em;
   text-decoration: none;
   border-radius: 5px;
+}
+
+/* A flowing row of gram buttons (pub-10's gram index) is there to be scanned,
+   so each button is three-quarters the height of the search box and more of
+   them fit on screen at once (issue #199).
+
+   The search box is Oxygen's .wh_search_textfield, 2.8em tall at the body font
+   size (oxygen.css). The button's font size is reset to that same size — its
+   text sits at the scale of the search field's own text, not .enterBtn's
+   28px — so 2.1em here is three-quarters of 2.8em there, and the two stay in
+   step if the body font size changes. The height is the whole box, border
+   included, and the line height is what is left inside the 1px top and bottom
+   borders, so the text sits centred. */
+.item-list .enterBtn {
+  font-size: 1em;
+  box-sizing: border-box;
+  height: 2.1em;
+  line-height: calc(2.1em - 2px);
+  padding: 0 1em;
 }
 
 .enterBtn:visited {
