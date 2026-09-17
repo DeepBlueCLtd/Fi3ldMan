@@ -513,6 +513,35 @@ test.describe('linked images', () => {
   })
 })
 
+test.describe('headings', () => {
+  /*
+   * `.title:has(> .title-country)` lays a heading out as a flex row only when
+   * it carries the flag block. It used to be `.title`, on every heading, and a
+   * flex heading drops the leading white space of each inline child: pub-10's
+   * "Gram 1<ph> - Pride of Le Havre</ph>" rendered as "Gram 1- Pride of Le
+   * Havre". No pub-5 sample heading has that shape, so the space itself is
+   * not measured here; what is checked is the scoping that protects it, on
+   * both sides.
+   */
+  test('only a heading with a flag is a flex row', async ({ page }) => {
+    await visit(page, PAGES.topic)
+    const flagged = page.locator('h1.topictitle1:has(> .title-country)')
+    expect(
+      await flagged.count(),
+      `${PAGES.topic} has no flag in its heading — this test needs one`,
+    ).toBe(1)
+    await expect(flagged).toHaveCSS('display', 'flex')
+
+    await visit(page, PAGES.table)
+    const plain = page.locator('h1.topictitle1')
+    expect(
+      await plain.locator('.title-country').count(),
+      `${PAGES.table} has a flag in its heading — this test needs one without`,
+    ).toBe(0)
+    await expect(plain).toHaveCSS('display', 'block')
+  })
+})
+
 test.describe('gram buttons', () => {
   /*
    * An enterBtn inside an item-list — the shape of pub-10's gram index — is

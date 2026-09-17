@@ -96,7 +96,15 @@ figure {
 }
 
 /** formatting for the header block which will introduce a flag and country name */
-.title {
+
+/* Only a heading that carries the flag block is laid out as a flex row. The
+   rule used to apply to every .title, and on a heading with no flag that did
+   nothing useful and one thing harmful: flex turns each inline child into its
+   own item, and an item's leading white space is dropped, so pub-10's
+   "Gram 1<ph> - Pride of Le Havre</ph>" rendered as "Gram 1- Pride of Le Havre"
+   (and a title whose ph starts with a space ran the two together). A heading
+   without a flag is ordinary inline text again, where that space survives. */
+.title:has(> .title-country) {
   display: flex;
   align-items: center;
 }
