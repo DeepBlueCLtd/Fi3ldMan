@@ -150,6 +150,14 @@ Three things to know:
   name **and** its content, applied from the Profiling toolbar. None is
   committed: the project file has no populated condition set to copy the
   serialization from, so they are created in the UI.
+  One thing the preview cannot show: the gram-index buttons are empty
+  `<xref>`s whose text Author mode pulls from the target topic's title as
+  plain text, ignoring the applied set, so under Pub-9 they still read
+  "Gram 2 : Spirit of Whale Island" while the topic's own heading hides the
+  name. The publish is right — DITA-OT filters every topic before it pulls
+  link text, and `site/pub-9/current/gram-index.html` reads "Gram 2" —
+  and the only way to make the editor agree would be literal text in every
+  xref, which duplicates the titles and defeats the filter.
 - The full scenario previously had "Use profiling condition set" ticked with
   no set chosen. It is now unticked, like the redacted scenario, so the two
   differ only in the exclusion table and neither depends on whatever condition
