@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
-    <title>Field Manual Pub-10 Mar 2025</title>
+    <!-- One source, two editions. Each publishing scenario in DITA_project_pub10.xpr
+         excludes the other edition's product value, so the published title says
+         "Pub-10" or "Pub-9" without editing this file. See context-docs/15, section 3. -->
+    <title>Field Manual <ph product="pub-10">Pub-10</ph><ph product="pub-9">Pub-9</ph> Mar 2025</title>
     <topicmeta/>
     <topicref href="./gram-index.dita"/>
     <topicref href="./Introduction/Security.dita"/>

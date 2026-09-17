@@ -88,6 +88,56 @@ That filter lives on the transformation scenario in `DITA_project_pub10.xpr`,
 published and deployed: `site/pub-10/current/` (full, 12 pages) and
 `site/pub-9/current/` (redacted, 10 pages).
 
+### The two editions carry their own titles (issue #198)
+
+The map title is the publication title: it becomes the `<title>` of
+`index.html` and `search.html`, the `wh_publication_title` in every page
+header, the logo's `alt`, and the root entry of `nav-links.js`. One map, one
+title — so until this change the author renamed the map by hand before every
+pub-9 publish, and back again for pub-10.
+
+The ask was a title parameter on the scenario. There is none to reuse: the
+WebHelp Responsive parameter set has nothing that overrides the publication
+title (`webhelp.logo.image.alt` covers the logo's `alt` only), and DITA-OT has
+no such argument either. Rather than add a Fi3ldMan parameter and an XSLT
+override of `whc:webhelp_publication_title` to the template — a customisation
+to re-verify on every Oxygen upgrade — the edition name is chosen by the
+mechanism that already tells the two scenarios apart: profiling.
+
+```xml
+<title>Field Manual <ph product="pub-10">Pub-10</ph><ph product="pub-9">Pub-9</ph> Mar 2025</title>
+```
+
+Each scenario's **Filters** tab ("Exclude from output all elements with any of
+the following attributes") drops the other edition's `<ph>`:
+
+| Scenario | Excludes |
+| --- | --- |
+| Pub-10 WebHelp Responsive (full) | `product` = `pub-9` |
+| Pub-9 WebHelp Responsive (redacted) | `audience` = `-trainee` (as before), `product` = `pub-10` |
+
+Filtering runs before the WebHelp stage reads the map, so every place the title
+lands gets the right name. `product` is used for this because it is the DITA
+attribute for exactly this distinction and nothing else in the repository uses
+it; `audience` stays what it was, the redaction marker.
+
+Two things to know:
+
+- In the DITA Maps Manager and Author view the title shows **both** names
+  (`Field Manual Pub-10Pub-9 Mar 2025`) unless a profiling condition set is
+  applied, because the editor does not run the scenario's filter. That is
+  cosmetic; the published output is what the filter decides.
+- The full scenario previously had "Use profiling condition set" ticked with
+  no set chosen. It is now unticked, like the redacted scenario, so the two
+  differ only in the exclusion table and neither depends on whatever condition
+  set an author happens to have applied in the editor.
+
+`check-publish.py` now prints the publication title it finds in `index.html`,
+so the first line of the check confirms which edition a publish is before it
+is copied into `site/`. Not yet publish-verified: the change went in without
+an Oxygen run, so the next pub-9 and pub-10 publishes should be checked for
+the title in the page header and in `<title>`.
+
 The original hand-built mockups under `site/mockups/p9-10/` corroborated this
 before either edition was published: the p9 and p10 mockups use an **identical
 set of 165 HTML classes**, and the p9 mockup already lacked the ship names and
@@ -256,7 +306,9 @@ So the fork's two headline defects — the machine-absolute logo path and the
 25.1-era asset bundles that would 404 under Oxygen 28 — are both fixed by
 publishing from this template, with no pub-10-specific configuration.
 
-The `audience = -trainee` filter behaves exactly as intended. The pub-9 build
+The `audience = -trainee` filter behaves exactly as intended (the `product`
+exclusions that give each edition its own title, section 3, came later and are
+not covered by this verification). The pub-9 build
 is the pub-10 build minus `Grams/gram1 analysis.html` and
 `Grams/gram2 analysis.html`, with zero occurrences of the ship identities
 ("Pride of Le Havre", "Spirit of Whale Island") and zero ANALYSIS links. The

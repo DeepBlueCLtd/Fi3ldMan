@@ -16612,7 +16612,7 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                             <Boolean>false</Boolean>
                                         </field>
                                         <field name="useAppliedConditionSet">
-                                            <Boolean>true</Boolean>
+                                            <Boolean>false</Boolean>
                                         </field>
                                         <field name="appliedConditionSet">
                                             <null/>
@@ -16621,7 +16621,16 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                             <null/>
                                         </field>
                                         <field name="simpleFiltersList">
-                                            <list/>
+                                            <list>
+                                                <ditavalSimpleFilter>
+                                                    <field name="attrName">
+                                                        <String>product</String>
+                                                    </field>
+                                                    <field name="attrValue">
+                                                        <String>pub-9</String>
+                                                    </field>
+                                                </ditavalSimpleFilter>
+                                            </list>
                                         </field>
                                     </ditavalFilters>
                                 </field>
@@ -16904,6 +16913,14 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                                     </field>
                                                     <field name="attrValue">
                                                         <String>-trainee</String>
+                                                    </field>
+                                                </ditavalSimpleFilter>
+                                                <ditavalSimpleFilter>
+                                                    <field name="attrName">
+                                                        <String>product</String>
+                                                    </field>
+                                                    <field name="attrValue">
+                                                        <String>pub-10</String>
                                                     </field>
                                                 </ditavalSimpleFilter>
                                             </list>
