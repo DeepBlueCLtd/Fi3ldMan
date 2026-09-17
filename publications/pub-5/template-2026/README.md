@@ -12,8 +12,14 @@ template already styled every class pub-10 uses.
 
 > **Releases.** Every push to `main` that changes this folder publishes a
 > versioned zip, tagged `pub-5-template-2026-v<major>.<minor>.<patch>`. Patch is
-> automatic; put `[minor]` or `[major]` in a commit message to bump further.
-> The release stamps the version into `resources/template-version.txt`, which
+> automatic; put `[minor]` or `[major]` in a commit message or PR title to bump
+> further. **Any edit to `f13ldman.css`, `notes.css`, the XSLT, the page layouts,
+> the fragments or `f13ldMan.opt` is at least `[minor]`** — the transfer
+> procedure calls every one of those a full re-transfer, and a patch number
+> tells the receiving operator the opposite. Forgetting the marker is easy
+> (v1.4.1 was a CSS change cut as a patch, and had to be re-issued as v1.5.0),
+> and cheap to check: if the PR touches one of those files, put `[minor]` in
+> its title before merging. The release stamps the version into `resources/template-version.txt`, which
 > Oxygen copies into every published output at
 > `oxygen-webhelp/template/resources/template-version.txt` — so a publication
 > can be traced back to the template that built it. That file is committed with

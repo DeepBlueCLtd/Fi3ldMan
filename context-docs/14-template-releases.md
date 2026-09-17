@@ -76,6 +76,18 @@ behind the marker:
 Without that discipline `v1.0.14` tells the receiving operator nothing about
 whether they need to act, which is most of the point of having a number.
 
+That discipline has slipped once. `v1.4.1` carried two `f13ldman.css` changes
+(the gram-button sizing and the flag-heading scoping) and was cut as a patch
+because the PR title had no marker — so its number said "stay as you are" about
+a payload the table above says must be re-transferred. It was re-issued as
+**`v1.5.0`** with the same template content, and that is the release to
+transfer; `v1.4.1` is left in place rather than deleted, because a published
+tag is a record. The check that prevents a repeat is mechanical: a PR that
+touches any file in the "full re-transfer" row of
+`12-template-transfer-air-gapped-network.md` gets `[minor]` in its title
+before merging. The rule is repeated at the top of the template's own README,
+where whoever edits the template will see it.
+
 ## Reading the version off a published output
 
 The tag is where the version is *decided*, but a tag is no use to someone
