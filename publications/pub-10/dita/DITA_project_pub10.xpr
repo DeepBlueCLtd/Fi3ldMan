@@ -16542,6 +16542,103 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                         <Boolean>true</Boolean>
                     </entry>
                     <entry>
+                        <String>profiling.conditions</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
+                        <String>profiling.conditions.list</String>
+                        <profileConditionInfo-array>
+                                        <profileConditionInfo>
+                                            <field name="attributeName">
+                                                <String>audience</String>
+                                            </field>
+                                            <field name="allowsMultipleValues">
+                                                <Boolean>true</Boolean>
+                                            </field>
+                                            <field name="allowedValues">
+                                                <profileConditionValue-array>
+                                                    <profileConditionValue>
+                                                        <field name="value">
+                                                            <String>-trainee</String>
+                                                        </field>
+                                                        <field name="description">
+                                                            <String>Answers and vessel identities: excluded from the Pub-9 (redacted) edition</String>
+                                                        </field>
+                                                        <field name="level">
+                                                            <Integer>0</Integer>
+                                                        </field>
+                                                        <field name="renderName">
+                                                            <null/>
+                                                        </field>
+                                                    </profileConditionValue>
+                                                </profileConditionValue-array>
+                                            </field>
+                                            <field name="documentTypePattern">
+                                                <String>*DITA*</String>
+                                            </field>
+                                            <field name="valuesSeparator">
+                                                <String> </String>
+                                            </field>
+                                            <field name="attributeRenderName">
+                                                <null/>
+                                            </field>
+                                        </profileConditionInfo>
+                                        <profileConditionInfo>
+                                            <field name="attributeName">
+                                                <String>product</String>
+                                            </field>
+                                            <field name="allowsMultipleValues">
+                                                <Boolean>true</Boolean>
+                                            </field>
+                                            <field name="allowedValues">
+                                                <profileConditionValue-array>
+                                                    <profileConditionValue>
+                                                        <field name="value">
+                                                            <String>pub-10</String>
+                                                        </field>
+                                                        <field name="description">
+                                                            <String>Pub-10 (full) edition only: excluded by the Pub-9 scenario</String>
+                                                        </field>
+                                                        <field name="level">
+                                                            <Integer>0</Integer>
+                                                        </field>
+                                                        <field name="renderName">
+                                                            <null/>
+                                                        </field>
+                                                    </profileConditionValue>
+                                                    <profileConditionValue>
+                                                        <field name="value">
+                                                            <String>pub-9</String>
+                                                        </field>
+                                                        <field name="description">
+                                                            <String>Pub-9 (redacted) edition only: excluded by the Pub-10 scenario</String>
+                                                        </field>
+                                                        <field name="level">
+                                                            <Integer>0</Integer>
+                                                        </field>
+                                                        <field name="renderName">
+                                                            <null/>
+                                                        </field>
+                                                    </profileConditionValue>
+                                                </profileConditionValue-array>
+                                            </field>
+                                            <field name="documentTypePattern">
+                                                <String>*DITA*</String>
+                                            </field>
+                                            <field name="valuesSeparator">
+                                                <String> </String>
+                                            </field>
+                                            <field name="attributeRenderName">
+                                                <null/>
+                                            </field>
+                                        </profileConditionInfo>
+                        </profileConditionInfo-array>
+                    </entry>
+                    <entry>
+                        <String>profiling.pane</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                    <entry>
                         <String>publishing.templates.gallery.directories</String>
                         <String-array>
                             <String>${pd}/../../pub-5/template-2026</String>

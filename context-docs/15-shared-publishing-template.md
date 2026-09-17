@@ -121,12 +121,25 @@ lands gets the right name. `product` is used for this because it is the DITA
 attribute for exactly this distinction and nothing else in the repository uses
 it; `audience` stays what it was, the redaction marker.
 
-Two things to know:
+Three things to know:
 
+- Oxygen validates profiling attributes against its Profiling/Conditional Text
+  preferences, and warns `[CND_PREF] Profiling attribute "product" is not
+  defined` for any attribute that page does not list. Global preferences on
+  the authoring machines know `audience` only, so `DITA_project_pub10.xpr`
+  now carries its own project-level definitions (`profiling.conditions.list`,
+  the same serialization the legacy-regions project uses): `audience` with
+  `-trainee`, and `product` with `pub-9` and `pub-10`. Project options replace
+  the global list for that project, which is why `audience` is defined there
+  too, and it also gives authors value completion for both attributes.
 - In the DITA Maps Manager and Author view the title shows **both** names
   (`Field Manual Pub-10Pub-9 Mar 2025`) unless a profiling condition set is
   applied, because the editor does not run the scenario's filter. That is
-  cosmetic; the published output is what the filter decides.
+  cosmetic; the published output is what the filter decides. An author who
+  wants the preview can add condition sets on the same preferences page
+  (Pub-10: `product` = `pub-10`; Pub-9: `product` = `pub-9`) and apply one
+  from the Profiling toolbar; none is committed, because the project file has
+  no populated condition set to copy the serialization from.
 - The full scenario previously had "Use profiling condition set" ticked with
   no set chosen. It is now unticked, like the redacted scenario, so the two
   differ only in the exclusion table and neither depends on whatever condition
