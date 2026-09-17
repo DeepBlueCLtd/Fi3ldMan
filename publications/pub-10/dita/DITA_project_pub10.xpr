@@ -7176,7 +7176,7 @@ ${caret}</String>
                                             <cssFile-array>
                                                 <cssFile>
                                                     <field name="href">
-                                                        <String>file:/Users/ian/git/Fi3ldMan/template/f13ldman_author_mode.css</String>
+                                                        <String>${pdu}/../../pub-5/template-2026/f13ldman_author_mode.css</String>
                                                     </field>
                                                     <field name="title">
                                                         <String></String>

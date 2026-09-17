@@ -46,7 +46,7 @@ Several OxygenXML Author mode enhancements support content maintainers:
 | Whitespace visibility | Toggle to see whitespace in Author mode (legacy content used whitespace for layout) | #110 |
 | Surround with PH | Inline text shading/coloring via `<ph>` element wrapping | #111 |
 | xref wrapper removal | Guidance for removing unnecessary xref elements around images | #112 |
-| Author-mode CSS | Custom styling for interactive elements (e.g., enterBtn) in Author view | #155, #156 |
+| Author-mode CSS | `pub-5/template-2026/f13ldman_author_mode.css`, styling interactive elements (e.g., enterBtn) in Author view. Each project's `.xpr` attaches it to the DITA document type by a `${pdu}`-relative URL; an absolute path there breaks on every other machine ("Cannot load the associated CSS file(s)") | #155, #156 |
 | DTD management | Managed via OxygenXML project file to avoid relative DTD path references | — |
 
 ### Authoring Guidance
