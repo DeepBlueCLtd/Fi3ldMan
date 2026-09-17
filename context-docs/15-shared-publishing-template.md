@@ -105,45 +105,62 @@ to re-verify on every Oxygen upgrade — the edition name is chosen by the
 mechanism that already tells the two scenarios apart: profiling.
 
 ```xml
-<title>Field Manual <ph product="pub-10">Pub-10</ph><ph product="pub-9">Pub-9</ph> Mar 2025</title>
+<title>Field Manual <ph audience="-trainee">Pub-10</ph><ph audience="trainee">Pub-9</ph> Mar 2025</title>
 ```
 
-Each scenario's **Filters** tab ("Exclude from output all elements with any of
-the following attributes") drops the other edition's `<ph>`:
+The two names sit on the **same axis as the content**. `audience="-trainee"`
+already marks what is withheld from trainees — the vessel identities and the
+worked analysis — and that is exactly the content Pub-10 has and Pub-9 lacks,
+so the "Pub-10" in the title carries the same marker. `audience="trainee"` is
+its mirror, content for trainees only, and today the "Pub-9" in the title is
+the only thing that carries it. Each scenario's **Filters** tab ("Exclude from
+output all elements with any of the following attributes") then needs one row:
 
 | Scenario | Excludes |
 | --- | --- |
-| Pub-10 WebHelp Responsive (full) | `product` = `pub-9` |
-| Pub-9 WebHelp Responsive (redacted) | `audience` = `-trainee` (as before), `product` = `pub-10` |
+| Pub-10 WebHelp Responsive (full) | `audience` = `trainee` |
+| Pub-9 WebHelp Responsive (redacted) | `audience` = `-trainee` (unchanged) |
 
 Filtering runs before the WebHelp stage reads the map, so every place the title
-lands gets the right name. `product` is used for this because it is the DITA
-attribute for exactly this distinction and nothing else in the repository uses
-it; `audience` stays what it was, the redaction marker.
+lands gets the right name.
+
+A first cut used a second attribute, `product="pub-9"` / `product="pub-10"`,
+with each scenario excluding the other's value. It worked, and it was wrong:
+the edition and the trainee marker are one distinction, not two, and the
+overlap showed up as soon as an author wanted to preview an edition — a
+profiling condition set on `product` could switch the title but could not hide
+the trainee content, because a set works by ticking values to keep and
+`-trainee` was the only `audience` value there was. One axis has no such gap.
 
 Three things to know:
 
 - Oxygen validates profiling attributes against its Profiling/Conditional Text
-  preferences, and warns `[CND_PREF] Profiling attribute "product" is not
-  defined` for any attribute that page does not list. Global preferences on
-  the authoring machines know `audience` only, so `DITA_project_pub10.xpr`
-  now carries its own project-level definitions (`profiling.conditions.list`,
-  the same serialization the legacy-regions project uses): `audience` with
-  `-trainee`, and `product` with `pub-9` and `pub-10`. Project options replace
-  the global list for that project, which is why `audience` is defined there
-  too, and it also gives authors value completion for both attributes.
+  preferences, and warns `[CND_PREF] Profiling attribute "…" is not defined`
+  for any attribute or value that page does not list. `DITA_project_pub10.xpr`
+  carries its own project-level definition (`profiling.conditions.list`, the
+  same serialization the legacy-regions project uses): `audience` with the
+  values `-trainee` and `trainee`, each with a description. Project options
+  replace the global list for that project, and authors get value completion.
 - In the DITA Maps Manager and Author view the title shows **both** names
   (`Field Manual Pub-10Pub-9 Mar 2025`) unless a profiling condition set is
   applied, because the editor does not run the scenario's filter. That is
-  cosmetic; the published output is what the filter decides. An author who
-  wants the preview can add condition sets on the same preferences page
-  (Pub-10: `product` = `pub-10`; Pub-9: `product` = `pub-9`) and apply one
-  from the Profiling toolbar; none is committed, because the project file has
-  no populated condition set to copy the serialization from.
+  cosmetic; the published output is what the filter decides. Two condition
+  sets on the same preferences page give a true per-edition preview — Pub-10
+  ticks `-trainee`, Pub-9 ticks `trainee` — each hiding the other edition's
+  name **and** its content, applied from the Profiling toolbar. None is
+  committed: the project file has no populated condition set to copy the
+  serialization from, so they are created in the UI.
 - The full scenario previously had "Use profiling condition set" ticked with
   no set chosen. It is now unticked, like the redacted scenario, so the two
   differ only in the exclusion table and neither depends on whatever condition
-  set an author happens to have applied in the editor.
+  set an author happens to have applied in the editor — which matters now that
+  applying one is the recommended way to preview an edition.
+- DITA-OT reports `DOTJ031I No rule for 'audience=…' was found in the DITAVAL
+  file` for each profiled value a build keeps: `-trainee` on the Pub-10 build,
+  `trainee` on the Pub-9 build. The exclusion table writes exclude rules only,
+  so a kept value has none. It is information, not an error, and it confirms
+  the filter ran; silencing it would take a real `.ditaval` with explicit
+  include rules per scenario, which was considered and not worth it.
 
 `check-publish.py` now prints the publication title it finds in `index.html`,
 so the first line of the check confirms which edition a publish is before it
@@ -319,9 +336,9 @@ So the fork's two headline defects — the machine-absolute logo path and the
 25.1-era asset bundles that would 404 under Oxygen 28 — are both fixed by
 publishing from this template, with no pub-10-specific configuration.
 
-The `audience = -trainee` filter behaves exactly as intended (the `product`
-exclusions that give each edition its own title, section 3, came later and are
-not covered by this verification). The pub-9 build
+The `audience = -trainee` filter behaves exactly as intended (the profiled
+map title and the Pub-10 scenario's `trainee` exclusion, section 3, came later
+and are not covered by this verification). The pub-9 build
 is the pub-10 build minus `Grams/gram1 analysis.html` and
 `Grams/gram2 analysis.html`, with zero occurrences of the ship identities
 ("Pride of Le Havre", "Spirit of Whale Island") and zero ANALYSIS links. The

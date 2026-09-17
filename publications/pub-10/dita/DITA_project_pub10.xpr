@@ -16562,42 +16562,7 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                                             <String>-trainee</String>
                                                         </field>
                                                         <field name="description">
-                                                            <String>Answers and vessel identities: excluded from the Pub-9 (redacted) edition</String>
-                                                        </field>
-                                                        <field name="level">
-                                                            <Integer>0</Integer>
-                                                        </field>
-                                                        <field name="renderName">
-                                                            <null/>
-                                                        </field>
-                                                    </profileConditionValue>
-                                                </profileConditionValue-array>
-                                            </field>
-                                            <field name="documentTypePattern">
-                                                <String>*DITA*</String>
-                                            </field>
-                                            <field name="valuesSeparator">
-                                                <String> </String>
-                                            </field>
-                                            <field name="attributeRenderName">
-                                                <null/>
-                                            </field>
-                                        </profileConditionInfo>
-                                        <profileConditionInfo>
-                                            <field name="attributeName">
-                                                <String>product</String>
-                                            </field>
-                                            <field name="allowsMultipleValues">
-                                                <Boolean>true</Boolean>
-                                            </field>
-                                            <field name="allowedValues">
-                                                <profileConditionValue-array>
-                                                    <profileConditionValue>
-                                                        <field name="value">
-                                                            <String>pub-10</String>
-                                                        </field>
-                                                        <field name="description">
-                                                            <String>Pub-10 (full) edition only: excluded by the Pub-9 scenario</String>
+                                                            <String>Withheld from trainees: Pub-10 (instructor) edition only, excluded by the Pub-9 scenario</String>
                                                         </field>
                                                         <field name="level">
                                                             <Integer>0</Integer>
@@ -16608,10 +16573,10 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                                     </profileConditionValue>
                                                     <profileConditionValue>
                                                         <field name="value">
-                                                            <String>pub-9</String>
+                                                            <String>trainee</String>
                                                         </field>
                                                         <field name="description">
-                                                            <String>Pub-9 (redacted) edition only: excluded by the Pub-10 scenario</String>
+                                                            <String>For trainees only: Pub-9 (trainee) edition only, excluded by the Pub-10 scenario</String>
                                                         </field>
                                                         <field name="level">
                                                             <Integer>0</Integer>
@@ -16721,10 +16686,10 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                             <list>
                                                 <ditavalSimpleFilter>
                                                     <field name="attrName">
-                                                        <String>product</String>
+                                                        <String>audience</String>
                                                     </field>
                                                     <field name="attrValue">
-                                                        <String>pub-9</String>
+                                                        <String>trainee</String>
                                                     </field>
                                                 </ditavalSimpleFilter>
                                             </list>
@@ -17010,14 +16975,6 @@ self::image[empty(parent::imagemap)] or oxy:current-selected-element()[self::ima
                                                     </field>
                                                     <field name="attrValue">
                                                         <String>-trainee</String>
-                                                    </field>
-                                                </ditavalSimpleFilter>
-                                                <ditavalSimpleFilter>
-                                                    <field name="attrName">
-                                                        <String>product</String>
-                                                    </field>
-                                                    <field name="attrValue">
-                                                        <String>pub-10</String>
                                                     </field>
                                                 </ditavalSimpleFilter>
                                             </list>

@@ -134,7 +134,7 @@ The separator lives **inside** the `<ph>`, with the name. That is the one place 
 ## Publication 9 (Pub-9) - Companion to Pub-10
 
 ### Purpose
-Pub-9 is the redacted edition of Pub-10, not a separate publication. It is built from the same `publications/pub-10/dita/` source and the same publishing template, through one transformation-scenario filter that excludes `audience="-trainee"` — stripping the vessel identifications from the gram titles and the links to the worked analysis. Each scenario also excludes the other edition's `product` value, which is how the one map title publishes as "Pub-10" in one edition and "Pub-9" in the other. Published to `site/pub-9/current/` (10 pages, against Pub-10's 12). See `15-shared-publishing-template.md`.
+Pub-9 is the redacted edition of Pub-10, not a separate publication. It is built from the same `publications/pub-10/dita/` source and the same publishing template, through one transformation-scenario filter that excludes `audience="-trainee"` — stripping the vessel identifications from the gram titles and the links to the worked analysis. The map title carries both edition names on the same axis, `audience="-trainee"` for "Pub-10" and `audience="trainee"` for "Pub-9", and the Pub-10 scenario excludes `audience="trainee"`, which is how one map publishes under either name. Published to `site/pub-9/current/` (10 pages, against Pub-10's 12). See `15-shared-publishing-template.md`.
 
 ### Current State
 - **Mockup location**: `site/mockups/p9-10/p9/`

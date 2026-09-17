@@ -40,9 +40,10 @@ app = os.path.join(root, "oxygen-webhelp", "app")
 have = lambda n: "yes" if os.path.exists(os.path.join(app, n)) else "NO"
 
 # The publication title is the map title after filtering. Pub-9 and pub-10
-# publish from one map whose title carries both names behind product="pub-9" /
-# product="pub-10" <ph> elements, and each scenario excludes the other's - so
-# this line is the quick check that a publish is the edition it claims to be.
+# publish from one map whose title carries both names behind audience="-trainee"
+# (Pub-10) / audience="trainee" (Pub-9) <ph> elements, and each scenario
+# excludes the other's - so this line is the quick check that a publish is the
+# edition it claims to be.
 def pub_title():
     try:
         t = open(os.path.join(root, "index.html"), encoding="utf-8", errors="ignore").read()
