@@ -118,7 +118,16 @@ Each gram topic contains:
 Pub-10's gram visualization comes from `gramframe.bundle.js`, which now ships in the shared `pub-5/template-2026/` alongside the other Fi3ldMan scripts. See `15-shared-publishing-template.md`.
 
 ### Landing Page
-The `gram-index.dita` page provides button-style navigation to individual grams. The `Welcome.dita` page serves as a cover/entry point with a "Next Page" link.
+The `gram-index.dita` page provides button-style navigation to individual grams. The `Welcome.dita` page serves as a cover/entry point with a "Next Page" link. Its buttons are `enterBtn` xrefs inside an `item-list`, and that pairing is what sizes them down to three-quarters of the search box so more grams are visible at once (issue #199).
+
+### Gram Titles
+A gram's title is the gram number followed by the vessel name, and only the name is filtered out of Pub-9:
+
+```xml
+<title>Gram 12<ph audience="-trainee"> : Dark Winter</ph></title>
+```
+
+The separator lives **inside** the `<ph>`, with the name. That is the one place it can go (issue #200): DITA-OT copies a title into every xref that points at the topic as plain text, so the gram-index buttons, the browser tab and the TOC all lose the `<ph>` element and with it anything a stylesheet could attach to it — a template rule could separate the two on the page heading and nowhere else. Kept with the name, the separator reaches every rendering of the title in Pub-10 and disappears with the name in Pub-9, leaving `Gram 12` rather than a dangling `Gram 12 :`.
 
 ---
 

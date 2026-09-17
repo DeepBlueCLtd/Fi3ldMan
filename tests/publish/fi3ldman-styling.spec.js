@@ -513,6 +513,92 @@ test.describe('linked images', () => {
   })
 })
 
+test.describe('headings', () => {
+  /*
+   * `.title:has(> .title-country)` lays a heading out as a flex row only when
+   * it carries the flag block. It used to be `.title`, on every heading, and a
+   * flex heading drops the leading white space of each inline child: pub-10's
+   * "Gram 1<ph> - Pride of Le Havre</ph>" rendered as "Gram 1- Pride of Le
+   * Havre". No pub-5 sample heading has that shape, so the space itself is
+   * not measured here; what is checked is the scoping that protects it, on
+   * both sides.
+   */
+  test('only a heading with a flag is a flex row', async ({ page }) => {
+    await visit(page, PAGES.topic)
+    const flagged = page.locator('h1.topictitle1:has(> .title-country)')
+    expect(
+      await flagged.count(),
+      `${PAGES.topic} has no flag in its heading — this test needs one`,
+    ).toBe(1)
+    await expect(flagged).toHaveCSS('display', 'flex')
+
+    await visit(page, PAGES.table)
+    const plain = page.locator('h1.topictitle1')
+    expect(
+      await plain.locator('.title-country').count(),
+      `${PAGES.table} has a flag in its heading — this test needs one without`,
+    ).toBe(0)
+    await expect(plain).toHaveCSS('display', 'block')
+  })
+})
+
+test.describe('gram buttons', () => {
+  /*
+   * An enterBtn inside an item-list — the shape of pub-10's gram index — is
+   * sized to three-quarters of the search box, so more grams fit on screen at
+   * once (issue #199). The rule is `.item-list .enterBtn` in f13ldman.css.
+   *
+   * The ratio is asserted against the search box as laid out, not against a
+   * pixel value: the rule is written in em so the two move together, and a
+   * test pinned to 29px would only prove the body font size had not changed.
+   *
+   * Checked on the Style Samples page, the one page in the pub-5 sample
+   * content that pairs the two classes. A publish from before it did is not
+   * evidence either way, so it is skipped and says so.
+   */
+  test('a gram button is three-quarters the height of the search box', async ({
+    page,
+  }) => {
+    const assets = await visit(page, PAGES.styleSamples, { optional: true })
+    test.skip(!assets, `${PAGES.styleSamples} is not in this publish`)
+
+    const buttons = page.locator('.item-list .enterBtn')
+    test.skip(
+      (await buttons.count()) === 0,
+      'this publish predates the enterBtn item-list on Style Samples; it has ' +
+        'no gram button to measure',
+    )
+
+    const searchBox = await page
+      .locator('.wh_search_textfield')
+      .first()
+      .evaluate((el) => el.getBoundingClientRect().height)
+    expect(searchBox, 'the search box has no height').toBeGreaterThan(0)
+
+    const heights = await buttons.evaluateAll((els) =>
+      els.map((el) => el.getBoundingClientRect().height),
+    )
+    for (const h of heights) {
+      expect(
+        Math.abs(h - searchBox * 0.75),
+        `a gram button is ${h}px tall against a ${searchBox}px search box; ` +
+          `three-quarters is ${searchBox * 0.75}px`,
+      ).toBeLessThan(1)
+    }
+
+    // And smaller than the full-size .enterBtn, which is what the rule is
+    // for. The ratio above already implies it; this names it in the failure.
+    const base = await page
+      .locator('.enterBtn:not(.item-list *)')
+      .first()
+      .evaluate((el) => el.getBoundingClientRect().height)
+    expect(
+      Math.max(...heights),
+      'gram buttons are no smaller than the full-size enterBtn',
+    ).toBeLessThan(base)
+  })
+})
+
 test.describe('related-link sub-titles', () => {
   /*
    * DITA emits the target topic's <shortdesc> as a <div class="desc"> under

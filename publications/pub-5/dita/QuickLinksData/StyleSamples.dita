@@ -221,11 +221,15 @@
 			-->
 			<p outputclass="h1">Item list</p>
 			<p>item-list wraps its links into a row of rounded buttons rather than
-				stacking them.</p>
+				stacking them. The links carry enterBtn too, because that is how pub-10's
+				gram index authors them, and an enterBtn inside an item-list is sized
+				down to three-quarters of the search box (issue #199) — the rule is
+				`.item-list .enterBtn`, and without this pairing no page in the sample
+				content would give tests/publish a button to measure.</p>
 			<p outputclass="item-list">
-				<xref format="dita" href="./Abbreviations.dita">First item</xref>
-				<xref format="dita" href="./VanesandCranes.dita">Second item</xref>
-				<xref format="dita" href="../Welcome.dita">Third item</xref>
+				<xref format="dita" href="./Abbreviations.dita" outputclass="enterBtn">First item</xref>
+				<xref format="dita" href="./VanesandCranes.dita" outputclass="enterBtn">Second item</xref>
+				<xref format="dita" href="../Welcome.dita" outputclass="enterBtn">Third item</xref>
 			</p>
 
 			<p outputclass="h1">Sortable table</p>
