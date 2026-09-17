@@ -1,0 +1,19 @@
+Fi3ldMan publishing template — pub-5 / template-2026
+====================================================
+
+Version:        (unreleased)
+Source commit:  (working tree)
+
+This copy was taken from a working tree rather than from a release, so it
+carries no version number.
+
+Released copies have this file rewritten by the release script with the real
+version, tag and source commit. Download one from the repository's releases
+page if you need a traceable copy.
+
+Oxygen copies this file into every published output, at
+  oxygen-webhelp/template/resources/template-version.txt
+so the version of the template a publication was built with can be read off
+the published output itself.
+
+See context-docs/14-template-releases.md.

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fi3ldMan</title>
+<style>
+  :root {
+    --ink: #1c2430;
+    --muted: #5b6675;
+    --rule: #dde2e8;
+    --link: #1a4f8b;
+    --bg: #ffffff;
+    --panel: #f6f8fa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.25rem 4rem;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 46rem; margin: 0 auto; }
+  h1 { font-size: 1.9rem; margin: 0 0 .35rem; }
+  h2 { font-size: 1.2rem; margin: 2.25rem 0 .25rem; padding-bottom: .3rem; border-bottom: 1px solid var(--rule); }
+  p.lede { color: var(--muted); margin: 0 0 .5rem; }
+  p.note { color: var(--muted); font-size: .9rem; margin: .4rem 0 0; }
+  a { color: var(--link); }
+  ul.publishes { list-style: none; margin: .9rem 0 0; padding: 0; }
+  ul.publishes li {
+    padding: .6rem .8rem;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    margin-bottom: .5rem;
+    background: var(--panel);
+  }
+  ul.publishes li.current { background: #fff; border-color: #b9cbe0; }
+  ul.publishes a { font-weight: 600; text-decoration: none; }
+  ul.publishes a:hover { text-decoration: underline; }
+  .meta { display: block; color: var(--muted); font-size: .875rem; margin-top: .15rem; }
+  .tag {
+    display: inline-block;
+    font-size: .7rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    padding: .1rem .4rem;
+    border-radius: 3px;
+    margin-left: .4rem;
+    vertical-align: .1em;
+    background: #e3ecf6;
+    color: #24557f;
+  }
+  .tag.frozen { background: #ecebe6; color: #6b6455; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .875rem; }
+</style>
+</head>
+<body><div style="background:#fff3cd;border-bottom:1px solid #e0c97f;padding:10px 16px;font:14px/1.5 Arial,sans-serif;color:#5c4500"><strong>Preview of pull request #202</strong> &middot; commit <code>3139157</code> &middot; not the live site. Frozen <code>oxygen-NN</code> snapshots and <code>legacy-regions</code> are not copied into a preview; those links lead to the live site.</div>
+<main>
+
+<h1>Fi3ldMan</h1>
+<p class="lede">Field Service Manual with advanced data exploitation.
+Published WebHelp output for each Fi3ldMan publication, plus the prototypes
+behind its interactive features. Every publication below is built from DITA
+source by Oxygen, and since September 2026 they all share one publishing
+template.</p>
+<p class="note">Source, publishing templates and project documentation live in
+the <a href="https://github.com/DeepBlueCLtd/Fi3ldMan">repository</a>.</p>
+
+<h2>Pub-5</h2>
+<p class="note">The active publication. <strong>Current</strong> is refreshed
+whenever pub-5 is republished; the version-named publishes below it are frozen
+snapshots, one per Oxygen release, kept so a new publish can be diffed against
+a known-good reference.</p>
+<ul class="publishes">
+  <li class="current">
+    <a href="pub-5/current/index.html">Pub-5 — current publish</a><span class="tag">current</span>
+    <span class="meta">Published 2026-09-11, Oxygen 28.1, with <code>template-2026</code> — now the
+    template shared with Pub-9 and Pub-10. Differs from the oxygen-28 snapshot below only by the
+    spectrogram script that shared template carries.</span>
+  </li>
+  <li>
+    <a href="https://deepbluecltd.github.io/Fi3ldMan/pub-5/oxygen-28/index.html">Pub-5 on Oxygen 28.1</a><span class="tag frozen">frozen</span>
+    <span class="meta">Published 2026-08-25 with <code>template-2026</code> — the first verified build after the move to 28.1.</span>
+  </li>
+  <li>
+    <a href="https://deepbluecltd.github.io/Fi3ldMan/pub-5/oxygen-26/index.html">Pub-5 on Oxygen 26</a><span class="tag frozen">frozen</span>
+    <span class="meta">Published 2026-08-25 with <code>template-2024</code> — the last known-good build before the move to 28.1.</span>
+  </li>
+  <li>
+    <a href="https://deepbluecltd.github.io/Fi3ldMan/pub-5/oxygen-25/index.html">Pub-5 on Oxygen 25</a><span class="tag frozen">frozen</span>
+    <span class="meta">The 2023-era publish, committed January 2025. The oldest pub-5 output the repository keeps.</span>
+  </li>
+</ul>
+
+<h2>Pub-9 and Pub-10</h2>
+<p class="note">Spectral analysis (&ldquo;Grams&rdquo;). One DITA source, published twice: the
+<strong>Pub-10</strong> edition carries the full content, and the <strong>Pub-9</strong> edition is the
+same material with the answers filtered out — no vessel identifications in the gram titles, and no
+links to the worked analysis. Both are built from the same
+<code>template-2026</code> that publishes Pub-5.</p>
+<ul class="publishes">
+  <li class="current">
+    <a href="pub-10/current/index.html">Pub-10 — full edition</a><span class="tag">current</span>
+    <span class="meta">Published 2026-09-11, Oxygen 28.1. Twelve pages, including the two worked
+    analysis topics. Grams are interactive: drag across a spectrogram to read off values.</span>
+  </li>
+  <li class="current">
+    <a href="pub-9/current/index.html">Pub-9 — redacted edition</a><span class="tag">current</span>
+    <span class="meta">Published 2026-09-11, Oxygen 28.1. The same ten pages minus the analysis
+    topics, produced by one filter (<code>audience</code> excluding <code>-trainee</code>) rather
+    than a separate source.</span>
+  </li>
+</ul>
+
+<h2>Legacy regions publication</h2>
+<ul class="publishes">
+  <li>
+    <a href="https://deepbluecltd.github.io/Fi3ldMan/legacy-regions/index.html">Regions</a><span class="tag frozen">frozen</span>
+    <span class="meta">Output of the archived DITA specialization — the <code>regions</code> and
+    <code>regions_simple</code> content. Committed January 2025, kept for reference.</span>
+  </li>
+</ul>
+
+<h2>Mockups and prototypes</h2>
+<ul class="publishes">
+  <li>
+    <a href="mockups/dynamic-tables/dynamic_tables/alternate_calc_models.html">Dynamic tables — alternate calculation models</a>
+  </li>
+  <li>
+    <a href="mockups/dynamic-tables/dynamic_tables/synced_persistent_tables.html">Dynamic tables — synced persistent tables</a>
+  </li>
+  <li>
+    <a href="mockups/dynamic-tables/dynamic_tables/heatmap_demo.html">Dynamic tables — heatmap demo</a>
+  </li>
+  <li>
+    <a href="mockups/p9-10/index.html">Pub-9 / Pub-10 mockups</a>
+    <span class="meta">The original hand-built previews, kept for reference. Both publications now
+    publish from DITA source — see above.</span>
+  </li>
+</ul>
+
+<footer>
+  Fi3ldMan template development has been supported by
+  <a href="http://www.oxygenxml.com">Oxygen XML</a>.
+</footer>
+
+</main>
+</body>
+</html>
