@@ -1,0 +1,548 @@
+/* user-defined CSS */
+
+/* styling for related links */
+.related-links a[href$='.xls'], a[href$='.xlsx'] {
+  background: transparent url(resources/images/icon_excel.gif) center right no-repeat !important;
+  padding-right: 22px;
+}
+
+.related-links a[href^="#"] {
+  background: transparent;
+}
+
+.related-links a {
+  background: transparent url(resources/images/external_link.svg) center right no-repeat;
+  padding-right: 22px;
+}
+
+
+/* hide web-help header bar in welcome page */
+body#Welcome header.wh_header {
+    display:none;
+}
+
+/* when a paragraph is inside a cell, we don't need to provide vertical padding */
+/* commented out, since we should not need it */
+/* .topic\/table .p {
+  margin-top: 0;
+  margin-bottom: 0;
+} */
+
+/** centre figures on the page */
+figure {
+  margin: auto;
+  width: 90%;
+}
+
+/** formatting for the header block which will introduce a flag and country name */
+.title {
+  display: flex;
+  align-items: center;
+}
+.title-country {
+  display: flex;
+  margin-right: 12px;
+  align-items: center;
+  flex-direction: column;
+  font-size: smaller;
+}
+
+/* put some whitespace between the sections. LM issue #581 */
+.section {
+  padding-bottom: 200px;
+  border-top: 8px solid #448;
+}
+
+/* but not for the flag */
+.section[id$="flag-section"] {
+  padding-bottom: 0; 
+  border-top: none;
+}
+
+/* hide the section title */
+.section[id$="flag-section"] .sectiontitle {
+  display: none;
+}
+
+.wh_footer_protection{
+  text-align: center;
+  padding: 1em;
+  position:relative;
+  bottom: 0;
+  width: 100%;
+  color: #000;
+  background: none #bfebb9;
+}
+
+.wh_footer_protection span{
+  font-family: Arial;
+  font-size: 14px;
+}
+
+.wh_header_protection{
+  background: #bfebb9 none;
+  color: #000;
+  text-align: center;
+}
+
+.wh_header_protection span{
+  font-family: Arial;
+  font-size: 14px;
+}
+
+
+/* hide the `short-desc` from topic pages, since we
+  only want them on the home page */
+.shortdesc {
+  display: none;
+}  
+
+/* styling to make the `REGIONS` button twice the width of the others */
+.wh_tiles-container {
+  padding: 5% 15%;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media only screen {
+  .wh_tiles-item {
+    display: flex;
+    width: 100%;
+    & > div {
+      width: 50%;
+    }
+  }
+}
+
+@media only screen and (min-width: 985px) {
+  .wh_tiles-item {
+    flex-direction: row;
+  }
+}
+
+@media only screen and (max-width: 985px) {
+  .wh_tiles-item {
+    flex-direction: column;
+  }
+}
+
+
+/** this is instruction to make the `Regions` button full width.  It
+    relies on DITA putting the filename prefix into the data-id attribute */
+[data-id="PD_1"] {
+  width: 100% !important;
+}
+
+/** background color of link boxes on home page */
+.wh_tile {
+  background-color: rgba(171, 199, 192, 0.419);
+}
+
+/** styling for global search text box */
+
+#searchForm > div {
+  width: 100%;
+  min-width: 200px;
+  max-width: 400px;
+  padding-left: 8px;
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+}
+
+.wh_search_input {
+  display:inline;
+  margin:0;
+  position:relative;
+  background:none !important;
+  border: none;
+  padding: 0 0 !important;
+}
+
+/** other UI changes */
+
+.c-menu > ul {
+  padding: 0 10px;
+  display: flex;
+  word-break: unset;
+  justify-content: flex-end;
+}
+
+.c-nav-bar {
+z-index: unset;
+}
+
+.c-menu {
+min-width: 710px;
+text-align: start;
+}
+
+.c-full-width {
+max-width: unset;
+}
+
+.wh_logo_and_publication_title {
+width: max-content;
+padding: 0 10px;
+}
+
+.fullWidthTable {
+  display: block;
+  width: 100%;
+}
+
+/** hide the sticky floating breadcrumb bar */
+.breadcrumb-sticky {
+  display: none;
+}
+
+/* ------------------------------------------- */
+
+
+/* don't show section title anchro */
+.permalink {
+  display: none
+}
+
+/* make related pages show as a list of items */
+.related-pages .xref {
+  display: list-item
+}
+
+/* hide borders for image link table  */
+.rich-collection .table-container table,  .rich-collection .table-container table td.entry {
+  border: none;
+}
+
+/* show borders for tables */
+.classlistbody .table .entry, .class .table .entry{ 
+  border: 1px solid black !important;
+  border-collapse: collapse;
+}
+
+/* text label for category image links
+.xref .b {
+  display:block;
+  text-align: center;
+  font-size: 2em;
+} */
+
+/* make table separators more prominent */
+.table-separator {
+  font-size: 1.5em;
+}
+
+.colorRed {
+  color: #F00;
+  border-color: #000;
+}
+
+.colorPink {
+  color: #F0F;
+  border-color: #000;
+}
+
+.colorBlue {
+  color: #00F;
+  border-color: #000;
+}
+
+.colorGray {
+  color: #777;
+  border-color: #000;
+}
+
+.colorOrange {
+  color: #FC0;
+  border-color: #000;
+}
+
+.colorLightBlue {
+  color: #0FF;
+  border-color: #000;
+}
+
+
+.placeholder {
+  background-color: #FF0;
+}
+
+.bkLightGray {
+  background-color: #CCC;    
+}
+
+.bkDarkGray {
+  background-color: #999;    
+}
+
+.bkYellow {
+  background-color: #ffff00;    
+}
+
+.bkBlue {
+  background-color: #0000ff;    
+}
+
+.bkRed {
+  background-color: #ff0000;    
+}
+
+.bkGreen {
+  background-color: #00ff00;    
+}
+
+.bold {
+  font-weight: 800
+}
+
+/* artificially support headings */
+.h1, .h2 {
+  font-size: 2em;
+}
+
+/* float the related link, if the screen is wide enough */
+@media screen and (min-width: 692px) {
+  /* pad the right-hand side of hte content, to make space for hte
+  floating table of contents */
+  .body {
+      padding-right: 200px;
+  }
+
+  /* make the right-hand notes block float */
+  .rh_notes {
+      background-color: #EFEFFA; 
+      position:fixed;
+      width: 200px;
+      right:0;
+      top:200px;
+      z-index: 1000;
+  }
+
+  /* make the related links float */
+  .wh_related_links {
+      background-color: #EFEFFA; 
+      position:fixed;
+      width: 200px;
+      right:0;
+      top:200px;
+      z-index: 1000;
+  }
+ 
+  /** the next blocks are for plain DITA-OT export
+  /* make the related links float */
+  .relref {
+      background-color: #EFEFFA; 
+      position:fixed;
+      width: 200px;
+      right:200px;
+      top:200px;
+      z-index: 1000;
+  }
+
+  /* make the related links float */
+  .relinfo {
+      background-color: #EFEFFA; 
+      position:fixed;
+      width: 200px;
+      right:0;
+      top:300px;
+      z-index: 1000;
+  }
+}
+
+/* text label for category image links */
+.ImageLinksTable .xref .b {
+  display:block;
+  text-align: center;
+}
+
+/* style for large link buttons */
+.enterBtn {
+  font: bold 28px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  display: block;
+  text-align: center;
+}
+
+.enterBtn:visited {
+  color: #333333;
+}
+
+/** just shrink the buttons on the contents page, since there are lots of them */
+.contents-index .enterBtn {
+  font: bold 20px Arial;
+}
+
+/** make the contents index go full width */
+.contents-index {
+  width: 100%;
+}
+
+/* Sortable table - styling for sortable column */
+table.sortable thead {
+    cursor: ns-resize;
+}
+
+/* Sortable tables - styling for unsortable column */
+table.sortable  .sorttable_nosort {
+  cursor: default;
+}
+
+table.sortable thead td {
+    background-color: #BBB;
+}
+
+table.sortable thead td.sorttable_nosort {
+    background-color: #999;
+}
+
+table.sortable thead td:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after, 
+table.sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
+    content: " \25B4\25BE" 
+}
+
+/******
+ * display calculated harmonics
+ */
+.calc_harms,  .wh_harmonics  {
+  font-family: monospace;
+  background-color: rgba(255, 250, 205, 0.8);
+  border: 1px solid rgb(255, 191, 0);
+  border-spacing: 4px;
+  border-collapse: separate;
+    border-radius: 5px;
+} 
+
+@keyframes animateDown {
+  0% {
+    opacity: 0.4;
+    transform: translatey(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translatey(0);
+  }
+}
+
+.calc_harms td.scaled {
+  animation: animateDown 0.2s linear forwards;
+}
+
+.calc_harms td {
+
+  font-weight: normal;
+  line-height: 1.2em;
+  font-size: 90%;
+  padding: 0px;
+  padding-left: 2px;
+  margin: 0px;
+  border: 0px;
+  text-align: right;
+}
+.calc_harms td:first-child {
+  padding-right: 2px;
+  text-align: left;
+} 
+
+.calc_harms tr.match {
+  background-color: #000;
+  border-color: #000;
+  color: #FFF;
+  font-weight: bold;
+}
+
+.first_harm {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+tr.match_row {
+  background-color: rgba(244, 191, 0, 0.3);
+}
+
+tr.match_harmonic {
+  color: rgba(255, 250, 205, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.matches {
+  background-color: rgba(244, 191, 0, 0.3) !important;
+}
+
+.calc_harms .dominant {
+  font-weight: bold !important;
+}
+
+/******
+ * enter harmonics details
+ */
+.wh_harmonics {
+  position:fixed;
+  width: 250px;
+  right:0;
+  top:580px;
+  z-index: 1000;
+  text-align: center;
+} 
+.wh_harmonics table, table.calc_harms {
+    margin-bottom: 0px;
+    margin-top: 0px;  
+}
+.wh_harmonics .error {
+  color: red;
+  font-size: 70%;
+}
+.wh_harmonics td {
+    text-align: right;
+    line-height: 1.4em;
+    padding: 0;
+}
+.wh_harmonics input.working {
+  width: 20px;
+}
+.wh_harmonics input.absolute {
+  width: 20px;
+}
+.wh_harmonics .speed-head {
+  display: block;
+  margin-top: 30px;
+}
+
+.wh_harmonics input.clear {
+  width: 70px;
+  float: right;
+}
+
+.wh_harmonics td.obs {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.wh_harmonics input {
+   width: 50px;  
+   margin: 0 !important;
+}
+
+.wh_harmonics textarea {
+   width: 120px; 
+}
+
+.wh_harmonics strong {
+  font-family: sans-serif;
+}
+
+/*
+* ==============================================
+* Style changes for Fi3ldMan project above this block
+* ==============================================
+*/
